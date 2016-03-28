@@ -256,7 +256,7 @@ The way LS-BSR does this is by:
 Make sure you are on an interactive node, as this will be even more computationally intensive!
 
 ```
-qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
+qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=00:01:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
 ```
 
 Change your directory to day2_after
