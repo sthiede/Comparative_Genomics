@@ -174,8 +174,6 @@ Run abacas using the input parameters:
 7) the prefix for your output files (–o sample_266_contigs_ordered) 
 
 ```
-source /scratch/micro612w16_fluxod/shared/bin/PAGIT/sourceme.pagit 
-
 perl abacas.1.3.1.pl -r KPNIH1.fasta -q sample_266_contigs.fasta -p nucmer -b -d -a -o sample_266_contigs_ordered
 ```
 
