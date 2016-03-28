@@ -6,7 +6,16 @@ On day 1 we worked through a pipeline to map short-read data to a pre-existing a
 Execute the following command to copy files for this morning’s exercises to your scratch directory: 
 
 ```
+> Note: Make sure you change 'username' in the commands below to your 'uniqname'. 
+
 cd /scratch/micro612w16_fluxod/username
+
+> Note: Check if you are in your home directory(/scratch/micro612w16_fluxod/username) by executing 'pwd' in terminal. 'pwd' stands for present working directory and it will display the directory you are in.
+
+pwd
+
+> Note: Copy files for this morning's exercise in your home directory.
+
 cp -r /scratch/micro612w16_fluxod/shared/data/day2_morn ./
 ```
 
