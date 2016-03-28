@@ -26,7 +26,6 @@ http://pad.software-carpentry.org/micro612_bacterial_genomics_workshop
 	- [Compare assembly to reference genome and Post-assembly genome improvement](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#compare-assembly-to-reference-genome-and-post-assembly-genome-improvement)
 	- [Map reads to the final ordered assembly](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#map-reads-to-the-final-ordered-assembly)
 	- [Genome Annotation](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#genome-annotation)
-	- [Visualize multiple assemblies](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#visualize-multiple-assemblies)
 
 - [Day 2 Afternoon](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md#day-2-afternoon)
 ***
