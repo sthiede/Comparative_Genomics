@@ -33,15 +33,23 @@ Here we will use the Spades assembler with default parameters. Because genome as
 
 create a new directory for the spades output in your day2_morn folder
 ```
+> Note: Make sure you change 'username' in the commands below to your 'uniqname'. 
+
 cd /scratch/micro612w16_fluxod/username/day2_morn
+
+> We will create a new directory in day2_morn to save genome assembly results:
+
 mkdir Rush_KPC_266_assembly_result
 ```
+
+Now, we will use a genome assembly tool called Spades for assembling the reads.
 
 >ii. Test out Spades to make sure its in your path
 
 To make sure that your paths are set up correctly, try running Spades with the –h (help) flag, which should produce usage instruction.
 
 ```
+> Run the below commands to load a python module and check if spades is working. 
 
 module load python
 spades.py -h     
@@ -50,11 +58,18 @@ spades.py -h
 
 >iii. Submit a cluster job to assemble 
 
-Open the spades.pbs residing in day2_morning folder with nano and add the following spades command to the bottom of the file. Dont forget to change 'username' with your unique id, a JOBNAME(e.g: username_assembly_266) and your EMAIL_ADDRESS in pbs script accordingly.
+Since it takes huge amount of memory and time to assemble genome using spades, we will run a pbs script on cluster for this step.
 
-Change the username in below command with your unique id or whatever the name of your home directory.
+Now, Open the spades.pbs file residing in day2_morning folder with nano and add the following spades command to the bottom of the file. 
 
 ```
+> Open file using nano:
+
+nano spades.pbs
+
+> Now replace the EMAIL_ADDRESS in spades.pbs file with your actual email-address. This will make sure that whenever the job starts, aborts or ends, you will get an email notification.
+
+> Copy and paste the below command to the bottom of spades.pbs file. Dont forget to change 'username' with your 'uniqname'. 
 
 python /scratch/micro612w16_fluxod/shared/bin/Spades/bin/spades.py --pe1-1 /scratch/micro612w16_fluxod/username/day2_morn/forward_paired.fq.gz --pe1-2 /scratch/micro612w16_fluxod/username/day2_morn/reverse_paired.fq.gz --pe1-s /scratch/micro612w16_fluxod/username/day2_morn/forward_unpaired.fq.gz --pe1-s /scratch/micro612w16_fluxod/username/day2_morn/reverse_unpaired.fq.gz -o /scratch/micro612w16_fluxod/username/day2_morn/Rush_KPC_266_assembly_result/ --careful
 
@@ -63,10 +78,13 @@ python /scratch/micro612w16_fluxod/shared/bin/Spades/bin/spades.py --pe1-1 /scra
 >iv. Submit your job to the cluster with qsub
 
 ```
+
+> Before submitting the spades.pbs job, make sure you that all the path in the file are correct.
+
 qsub spades.PBS
 ```
 
->v. Verify that your job is in the queue with the qstat
+>v. Verify that your job is in the queue with the qstat command
 
 ```
 qstat –u username 
@@ -82,18 +100,22 @@ To evaluate some example assemblies we will use the tool quast. Quast produces a
 
 >i. Run quast on a set of previously generated assemblies
 
+Now to check the example assemblies residing in your day2_morn folder, run the below quast command. Make sure you are in day2_morn folder in your home directory using 'pwd'
+
 ```
 quast.py -o quast sample_264_contigs.fasta sample_266_contigs.fasta
 ```
 
+The command above will generate a report file in /scratch/micro612w16_fluxod/username/day2_morn/quast
+
 >ii. Explore quast output
 
-QUAST creates output in various format. Now lets check the report.txt file created in quast folder for assembly statistics. Open report.txt using nano.
+QUAST creates output in different formats such as html, pdf and text. Now lets check the report.txt file residing in quast folder for assembly statistics. Open report.txt using nano.
 
 ```
 nano quast/report.txt
 ```
-Check the difference between each assembly statistics. 
+Check the difference between each assembly statistics. Also check different type of report formats it generated.
 
 ## Compare assembly to reference genome and Post-assembly genome improvement
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
