@@ -190,6 +190,11 @@ time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/trimm_parameters.png)
 
+First, Trimmomatic searches for any matches between the reads and adapters. Short sections(2 bp) of each adapters determined by seed misMatch parameter are tested in each possible position within the reads. If it finds a perfect match, the full alignment is scored. The advantage here is that the full alignment is calculated only when there is a perfect seed match which results in considerable efficiency gains. So, When it finds a match, it moves forward with full alignment and when the match reaches 10 bp determined by simpleClipThreshold, it finally trims off the adapter from reads.  
+
+Quoting Trimmomatic:
+
+"'Palindrome' trimming is specifically designed for the case of 'reading through' a short fragment into the adapter sequence on the other end. In this approach, the appropriate adapter sequences are 'in silico ligated' onto the start of the reads, and the combined adapter+read sequences, forward and reverse are aligned. If they align in a manner which indicates 'read- through' i.e atleast 30 bp match, the forward read is clipped and the reverse read dropped (since it contains no new data)."
 
 >v. Now create new directories in day1_morn folder and Run FastQC on these trimmomatic results.
 
