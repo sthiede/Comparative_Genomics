@@ -114,20 +114,8 @@ blastall -p blastp -i Abau_all.pfasta -d ardb_ROI_genes.pfasta -o bl_blastp_resu
 
 Next, instead of looking at resistance classes one at a time, lets look at them all in one shot! To do this we will use [LS-BSR](https://peerj.com/articles/332/), which essentially is just a wrapper for doing the same sort of BLASTing we just did in the previous step. BSR stands for BLAST Score Ratio, which refers to what the output is. In particular, for each query gene LS-BSR returns the ratio between: 1) the BLAST score of best hit in target genome and 2) BLAST score of query gene against itself. So, the output is a query by target genome matrix, where the values are between 0 and 1, and indicate the strength of a given queries BLAST hit in the target genome. 
 
->i. Load modules required for LS-BSR
 
-```
-module load med 
-module load sph 
-module load lsa 
-module load usearch 
-module load python/2.7.3 
-module load biopython 
-module load ls-bsr 
-module load prodigal
-```
-
->ii. Create a non-redundant list of resistance genes
+>i. Create a non-redundant list of resistance genes
 
 There is a lot of redundancy in the ARDB (e.g. lots of closely related genes), which would make the output difficult to sort through. Here, we use usearch to select representatives from the database and create a non-redundant gene set! 
 
@@ -143,7 +131,7 @@ cd scratch/micro612w16_fluxod/username/day2_after
 usearch -cluster_fast resisGenes.pep -id 0.8 -centroids resisGenes_nr.pep -uc resisGenes.uc
 ```
 
->iii. Run LS-BSR
+>ii. Run LS-BSR
 
 LS-BSR is pretty intensive, so we want to get an interactive node to run this
 
@@ -151,10 +139,19 @@ LS-BSR is pretty intensive, so we want to get an interactive node to run this
 qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=00:01:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
 ```
 
-Change your directory to day2_after
+Change your directory to day2_after and load the required modules for LS-BSR
 
 ```
 cd /scratch/micro612w16_fluxod/username/day1_after/
+
+module load med 
+module load sph 
+module load lsa 
+module load usearch 
+module load python/2.7.3 
+module load biopython 
+module load ls-bsr 
+module load prodigal
 ```
 
 Run LS-BSR (it will take a few minutes)! 
@@ -166,7 +163,7 @@ cd scratch/micro612w16_fluxod/username/day2_after
 python /home/software/rhel6/med/python-libs/ls-bsr/1.0/LS-BSR-master/ls_bsr.py -d Abau_genomes/ -g resisGenes_nr.pep
 ```
 
->iv. Download LS-BSR output matrix to your own computer for analysis in R
+>iii. Download LS-BSR output matrix to your own computer for analysis in R
 
 Use sftp to get LS-BSR output onto your laptop
 
@@ -186,7 +183,7 @@ bsr_mat = read.table('bsr_matrix_values.txt', sep = "\t", row.names = 1, header 
 
 Use head, str, dim, etc. to explore the matrix you read in
 
-v. Make a heatmap of all the LS-BSR results
+iv. Make a heatmap of all the LS-BSR results
 
 Install and load the R library "heatmap3"
 
@@ -197,7 +194,7 @@ heatmap3(bsr_mat, , scale = "none", distfun = function(x){dist(x, method = "manh
 ```
 
 
->vi. Subset LS-BSR data to only include genes present in at least one genome 
+>v. Subset LS-BSR data to only include genes present in at least one genome 
 
 From the previous step you should have discerned that full LS-BSR matrix is too large to get a useful visualization, so we need to subset it. 
 Lets first subset the matrix to focus only on genes present in at least one of our genomes. 
@@ -214,7 +211,7 @@ Make a heatmap of your subset (much better!)
 heatmap3(bsr_mat_subset, , scale = "none", distfun = function(x){dist(x, method = "manhattan")}, margin = c(10,10), cexCol = 0.85, cexRow = 0.5)
 ```
 
->vii. Determine the total number of resistance genes present in each genome
+>vi. Determine the total number of resistance genes present in each genome
 
 We use colSums to count the number of genes with greater than 50% identity to the query
 
@@ -224,7 +221,7 @@ colSums(bsr_mat > 0.5)
 
 How does the total number of genes vary by altering the percent identity threshold?
 
->viii. Determine the total number of bla genes in each genome
+>vii. Determine the total number of bla genes in each genome
 
 Next, we will use grepl to pull out genes of interest
 
@@ -234,7 +231,7 @@ bla_bsr_mat = bsr_mat[grepl('beta-lactamase', row.names(bsr_mat)) ,]
 
 Print out to screen and make a heatmap to explore
 
->ix. Subset the full matrix to look at genes that are present in only one genome
+>viii. Subset the full matrix to look at genes that are present in only one genome
 
 Get genes present in only one genome
 
