@@ -51,6 +51,7 @@ export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/bin/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/snpEff/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/PAGIT/ABACAS/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast-2.2.26/bin/
+export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/quast/
 ```
 
 >iv. Source your .bashrc file
