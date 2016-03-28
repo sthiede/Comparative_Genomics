@@ -69,18 +69,15 @@ nano spades.pbs
 
 > Now replace the EMAIL_ADDRESS in spades.pbs file with your actual email-address. This will make sure that whenever the job starts, aborts or ends, you will get an email notification.
 
-> Copy and paste the below command to the bottom of spades.pbs file. Dont forget to change 'username' with your 'uniqname'. 
+> Copy and paste the below command to the bottom of spades.pbs file.
 
-python /scratch/micro612w16_fluxod/shared/bin/Spades/bin/spades.py --pe1-1 /scratch/micro612w16_fluxod/username/day2_morn/forward_paired.fq.gz --pe1-2 /scratch/micro612w16_fluxod/username/day2_morn/reverse_paired.fq.gz --pe1-s /scratch/micro612w16_fluxod/username/day2_morn/forward_unpaired.fq.gz --pe1-s /scratch/micro612w16_fluxod/username/day2_morn/reverse_unpaired.fq.gz -o /scratch/micro612w16_fluxod/username/day2_morn/Rush_KPC_266_assembly_result/ --careful
+python /scratch/micro612w16_fluxod/shared/bin/Spades/bin/spades.py --pe1-1 forward_paired.fq.gz --pe1-2 reverse_paired.fq.gz --pe1-s forward_unpaired.fq.gz --pe1-s reverse_unpaired.fq.gz -o Rush_KPC_266_assembly_result/ --careful
 
 ```
 
 >iv. Submit your job to the cluster with qsub
 
 ```
-
-> Before submitting the spades.pbs job, make sure you that all the path in the file are correct.
-
 qsub spades.PBS
 ```
 
