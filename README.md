@@ -4,6 +4,9 @@ A 3 day microbial bioinformatics workshop conducted by [Dr. Evan Snitkin](http:/
 
 Date: 28 - 30 March
 
+Link to Software Carpentry Etherpad:
+http://pad.software-carpentry.org/micro612_bacterial_genomics_workshop
+
 - [Day 1 Morning](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 ***
 	- [Getting your data onto Flux and setting up Environment variable](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#getting-your-data-onto-glux-and-setting-up-environment-variable)
