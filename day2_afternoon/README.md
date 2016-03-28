@@ -148,7 +148,7 @@ usearch -cluster_fast resisGenes.pep -id 0.8 -centroids resisGenes_nr.pep -uc re
 LS-BSR is pretty intensive, so we want to get an interactive node to run this
 
 ```
-qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
+qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=00:01:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
 ```
 
 Change your directory to day2_after
