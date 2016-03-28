@@ -37,6 +37,7 @@ The script takes as input:
 3) an output file to contain the subset of sequences that match the text your searching for (ardb_beta_lactam_genes.pfasta).
 
 ```
+module load BioPerl
 cd scratch/micro612w16_fluxod/username/day2_after
 perl filter_fasta_file.pl resisGenes.pfasta fasta_file_keys ardb_beta_lactam_genes.pfasta
 ```
