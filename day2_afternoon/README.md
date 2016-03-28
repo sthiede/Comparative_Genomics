@@ -267,11 +267,12 @@ cd /scratch/micro612w16_fluxod/username/day2_after/
 
 
 Run LS-BSR! The –u parameter is just a path to where usearch lives on flux.
+If you started a new interactive job since you ran LS-BSR, you will need to re-load the required modules for LS-BSR listed above.
 
 ```
 cd scratch/micro612w16_fluxod/username/day2_after
 
-python /home/software/rhel6/med/python-libs/ls-bsr/1.0/LS-BSR-master/ls_bsr.py -d ../Abau_genomes/ -u /home/software/rhel6/sph/usearch/7.0.1001/bin/usearch7.0.1001_i86linux32
+python /home/software/rhel6/med/python-libs/ls-bsr/1.0/LS-BSR-master/ls_bsr.py -d Abau_genomes/ -u /home/software/rhel6/sph/usearch/7.0.1001/bin/usearch7.0.1001_i86linux32
 ```
 
 Run the custom perl script transfer_annotations.pl to add annotations to your BSR matrix. The output of this script will be bsr_matrix_values_annot.txt
