@@ -159,6 +159,8 @@ Lets go through an example vcf file and try to understand a few vcf specificatio
 less example.vcf
 ```
 
+Press 'q' from keyboard to exit.
+
 VCF format stores a large variety of information and you can find more details about each nomenclature in this [pdf](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwit35bvktzLAhVHkoMKHe3hAhYQFggdMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=tPLD6jW5ALombN3ALRiCZg&cad=rja)
 
 **2. Variant filtering and processed file generation using GATK and vcftools**
