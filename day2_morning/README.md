@@ -32,14 +32,16 @@ Here we will use the Spades assembler with default parameters. Because genome as
 >i. Create directory to hold your assembly output.
 
 create a new directory for the spades output in your day2_morn folder
+
 ```
-> Note: Make sure you change 'username' in the commands below to your 'uniqname'. 
+> Note: Make sure you change 'username' in the below command with your 'uniqname'. 
 
 cd /scratch/micro612w16_fluxod/username/day2_morn
 
 > We will create a new directory in day2_morn to save genome assembly results:
 
 mkdir Rush_KPC_266_assembly_result
+
 ```
 
 Now, we will use a genome assembly tool called Spades for assembling the reads.
@@ -127,7 +129,12 @@ To do this we need to first align our genome assembly to our reference. We will 
 Create a BLAST database from your reference genome using the makeblastdb command.
 
 ```
+
+> Make sure you are in /scratch/micro612w16_fluxod/username/day2_morn directory
+cd /scratch/micro612w16_fluxod/username/day2_morn
+
 makeblastdb -in KPNIH1.fasta -dbtype nucl -out KPNIH1.fasta
+
 ```
 
 >ii. Stitch together your contigs into a single sequence
@@ -149,11 +156,12 @@ The input parameters are:
 blastn -outfmt 6 -evalue 1e-20 -db KPNIH1.fasta -query sample_266_contigs_concat.fasta -out concat_comp.blast
 ```
 
->ii. Use ACT to compare stitched together contigs to reference.
+>ii. Use ACT(Installed in your local system) to compare stitched together contigs to reference.
+
+For these, first we will create a seperate directory called ACT_contig_comparison in day2_morn folder and copy all the necessary ACT input to this directory.
 
 ```
 
-cd /scratch/micro612w16_fluxod/username/day2_morn
 mkdir ACT_contig_comparison 
 cp KPNIH.gb KPNIH1.fasta concat_comp.blast sample_266_contigs_concat.fasta ACT_contig_comparison/
 
@@ -163,6 +171,8 @@ Use scp to get sequences and BLAST alignments onto your laptop
 
 ```
 
+> Note: Make sure you change 'username' in the below command with your 'uniqname'.
+
 scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_morn/ACT_contig_comparison/ /path-to-local-directory/
 
 ```
@@ -170,6 +180,7 @@ scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/d
 >iii. Read these Input files in ACT_contig_comparison folder into ACT
 
 ```
+
 Start ACT
 Go to File -> open 
 
@@ -179,19 +190,38 @@ Sequence file 2  = sample_266_contigs_concat.fasta
 
 ```
 
-> Notice that it a complete mess!!!! The reason is that the contigs are in random order, so it is very difficult to visually compare to the reference. 
+> Notice that it is a complete mess!!!! The reason is that the contigs are in random order, so it is very difficult to visually compare to the reference. 
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/mess.png)
 
 iv. Run abacas to orient contigs to reference
 
-To orient our contigs relative to the reference we will use a tool called abacas. [ABACAS](http://www.sanger.ac.uk/science/tools/pagit) aligns contigs to a reference genome and then stitches them together to form a “pseudo-chromosome”. Go back to flux and into the directory where the assembly is located.
+To orient our contigs relative to the reference we will use a tool called abacas. [ABACAS](http://www.sanger.ac.uk/science/tools/pagit) aligns contigs to a reference genome and then stitches them together to form a “pseudo-chromosome”. 
+
+Go back to flux and into the directory where the assembly is located.
 
 ```
 cd /scratch/micro612w16_fluxod/username/day2_morn/
 ```
 
-Run abacas using the input parameters: 
+Before running Abacas, add the following path to your ~/.bashrc file:
+
+```
+> Open bashrc file using nano
+
+nano ~/.bashrc
+
+> Add this path to the bottom of bashrc file
+
+export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/MUMmer3.23/
+
+>  Exit and save this file. Source your bashrc file.
+
+source ~/.bashrc
+
+```
+
+Now, we will run abacas using these input parameters: 
 
 1) your reference sequence (-r KPNIH.fasta), 
 2) your contig file (-q sample_266_contigs.fasta), 
@@ -210,6 +240,7 @@ v. Use ACT to view contig alignment to reference genome
 > Use scp to get ordered fasta sequence and .cruch file onto your laptop 
 
 ```
+> Dont forget to change username and /path-to-local-ACT_contig_comparison-directory/ in the below command
 
 scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_morn/sample_266_contigs_ordered* /path-to-local-ACT_contig_comparison-directory/
 
