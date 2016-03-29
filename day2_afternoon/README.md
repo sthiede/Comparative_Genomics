@@ -375,7 +375,7 @@ As we saw this morning, to compare genomes in ACT we need to use BLAST to create
 
 ```
 cd scratch/micro612w16_fluxod/username/day2_after
-blastall -p blastn -i ../Abau_genomes/AbauA_genome.fasta -d ../Abau_BLAST_DB/ACICU_genome.fasta -m 8 -e 1e-20 -o AbauA_vs_ACICU.blast
+blastall -p blastn -i ./Abau_genomes/AbauA_genome.fasta -d ./Results/Abau_BLAST_DB/ACICU_genome.fasta -m 8 -e 1e-20 -o AbauA_vs_ACICU.blast
 ```
 
 >ii. Read in genomes, alignments and annotation files
