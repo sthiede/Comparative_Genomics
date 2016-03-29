@@ -164,7 +164,7 @@ Change your directory to day2_after:
 
 > Make sure you are in day2_after directory
 
-cd /scratch/micro612w16_fluxod/username/day1_after/
+cd /scratch/micro612w16_fluxod/username/day2_after/
 
 ```
 
