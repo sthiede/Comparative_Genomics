@@ -78,7 +78,7 @@ python /scratch/micro612w16_fluxod/shared/bin/Spades/bin/spades.py --pe1-1 forwa
 >iv. Submit your job to the cluster with qsub
 
 ```
-qsub spades.PBS
+qsub spades.pbs
 ```
 
 >v. Verify that your job is in the queue with the qstat command
