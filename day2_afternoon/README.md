@@ -127,31 +127,36 @@ We are running usearch with the following parameters:
 5) an output file describing the results of the clustering (-uc resisGenes.uc).
 
 ```
+> Make sure you are in day2_after directory
+
 cd scratch/micro612w16_fluxod/username/day2_after
-usearch -cluster_fast resisGenes.pep -id 0.8 -centroids resisGenes_nr.pep -uc resisGenes.uc
-```
 
->ii. Run LS-BSR
-
-LS-BSR is pretty intensive, so we want to get an interactive node to run this
-
-```
-qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=00:01:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
-```
-
-Change your directory to day2_after and load the required modules for LS-BSR
-
-```
-cd /scratch/micro612w16_fluxod/username/day1_after/
+> Load relevant Modules
 
 module load med 
 module load sph 
 module load lsa 
 module load usearch 
+module unload python
 module load python/2.7.3 
 module load biopython 
 module load ls-bsr 
 module load prodigal
+
+> Run usearch to select representatives from the database and create a non-redundant gene set! 
+
+usearch -cluster_fast resisGenes.pep -id 0.8 -centroids resisGenes_nr.pep -uc resisGenes.uc
+```
+
+>ii. Run LS-BSR
+
+Change your directory to day2_after:
+
+```
+> Make sure you are in day2_after directory
+
+cd /scratch/micro612w16_fluxod/username/day1_after/
+
 ```
 
 Run LS-BSR (it will take a few minutes)! 
@@ -159,26 +164,25 @@ Run LS-BSR (it will take a few minutes)!
 The input parameters are: a directory with your genomes (-d Abau_genomes) and a fasta file of query genes (-g resisGenes_nr.pep)
 
 ```
-cd scratch/micro612w16_fluxod/username/day2_after 
 python /home/software/rhel6/med/python-libs/ls-bsr/1.0/LS-BSR-master/ls_bsr.py -d Abau_genomes/ -g resisGenes_nr.pep
 ```
 
 >iii. Download LS-BSR output matrix to your own computer for analysis in R
 
-Use sftp to get LS-BSR output onto your laptop
+Use scp to get LS-BSR output onto your laptop
 
 ```
-cd ~/Desktop (or wherever your desktop is) 
-mkdir LS-BSR_resistome 
-cd LS-BSR_resistome 
-sftp –r username@flux-login.engin.umich.edu cd /scratch/micro612w16_fluxod/username/day2_after 
-get bsr_matrix_values.txt
+> Dont forget to change username in the below command
+
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_after/bsr_matrix_values.txt ~/Desktop
 ```
 
 Fire up RStudio and read the matrix:
 
 ```
-bsr_mat = read.table('bsr_matrix_values.txt', sep = "\t", row.names = 1, header = TRUE, quote = "")
+> Make sure you have copied bsr_matrix_values.txt file to your desktop. If not then give the path where bsr_matrix_values.txt is located.
+
+bsr_mat = read.table('~/Desktop/bsr_matrix_values.txt', sep = "\t", row.names = 1, header = TRUE, quote = "")
 ```
 
 Use head, str, dim, etc. to explore the matrix you read in
@@ -262,6 +266,8 @@ qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=00:01:00:00 -q fluxod -l qos=flu
 Change your directory to day2_after
 
 ```
+> Make sure to change username with your uniqname
+
 cd /scratch/micro612w16_fluxod/username/day2_after/
 ```
 
