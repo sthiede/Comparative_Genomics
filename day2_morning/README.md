@@ -315,9 +315,10 @@ From our ACT comparison of our assembly and the reference we can clearly see tha
 
 >i. Run Prokka on assembly
 
-Load modules required for Prokka
+Get an interactive job and then load the modules required for Prokka
 
 ```
+qsub -I -V -l nodes=1:ppn=4,mem=16000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
 module load med perl-modules prokka 
 prokka –setupdb
 ```
