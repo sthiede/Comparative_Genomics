@@ -65,7 +65,7 @@ Since it takes huge amount of memory and time to assemble genome using spades, w
 Now, Open the spades.pbs file residing in day2_morning folder with nano and add the following spades command to the bottom of the file. 
 
 ```
-> Open file using nano:
+> Open spades.pbs file using nano:
 
 nano spades.pbs
 
@@ -268,11 +268,15 @@ You already know the drill/steps involved in reads mapping. Here, we will map th
 First create bwa index of ordered fasta file.
 
 ```
+> Only proceed further if everything worked uptil now. Make sure you are in day2_morn directory.
+
 cd /scratch/micro612w16_fluxod/username/day2_morn/
 bwa index sample_266_contigs_ordered.fasta
 samtools faidx sample_266_contigs_ordered.fasta
+
 ```
-Align the clean trimmed reads to this ordered assembly using BWA mem. Convert SAM to BAM. Sort and index it.
+
+Align the trimmed reads which we used for genome assembly to this ordered assembly using BWA mem. Convert SAM to BAM. Sort and index it.
 
 ```
 
@@ -286,10 +290,11 @@ samtools index sample_266_contigs_ordered_sort.bam
 
 ```
 
-Lets visualize the alignments against out ordered assembly.
+Lets visualize the alignments against our ordered assembly.
 Copy this sorted and indexed BAM files to local ACT_contig_comparison directory.
 
 ```
+> Dont forget to change username and /path-to-local-ACT_contig_comparison-directory/ in the below command
 
 scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_morn/sample_266_contigs_ordered_sort* /path-to-local-ACT_contig_comparison-directory/
 
@@ -320,18 +325,25 @@ prokka –setupdb
 Execute Prokka on your ordered assembly 
 
 ```
+> Make sure you are in day2_morn directory.
+
 cd /scratch/micro612w16_fluxod/username/day2_morn/
 mkdir sample_266_prokka 
+
+> Dont forget to change username in the below command
+
 prokka -kingdom Bacteria -outdir /scratch/micro612w16_fluxod/username/day2_morn/sample_266_prokka -force -prefix sample_266 sample_266_contigs_ordered.fasta
 
-Use scp to get Prokka annotated genome on your laptop
+> Use scp to get Prokka annotated genome on your laptop. 
 
 scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_morn/sample_266_prokka/ /path-to-local-ACT_contig_comparison-directory/
+
 ```
 
 >ii. Reload comparison into ACT now that we’ve annotated the un-annotated!
 
 Read files into ACT
+
 ```
 Go to File -> open
 Sequence file 1  = KPNIH.gb 
