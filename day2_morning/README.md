@@ -181,13 +181,14 @@ scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/d
 
 ```
 
-Start ACT
-Go to File -> open 
+Start ACT and set your working directory to ACT_contig_comparison(wherever it is stored on your local system)
+Go to File on top left corner of ACT window -> open 
 
 Sequence file 1 = KPNIH.gb
 Comparison file 1  = concat_comp_blast 
 Sequence file 2  = sample_266_contigs_concat.fasta
 
+Click Apply button
 ```
 
 > Notice that it is a complete mess!!!! The reason is that the contigs are in random order, so it is very difficult to visually compare to the reference. 
@@ -249,10 +250,14 @@ scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2
 > Read files into ACT
 
 ```
-Go to File -> open 
+Go to File on top left corner of ACT window -> open 
 Sequence file 1 = KPNIH.gb 
 Comparison file 1  = sample_266_contigs_ordered.crunch 
 Sequence file 2  = sample_266_contigs_ordered.fasta
+
+Click Apply button
+
+> Dont close the ACT window
 ```
 
 > Notice that the alignment is totally beautiful now!!! Scan through the alignment and play with ACT features to look at genes present in reference but not in assembly. Keep the ACT window open for further visualizations.
@@ -300,7 +305,11 @@ scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2
 
 ```
 
-Select File -> sample_266_contigs_ordered.fasta -> Read BAM/VCF > select sorted bam file
+```
+Go back to ACT where your ordered contigs are still open in the window.
+
+Select File -> sample_266_contigs_ordered.fasta -> Read BAM/VCF > select sorted bam file(sample_266_contigs_ordered_sort.bam) you just copied from flux.
+```
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/aligned_reads_deletion.png)
 
@@ -315,10 +324,9 @@ From our ACT comparison of our assembly and the reference we can clearly see tha
 
 >i. Run Prokka on assembly
 
-Get an interactive job and then load the modules required for Prokka
+Load modules required for Prokka
 
 ```
-qsub -I -V -l nodes=1:ppn=4,mem=16000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
 module load med perl-modules prokka 
 prokka –setupdb
 ```
@@ -346,7 +354,7 @@ scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/d
 Read files into ACT
 
 ```
-Go to File -> open
+Go to File on top left corner of ACT window -> open 
 Sequence file 1  = KPNIH.gb 
 Comparison file 1  = sample_266_contigs_ordered.crunch 
 Sequence file 2  = sample_266_contigs_ordered.gbf
