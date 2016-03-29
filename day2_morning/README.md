@@ -71,14 +71,14 @@ nano spades.pbs
 
 > Copy and paste the below command to the bottom of spades.pbs file.
 
-python /scratch/micro612w16_fluxod/shared/bin/Spades/bin/spades.py --pe1-1 forward_paired.fq.gz --pe1-2 reverse_paired.fq.gz --pe1-s forward_unpaired.fq.gz --pe1-s reverse_unpaired.fq.gz -o Rush_KPC_266_assembly_result/ --careful
+spades.py --pe1-1 forward_paired.fq.gz --pe1-2 reverse_paired.fq.gz --pe1-s forward_unpaired.fq.gz --pe1-s reverse_unpaired.fq.gz -o Rush_KPC_266_assembly_result/ --careful
 
 ```
 
 >iv. Submit your job to the cluster with qsub
 
 ```
-qsub spades.pbs
+qsub -V spades.pbs
 ```
 
 >v. Verify that your job is in the queue with the qstat command
