@@ -38,8 +38,9 @@ cp –r /scratch/micro612w16_fluxod/shared/data/day3_after ./
 On the first morning you ran FastQC to evaluate the quality of a single genome. However, a typical project will include many genomes and you will want to check the quality of all of your samples. From the bash workshop, I hope you can appreciate that you do not want to process 100 genomes by typing 100 commands – rather you want to write a short shell script to do the work for you!
 
 
->i. Edit the shell script fastqc.sh located in /scratch/micro612w16_fluxod/your username/day3_after to run FastQC on all fastq files
-  **Important info about this shell script** 
+>i. Edit the shell script fastqc.sh located in /scratch/micro612w16_fluxod/your username/day3_after to run FastQC on all fastq files.
+
+**Important info about this shell script** 
 - The shell script includes a for loop that loops over all of the genomes in the target directory
 - The tricky part of this shell script is that each fastq command contains two files (forward and reverse reads). So, you need to take advantage of the fact that the forward and reverse read files both have the same prefix, and you can loop over these prefixes. 
 - You should be able to get prefixes by piping the following unix commands: ls, cut, sort, uniq
