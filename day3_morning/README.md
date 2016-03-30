@@ -250,8 +250,7 @@ Run gubbins on your fasta formatted alignment
 ```
 
 cd /scratch/micro612w16_fluxod/username/day3_morn
-run_gubbins.py -v -f 50 -o Abau_AB0057 mauve_ECII_outgroup.fasta
-
+run_gubbins.py -v -f 50 -o Abau_AB0057_genome mauve_ECII_outgroup.fasta
 ```
 
 >ii. Create gubbins output figure
