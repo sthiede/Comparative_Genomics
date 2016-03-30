@@ -154,7 +154,7 @@ Now that we know which positions in the alignment are core and variable, we can 
 
 ```
 
-abau_msa_var = abau_msa[,var_pos & non_gap_pos ]
+abau_msa_var = abau_msa[,abau_var_pos & non_gap_pos ]
 var_count_matrix = dist.dna(abau_msa_var, model = "N")
 
 ```
