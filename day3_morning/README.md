@@ -127,6 +127,8 @@ Use the read.dna function in ape to read in you multiple alignments.
 Print out the variable to get a summary.
 
 ```
+install.packages("ape")
+library(ape)
 abau_msa = read.dna('mauve_ECII_outgroup.fasta', format = "fasta") 
 ```
 
