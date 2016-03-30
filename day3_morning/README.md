@@ -375,7 +375,7 @@ write.dna(mrsa_msa[, mrsa_var_pos], file = '2016-3-9_KP_BSI_USA300_var_pos.fa', 
 
 ```
 
->iv. Read alignment into Seaview and construct Maximum Likelihood tree
+>iv. Read alignment into Seaview and construct Neighbor Joining tree
 
 In the previous exercise, we used Seaview to look at a pre-existing tree, here we will use Seaview to create a tree from a
 multiple sequence alignment 
@@ -386,7 +386,7 @@ Read in multiple alignment of variable positions
 Go to File -> open ('2016-3-9_KP_BSI_USA300_var_pos.fa)
 ```
 
-Construct maximum likelihood phylogenetic tree with PhyML and default parameters (note, this will take a few minutes)
+Construct Neighbor Joining phylogenetic tree with default parameters (note, this will take a few minutes)
 
 ```
 Go to Trees -> select Distance Methods -> BioNJ -> (Select Bootstrap with 20 replicates) -> Go
