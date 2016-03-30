@@ -90,7 +90,7 @@ Mauve produces alignments in .xmfa format (use less to see what this looks like)
 ```
 
 Now run this command in day3_morn folder:
-
+module load med BioPerl
 perl convert_msa_format.pl -i mauve_ECII_outgroup -o mauve_ECII_outgroup.fasta -f fasta -c
 
 ```
