@@ -90,7 +90,7 @@ This summary file is: Outputs/Comparative/All_SNPs_annotated.txt
 
 Use sftp to download this file and view in excel
 
-- View SPANDx manual for interpretation of different columns which can be found [here](https://github.com/dsarov/SPANDx/blob/master/SPANDx%20Manual _v3.1.pdf)
+- View SPANDx manual for interpretation of different columns which can be found [here](https://sourceforge.net/projects/spandx/files/SPANDx%20Manual_v3.1.pdf/download)
 - Back on Flux, use grep to pull SNPs that have HIGH impact
 - What types of mutations are predicted to have “HIGH” impact?
 - How many genomes do these HIGH impact mutations tend to be present in? How do you interpret this?
