@@ -26,7 +26,8 @@ Execute the following command to copy files for this afternoon’s exercises to 
 ```
 
 cd /scratch/micro612w16_fluxod/username
-cp –r  /scratch/micro612w16_fluxod/shared/data/day3_after .
+
+cp –r /scratch/micro612w16_fluxod/shared/data/day3_after ./
 
 ```
 
