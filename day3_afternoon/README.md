@@ -114,7 +114,10 @@ The positions of variants are embedded in the first column of Outputs/Comparativ
 
 - You will need to pipe together two “cut” commands: the first command will use tab as a delimiter and the second will use _. 
 - Note that for cut you can specify tab as the delimiter as follows: cut –d$’\t’ and _ as: cut -d ‘_’
-- You should redirect the output of your cut commands (a list of SNP positions) to a file called ‘snp_positions.txt’.
+- You should redirect the output of your cut commands (a list of SNP positions) to a file called ‘snp_positions.txt’. For example, the first line of your snp_positions.txt should be:
+```
+12695
+```
 - Finally, download this file, read it into R using ‘read.table’ and use ‘hist’ to plot a histogram of the positions
 - Do you observe clustering of variants that would be indicative of recombination?
 
