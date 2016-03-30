@@ -93,7 +93,8 @@ The following unix commands can be used to get sorted lists of coverage and numb
 
 SPANDx also produces a summary file of the variants/indels it identified in the core genome. 
 
-This summary file is: Outputs/Comparative/All_SNPs_annotated.txt 
+This summary file is: 
+```/scratch/micro612w16_fluxod/username/day3_after/SPANDx_output/Outputs/All_SNPs_annotated.txt ```
 
 Use sftp to download this file and view in excel
 
@@ -124,7 +125,8 @@ The positions of variants are embedded in the first column of Outputs/Comparativ
 >ii.  Create fasta file of variants from nexus file
 
 SPANDx creates a file of core SNPs in a slightly odd format (transposed nexus). 
-This file is called: Outputs/Comparative/Ortho_SNP_matrix.nex
+This file is called: 
+```/scratch/micro612w16_fluxod/username/day3_after/SPANDx_output/Outputs/Comparative/Ortho_SNP_matrix.nex ```
 
 For convenience, apply the custom perl script located in the same directory to convert it to fasta format
 
