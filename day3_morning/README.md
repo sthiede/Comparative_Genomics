@@ -387,7 +387,7 @@ Go to File -> open ('2016-3-9_KP_BSI_USA300_var_pos.fa)
 Construct maximum likelihood phylogenetic tree with PhyML and default parameters (note, this will take a few minutes)
 
 ```
-Go to Trees -> select Distance Methods -> BioNJ -> (Select Bootstrap with 20 replicates)
+Go to Trees -> select Distance Methods -> BioNJ -> (Select Bootstrap with 20 replicates) -> Go
 ```
 
 Save your tree
