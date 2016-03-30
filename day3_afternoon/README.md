@@ -56,8 +56,8 @@ Rather than copying these to your directory, analyze the files directly in that 
 
 Copy and paste commands to run fastqc.sh as PBS script, into a PBS script and submit this PBS script as a job to the flux.
 Your PBS script wil contain the commands after the PBS preamble stuff:
-  fastqc.sh /scratch/micro612w16_fluxod/shared/data/day3_after_fastq/
 
+```bash fastqc.sh /scratch/micro612w16_fluxod/shared/data/day3_after_fastq/ ```
 
 
 >ii. Examine output of FastQC to verify that all samples are OK
