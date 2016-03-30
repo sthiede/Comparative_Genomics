@@ -137,7 +137,10 @@ abau_msa = read.dna('mauve_ECII_outgroup.fasta', format = "fasta")
 The DNA object created by read.dna can also be addressed as a matrix, where the columns are positions in the alignment and rows are your sequences. We will next treat our alignment as a matrix, and use apply and colSums to get positions in the alignment that vary among our sequences. Examine these commands in detail to understand how they are working together to give you a logical vector indicating which positions vary in your alignment.
 
 ```
-abau_msa_bin = apply(abau_msa, 2, FUN = function(x){x == x[1]}) abau_var_pos = colSums(abau_msa_bin) < 5
+
+abau_msa_bin = apply(abau_msa, 2, FUN = function(x){x == x[1]}) 
+
+abau_var_pos = colSums(abau_msa_bin) < 5
 ```
 
 >iv. Get non-gap positions
@@ -384,7 +387,7 @@ Go to File -> open ('2016-3-9_KP_BSI_USA300_var_pos.fa)
 Construct maximum likelihood phylogenetic tree with PhyML and default parameters (note, this will take a few minutes)
 
 ```
-Go to Trees -> PhyML (Select Bootstrap with 20 replicates)
+Go to Trees -> select Distance Methods -> BioNJ -> (Select Bootstrap with 20 replicates)
 ```
 
 Save your tree
