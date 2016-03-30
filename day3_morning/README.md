@@ -210,7 +210,9 @@ Next, we will get the variable positions, as before
 
 ```
 
-abau_msa_no_outgroup_bin = apply(abau_msa_no_outgroup, 2, FUN = function(x){x == x[1]}) abau_no_outgroup_var_pos = colSums(abau_msa_no_outgroup_bin) < 4
+abau_msa_no_outgroup_bin = apply(abau_msa_no_outgroup, 2, FUN = function(x){x == x[1]}) 
+
+abau_no_outgroup_var_pos = colSums(abau_msa_no_outgroup_bin) < 4
 
 ```
 
