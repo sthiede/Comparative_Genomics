@@ -44,6 +44,8 @@ On the first morning you ran FastQC to evaluate the quality of a single genome. 
 - The shell script includes a for loop that loops over all of the genomes in the target directory
 - The tricky part of this shell script is that each fastq command contains two files (forward and reverse reads). So, you need to take advantage of the fact that the forward and reverse read files both have the same prefix, and you can loop over these prefixes. 
 - You should be able to get prefixes by piping the following unix commands: ls, cut, sort, uniq
+- when you are testing your shell script, comment out (using #) the lines below echo so you can see that the script is 'echo'-ing the correct commands.
+
 The fastq files are located in:
 
 ```
@@ -52,7 +54,11 @@ The fastq files are located in:
 
 Rather than copying these to your directory, analyze the files directly in that directory, so everyone doesn’t have to copy 25G to their home directories. 
 
-Copy and paste the commands in fastqc.sh into a PBS script and submit this PBS script as a job to the flux.
+Copy and paste commands to run fastqc.sh as PBS script, into a PBS script and submit this PBS script as a job to the flux.
+Your PBS script wil contain the commands after the PBS preamble stuff:
+  fastqc.sh /scratch/micro612w16_fluxod/shared/data/day3_after_fastq/
+
+
 
 >ii. Examine output of FastQC to verify that all samples are OK
 
