@@ -38,8 +38,11 @@ cp –r /scratch/micro612w16_fluxod/shared/data/day3_after ./
 On the first morning you ran FastQC to evaluate the quality of a single genome. However, a typical project will include many genomes and you will want to check the quality of all of your samples. From the bash workshop, I hope you can appreciate that you do not want to process 100 genomes by typing 100 commands – rather you want to write a short shell script to do the work for you!
 
 
->i. Write a shell script to run FastQC on all fastq files
-
+>i. Edit the shell script fastqc.sh located in /scratch/micro612w16_fluxod/your username/day3_after to run FastQC on all fastq files
+  **Important info about this shell script** 
+- The shell script includes a for loop that loops over all of the genomes in the target directory
+- The tricky part of this shell script is that each fastq command contains two files (forward and reverse reads). So, you need to take advantage of the fact that the forward and reverse read files both have the same prefix, and you can loop over these prefixes. 
+- You should be able to get prefixes by piping the following unix commands: ls, cut, sort, uniq
 The fastq files are located in:
 
 ```
@@ -48,11 +51,7 @@ The fastq files are located in:
 
 Rather than copying these to your directory, analyze the files directly in that directory, so everyone doesn’t have to copy 25G to their home directories. 
 
-**HINTS** 
-
-- Your shell script will include a for loop that loops over all of the genomes in the target directory
-- The tricky part of this exercise is that each fastq command contains two files (forward and reverse reads). So, you need to take advantage of the fact that the forward and reverse read files both have the same prefix, and you can loop over these prefixes. 
-- You should be able to get prefixes by piping the following unix commands: ls, cut, sort, uniq
+Copy and paste the commands in fastqc.sh into a PBS script and submit this PBS script as a job to the flux.
 
 >ii. Examine output of FastQC to verify that all samples are OK
 
