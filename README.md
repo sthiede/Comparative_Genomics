@@ -53,3 +53,5 @@ http://pad.software-carpentry.org/micro612_bacterial_genomics_workshop
 
 - [Helpful resources for microbial genomics](https://github.com/alipirani88/Comparative_Genomics/blob/master/online_resources/README.md#helpful-resources-for-microbial-genomics)
 ***
+
+***
