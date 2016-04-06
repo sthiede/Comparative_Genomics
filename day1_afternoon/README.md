@@ -159,6 +159,8 @@ Lets go through an example vcf file and try to understand a few vcf specificatio
 less example.vcf
 ```
 
+Press 'q' from keyboard to exit.
+
 VCF format stores a large variety of information and you can find more details about each nomenclature in this [pdf](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwit35bvktzLAhVHkoMKHe3hAhYQFggdMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=tPLD6jW5ALombN3ALRiCZg&cad=rja)
 
 **2. Variant filtering and processed file generation using GATK and vcftools**
@@ -191,24 +193,6 @@ grep 'pass_filter' Rush_KPC_266__filter_gatk.vcf | head
 ```
 caveat: These filter criteria should be applied carefully after giving some thought to the type of library, coverage, average mapping quality, type of analysis and other such requirements.
 
-Lets see how many SNPs and Indels passed the filter using grep and wc
-
-```
-
-No. of Variants:
-grep '^Chromosome' Rush_KPC_266__filter_gatk_ann.vcf | wc -l
-
-No. of Variants that passed the filter:
-grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | wc -l
-
-No. of SNPs that passed the filter:
-grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | grep -v 'INDEL' | wc -l
-
-No. of Indels that passed the filter:
-grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | grep 'INDEL' | wc -l
-
-
-```
 
 More Info on VCF format and parameter specifications can be found [here](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjzkcSP4MfLAhUDyYMKHU3yDwMQFggjMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=6Xb3XDaZfghadZfcnnPQxw&cad=rja "VCF format Specs.")
 
@@ -275,6 +259,7 @@ sed -i 's/gi.*|/Chromosome/g' Rush_KPC_266__filter_gatk.vcf
 
 ```
 
+module load lsa java/1.8.0
 java -jar /scratch/micro612w16_fluxod/shared/bin/snpEff/snpEff.jar -onlyProtein -no-upstream -no-downstream  -no-intergenic -v GCA_000281535.2.29 Rush_KPC_266__filter_gatk.vcf > Rush_KPC_266__filter_gatk_ann.vcf -csvStats Rush_KPC_266__filter_gatk_stats
 
 ```
@@ -290,6 +275,28 @@ grep 'ANN=' Rush_KPC_266__filter_gatk_ann.vcf | head -n1
 ANN field will provide information such as the impact of variants (HIGH/LOW/MODERATE/MODIFIER) on genes and transcripts along with other useful annotations.
 
 Detailed information of ANN field and sequence ontology terms that it uses can be found [here](http://snpeff.sourceforge.net/SnpEff_manual.html#input)
+
+Lets see how many SNPs and Indels passed the filter using grep and wc
+
+```
+
+No. of Variants:
+grep '^Chromosome' Rush_KPC_266__filter_gatk_ann.vcf | wc -l
+
+No. of Variants that passed the filter:
+grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | wc -l
+
+No. of SNPs that passed the filter:
+grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | grep -v 'INDEL' | wc -l
+
+No. of Indels that passed the filter:
+grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | grep 'INDEL' | wc -l
+
+
+```
+
+
+
 
 
 **4. Generate Statistics report using qualimap**

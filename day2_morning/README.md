@@ -6,7 +6,16 @@ On day 1 we worked through a pipeline to map short-read data to a pre-existing a
 Execute the following command to copy files for this morning’s exercises to your scratch directory: 
 
 ```
+> Note: Make sure you change 'username' in the commands below to your 'uniqname'. 
+
 cd /scratch/micro612w16_fluxod/username
+
+> Note: Check if you are in your home directory(/scratch/micro612w16_fluxod/username) by executing 'pwd' in terminal. 'pwd' stands for present working directory and it will display the directory you are in.
+
+pwd
+
+> Note: Copy files for this morning's exercise in your home directory.
+
 cp -r /scratch/micro612w16_fluxod/shared/data/day2_morn ./
 ```
 
@@ -23,16 +32,26 @@ Here we will use the Spades assembler with default parameters. Because genome as
 >i. Create directory to hold your assembly output.
 
 create a new directory for the spades output in your day2_morn folder
+
 ```
+> Note: Make sure you change 'username' in the below command with your 'uniqname'. 
+
 cd /scratch/micro612w16_fluxod/username/day2_morn
+
+> We will create a new directory in day2_morn to save genome assembly results:
+
 mkdir Rush_KPC_266_assembly_result
+
 ```
+
+Now, we will use a genome assembly tool called Spades for assembling the reads.
 
 >ii. Test out Spades to make sure its in your path
 
 To make sure that your paths are set up correctly, try running Spades with the –h (help) flag, which should produce usage instruction.
 
 ```
+> Run the below commands to load a python module and check if spades is working. 
 
 module load python
 spades.py -h     
@@ -41,23 +60,30 @@ spades.py -h
 
 >iii. Submit a cluster job to assemble 
 
-Open the spades.pbs residing in day2_morning folder with nano and add the following spades command to the bottom of the file. Dont forget to change 'username' with your unique id, a JOBNAME(e.g: username_assembly_266) and your EMAIL_ADDRESS in pbs script accordingly.
+Since it takes huge amount of memory and time to assemble genome using spades, we will run a pbs script on cluster for this step.
 
-Change the username in below command with your unique id or whatever the name of your home directory.
+Now, Open the spades.pbs file residing in day2_morning folder with nano and add the following spades command to the bottom of the file. 
 
 ```
+> Open spades.pbs file using nano:
 
-python /scratch/micro612w16_fluxod/shared/bin/Spades/bin/spades.py --pe1-1 /scratch/micro612w16_fluxod/username/day2_morn/forward_paired.fq.gz --pe1-2 /scratch/micro612w16_fluxod/username/day2_morn/reverse_paired.fq.gz --pe1-s /scratch/micro612w16_fluxod/username/day2_morn/forward_unpaired.fq.gz --pe1-s /scratch/micro612w16_fluxod/username/day2_morn/reverse_unpaired.fq.gz -o /scratch/micro612w16_fluxod/username/day2_morn/Rush_KPC_266_assembly_result/ --careful
+nano spades.pbs
+
+> Now replace the EMAIL_ADDRESS in spades.pbs file with your actual email-address. This will make sure that whenever the job starts, aborts or ends, you will get an email notification.
+
+> Copy and paste the below command to the bottom of spades.pbs file.
+
+spades.py --pe1-1 forward_paired.fq.gz --pe1-2 reverse_paired.fq.gz --pe1-s forward_unpaired.fq.gz --pe1-s reverse_unpaired.fq.gz -o Rush_KPC_266_assembly_result/ --careful
 
 ```
 
 >iv. Submit your job to the cluster with qsub
 
 ```
-qsub spades.PBS
+qsub -V spades.pbs
 ```
 
->v. Verify that your job is in the queue with the qstat
+>v. Verify that your job is in the queue with the qstat command
 
 ```
 qstat –u username 
@@ -73,18 +99,22 @@ To evaluate some example assemblies we will use the tool quast. Quast produces a
 
 >i. Run quast on a set of previously generated assemblies
 
+Now to check the example assemblies residing in your day2_morn folder, run the below quast command. Make sure you are in day2_morn folder in your home directory using 'pwd'
+
 ```
 quast.py -o quast sample_264_contigs.fasta sample_266_contigs.fasta
 ```
 
+The command above will generate a report file in /scratch/micro612w16_fluxod/username/day2_morn/quast
+
 >ii. Explore quast output
 
-QUAST creates output in various format. Now lets check the report.txt file created in quast folder for assembly statistics. Open report.txt using nano.
+QUAST creates output in different formats such as html, pdf and text. Now lets check the report.txt file residing in quast folder for assembly statistics. Open report.txt using nano.
 
 ```
 nano quast/report.txt
 ```
-Check the difference between each assembly statistics. 
+Check the difference between each assembly statistics. Also check different type of report formats it generated.
 
 ## Compare assembly to reference genome and Post-assembly genome improvement
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
@@ -99,7 +129,12 @@ To do this we need to first align our genome assembly to our reference. We will 
 Create a BLAST database from your reference genome using the makeblastdb command.
 
 ```
+
+> Make sure you are in /scratch/micro612w16_fluxod/username/day2_morn directory
+cd /scratch/micro612w16_fluxod/username/day2_morn
+
 makeblastdb -in KPNIH1.fasta -dbtype nucl -out KPNIH1.fasta
+
 ```
 
 >ii. Stitch together your contigs into a single sequence
@@ -121,11 +156,12 @@ The input parameters are:
 blastn -outfmt 6 -evalue 1e-20 -db KPNIH1.fasta -query sample_266_contigs_concat.fasta -out concat_comp.blast
 ```
 
->ii. Use ACT to compare stitched together contigs to reference.
+>ii. Use ACT(Installed in your local system) to compare stitched together contigs to reference.
+
+For these, first we will create a seperate directory called ACT_contig_comparison in day2_morn folder and copy all the necessary ACT input to this directory.
 
 ```
 
-cd /scratch/micro612w16_fluxod/username/day2_morn
 mkdir ACT_contig_comparison 
 cp KPNIH.gb KPNIH1.fasta concat_comp.blast sample_266_contigs_concat.fasta ACT_contig_comparison/
 
@@ -135,6 +171,8 @@ Use scp to get sequences and BLAST alignments onto your laptop
 
 ```
 
+> Note: Make sure you change 'username' in the below command with your 'uniqname'.
+
 scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_morn/ACT_contig_comparison/ /path-to-local-directory/
 
 ```
@@ -142,28 +180,49 @@ scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/d
 >iii. Read these Input files in ACT_contig_comparison folder into ACT
 
 ```
-Start ACT
-Go to File -> open 
+
+Start ACT and set your working directory to ACT_contig_comparison(wherever it is stored on your local system)
+Go to File on top left corner of ACT window -> open 
 
 Sequence file 1 = KPNIH.gb
 Comparison file 1  = concat_comp_blast 
 Sequence file 2  = sample_266_contigs_concat.fasta
 
+Click Apply button
 ```
 
-> Notice that it a complete mess!!!! The reason is that the contigs are in random order, so it is very difficult to visually compare to the reference. 
+> Notice that it is a complete mess!!!! The reason is that the contigs are in random order, so it is very difficult to visually compare to the reference. 
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/mess.png)
 
 iv. Run abacas to orient contigs to reference
 
-To orient our contigs relative to the reference we will use a tool called abacas. [ABACAS](http://www.sanger.ac.uk/science/tools/pagit) aligns contigs to a reference genome and then stitches them together to form a “pseudo-chromosome”. Go back to flux and into the directory where the assembly is located.
+To orient our contigs relative to the reference we will use a tool called abacas. [ABACAS](http://www.sanger.ac.uk/science/tools/pagit) aligns contigs to a reference genome and then stitches them together to form a “pseudo-chromosome”. 
+
+Go back to flux and into the directory where the assembly is located.
 
 ```
 cd /scratch/micro612w16_fluxod/username/day2_morn/
 ```
 
-Run abacas using the input parameters: 
+Before running Abacas, add the following path to your ~/.bashrc file:
+
+```
+> Open bashrc file using nano
+
+nano ~/.bashrc
+
+> Add this path to the bottom of bashrc file
+
+export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/MUMmer3.23/
+
+>  Exit and save this file. Source your bashrc file.
+
+source ~/.bashrc
+
+```
+
+Now, we will run abacas using these input parameters: 
 
 1) your reference sequence (-r KPNIH.fasta), 
 2) your contig file (-q sample_266_contigs.fasta), 
@@ -174,8 +233,6 @@ Run abacas using the input parameters:
 7) the prefix for your output files (–o sample_266_contigs_ordered) 
 
 ```
-source /scratch/micro612w16_fluxod/shared/bin/PAGIT/sourceme.pagit 
-
 perl abacas.1.3.1.pl -r KPNIH1.fasta -q sample_266_contigs.fasta -p nucmer -b -d -a -o sample_266_contigs_ordered
 ```
 
@@ -184,6 +241,7 @@ v. Use ACT to view contig alignment to reference genome
 > Use scp to get ordered fasta sequence and .cruch file onto your laptop 
 
 ```
+> Dont forget to change username and /path-to-local-ACT_contig_comparison-directory/ in the below command
 
 scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_morn/sample_266_contigs_ordered* /path-to-local-ACT_contig_comparison-directory/
 
@@ -192,10 +250,14 @@ scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2
 > Read files into ACT
 
 ```
-Go to File -> open 
+Go to File on top left corner of ACT window -> open 
 Sequence file 1 = KPNIH.gb 
 Comparison file 1  = sample_266_contigs_ordered.crunch 
 Sequence file 2  = sample_266_contigs_ordered.fasta
+
+Click Apply button
+
+> Dont close the ACT window
 ```
 
 > Notice that the alignment is totally beautiful now!!! Scan through the alignment and play with ACT features to look at genes present in reference but not in assembly. Keep the ACT window open for further visualizations.
@@ -211,11 +273,15 @@ You already know the drill/steps involved in reads mapping. Here, we will map th
 First create bwa index of ordered fasta file.
 
 ```
+> Only proceed further if everything worked uptil now. Make sure you are in day2_morn directory.
+
 cd /scratch/micro612w16_fluxod/username/day2_morn/
 bwa index sample_266_contigs_ordered.fasta
 samtools faidx sample_266_contigs_ordered.fasta
+
 ```
-Align the clean trimmed reads to this ordered assembly using BWA mem. Convert SAM to BAM. Sort and index it.
+
+Align the trimmed reads which we used for genome assembly to this ordered assembly using BWA mem. Convert SAM to BAM. Sort and index it.
 
 ```
 
@@ -229,16 +295,21 @@ samtools index sample_266_contigs_ordered_sort.bam
 
 ```
 
-Lets visualize the alignments against out ordered assembly.
+Lets visualize the alignments against our ordered assembly.
 Copy this sorted and indexed BAM files to local ACT_contig_comparison directory.
 
 ```
+> Dont forget to change username and /path-to-local-ACT_contig_comparison-directory/ in the below command
 
 scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_morn/sample_266_contigs_ordered_sort* /path-to-local-ACT_contig_comparison-directory/
 
 ```
 
-Select File -> sample_266_contigs_ordered.fasta -> Read BAM/VCF > select sorted bam file
+```
+Go back to ACT where your ordered contigs are still open in the window.
+
+Select File -> sample_266_contigs_ordered.fasta -> Read BAM/VCF > select sorted bam file(sample_266_contigs_ordered_sort.bam) you just copied from flux.
+```
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/aligned_reads_deletion.png)
 
@@ -263,20 +334,27 @@ prokka –setupdb
 Execute Prokka on your ordered assembly 
 
 ```
+> Make sure you are in day2_morn directory.
+
 cd /scratch/micro612w16_fluxod/username/day2_morn/
 mkdir sample_266_prokka 
+
+> Dont forget to change username in the below command
+
 prokka -kingdom Bacteria -outdir /scratch/micro612w16_fluxod/username/day2_morn/sample_266_prokka -force -prefix sample_266 sample_266_contigs_ordered.fasta
 
-Use scp to get Prokka annotated genome on your laptop
+> Use scp to get Prokka annotated genome on your laptop. 
 
 scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_morn/sample_266_prokka/ /path-to-local-ACT_contig_comparison-directory/
+
 ```
 
 >ii. Reload comparison into ACT now that we’ve annotated the un-annotated!
 
 Read files into ACT
+
 ```
-Go to File -> open
+Go to File on top left corner of ACT window -> open 
 Sequence file 1  = KPNIH.gb 
 Comparison file 1  = sample_266_contigs_ordered.crunch 
 Sequence file 2  = sample_266_contigs_ordered.gbf

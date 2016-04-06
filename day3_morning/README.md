@@ -35,10 +35,20 @@ An alternative approach for identification of variants among genomes is to perfo
 Use sftp to get genomes onto your laptop
 
 ```
+Run these commands on your local system/terminal:
 
 cd ~/Desktop (or wherever your desktop is) 
+
 mkdir Abau_mauve
+
 cd Abau_mauve 
+
+> Now copy Abau_genomes folder residing in your day3_morn folder using scp or sftp:
+
+scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day3_morn/Abau_genomes ./
+
+OR
+
 sftp –r username@flux-login.engin.umich.edu 
 cd /scratch/micro612w16_fluxod/username/day3_morn 
 get Abau_genomes
@@ -51,14 +61,14 @@ Run mauve to create multiple alignment
 
 i. Open mauve 
 ii. File -> align with progressiveMauve 
-iii. Click on “Add Sequnce” and add each of the 5 genomes you just downloaded 
+iii. Click on “Add Sequnce” and add each of the 5 genomes you just downloaded
 iv. Name the output file “mauve_ECII_outgroup” and make sure it is in the directory you created for this exercise 
 v. Click Align! 
 vi. Wait for Mauve to finish and explore the graphical interface
 
 ```
 
-Use sftp to transfer your alignment back to flux for some processing
+Use sftp or scp to transfer your alignment back to flux for some processing
 
 ```
 
@@ -67,14 +77,22 @@ sftp –r username@flux-login.engin.umich.edu
 cd /scratch/micro612w16_fluxod/username/day3_morn 
 put mauve_ECII_outgroup
 
+OR
+
+scp ~/Desktop/Abau_mauve/mauve_ECII_outgroup username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day3_morn 
+
 ```
  
 >ii. Convert alignment to fasta format
 
-Mauve produces alignments in .xmfa format (use less to see what this looks like), which is not compatible with other programs we want to use. We will use the custom script convert_msa_format.pl to change the alignment to fasta format
+Mauve produces alignments in .xmfa format (use less to see what this looks like), which is not compatible with other programs we want to use. We will use a custom script convert_msa_format.pl to change the alignment format to fasta format
 
 ```
+
+Now run this command in day3_morn folder:
+module load med BioPerl
 perl convert_msa_format.pl -i mauve_ECII_outgroup -o mauve_ECII_outgroup.fasta -f fasta -c
+
 ```
 
 ## Perform some DNA sequence comparisons and phylogenetic analysis in [APE](http://ape-package.ird.fr/), an R package
@@ -85,14 +103,19 @@ There are lots of options for phylogenetic analysis. Here, we will use the ape p
 
 Note that ape has a ton of useful functions for more sophisticated phylogenetic analyses!
 
->i. Get fasta alignment to your own computer
+>i. Get fasta alignment you just converted to your own computer using sftp or scp
 
 ```
 
 cd ~/Desktop/Abau_mauve
+
 sftp –r username@flux-login.engin.umich.edu 
 cd /scratch/micro612w16_fluxod/username/day3_morn 
 get mauve_ECII_outgroup.fasta
+
+OR
+
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day3_morn/mauve_ECII_outgroup.fasta ./
 
 ```
 
@@ -104,6 +127,8 @@ Use the read.dna function in ape to read in you multiple alignments.
 Print out the variable to get a summary.
 
 ```
+install.packages("ape")
+library(ape)
 abau_msa = read.dna('mauve_ECII_outgroup.fasta', format = "fasta") 
 ```
 
@@ -112,7 +137,10 @@ abau_msa = read.dna('mauve_ECII_outgroup.fasta', format = "fasta")
 The DNA object created by read.dna can also be addressed as a matrix, where the columns are positions in the alignment and rows are your sequences. We will next treat our alignment as a matrix, and use apply and colSums to get positions in the alignment that vary among our sequences. Examine these commands in detail to understand how they are working together to give you a logical vector indicating which positions vary in your alignment.
 
 ```
-abau_msa_bin = apply(abau_msa, 2, FUN = function(x){x == x[1]}) abau_var_pos = colSums(abau_msa_bin) < 5
+
+abau_msa_bin = apply(abau_msa, 2, FUN = function(x){x == x[1]}) 
+
+abau_var_pos = colSums(abau_msa_bin) < 5
 ```
 
 >iv. Get non-gap positions
@@ -129,7 +157,7 @@ Now that we know which positions in the alignment are core and variable, we can 
 
 ```
 
-abau_msa_var = abau_msa[,var_pos & non_gap_pos ]
+abau_msa_var = abau_msa[,abau_var_pos & non_gap_pos ]
 var_count_matrix = dist.dna(abau_msa_var, model = "N")
 
 ```
@@ -172,7 +200,7 @@ For this analysis we want to exclude the out-group, because we are interested in
 
 ```
 
-abau_msa_no_outgroup = abau_msa[c('ACICU_genome.fa/1-3996847','AbauA_genome.fa/1-3953855','AbauC_genome.fa/1-4200364','AbauB_genome.fa/1-4014916'),]
+abau_msa_no_outgroup = abau_msa[c('ACICU_genome','AbauA_genome','AbauC_genome','AbauB_genome'),]
 
 ```
 
@@ -182,7 +210,9 @@ Next, we will get the variable positions, as before
 
 ```
 
-abau_msa_no_outgroup_bin = apply(abau_msa_no_outgroup, 2, FUN = function(x){x == x[1]}) abau_no_outgroup_var_pos = colSums(abau_msa_no_outgroup_bin) < 4
+abau_msa_no_outgroup_bin = apply(abau_msa_no_outgroup, 2, FUN = function(x){x == x[1]}) 
+
+abau_no_outgroup_var_pos = colSums(abau_msa_no_outgroup_bin) < 4
 
 ```
 
@@ -225,8 +255,7 @@ Run gubbins on your fasta formatted alignment
 ```
 
 cd /scratch/micro612w16_fluxod/username/day3_morn
-run_gubbins.py -v -f 50 -o Abau_AB0057 mauve_ECII_outgroup.fasta
-
+run_gubbins.py -v -f 50 -o Abau_AB0057_genome mauve_ECII_outgroup.fasta
 ```
 
 >ii. Create gubbins output figure
@@ -248,15 +277,21 @@ gubbins_drawer.py -t mauve_ECII_outgroup.final_tree.tre -o mauve_ECII_outgroup.r
 ```
 >iii. Download and view gubbins figure and filtered tree
 
-Use sftp to get gubbins output files
+Use sftp or scp to get gubbins output files
 
 ```
 
 cd ~/Desktop/Abau_mauve
+
 sftp –r username@flux-login.engin.umich.edu 
 cd /scratch/micro612w16_fluxod/username/day3_morn 
 get mauve_ECII_outgroup.recombination.pdf 
 get mauve_ECII_outgroup.final_tree.tre
+
+OR
+
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day3_morn/mauve_ECII_outgroup.recombination.pdf  ./
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day3_morn/mauve_ECII_outgroup.final_tree.tre  ./
 
 ```
 
@@ -294,17 +329,24 @@ For the final exercise we will use a different dataset, composed of USA300 methi
 
 >i. Download MRSA genome alignment from flux
 
-Use sftp to get genomes onto your laptop
+Use sftp or scp to get genomes onto your laptop
 
 ```
 
 cd ~/Desktop (or wherever your desktop is) 
 mkdir MRSA_genomes 
 cd MRSA_genomes
+
 sftp –r username@flux-login.engin.umich.edu 
 cd /scratch/micro612w16_fluxod/username/day3_morn 
 get 2016-3-9_KP_BSI_USA300.fa 
 get 2016-3-9_KP_BSI_USA300_iTOL_HA_vs_CA.txt
+
+OR
+
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day3_morn/2016-3-9_KP_BSI_USA300.fa  ./
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day3_morn/2016-3-9_KP_BSI_USA300_iTOL_HA_vs_CA.txt  ./
+
 
 ```
 
@@ -333,7 +375,7 @@ write.dna(mrsa_msa[, mrsa_var_pos], file = '2016-3-9_KP_BSI_USA300_var_pos.fa', 
 
 ```
 
->iv. Read alignment into Seaview and construct Maximum Likelihood tree
+>iv. Read alignment into Seaview and construct Neighbor Joining tree
 
 In the previous exercise, we used Seaview to look at a pre-existing tree, here we will use Seaview to create a tree from a
 multiple sequence alignment 
@@ -344,10 +386,10 @@ Read in multiple alignment of variable positions
 Go to File -> open ('2016-3-9_KP_BSI_USA300_var_pos.fa)
 ```
 
-Construct maximum likelihood phylogenetic tree with PhyML and default parameters (note, this will take a few minutes)
+Construct Neighbor Joining phylogenetic tree with default parameters (note, this will take a few minutes)
 
 ```
-Go to Trees -> PhyML (Select Bootstrap with 20 replicates)
+Go to Trees -> select Distance Methods -> BioNJ -> (Select Bootstrap with 20 replicates) -> Go
 ```
 
 Save your tree

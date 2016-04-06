@@ -52,6 +52,7 @@ export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/snpEff/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/PAGIT/ABACAS/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast-2.2.26/bin/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/quast/
+export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/MUMmer3.23/
 ```
 
 >iv. Source your .bashrc file
@@ -151,7 +152,7 @@ Check out [this](https://sequencing.qcfail.com/articles/loss-of-base-call-accura
 
 Identifying adapter or other contaminant sequences within a dataset is inherently a trade off between sensitivity (ensuring all contaminant sequences are removed) and specificity (leaving all non-contaminant sequence data intact). Adapter and other technical contaminants can potentially occur in any location within the reads.(start, end, read-through, partial adapter sequences)
 
-Trimmomatic tries to search these potential contaminant/adapter sequence within the read at all the possible locations. It takes advantage of the added evidence available in paired-end dataset. In a PE data, read-through/adapters can occur on both the forward and reverse reads of a particular fragment in the same position. Since the fragment was entirely sequenced from both ends, the non-adapter portion of the forward and reverse reads will be reverse-complements of each other. This strategy of searching for contaminant in both the reads is called 'palindrome' mode. 
+Trimmomatic tries to search these potential contaminant/adapter sequence within the read at all the possible locations. It takes advantage of the added evidence available in paired-end dataset. In a Paired-End data, read-through/adapters can occur on both the forward and reverse reads of a particular fragment in the same position. Since the fragment was entirely sequenced from both ends, the non-adapter portion of the forward and reverse reads will be reverse-complements of each other. This strategy of searching for contaminant in both the reads is called 'palindrome' mode. 
 For more information on how Trimmomatic tries to achieve this, Please refer [this](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf) manual.
 
 Now we will run Trimmomatic on these raw data to remove low quality reads as well as adapters. 

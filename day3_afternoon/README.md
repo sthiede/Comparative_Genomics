@@ -26,7 +26,8 @@ Execute the following command to copy files for this afternoon’s exercises to 
 ```
 
 cd /scratch/micro612w16_fluxod/username
-cp –r  /scratch/micro612w16_fluxod/shared/data/day3_after .
+
+cp –r /scratch/micro612w16_fluxod/shared/data/day3_after ./
 
 ```
 
@@ -37,7 +38,13 @@ cp –r  /scratch/micro612w16_fluxod/shared/data/day3_after .
 On the first morning you ran FastQC to evaluate the quality of a single genome. However, a typical project will include many genomes and you will want to check the quality of all of your samples. From the bash workshop, I hope you can appreciate that you do not want to process 100 genomes by typing 100 commands – rather you want to write a short shell script to do the work for you!
 
 
->i. Write a shell script to run FastQC on all fastq files
+>i. Edit the shell script fastqc.sh located in /scratch/micro612w16_fluxod/your username/day3_after to run FastQC on all fastq files.
+
+**Important info about this shell script** 
+- The shell script includes a for loop that loops over all of the genomes in the target directory
+- The tricky part of this shell script is that each fastq command contains two files (forward and reverse reads). So, you need to take advantage of the fact that the forward and reverse read files both have the same prefix, and you can loop over these prefixes. 
+- You should be able to get prefixes by piping the following unix commands: ls, cut, sort, uniq
+- when you are testing your shell script, comment out (using #) the lines below echo so you can see that the script is 'echo'-ing the correct commands.
 
 The fastq files are located in:
 
@@ -47,11 +54,11 @@ The fastq files are located in:
 
 Rather than copying these to your directory, analyze the files directly in that directory, so everyone doesn’t have to copy 25G to their home directories. 
 
-**HINTS** 
+Copy and paste commands to run fastqc.sh as PBS script, into a PBS script and submit this PBS script as a job to the flux.
+Your PBS script wil contain the commands after the PBS preamble stuff:
 
-- Your shell script will include a for loop that loops over all of the genomes in the target directory
-- The tricky part of this exercise is that each fastq command contains two files (forward and reverse reads). So, you need to take advantage of the fact that the forward and reverse read files both have the same prefix, and you can loop over these prefixes. 
-- You should be able to get prefixes by piping the following unix commands: ls, cut, sort, uniq
+```bash fastqc.sh /scratch/micro612w16_fluxod/shared/data/day3_after_fastq/ ```
+
 
 >ii. Examine output of FastQC to verify that all samples are OK
 
@@ -86,11 +93,12 @@ The following unix commands can be used to get sorted lists of coverage and numb
 
 SPANDx also produces a summary file of the variants/indels it identified in the core genome. 
 
-This summary file is: Outputs/Comparative/All_SNPs_annotated.txt 
+This summary file is: 
+```/scratch/micro612w16_fluxod/username/day3_after/SPANDx_output/Outputs/All_SNPs_annotated.txt ```
 
 Use sftp to download this file and view in excel
 
-- View SPANDx manual for interpretation of different columns which can be found [here](https://github.com/dsarov/SPANDx/blob/master/SPANDx%20Manual _v3.1.pdf)
+- View SPANDx manual for interpretation of different columns which can be found [here](https://sourceforge.net/projects/spandx/files/SPANDx%20Manual_v3.1.pdf/download)
 - Back on Flux, use grep to pull SNPs that have HIGH impact
 - What types of mutations are predicted to have “HIGH” impact?
 - How many genomes do these HIGH impact mutations tend to be present in? How do you interpret this?
@@ -107,14 +115,18 @@ The positions of variants are embedded in the first column of Outputs/Comparativ
 
 - You will need to pipe together two “cut” commands: the first command will use tab as a delimiter and the second will use _. 
 - Note that for cut you can specify tab as the delimiter as follows: cut –d$’\t’ and _ as: cut -d ‘_’
-- You should redirect the output of your cut commands (a list of SNP positions) to a file called ‘snp_positions.txt’.
+- You should redirect the output of your cut commands (a list of SNP positions) to a file called ‘snp_positions.txt’. For example, the first line of your snp_positions.txt should be:
+```
+12695
+```
 - Finally, download this file, read it into R using ‘read.table’ and use ‘hist’ to plot a histogram of the positions
 - Do you observe clustering of variants that would be indicative of recombination?
 
 >ii.  Create fasta file of variants from nexus file
 
 SPANDx creates a file of core SNPs in a slightly odd format (transposed nexus). 
-This file is called: Outputs/Comparative/Ortho_SNP_matrix.nex
+This file is called: 
+```/scratch/micro612w16_fluxod/username/day3_after/SPANDx_output/Outputs/Comparative/Ortho_SNP_matrix.nex ```
 
 For convenience, apply the custom perl script located in the same directory to convert it to fasta format
 

@@ -14,8 +14,10 @@ For these exercises we will be looking at four closely related Acinetobacter bau
 Execute the following command to copy files for this afternoon’s exercises to your scratch directory:
 
 ```  
+
 cd /scratch/micro612w16_fluxod/username
 cp -r /scratch/micro612w16_fluxod/shared/data/day2_after/ ./
+
 ```
 
 ## Determine which genomes contain beta-lactamase genes
@@ -37,8 +39,11 @@ The script takes as input:
 3) an output file to contain the subset of sequences that match the text your searching for (ardb_beta_lactam_genes.pfasta).
 
 ```
+
+module load BioPerl
 cd scratch/micro612w16_fluxod/username/day2_after
 perl filter_fasta_file.pl resisGenes.pfasta fasta_file_keys ardb_beta_lactam_genes.pfasta
+
 ```
 
 >ii. Build BLAST database from fasta file
@@ -77,7 +82,9 @@ The input parameters are:
 8) number of database sequences to show alignment for (-b 1).
 
 ```
+
 blastall -p blastp -i Abau_all.pfasta -d ardb_beta_lactam_genes.pfasta -o bl_blastp_results -m 8 -e 1e-20 -v 1 -b 1
+
 ```
 
 Use less to look at bl_blastp_results.
@@ -111,22 +118,10 @@ blastall -p blastp -i Abau_all.pfasta -d ardb_ROI_genes.pfasta -o bl_blastp_resu
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-Next, instead of looking at resistance classes one at a time, lets look at them all in one shot! To do this we will use LS-BSR, which essentially is just a wrapper for doing the same sort of BLASTing we just did in the previous step. BSR stands for BLAST Score Ratio, which refers to what the output is. In particular, for each query gene LS-BSR returns the ratio between: 1) the BLAST score of best hit in target genome and 2) BLAST score of query gene against itself. So, the output is a query x target genome matrix, where the values are between 0 and 1, and indicate the strength of a given queries BLAST hit in the target genome. 
+Next, instead of looking at resistance classes one at a time, lets look at them all in one shot! To do this we will use [LS-BSR](https://peerj.com/articles/332/), which essentially is just a wrapper for doing the same sort of BLASTing we just did in the previous step. BSR stands for BLAST Score Ratio, which refers to what the output is. In particular, for each query gene LS-BSR returns the ratio between: 1) the BLAST score of best hit in target genome and 2) BLAST score of query gene against itself. So, the output is a query by target genome matrix, where the values are between 0 and 1, and indicate the strength of a given queries BLAST hit in the target genome. 
 
->i. Load modules required for LS-BSR
 
-```
-module load med 
-module load sph 
-module load lsa 
-module load usearch 
-module load python/2.7.3 
-module load biopython 
-module load ls-bsr 
-module load prodigal
-```
-
->ii. Create a non-redundant list of resistance genes
+>i. Create a non-redundant list of resistance genes
 
 There is a lot of redundancy in the ARDB (e.g. lots of closely related genes), which would make the output difficult to sort through. Here, we use usearch to select representatives from the database and create a non-redundant gene set! 
 
@@ -138,22 +133,39 @@ We are running usearch with the following parameters:
 5) an output file describing the results of the clustering (-uc resisGenes.uc).
 
 ```
+
+> Make sure you are in day2_after directory
+
 cd scratch/micro612w16_fluxod/username/day2_after
+
+> Load relevant Modules
+
+module load med 
+module load sph 
+module load lsa 
+module load usearch 
+module unload python
+module load python/2.7.3 
+module load biopython 
+module load ls-bsr 
+module load prodigal
+
+> Run usearch to select representatives from the database and create a non-redundant gene set! 
+
 usearch -cluster_fast resisGenes.pep -id 0.8 -centroids resisGenes_nr.pep -uc resisGenes.uc
-```
-
->iii. Run LS-BSR
-
-LS-BSR is pretty intensive, so we want to get an interactive node to run this
 
 ```
-qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
+
+>ii. Run LS-BSR
+
+Change your directory to day2_after:
+
 ```
 
-Change your directory to day2_after
+> Make sure you are in day2_after directory
 
-```
-cd /scratch/micro612w16_fluxod/username/day1_after/
+cd /scratch/micro612w16_fluxod/username/day2_after/
+
 ```
 
 Run LS-BSR (it will take a few minutes)! 
@@ -161,42 +173,49 @@ Run LS-BSR (it will take a few minutes)!
 The input parameters are: a directory with your genomes (-d Abau_genomes) and a fasta file of query genes (-g resisGenes_nr.pep)
 
 ```
-cd scratch/micro612w16_fluxod/username/day2_after 
+
 python /home/software/rhel6/med/python-libs/ls-bsr/1.0/LS-BSR-master/ls_bsr.py -d Abau_genomes/ -g resisGenes_nr.pep
-```
-
->iv. Download LS-BSR output matrix to your own computer for analysis in R
-
-Use sftp to get LS-BSR output onto your laptop
 
 ```
-cd ~/Desktop (or wherever your desktop is) 
-mkdir LS-BSR_resistome 
-cd LS-BSR_resistome 
-sftp –r username@flux-login.engin.umich.edu cd /scratch/micro612w16_fluxod/username/day2_after 
-get bsr_matrix_values.txt
+
+>iii. Download LS-BSR output matrix to your own computer for analysis in R
+
+Use scp to get LS-BSR output onto your laptop
+
+```
+
+> Dont forget to change username in the below command
+
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_after/bsr_matrix_values.txt ~/Desktop
+
 ```
 
 Fire up RStudio and read the matrix:
 
 ```
-bsr_mat = read.table('bsr_matrix_values.txt', sep = "\t", row.names = 1, header = TRUE, quote = "")
+
+> Make sure you have copied bsr_matrix_values.txt file to your desktop. If not then give the path where bsr_matrix_values.txt is located.
+
+bsr_mat = read.table('~/Desktop/bsr_matrix_values.txt', sep = "\t", row.names = 1, header = TRUE, quote = "")
+
 ```
 
 Use head, str, dim, etc. to explore the matrix you read in
 
-v. Make a heatmap of all the LS-BSR results
+iv. Make a heatmap of all the LS-BSR results
 
 Install and load the R library "heatmap3"
 
 Make a heatmap of the complete LS-BSR matrix. Check out the help file to see what the input parameters do, and behold the plethora of other options to customize your heatmaps!
 
 ```
+
 heatmap3(bsr_mat, , scale = "none", distfun = function(x){dist(x, method = "manhattan")}, margin = c(10,10), cexCol = 0.85, cexRow = 0.5)
+
 ```
 
 
->vi. Subset LS-BSR data to only include genes present in at least one genome 
+>v. Subset LS-BSR data to only include genes present in at least one genome 
 
 From the previous step you should have discerned that full LS-BSR matrix is too large to get a useful visualization, so we need to subset it. 
 Lets first subset the matrix to focus only on genes present in at least one of our genomes. 
@@ -204,16 +223,20 @@ Values in the LS-BSR matrix are between 0 and 1, and represent the sequence iden
 We will arbitrarily say that if a protein have a BLAST score ratio of less then 0.5, then its absent.
 
 ```
+
 bsr_mat_subset = bsr_mat[rowSums(bsr_mat > 0.5) > 0,]
+
 ```
 
 Make a heatmap of your subset (much better!)
 
 ```
+
 heatmap3(bsr_mat_subset, , scale = "none", distfun = function(x){dist(x, method = "manhattan")}, margin = c(10,10), cexCol = 0.85, cexRow = 0.5)
+
 ```
 
->vii. Determine the total number of resistance genes present in each genome
+>vi. Determine the total number of resistance genes present in each genome
 
 We use colSums to count the number of genes with greater than 50% identity to the query
 
@@ -223,7 +246,7 @@ colSums(bsr_mat > 0.5)
 
 How does the total number of genes vary by altering the percent identity threshold?
 
->viii. Determine the total number of bla genes in each genome
+>vii. Determine the total number of bla genes in each genome
 
 Next, we will use grepl to pull out genes of interest
 
@@ -233,7 +256,7 @@ bla_bsr_mat = bsr_mat[grepl('beta-lactamase', row.names(bsr_mat)) ,]
 
 Print out to screen and make a heatmap to explore
 
->ix. Subset the full matrix to look at genes that are present in only one genome
+>viii. Subset the full matrix to look at genes that are present in only one genome
 
 Get genes present in only one genome
 
@@ -258,22 +281,29 @@ The way LS-BSR does this is by:
 Make sure you are on an interactive node, as this will be even more computationally intensive!
 
 ```
-qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
+qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=00:01:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
 ```
 
 Change your directory to day2_after
 
 ```
+
+> Make sure to change username with your uniqname
+
 cd /scratch/micro612w16_fluxod/username/day2_after/
+
 ```
 
 
 Run LS-BSR! The –u parameter is just a path to where usearch lives on flux.
+If you started a new interactive job since you ran LS-BSR, you will need to re-load the required modules for LS-BSR listed above.
 
 ```
+
 cd scratch/micro612w16_fluxod/username/day2_after
 
-python /home/software/rhel6/med/python-libs/ls-bsr/1.0/LS-BSR-master/ls_bsr.py -d ../Abau_genomes/ -u /home/software/rhel6/sph/usearch/7.0.1001/bin/usearch7.0.1001_i86linux32
+python /home/software/rhel6/med/python-libs/ls-bsr/1.0/LS-BSR-master/ls_bsr.py -d Abau_genomes/ -u /home/software/rhel6/sph/usearch/7.0.1001/bin/usearch7.0.1001_i86linux32
+
 ```
 
 Run the custom perl script transfer_annotations.pl to add annotations to your BSR matrix. The output of this script will be bsr_matrix_values_annot.txt
@@ -284,32 +314,40 @@ perl transfer_annotations.pl Abau_ECII_PC.fasta Abau_ECII_PC.NR.annot bsr_matrix
 
 >ii. Read matrix into R and create heatmap
 
-Use sftp to get LS-BSR output onto your laptop
+Use scp to get LS-BSR output onto your laptop
 
 ```
-cd ~/Desktop (or wherever your desktop is) 
-mkdir LS-BSR_pan_genome 
-cd LS-BSR_pan_genome 
-sftp –r username@flux-login.engin.umich.edu cd /scratch/micro612w16_fluxod/username/day2_after get bsr_matrix_values_annot.txt
+
+> Make sure to change username with your uniqname
+
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_after/bsr_matrix_values_annot.txt ~/Desktop
+
 ```
 
 Fire up RStudio and read the matrix in
 
 ```
-bsr_mat_PG = read.table('bsr_matrix_values_annot.txt', sep = "\t", row.names = 1, header = TRUE, quote = "")
+
+bsr_mat_PG = read.table('~/Desktop/bsr_matrix_values_annot.txt', sep = "\t", row.names = 1, header = TRUE, quote = "")
+
 ```
 
 Use head, str, dim, etc. to explore the matrix you read in
 Make a heatmap for the full matrix
 
 ```
+
 heatmap3(as.matrix(bsr_mat_PG), , scale = "none", distfun = function(x){dist(x, method = "manhattan")}, margin = c(10,10), cexCol = 0.85, cexRow = 0.5)
+
 ```
 
 Make a heatmap for variable genes (present in at least one, but not all of the genomes
 
 ```
-bsr_mat_PG_subset = bsr_mat_PG[rowSums(bsr_mat_PG > 0.4) > 0 & rowSums(bsr_mat_PG > 0.4) < 4 ,] heatmap3(as.matrix(bsr_mat_PG_subset), , scale = "none", distfun = function(x){dist(x, method = "manhattan")}, margin = c(10,10), cexCol = 0.85, cexRow = 0.5)
+
+bsr_mat_PG_subset = bsr_mat_PG[rowSums(bsr_mat_PG > 0.4) > 0 & rowSums(bsr_mat_PG > 0.4) < 4 ,] 
+heatmap3(as.matrix(bsr_mat_PG_subset), , scale = "none", distfun = function(x){dist(x, method = "manhattan")}, margin = c(10,10), cexCol = 0.85, cexRow = 0.5)
+
 ```
 
 >iii. Which genomes are most closely related based upon shared gene content?
@@ -357,9 +395,11 @@ vii. What is the number of hypothetical genes in core vs. accessory genome?
 Looking at unqiue genes we see that many are annotated as “hypothetical”, indicating that the sequence looks like a gene, but has no detectable homology with a functionally characterized gene. Determine the fraction of “hypothetical” genes in unique vs. core. Why does this make sense?
 
 ```
+
 sum(grepl("hypothetical" , row.names(bsr_mat_PG[rowSums(bsr_mat_PG > 0.4) == 1,]))) / sum(rowSums(bsr_mat_PG > 0.4) == 1)
 
 sum(grepl("hypothetical" , row.names(bsr_mat_PG[rowSums(bsr_mat_PG > 0.4) == 4,]))) / sum(rowSums(bsr_mat_PG > 0.4) == 4)
+
 ```
 
 ## Perform genome comparisons with [ACT](http://www.sanger.ac.uk/science/tools/artemis-comparison-tool-act)
@@ -374,8 +414,10 @@ i. Create ACT alignment file with BLAST
 As we saw this morning, to compare genomes in ACT we need to use BLAST to create the alignments. We will do this on flux.
 
 ```
+
 cd scratch/micro612w16_fluxod/username/day2_after
-blastall -p blastn -i ../Abau_genomes/AbauA_genome.fasta -d ../Abau_BLAST_DB/ACICU_genome.fasta -m 8 -e 1e-20 -o AbauA_vs_ACICU.blast
+blastall -p blastn -i ./Abau_genomes/AbauA_genome.fasta -d ./Abau_BLAST_DB/ACICU_genome.fasta -m 8 -e 1e-20 -o AbauA_vs_ACICU.blast
+
 ```
 
 >ii. Read in genomes, alignments and annotation files
@@ -383,13 +425,18 @@ blastall -p blastn -i ../Abau_genomes/AbauA_genome.fasta -d ../Abau_BLAST_DB/ACI
 Use sftp to get ACT files onto your laptop
 
 ```
+
 cd ~/Desktop (or wherever your desktop is)
-mkdir Abau_ACT cd Abau_ACT 
-sftp –r username@flux-login.engin.umich.edu 
-cd /scratch/micro612w16_fluxod/username/day2_after get Abau_genomes/AbauA_genome.fasta get Abau_genomes/ACICU_genome.fasta 
+mkdir Abau_ACT 
+cd Abau_ACT 
+sftp username@flux-login.engin.umich.edu 
+cd /scratch/micro612w16_fluxod/username/day2_after 
+get Abau_genomes/AbauA_genome.fasta 
+get Abau_genomes/ACICU_genome.fasta 
 get AbauA_vs_ACICU.blast 
 get Abau_ACT_files/AbauA_genome_gene.gff 
 get Abau_ACT_files/ACICU_genome_gene.gff
+
 ```
 
 >iii. Explore genome comparison and features of ACT
@@ -397,18 +444,22 @@ get Abau_ACT_files/ACICU_genome_gene.gff
 Read in genomes and alignment into ACT
 
 ```
+
 Go to File -> open 
 Sequence file 1  = ACICU_genome.fasta 
 Comparison file 1  = AbauA_vs_ACICU.blast
 Sequence file 2  = AbauA_genome.fasta
+
 ```
 
 Before we use annotation present in genbank files. Here we will use ACT specific annotation files so we get some prettier display (resistance genes = red, transposable elements = bright green)  
 
 ```
+
 Go to File -> ACICU_genome.fasta -> Read an entry file = ACICU_genome_gene.gff
 
 Go to File -> AbauA_genome.fasta -> Read an entry file = AbauA_genome_gene.gff
+
 ```
 
 Play around in ACT to gain some insight into the sorts of genes present in large insertion/deletion regions. 
