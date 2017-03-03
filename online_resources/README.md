@@ -76,5 +76,8 @@
 
 11. [Bioinformatics is just like bench science and should be treated as such](http://cabbagesofdoom.blogspot.com/2015/08/bioinformatics-is-just-like-bench.html)
 
+12. Unix/Command line 
+	- [command-line bootcamp](http://rik.smith-unna.com/command_line_bootcamp/?id=9xnbkx6eaof)
+	- [Code academy](https://www.codecademy.com/en/courses/learn-the-command-line)
 
 
