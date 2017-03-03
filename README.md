@@ -2,10 +2,14 @@
 
 A 3 day microbial bioinformatics workshop conducted by [Dr. Evan Snitkin](http://thesnitkinlab.com/index.php) at [University of Michigan](https://www.umich.edu/)
 
-Date: 28 - 30 March
+Date: 15 - 17 March
 
 Link to Software Carpentry Etherpad:
 http://pad.software-carpentry.org/micro612_bacterial_genomics_workshop
+
+Micro612_w17_pre-course_hw
+
+
 
 - [Day 1 Morning](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 ***
