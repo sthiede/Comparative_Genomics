@@ -1,1 +1,3 @@
-### A pre-course homework will help setting up Micro612 flux directories and bash profile, familiarize with basic unix/shell scripting and R commands.
+# Micro612_pre-course_hw
+
+A pre-course homework will help setting up Micro612 flux directories and bash profile, familiarize with basic unix/shell scripting and R commands.
