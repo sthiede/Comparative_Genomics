@@ -9,8 +9,7 @@
 ssh user@flux-login.engin.umich.edu
 ```
 
-> *user = your umich unique name
-
+[//]: <> **Set up your .bashrc file so your environment is all set for genomic analysis!**
 **Set up your .bashrc file so your environment is all set for genomic analysis!**
 
 Environment variables are a way of passing information from the shell to programs when you run them. Programs look "in the environment" for particular variables and if they are found will use the values stored. Some are set by the system, others by you, yet others by the shell, or any program that loads another program. All the softwares/tools that we need in this workshop are installed in a directory "/scratch/micro612w16_fluxod/shared/bin/". We will set the environment variable PATH in .bashrc file by exporting the required paths.
