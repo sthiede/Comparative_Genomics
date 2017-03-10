@@ -19,8 +19,8 @@ Execute the following command to copy files for this afternoon’s exercises to 
 
 ```
 
-cd /scratch/micro612w16_fluxod/username
-cp -r /scratch/micro612w16_fluxod/shared/data/day3_morn ./
+cd /scratch/micro612w17_fluxod/username
+cp -r /scratch/micro612w17_fluxod/shared/data/day3_morn ./
 
 ```
 
@@ -45,12 +45,12 @@ cd Abau_mauve
 
 > Now copy Abau_genomes folder residing in your day3_morn folder using scp or sftp:
 
-scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day3_morn/Abau_genomes ./
+scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day3_morn/Abau_genomes ./
 
 OR
 
 sftp –r username@flux-login.engin.umich.edu 
-cd /scratch/micro612w16_fluxod/username/day3_morn 
+cd /scratch/micro612w17_fluxod/username/day3_morn 
 get Abau_genomes
 
 ```
@@ -74,12 +74,12 @@ Use sftp or scp to transfer your alignment back to flux for some processing
 
 cd ~/Desktop/Abau_mauve
 sftp –r username@flux-login.engin.umich.edu 
-cd /scratch/micro612w16_fluxod/username/day3_morn 
+cd /scratch/micro612w17_fluxod/username/day3_morn 
 put mauve_ECII_outgroup
 
 OR
 
-scp ~/Desktop/Abau_mauve/mauve_ECII_outgroup username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day3_morn 
+scp ~/Desktop/Abau_mauve/mauve_ECII_outgroup username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day3_morn 
 
 ```
  
@@ -110,12 +110,12 @@ Note that ape has a ton of useful functions for more sophisticated phylogenetic 
 cd ~/Desktop/Abau_mauve
 
 sftp –r username@flux-login.engin.umich.edu 
-cd /scratch/micro612w16_fluxod/username/day3_morn 
+cd /scratch/micro612w17_fluxod/username/day3_morn 
 get mauve_ECII_outgroup.fasta
 
 OR
 
-scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day3_morn/mauve_ECII_outgroup.fasta ./
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day3_morn/mauve_ECII_outgroup.fasta ./
 
 ```
 
@@ -254,7 +254,7 @@ Run gubbins on your fasta formatted alignment
 
 ```
 
-cd /scratch/micro612w16_fluxod/username/day3_morn
+cd /scratch/micro612w17_fluxod/username/day3_morn
 run_gubbins.py -v -f 50 -o Abau_AB0057_genome mauve_ECII_outgroup.fasta
 ```
 
@@ -284,14 +284,14 @@ Use sftp or scp to get gubbins output files
 cd ~/Desktop/Abau_mauve
 
 sftp –r username@flux-login.engin.umich.edu 
-cd /scratch/micro612w16_fluxod/username/day3_morn 
+cd /scratch/micro612w17_fluxod/username/day3_morn 
 get mauve_ECII_outgroup.recombination.pdf 
 get mauve_ECII_outgroup.final_tree.tre
 
 OR
 
-scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day3_morn/mauve_ECII_outgroup.recombination.pdf  ./
-scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day3_morn/mauve_ECII_outgroup.final_tree.tre  ./
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day3_morn/mauve_ECII_outgroup.recombination.pdf  ./
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day3_morn/mauve_ECII_outgroup.final_tree.tre  ./
 
 ```
 
@@ -338,14 +338,14 @@ mkdir MRSA_genomes
 cd MRSA_genomes
 
 sftp –r username@flux-login.engin.umich.edu 
-cd /scratch/micro612w16_fluxod/username/day3_morn 
+cd /scratch/micro612w17_fluxod/username/day3_morn 
 get 2016-3-9_KP_BSI_USA300.fa 
 get 2016-3-9_KP_BSI_USA300_iTOL_HA_vs_CA.txt
 
 OR
 
-scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day3_morn/2016-3-9_KP_BSI_USA300.fa  ./
-scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day3_morn/2016-3-9_KP_BSI_USA300_iTOL_HA_vs_CA.txt  ./
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day3_morn/2016-3-9_KP_BSI_USA300.fa  ./
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day3_morn/2016-3-9_KP_BSI_USA300_iTOL_HA_vs_CA.txt  ./
 
 
 ```
