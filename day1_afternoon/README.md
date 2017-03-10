@@ -316,7 +316,7 @@ Lets get this pdf report onto our local system and check the chromosome stats ta
 
 ```
 
-scp username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
 
 ```
 
@@ -355,7 +355,7 @@ Get these files to your local system and start Artemis.
 
 ```
 
-scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Artemis_files/ /path-to-local-directory/
+scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Artemis_files/ /path-to-local-directory/
 
 ```
 
