@@ -11,30 +11,31 @@ ssh user@flux-login.engin.umich.edu
 
 <!-- **Set up your .bashrc file so your environment is all set for genomic analysis!** -->
 
-**Set up your .bashrc file so your environment is all set for genomic analysis!**
+**Setting up environment variables in .bashrc file so your environment is all set for genomic analysis!**
 
-Environment variables are a way of passing information from the shell to programs when you run them. Programs look "in the environment" for particular variables and if they are found will use the values stored. Some are set by the system, others by you, yet others by the shell, or any program that loads another program. All the softwares/tools that we need in this workshop are installed in a directory "/scratch/micro612w16_fluxod/shared/bin/". We will set the environment variable PATH in .bashrc file by exporting the required paths.
+Environment variables are the variables/values that describe the environment in which programs run in. All the programs and scripts on your unix system uses these variables for extracting information such as: What is my current working directory?, Where are temporary files stored?, Where are perl/python libraries?, Where is Blast installed? etc. Everytime you login to your system, the shell checks to see whether the file .bashrc (.bash_profile) exists in your home directory.
 
->i. Make a backup copy of ~/.bashrc file in case something goes wrong. 
+All the softwares/tools that we need in this workshop are installed in a directory "/scratch/micro612w17_fluxod/shared/bin/" and we want the shell to look for these installed tools in this directory. For this, We will save the full path to these tools in an environment variable PATH.
+
+>i. Make a backup copy of bashrc file in case something goes wrong. 
 	
 ```
-cp ~/.bashrc ./bashrc_backup
+
+cp ~/.bashrc ~/bashrc_backup
+
+Note: "~/" represents your home directory. On flux, these means /home/username
+
 ```
 	
->ii. Add a line to your .bashrc file that points to required Perl library directories.
+>ii. Open ~/.bashrc file using any text editor and add the following lines to your .bashrc file.
 
+<details>
+  <summary>Click to expand entries</summary>
+  
 ```
 
 export PERL5LIB=/scratch/micro612w16_fluxod/shared/bin/PAGIT/lib:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl:$PERL5LIB
 export PERL5LIB=/scratch/micro612w16_fluxod/shared/perl_libs:$PERL5LIB
-
-```
->iii. Add entries in your .bashrc file to add required genomics programs to your path variable.
-
-<details>
-  <summary>Click for entries</summary>
-
-```
 
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast/bin/
@@ -56,14 +57,19 @@ export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/PAGIT/ABACAS/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast-2.2.26/bin/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/quast/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/MUMmer3.23/
+
 ```
 
 </details>
 
->iv. Source your .bashrc file
+These entries will point to required libraries and bioinformatics programs that we will run during the workshop.
+
+>iv. Save the file and Source .bashrc file to make these changes permanent.
 
 ```
+
 source ~/.bashrc
+
 ```
 
 ## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
