@@ -9,7 +9,7 @@
 ssh user@flux-login.engin.umich.edu
 ```
 
-[//]: <> (**Set up your .bashrc file so your environment is all set for genomic analysis!**)
+<!-- **Set up your .bashrc file so your environment is all set for genomic analysis!** -->
 
 **Set up your .bashrc file so your environment is all set for genomic analysis!**
 
