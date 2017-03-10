@@ -79,6 +79,14 @@ source ~/.bashrc
 
 ```
 
+>iv. Check if the $PATH environment variable is updated
+
+```
+
+echo $PATH
+
+```
+
 <!-- Check the dependencies -->
 
 <!-- tree file system -->
