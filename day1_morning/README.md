@@ -6,7 +6,7 @@
 **Log in to Flux**
 
 ```
-ssh user@flux-login.engin.umich.edu
+ssh user@flux-login.arc-ts.umich.edu
 ```
 
 <!-- **Set up your .bashrc file so your environment is all set for genomic analysis!** -->
@@ -292,14 +292,14 @@ fastqc -o Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/ --extract -f f
 ```
 Download the reports again and see the difference.
 ```
-sftp username@flux-login.engin.umich.edu
+sftp username@flux-login.arc-ts.umich.edu
 cd /scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/
 get forward_paired.fq_fastqc.html
 get reverse_paired.fq_fastqc.html
 
 or use scp
 
-scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/*.html /path-to-local-directory/
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/*.html /path-to-local-directory/
 ```
 
 The red cross sign disappeared!
