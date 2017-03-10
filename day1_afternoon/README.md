@@ -103,7 +103,7 @@ Picard identifies duplicates by search for reads that have same start position o
  
 ```
 
-java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar CreateSequenceDictionary REFERENCE=/path-to-reference/KPNIH1.fasta OUTPUT=/path-to-reference/KPNIH1.dict
+java -jar /scratch/micro612w17_fluxod/shared/bin/picard-tools-1.130/picard.jar CreateSequenceDictionary REFERENCE=/path-to-reference/KPNIH1.fasta OUTPUT=/path-to-reference/KPNIH1.dict
 
 ```
 
@@ -113,7 +113,7 @@ java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 
 ```
 
-java -jar /scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT= Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
+java -jar /scratch/micro612w17_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT= Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
 
 ```
 
@@ -180,7 +180,7 @@ Run this command on raw vcf file Rush_KPC_266__aln_mpileup_raw.vcf.
 
 ```
 
-java -jar /scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAnalysisTK.jar -T VariantFiltration -R /path-to-reference/KPNIH1.fasta -o Rush_KPC_266__filter_gatk.vcf --variant Rush_KPC_266__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
+java -jar /scratch/micro612w17_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAnalysisTK.jar -T VariantFiltration -R /path-to-reference/KPNIH1.fasta -o Rush_KPC_266__filter_gatk.vcf --variant Rush_KPC_266__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
 
 ```
 
@@ -246,7 +246,7 @@ snpEff contains database of about 20000 reference genome built from trusted and 
 >i. Check snpEff internal database for your reference genome:
 
 ```     
-java -jar /scratch/micro612w16_fluxod/shared/bin/snpEff/snpEff.jar databases | grep 'kpnih1'
+java -jar /scratch/micro612w17_fluxod/shared/bin/snpEff/snpEff.jar databases | grep 'kpnih1'
 ```
 Note down the genome id for your reference genome KPNIH1. In this case: GCA_000281535.2.29
 
@@ -260,7 +260,7 @@ sed -i 's/gi.*|/Chromosome/g' Rush_KPC_266__filter_gatk.vcf
 ```
 
 module load lsa java/1.8.0
-java -jar /scratch/micro612w16_fluxod/shared/bin/snpEff/snpEff.jar -onlyProtein -no-upstream -no-downstream  -no-intergenic -v GCA_000281535.2.29 Rush_KPC_266__filter_gatk.vcf > Rush_KPC_266__filter_gatk_ann.vcf -csvStats Rush_KPC_266__filter_gatk_stats
+java -jar /scratch/micro612w17_fluxod/shared/bin/snpEff/snpEff.jar -onlyProtein -no-upstream -no-downstream  -no-intergenic -v GCA_000281535.2.29 Rush_KPC_266__filter_gatk.vcf > Rush_KPC_266__filter_gatk_ann.vcf -csvStats Rush_KPC_266__filter_gatk_stats
 
 ```
 
@@ -316,7 +316,7 @@ Lets get this pdf report onto our local system and check the chromosome stats ta
 
 ```
 
-scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
 
 ```
 
@@ -355,7 +355,7 @@ Get these files to your local system and start Artemis.
 
 ```
 
-scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Artemis_files/ /path-to-local-directory/
+scp -r username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Artemis_files/ /path-to-local-directory/
 
 ```
 
