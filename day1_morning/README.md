@@ -29,9 +29,10 @@ export PERL5LIB=/scratch/micro612w16_fluxod/shared/bin/PAGIT/lib:/scratch/micro6
 export PERL5LIB=/scratch/micro612w16_fluxod/shared/perl_libs:$PERL5LIB
 
 ```
+>iii. Add entries in your .bashrc file to add required genomics programs to your path variable.
 
 <details>
-  <summary>>iii. Add entries in your .bashrc file to add required genomics programs to your path variable.</summary>
+  <summary>Click for entries</summary>
 
 ```
 
