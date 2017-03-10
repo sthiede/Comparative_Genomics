@@ -33,10 +33,17 @@ Note: "~/" represents your home directory. On flux, these means /home/username
   <summary>Click to expand entries</summary>
   
 ```
+## Micro612 Workshop ENV
 
+# Flux Modules
+module load python-anaconda2/latest
+module load perl-modules
+
+# Perl Libraries
 export PERL5LIB=/scratch/micro612w16_fluxod/shared/bin/PAGIT/lib:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl:$PERL5LIB
 export PERL5LIB=/scratch/micro612w16_fluxod/shared/perl_libs:$PERL5LIB
 
+# Bioinformatics Tools
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast/bin/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl/
@@ -64,7 +71,7 @@ export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/MUMmer3.23/
 
 These entries will point to required libraries and bioinformatics programs that we will run during the workshop.
 
->iv. Save the file and Source .bashrc file to make these changes permanent.
+>iii. Save the file and Source .bashrc file to make these changes permanent.
 
 ```
 
@@ -72,10 +79,32 @@ source ~/.bashrc
 
 ```
 
+<!-- Check the dependencies -->
+
+<!-- tree file system -->
+
+<!-- Power of Unix 
+
+playing with fasta file: grep, wc, GC content, awk, sed
+playing with gff file: head, tail, cat, sort, awk, grep, line numbers, grep --color, cut
+history, tab-autocomplete, kill a command, cheatsheet 
+
+
+Tools for manipulating Fasta/Q:
+
+seqtk: Extract sequences with names in file name.lst, one sequence name per line
+bioawk: seq and their length
+fastx: fastq to fastx
+
+
+-->
+
 ## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
-
+<!--
+fastq format
+-->
 >i. Execute the following commands to copy files for this morning’s exercises to your home directory: 
 
 ```
