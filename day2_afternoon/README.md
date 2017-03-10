@@ -15,8 +15,8 @@ Execute the following command to copy files for this afternoon’s exercises to 
 
 ```  
 
-cd /scratch/micro612w16_fluxod/username
-cp -r /scratch/micro612w16_fluxod/shared/data/day2_after/ ./
+cd /scratch/micro612w17_fluxod/username
+cp -r /scratch/micro612w17_fluxod/shared/data/day2_after/ ./
 
 ```
 
@@ -41,7 +41,7 @@ The script takes as input:
 ```
 
 module load BioPerl
-cd scratch/micro612w16_fluxod/username/day2_after
+cd scratch/micro612w17_fluxod/username/day2_after
 perl filter_fasta_file.pl resisGenes.pfasta fasta_file_keys ardb_beta_lactam_genes.pfasta
 
 ```
@@ -136,7 +136,7 @@ We are running usearch with the following parameters:
 
 > Make sure you are in day2_after directory
 
-cd scratch/micro612w16_fluxod/username/day2_after
+cd scratch/micro612w17_fluxod/username/day2_after
 
 > Load relevant Modules
 
@@ -164,7 +164,7 @@ Change your directory to day2_after:
 
 > Make sure you are in day2_after directory
 
-cd /scratch/micro612w16_fluxod/username/day2_after/
+cd /scratch/micro612w17_fluxod/username/day2_after/
 
 ```
 
@@ -186,7 +186,7 @@ Use scp to get LS-BSR output onto your laptop
 
 > Dont forget to change username in the below command
 
-scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_after/bsr_matrix_values.txt ~/Desktop
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day2_after/bsr_matrix_values.txt ~/Desktop
 
 ```
 
@@ -281,7 +281,7 @@ The way LS-BSR does this is by:
 Make sure you are on an interactive node, as this will be even more computationally intensive!
 
 ```
-qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=00:01:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
+qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=00:01:00:00 -q fluxod -l qos=flux -A micro612w17_fluxod
 ```
 
 Change your directory to day2_after
@@ -290,7 +290,7 @@ Change your directory to day2_after
 
 > Make sure to change username with your uniqname
 
-cd /scratch/micro612w16_fluxod/username/day2_after/
+cd /scratch/micro612w17_fluxod/username/day2_after/
 
 ```
 
@@ -300,7 +300,7 @@ If you started a new interactive job since you ran LS-BSR, you will need to re-l
 
 ```
 
-cd scratch/micro612w16_fluxod/username/day2_after
+cd scratch/micro612w17_fluxod/username/day2_after
 
 python /home/software/rhel6/med/python-libs/ls-bsr/1.0/LS-BSR-master/ls_bsr.py -d Abau_genomes/ -u /home/software/rhel6/sph/usearch/7.0.1001/bin/usearch7.0.1001_i86linux32
 
@@ -320,7 +320,7 @@ Use scp to get LS-BSR output onto your laptop
 
 > Make sure to change username with your uniqname
 
-scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day2_after/bsr_matrix_values_annot.txt ~/Desktop
+scp username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day2_after/bsr_matrix_values_annot.txt ~/Desktop
 
 ```
 
@@ -415,7 +415,7 @@ As we saw this morning, to compare genomes in ACT we need to use BLAST to create
 
 ```
 
-cd scratch/micro612w16_fluxod/username/day2_after
+cd scratch/micro612w17_fluxod/username/day2_after
 blastall -p blastn -i ./Abau_genomes/AbauA_genome.fasta -d ./Abau_BLAST_DB/ACICU_genome.fasta -m 8 -e 1e-20 -o AbauA_vs_ACICU.blast
 
 ```
@@ -430,7 +430,7 @@ cd ~/Desktop (or wherever your desktop is)
 mkdir Abau_ACT 
 cd Abau_ACT 
 sftp username@flux-login.engin.umich.edu 
-cd /scratch/micro612w16_fluxod/username/day2_after 
+cd /scratch/micro612w17_fluxod/username/day2_after 
 get Abau_genomes/AbauA_genome.fasta 
 get Abau_genomes/ACICU_genome.fasta 
 get AbauA_vs_ACICU.blast 
