@@ -32,7 +32,12 @@ export PERL5LIB=/scratch/micro612w16_fluxod/shared/perl_libs:$PERL5LIB
 
 >iii. Add entries in your .bashrc file to add required genomics programs to your path variable.
 
+
+<details>
+  <summary>Add entries in your .bashrc file to add required genomics programs to your path variable.</summary>
+
 ```
+
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast/bin/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl/
@@ -54,6 +59,8 @@ export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast-2.2.26/bin/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/quast/
 export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/MUMmer3.23/
 ```
+
+</details>
 
 >iv. Source your .bashrc file
 
