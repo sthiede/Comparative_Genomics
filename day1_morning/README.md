@@ -40,30 +40,30 @@ module load python-anaconda2/latest
 module load perl-modules
 
 # Perl Libraries
-export PERL5LIB=/scratch/micro612w16_fluxod/shared/bin/PAGIT/lib:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl:$PERL5LIB
-export PERL5LIB=/scratch/micro612w16_fluxod/shared/perl_libs:$PERL5LIB
+export PERL5LIB=/scratch/micro612w17_fluxod/shared/bin/PAGIT/lib:/scratch/micro612w17_fluxod/shared/bin/vcftools_0.1.12b/perl:$PERL5LIB
+export PERL5LIB=/scratch/micro612w17_fluxod/shared/perl_libs:$PERL5LIB
 
 # Bioinformatics Tools
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast/bin/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/perl/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/tabix-0.2.6/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/bwa-0.7.12/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/bcftools-1.2/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/samtools-1.2/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/sratoolkit/bin/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/Spades/bin/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/FastQC/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/picard-tools-1.130/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/qualimap_v2.1/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/vcftools_0.1.12b/bin/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/snpEff/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/PAGIT/ABACAS/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/blast-2.2.26/bin/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/quast/
-export PATH=$PATH:/scratch/micro612w16_fluxod/shared/bin/MUMmer3.23/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/blast/bin/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/vcftools_0.1.12b/perl/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/tabix-0.2.6/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/bwa-0.7.12/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/Trimmomatic/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/bcftools-1.2/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/samtools-1.2/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/sratoolkit/bin/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/Spades/bin/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/FastQC/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/picard-tools-1.130/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/qualimap_v2.1/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/vcftools_0.1.12b/bin/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/snpEff/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/PAGIT/ABACAS/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/blast-2.2.26/bin/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/quast/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/MUMmer3.23/
 
 ```
 
@@ -116,9 +116,9 @@ fastq format
 >i. Execute the following commands to copy files for this morning’s exercises to your home directory: 
 
 ```
-cd /scratch/micro612w16_fluxod/username
-cp -r /scratch/micro612w16_fluxod/shared/data/day1_morn/ ./
-cd /scratch/micro612w16_fluxod/username/day1_morn/
+cd /scratch/micro612w17_fluxod/username
+cp -r /scratch/micro612w17_fluxod/shared/data/day1_morn/ ./
+cd /scratch/micro612w17_fluxod/username/day1_morn/
 ls
 ```
 
@@ -152,7 +152,7 @@ FastQC can be run in two modes: "command line" or as a GUI (graphical user inter
 >iv. Get an interactive cluster node to start running programs
 
 ```
-qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
+qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w17_fluxod
 ```
 
 >v. Run FastQC to generate quality report of sequence reads.
@@ -170,14 +170,14 @@ You can visualize and assess the quality of data by opening html report in a loc
 >vii. Download FastQC report to your home computer to examine
 
 ```
-sftp username@flux-login.engin.umich.edu
-cd /scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/before_trimmomatic/
+sftp username@flux-login.arc-ts.umich.edu
+cd /scratch/micro612w17_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/before_trimmomatic/
 get Rush_KPC_266_1_combine_fastqc.html
 get Rush_KPC_266_2_combine_fastqc.html
 
 or use scp.
 
-scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/before_trimmomatic/*.html /path-to-local-directory/
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/before_trimmomatic/*.html /path-to-local-directory/
 ```
 
 The analysis in FastQC is performed by a series of analysis modules. The left hand side of the main interactive display or the top of the HTML report show a summary of the modules which were run, and a quick evaluation of whether the results of the module seem entirely normal (green tick), slightly abnormal (orange triangle) or very unusual (red cross). 
@@ -208,13 +208,13 @@ Now we will run Trimmomatic on these raw data to remove low quality reads as wel
 >i. Get an interactive cluster node to start running programs
 
 ```
-qsub -I -V -l nodes=1:ppn=4,mem=16000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w16_fluxod
+qsub -I -V -l nodes=1:ppn=4,mem=16000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w17_fluxod
 ```
 
 Change your directory to day1_morn
 
 ```
-cd /scratch/micro612w16_fluxod/username/day1_morn/
+cd /scratch/micro612w17_fluxod/username/day1_morn/
 ```
 
 >ii. Create these output directories in your day1_morn folder to save trimmomatic results
@@ -228,13 +228,13 @@ mkdir Rush_KPC_266_trimmomatic_results
 ```
 module load lsa java/1.8.0
 
-java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar –h
+java -jar /scratch/micro612w17_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar –h
 ```
 
 >iv. Run the below trimmomatic commands on raw reads.
 
 ```
-time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz Rush_KPC_266_trimmomatic_results/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results/forward_unpaired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_paired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:15 MINLEN:40 HEADCROP:0
+time java -jar /scratch/micro612w17_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz Rush_KPC_266_trimmomatic_results/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results/forward_unpaired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_paired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w17_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:15 MINLEN:40 HEADCROP:0
 ```
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/trimm_parameters.png)
@@ -255,14 +255,14 @@ fastqc -o Rush_KPC_266_FastQC_results/after_trimmomatic/ Rush_KPC_266_trimmomati
 
 Get these html reports to local system.
 ```
-sftp username@flux-login.engin.umich.edu
-cd /scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic/
+sftp username@flux-login.arc-ts.umich.edu
+cd /scratch/micro612w17_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic/
 get forward_paired.fq_fastqc.html
 get reverse_paired.fq_fastqc.html
 
 or use scp 
 
-scp username@flux-xfer.engin.umich.edu:/scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic/*.html /path-to-local-directory/
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic/*.html /path-to-local-directory/
 ```
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/3.png)
@@ -281,7 +281,7 @@ This doesn't look very bad but you can remove the red cross sign by trimming the
 ```
 mkdir Rush_KPC_266_trimmomatic_results_with_headcrop/
 
-time java -jar /scratch/micro612w16_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/forward_unpaired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/reverse_paired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w16_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40 HEADCROP:9
+time java -jar /scratch/micro612w17_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/forward_unpaired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/reverse_paired.fq.gz Rush_KPC_266_trimmomatic_results_with_headcrop/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w17_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:20 MINLEN:40 HEADCROP:9
 ```
 
 >vii. Run FastQC 'one last time' on updated trimmomatic results with headcrop and check report on your local computer
@@ -293,13 +293,13 @@ fastqc -o Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/ --extract -f f
 Download the reports again and see the difference.
 ```
 sftp username@flux-login.arc-ts.umich.edu
-cd /scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/
+cd /scratch/micro612w17_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/
 get forward_paired.fq_fastqc.html
 get reverse_paired.fq_fastqc.html
 
 or use scp
 
-scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w16_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/*.html /path-to-local-directory/
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/*.html /path-to-local-directory/
 ```
 
 The red cross sign disappeared!
