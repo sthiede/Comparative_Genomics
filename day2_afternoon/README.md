@@ -186,7 +186,7 @@ Use scp to get LS-BSR output onto your laptop
 
 > Dont forget to change username in the below command
 
-scp username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day2_after/bsr_matrix_values.txt ~/Desktop
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day2_after/bsr_matrix_values.txt ~/Desktop
 
 ```
 
@@ -320,7 +320,7 @@ Use scp to get LS-BSR output onto your laptop
 
 > Make sure to change username with your uniqname
 
-scp username@flux-xfer.engin.umich.edu:/scratch/micro612w17_fluxod/username/day2_after/bsr_matrix_values_annot.txt ~/Desktop
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day2_after/bsr_matrix_values_annot.txt ~/Desktop
 
 ```
 
@@ -429,7 +429,7 @@ Use sftp to get ACT files onto your laptop
 cd ~/Desktop (or wherever your desktop is)
 mkdir Abau_ACT 
 cd Abau_ACT 
-sftp username@flux-login.engin.umich.edu 
+sftp username@flux-login.arc-ts.umich.edu 
 cd /scratch/micro612w17_fluxod/username/day2_after 
 get Abau_genomes/AbauA_genome.fasta 
 get Abau_genomes/ACICU_genome.fasta 
