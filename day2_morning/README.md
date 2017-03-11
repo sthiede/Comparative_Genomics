@@ -1,7 +1,7 @@
 # Day 2 Morning
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-On day 1 we worked through a pipeline to map short-read data to a pre-existing assembly and identify single-nucleotide variants (SNVs) and small insertion/deletions. However, what this sort of analysis misses is the existence of sequence that is not present in your reference. Today we will tackle this issue by assembling our short reads into larger sequences, which we will then analyze to characterize the functions unique to our sequenced genome.   
+On day 1 we worked through a pipeline to map short-read data to a pre-existing assembly and identify single-nucleotide variants (SNVs) and small insertions/deletions. However, what this sort of analysis misses is the existence of sequence that is not present in your reference. Today we will tackle this issue by assembling our short reads into larger sequences, which we will then analyze to characterize the functions unique to our sequenced genome.   
 
 Execute the following command to copy files for this morning’s exercises to your scratch directory: 
 
@@ -25,13 +25,13 @@ cp -r /scratch/micro612w17_fluxod/shared/data/day2_morn ./
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/intro.png)
 
-There is a wide range of tools available for assembly of microbial genomes. These assemblers fall in to two general algorithmic categories, which you can learn more about [here](?). In the end, most assemblers will perform well on microbial genomes, unless there is unusually high GC-content or an over-abundance of repetitive sequences, both of which make accurate assembly difficult. 
+There are a wide range of tools available for assembly of microbial genomes. These assemblers fall in to two general algorithmic categories, which you can learn more about [here](?). In the end, most assemblers will perform well on microbial genomes, unless there is unusually high GC-content or an over-abundance of repetitive sequences, both of which make accurate assembly difficult. 
 
 Here we will use the Spades assembler with default parameters. Because genome assembly is a computationally intensive process, we will submit our assembly jobs to the cluster, and move ahead with some pre-assembled genomes, while your assemblies are running. 
 
 >i. Create directory to hold your assembly output.
 
-create a new directory for the spades output in your day2_morn folder
+Create a new directory for the spades output in your day2_morn folder
 
 ```
 > Note: Make sure you change 'username' in the below command with your 'uniqname'. 
@@ -60,7 +60,7 @@ spades.py -h
 
 >iii. Submit a cluster job to assemble 
 
-Since it takes huge amount of memory and time to assemble genome using spades, we will run a pbs script on cluster for this step.
+Since it takes huge amount of memory and time to assemble genomes using spades, we will run a pbs script on cluster for this step.
 
 Now, Open the spades.pbs file residing in day2_morning folder with nano and add the following spades command to the bottom of the file. 
 
@@ -116,11 +116,11 @@ nano quast/report.txt
 ```
 Check the difference between each assembly statistics. Also check different type of report formats it generated.
 
-## Compare assembly to reference genome and Post-assembly genome improvement
+## Compare assembly to reference genome and post-assembly genome improvement
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-Now that we feel confident in our assembly, lets compare it to our reference to see if we can identify any large insertions/deletions and  will use a graphical user interface called Artemis Comparison Tool (ACT) for visualization. 
+Now that we feel confident in our assembly, lets compare it to our reference to see if we can identify any large insertions/deletions using a graphical user interface called Artemis Comparison Tool (ACT) for visualization. 
 
 To do this we need to first align our genome assembly to our reference. We will accomplish this using command-line BLAST.
 
