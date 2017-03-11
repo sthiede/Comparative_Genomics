@@ -13,7 +13,11 @@ ssh user@flux-login.arc-ts.umich.edu
 
 **Setting up environment variables in .bashrc file so your environment is all set for genomic analysis!**
 
-Environment variables are the variables/values that describe the environment in which programs run in. All the programs and scripts on your unix system uses these variables for extracting information such as: What is my current working directory?, Where are temporary files stored?, Where are perl/python libraries?, Where is Blast installed? etc. Everytime you login to your system, the shell checks to see whether the file .bashrc (.bash_profile) exists in your home directory.
+Environment variables are the variables/values that describe the environment in which programs run in. All the programs and scripts on your unix system use these variables for extracting information such as: What is my current working directory?, Where are temporary files stored?, Where are perl/python libraries?, Where is Blast installed? etc. 
+
+In addition to environment variables that are set up by system administators, each user can set their own environment variables to customize their experience. This may sound like something super advanced that isn't relevent to beginners, but that's not true! Some examples of ways that we will use environment variables in the class are: 1) create shortcuts for directories that you frequently go to, 2) tell unix where frequently used programs live, so you don't have to put the full path name each time you use it and 3) setup a shortcut for getting on a cluster node, so that you don't have to write out the full command each time.
+
+One way to set your environment variables would be to manually set up these variables everytime you log in, but this would be extremely tedious and inefficient. So, Unix has setup a way around this, which is to put your environment variable assignments in special files called .bashrc or .bash_profile. Every user has one or both of these files in thier home directory, and what's special about them is that the commands in them are executed every time you login. So, if you simply set your environmental variable assignments in one of these files, your environment will be setup just the way you want it each time you login!
 
 All the softwares/tools that we need in this workshop are installed in a directory "/scratch/micro612w17_fluxod/shared/bin/" and we want the shell to look for these installed tools in this directory. For this, We will save the full path to these tools in an environment variable PATH.
 
@@ -122,7 +126,7 @@ cd /scratch/micro612w17_fluxod/username/day1_morn/
 ls
 ```
 
-As soon as you receive your sample data from sequencing centre, the first thing you do is check its quality using quality control tool such as FastQC. But before carrying out extensive QC, you can run a bash one-liner to get some basic statistics about the raw reads.
+As soon as you receive your sample data from sequencing centre, the first thing you do is check its quality using a quality control tool such as FastQC. But before carrying out extensive QC, you can run a bash "one-liner" to get some basic statistics about the raw reads.These one-liners are great examples for how a set of simple (relatively) Unix commandscan be piped together to do really useful things.
 
 Run the following command to print total number of reads in each file, total number of unique reads, percentage of unique reads, most abundant sequence(useful to find adapter sequences or contamination), its frequency, and frequency of that sequence as a proportion of the total reads.
 
@@ -132,7 +136,7 @@ for i in *.gz; do zcat $i | awk '((NR-2)%4==0){read=$1;total++;count[read]++}END
 
 You can find more of such super useful bash one-liners at Stephen Turner's github [page.](https://github.com/stephenturner/oneliners)
 
-Now we will run FastQC on these raw data to assess its quality. FastQC is a quality control tool that reads in sequence data in a variety of formats(fastq, bam, sam) and can either provide an interactive application to review the results or create an HTML based report which can be integrated into any pipeline. It is generally the first step that you take upon receiving the sequence data from sequencing facility to get a quick sense of its quality or whether it exhibits any unusual properties(contamination or interesting biological features)
+Now we will run FastQC on these raw data to assess its quality. FastQC is a quality control tool that reads in sequence data in a variety of formats(fastq, bam, sam) and can either provide an interactive application to review the results or create an HTML based report which can be integrated into any pipeline. It is generally the first step that you take upon receiving the sequence data from sequencing facility to get a quick sense of its quality and whether it exhibits any unusual properties (e.g. contamination or unexpected biological features)
 
 >ii. In your day1_morn directory, create a new directory for saving FastQC results.
 
@@ -167,7 +171,7 @@ You can visualize and assess the quality of data by opening html report in a loc
 
 >vi. Exit your cluster node so you don’t waste cluster resources and $$$!
 
->vii. Download FastQC report to your home computer to examine
+>vii. Download the FastQC report to your home computer to examine
 
 ```
 sftp username@flux-login.arc-ts.umich.edu
@@ -180,13 +184,13 @@ or use scp.
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/before_trimmomatic/*.html /path-to-local-directory/
 ```
 
-The analysis in FastQC is performed by a series of analysis modules. The left hand side of the main interactive display or the top of the HTML report show a summary of the modules which were run, and a quick evaluation of whether the results of the module seem entirely normal (green tick), slightly abnormal (orange triangle) or very unusual (red cross). 
+The analysis in FastQC is broken down into a series of analysis modules. The left hand side of the main interactive display or the top of the HTML report show a summary of the modules which were run, and a quick evaluation of whether the results of the module seem entirely normal (green tick), slightly abnormal (orange triangle) or very unusual (red cross). 
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/1.png)
 
-Notice the quality drop(per base sequence quality graph) at the end of Per Base Sequence Quality graph. This is commonly observed in illumina samples. The reason for this drop is that as the number of sequencing cycles performed increases, the average quality of the base calls, as reported by the Phred Scores produced by the sequencer falls. 
+Lets first look at the quality drop(per base sequence quality graph) at the end of "Per Base Sequence Quality" graph. This degredation of quality towards the end of reads is commonly observed in illumina samples. The reason for this drop is that as the number of sequencing cycles performed increases, the average quality of the base calls, as reported by the Phred Scores produced by the sequencer falls. 
 
-Also, Check the overrepresented sequences graph and the kind of adapters that were used for sequencing these samples (Truseq or Nextera) which comes in handy while indicating the adapter database during downstream filtering step.
+Next, lets check the overrepresented sequences graph and the kind of adapters that were used for sequencing these samples (Truseq or Nextera) which comes in handy while indicating the adapter database during downstream filtering step.
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/2.png)
 
@@ -198,9 +202,9 @@ Check out [this](https://sequencing.qcfail.com/articles/loss-of-base-call-accura
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-Identifying adapter or other contaminant sequences within a dataset is inherently a trade off between sensitivity (ensuring all contaminant sequences are removed) and specificity (leaving all non-contaminant sequence data intact). Adapter and other technical contaminants can potentially occur in any location within the reads.(start, end, read-through, partial adapter sequences)
+Filtering out problematic sequences within a dataset is inherently a trade off between sensitivity (ensuring all contaminant sequences are removed) and specificity (leaving all non-contaminant sequence data intact). Adapter and other technical contaminants can potentially occur in any location within the reads.(start, end, read-through, partial adapter sequences)
 
-Trimmomatic tries to search these potential contaminant/adapter sequence within the read at all the possible locations. It takes advantage of the added evidence available in paired-end dataset. In a Paired-End data, read-through/adapters can occur on both the forward and reverse reads of a particular fragment in the same position. Since the fragment was entirely sequenced from both ends, the non-adapter portion of the forward and reverse reads will be reverse-complements of each other. This strategy of searching for contaminant in both the reads is called 'palindrome' mode. 
+Trimmomatic is a tool that tries to search these potential contaminant/adapter sequence within the read at all the possible locations. It takes advantage of the added evidence available in paired-end dataset. In paired-end data, read-through/adapters can occur on both the forward and reverse reads of a particular fragment in the same position. Since the fragment was entirely sequenced from both ends, the non-adapter portion of the forward and reverse reads will be reverse-complements of each other. This strategy of searching for contaminant in both the reads is called 'palindrome' mode. 
 For more information on how Trimmomatic tries to achieve this, Please refer [this](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf) manual.
 
 Now we will run Trimmomatic on these raw data to remove low quality reads as well as adapters. 
@@ -239,7 +243,7 @@ time java -jar /scratch/micro612w17_fluxod/shared/bin/Trimmomatic/trimmomatic-0.
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/trimm_parameters.png)
 
-First, Trimmomatic searches for any matches between the reads and adapters. Short sections(2 bp) of each adapters determined by seed misMatch parameter are tested in each possible position within the reads. If it finds a perfect match, the full alignment is scored. The advantage here is that the full alignment is calculated only when there is a perfect seed match which results in considerable efficiency gains. So, When it finds a match, it moves forward with full alignment and when the match reaches 10 bp determined by simpleClipThreshold, it finally trims off the adapter from reads.  
+First, Trimmomatic searches for any matches between the reads and adapters. Short sections(2 bp) of each adapters determined by seed misMatch parameter are tested in each possible position within the reads. If it finds a perfect match, the full alignment is scored to see if the adaptor is truly present. The advantage here is that the full alignment is calculated only when there is a perfect seed match which results in considerable efficiency gains. So, When it finds a match, it moves forward with full alignment and when the match reaches 10 bp determined by simpleClipThreshold, it finally trims off the adapter from reads.  
 
 Quoting Trimmomatic:
 
@@ -267,9 +271,9 @@ scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/3.png)
 
-After running Trimmomatic, the sequence quality improved and now doesn't contain any contaminants/adapters.
+After running Trimmomatic, you should notice that the sequence quality improved and now doesn't contain any contaminants/adapters.
 
-Also, If you notice the per base sequence content graph, the head bases(~9 bp) are slightly imbalanced. In a perfect scenario,each nucleotide content should run parallel to each other. 
+Next, take a look at the per base sequence content graph, and notice that the head bases(~9 bp) are slightly imbalanced. In a perfect scenario, each nucleotide content should run parallel to each other, and should be reflective of the overall A/C/T/G content of your input sequence. 
 
 Quoting FastQC:
 	"It's worth noting that some types of library will always produce biased sequence composition, normally at the start of the read. Libraries produced by priming using random hexamers (including nearly all RNA-Seq libraries) and those which were fragmented using transposases inherit an intrinsic bias in the positions at which reads start. This bias does not concern an absolute sequence, but instead provides enrichment of a number of different K-mers at the 5' end of the reads. Whilst this is a true technical bias, it isn't something which can be corrected by trimming and in most cases doesn't seem to adversely affect the downstream analysis. It will however produce a warning or error in this module."
