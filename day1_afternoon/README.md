@@ -1,9 +1,9 @@
 # Day 1 Afternoon
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-Earlier this morning, We performed some quality control steps on our sequencing data to make it clean and usable for various downstream analysis. Now we will map these reads to a reference genome and try to find out the differences between them.
+Earlier this morning, We performed some quality control steps on our sequencing data to make it clean and usable for various downstream analysis. Now we will perform our first sequence analysis, and map these reads to a reference genome and try to find out the differences between them.
 
-Read Mapping is one of the most common Bioinformatics operations that needs to be carried out on NGS data. Reads are generally mapped to a reference genome sequence or closely related genome if a reference is not available. There are number of tools that can map reads to a reference genome and they differ from each other in algorithm, speed and accuracy. Most of these tools work by first building an index of reference sequence which works like a dictionary for fast search/lookup and then calling an alignment algorithm that uses these index to align short read sequences against the reference. These alignment has a vast number of uses ranging from Variant/SNP calling, Coverage estimation and gene expression analysis.
+Read Mapping is one of the most common Bioinformatics operations that needs to be carried out on NGS data. Reads are generally mapped to a reference genome sequence that is sufficiently closely related genome to accurately align reads. There are number of tools that can map reads to a reference genome and they differ from each other in algorithm, speed and accuracy. Most of these tools work by first building an index of reference sequence which works like a dictionary for fast search/lookup and then applying an alignment algorithm that uses these index to align short read sequences against the reference. These alignment has a vast number of uses, including: 1) variant/SNP calling, 2) coverage estimation and 3) gene expression analysis.
 
 ## Read Mapping
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
@@ -21,9 +21,9 @@ We will be using the trimmed clean reads that were obtained after running Trimmo
 
 **2. Map your reads against a finished reference genome using [BWA](http://bio-bwa.sourceforge.net/bwa.shtml "BWA manual")**
 
-BWA is one of the several and a very good example of read mappers that are based on Burrows-Wheeler transform algorithm. If you feel like challenging yourselves, you can read BWA paper [here](http://bioinformatics.oxfordjournals.org/content/25/14/1754.short) 
+BWA is one of the several read mappers that are based on Burrows-Wheeler transform algorithm. If you feel like challenging yourselves, you can read BWA paper [here](http://bioinformatics.oxfordjournals.org/content/25/14/1754.short) 
 
-Read Mapping is a time-consuming step that involves searching the reference and aligning millions of reads. Creating an index file of reference sequence for quick lookup/search operations significantly decreases the time required for read alignment.
+Read Mapping is a time-consuming step that involves searching the reference and finding the optimal location for the aligninent for millions of reads. Creating an index file of reference sequence for quick lookup/search operations significantly decreases the time required for read alignment.
 
 >i. To create BWA index of Reference, you need to run following command.
 
@@ -51,7 +51,7 @@ samtools faidx KPNIH1.fasta
 
 >ii. Align reads to reference and redirect the output into SAM file
 
-Now lets align both left and right end reads to our reference using BWA alignment algorithm 'mem' which is one of the three algorithms that is fast and works on mate paired end reads. 
+Now lets align both left and right end reads to our reference using BWA alignment algorithm 'mem' which is one of the three algorithms that is fast and works on mate paired-end reads. 
 For other algorithms employed by BWA, you can refer to BWA [manual](http://bio-bwa.sourceforge.net/bwa.shtml "BWA manual")
 
 ```
@@ -133,7 +133,7 @@ samtools index Rush_KPC_266__aln_marked.bam
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-One of the downstream uses of read mapping is finding differences between our sequence data against a reference. This step is achieved by carrying out variants calling using any of the variant callers(samtools, gatk, freebayes etc). Each variant callers use different statistical framework to discover SNP and other types of mutations. For those of you who are interested in finding out more about the statistics involved, please refer to [this]() samtools paper, one of most commonly used variant callers.
+One of the downstream uses of read mapping is finding differences between our sequence data against a reference. This step is achieved by carrying out variants calling using any of the variant callers(samtools, gatk, freebayes etc). Each variant caller uses a different statistical framework to discover SNPs and other types of mutations. For those of you who are interested in finding out more about the statistics involved, please refer to [this]() samtools paper, one of most commonly used variant callers.
 
 This GATK best practices [guide](https://www.broadinstitute.org/gatk/guide/best-practices.php) will provide more details about various steps that you can incorporate in your analysis.
 
@@ -151,7 +151,7 @@ samtools mpileup -ug -f /path-to-reference/KPNIH1.fasta Rush_KPC_266__aln_marked
 
 > Note: Dont forget to put the actual path to the reference sequence in place of /path-to-reference/
 
-samtools mpileup generate pileup format from alignments stored in BAM, computes genotype likelihood(-ug flag) and outputs it in bcf format(binary version of vcf). This bcf output is then piped to bcftools that calls variants and outputs it in vcf format(-c flag for consensus calling and -v for outputting variants positions only)
+samtools mpileup generates a pileup formatted file from alignments stored in BAM, computes genotype likelihood(-ug flag) and outputs it in bcf format(binary version of vcf). This bcf output is then piped to bcftools, which calls variants and outputs them in vcf format(-c flag for consensus calling and -v for outputting variants positions only)
 
 Lets go through an example vcf file and try to understand a few vcf specifications and criteria that we can use for filtering low confidence snps. 
 
@@ -198,7 +198,7 @@ More Info on VCF format and parameter specifications can be found [here](https:/
 
 >ii. Remove indels and keep only SNPS that passed our filter criteria using [vcftools](http://vcftools.sourceforge.net/man_latest.html vcftools manual):
 
-In most of the phylogenetic analysis, we are trying to find how these samples differ and evolve from the reference/index genome. Many tools that carry out such type of phylogenetic analysis requires a consensus sequences containing only variant calls(SNPs). Though there are few tools that take into consideration both SNPs and Indels and give a greater resolution.
+In most of the phylogenetic analysis, we are trying to find how these samples differ and evolved from the reference/index genome. Many tools that carry out such type of phylogenetic analysis require consensus sequences containing only variant calls(SNPs). Though there are few tools that take into consideration both SNPs and Indels and give a greater resolution.
 Here we will try to construct a consensus sequence using only SNP calls.
 
 vcftools is a program package that is especially written to work with vcf file formats. It thus saves your precious time by making available all the common operations that you would like to perform on vcf file using a single command.
@@ -238,7 +238,8 @@ sed -i 's/>.*/>Rush_KPC_266_/g' Rush_KPC_266__consensus.fa
 
 **3. Variant Annotation using snpEff**
 
-Variant annotation is one of the crucial steps in any Variant Calling Pipeline. Most of the variant annotation tools creates their own database or an external one to assign function and predicts the effect of variants on genes. We will try to touch base on some basic steps of annotating variants in our vcf file using snpEff. 
+Variant annotation is one of the crucial steps in any variant calling pipeline. Most of the variant annotation tools creates their own database or an external one to assign function and predicts the effect of variants on genes. We will try to touch base on some basic steps of annotating variants in our vcf file using snpEff. 
+
 You can annoate these variants before performing any filtering steps that we did earlier or you can decide to annotate just the final filtered variants. 
 
 snpEff contains database of about 20000 reference genome built from trusted and public sources. Lets check if snpEff contains a database of our reference genome.
@@ -250,7 +251,7 @@ java -jar /scratch/micro612w17_fluxod/shared/bin/snpEff/snpEff.jar databases | g
 ```
 Note down the genome id for your reference genome KPNIH1. In this case: GCA_000281535.2.29
 
->ii. Change the Chromosome name in vcf file to ‘Chromosome’ for snpEff reference database compatibility. 
+>ii. Change the chromosome name in vcf file to ‘Chromosome’ for snpEff reference database compatibility. 
 
 ```
 sed -i 's/gi.*|/Chromosome/g' Rush_KPC_266__filter_gatk.vcf
@@ -260,6 +261,7 @@ sed -i 's/gi.*|/Chromosome/g' Rush_KPC_266__filter_gatk.vcf
 ```
 
 module load lsa java/1.8.0
+
 java -jar /scratch/micro612w17_fluxod/shared/bin/snpEff/snpEff.jar -onlyProtein -no-upstream -no-downstream  -no-intergenic -v GCA_000281535.2.29 Rush_KPC_266__filter_gatk.vcf > Rush_KPC_266__filter_gatk_ann.vcf -csvStats Rush_KPC_266__filter_gatk_stats
 
 ```
@@ -324,7 +326,8 @@ scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-A visual visualization of all of these various output files helps in making some significant decisions and inferences about your entire analysis. There are a wide variety of visualization tools out there that you can choose from for this purpose.
+While these various statistical/text analyses are helpful, visualization of all of these various output files can help in making some significant decisions and inferences about your entire analysis. There are a wide variety of visualization tools out there that you can choose from for this purpose.
+
 We will be using [Artemis](http://www.sanger.ac.uk/science/tools/artemis) here, developed by Sanger Institute for viewing BAM and vcf files for manual inspection of some of the variants.
 
 
