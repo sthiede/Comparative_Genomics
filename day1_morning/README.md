@@ -102,6 +102,9 @@ playing with gff file: head, tail, cat, sort, awk, grep, line numbers, grep --co
 history, tab-autocomplete, kill a command, cheatsheet 
 
 
+fastq format
+
+
 Tools for manipulating Fasta/Q:
 
 seqtk: Extract sequences with names in file name.lst, one sequence name per line
@@ -114,9 +117,7 @@ fastx: fastq to fastx
 ## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
-<!--
-fastq format
--->
+
 >i. Execute the following commands to copy files for this morning’s exercises to your home directory: 
 
 ```
