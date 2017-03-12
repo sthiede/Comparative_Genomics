@@ -126,7 +126,7 @@ ls
 
 
 <details>
-  <summary>Click to expand entries</summary>
+  <summary>Solution</summary>
 ```
 grep -v '^>' filename.fasta | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} END {print sum}'
 
