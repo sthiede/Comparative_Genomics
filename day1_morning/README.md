@@ -100,10 +100,10 @@ tree file system Pending
 -->
 
 
-**Power of Unix**
+**Unix is your friend**
 
 
-In software carpentry, you learned working with shell and automating simple tasks using basic unix commands. Lets see how some of these commands can be employed in genomics analysis while exploring various file formats that we use in day to day analysis. For these session, we will be try to explore three different type of bioinformatics file formats: 
+In software carpentry, you learned working with shell and automating simple tasks using basic unix commands. Lets see how some of these commands can be employed in genomics analysis while exploring various file formats that we use in day to day analysis. For these session, we will try to explore three different types of bioinformatics file formats: 
 
 fasta: used for representing either nucleotide or peptide sequences
 
@@ -122,7 +122,7 @@ ls
 
 ```
 
-> Question: In the homework assignment, you downloaded genome assembly fasta files and ran a shell script to count the contigs. Lets say you want to find out the combined length of genome in each of these files. This can be achieved by running a simple unix command comprised of grep, sed and awk. The key here is knowing the features of fasta file format such as: each sequence is preceded by a fasta header that starts with ">", types of bases that a nucleotide sequence represents (A,T,G,C,N) and each line is seperated by a new line character ("\n"). To achieve this, we will use grep to match only those lines that doesn't start with ">" (remember grep -v option to ignore lines), use sed to remove characters that match "N" or "n" which represents unknown bases and finally use awk to count the remaining characters. We can use unix pipe "|" to pass the output of one command to another for further processing.
+> Question: In the homework assignment, you downloaded genome assembly fasta files and ran a shell script to count contigs. Lets say you want to find out the combined length of genome in each of these files. This can be achieved by running a simple unix command comprised of grep, sed and awk. The key here is knowing the features of fasta file format such as: each sequence is preceded by a fasta header that starts with ">", types of bases that a nucleotide sequence represents (A,T,G,C,N) and each line is seperated by a new line character ("\n"). To achieve this, we will use grep to match only those lines that doesn't start with ">" (remember grep -v option to ignore lines), use sed to remove characters that match "N" or "n" which represents unknown bases and finally use awk to count the remaining characters. We can use unix pipe "|" to pass the output of one command to another for further processing.
 
 
 <details>
@@ -134,9 +134,9 @@ grep -v '^>' filename.fasta | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} EN
 
 Note:
 
-- The sign "^" inside the grep pattern represents any pattern that starts with "^>" and -v asks grep to ignore those lines.
-- Use "|" to pass these lines to sed. sed stands for stream editor which parses, transforms and replaces text. Here, we are removing the characters "N" or "n" and keeping only "A,T,G,C" bases
-- awk consists of three blocks: The first block (-F '\n') tells awk how each line is seperated from each other using a field seperator, the second block tells awk to keep counting characters in a line (using awk's default option "length") and save the count in a variable "sum" and when it runs through all the lines in a stream, the third block prints the value of sum which represents total bases in a fasta file.
+- The sign "^" inside the grep pattern represents any pattern that starts with ">" and -v asks grep to ignore those lines.
+- Use "|" to pass these lines to sed. sed stands for stream editor and can be used to parse, transform and replace text. Here, we are removing the characters "N" or "n" and keeping only "A,T,G,C" bases
+- awk consists of three blocks: The first block (-F '\n') tells awk how each line is seperated from each other using a field seperator, the second block will keep counting characters in a line (using awk's default option "length") and save it in a variable "sum" and when it runs through all the lines in a stream, the third block will print the value of sum which represents total bases in a fasta file.
 
 ```
 
@@ -144,11 +144,11 @@ Note:
 
 The GFF (General Feature Format) format is a tab-seperated file and consists of one line per feature, each containing 9 columns of data.
 
-column 1: seqname - name of the chromosome or scaffold
+column 1: seqname - name of the genome or contig or scaffold
 
 column 2: source - name of the program that generated this feature, or the data source (database or project name)
 
-column 3: feature - feature type name, e.g. Gene, CDS, rRNA, tRNA, CRISPR, etc.
+column 3: feature - feature type name, e.g. Gene, exon, CDS, rRNA, tRNA, CRISPR, etc.
 
 column 4: start - Start position of the feature, with sequence numbering starting at 1.
 
@@ -160,9 +160,9 @@ column 7: strand - defined as + (forward) or - (reverse).
 
 column 8: frame - One of '0', '1' or '2'. '0' indicates that the first base of the feature is the first base of a codon, '1' that the second base is the first base of a codon, and so on..
 
-column 9: attribute - A semicolon-separated list of tag-value pairs, providing additional information about each feature usch gene name, product name etc.
+column 9: attribute - A semicolon-separated list of tag-value pairs, providing additional information about each feature such as gene name, product name etc.
 
-> Use less to explore first few lines of a gff file
+> Use less to explore first few lines of a gff file sample.gff
 
 ```
 
@@ -170,7 +170,7 @@ less sample.gff
 
 ```
 
-Note: lines starting with pound sign "#" represents comments and is used to document extra information about the features.
+Note: lines starting with pound sign "#" represent comments and are used to document extra information about the features.
 
 You will notice that the GFF format follows version 3 specifications("##gff-version 3"), followed by genome name("#Genome: 1087440.3|Klebsiella pneumoniae subsp. pneumoniae KPNIH1"), date("#Date:02/09/2017") when it was generated, contig name("##sequence-region") and finally tab-seperated lines describing features.
 
@@ -183,7 +183,7 @@ grep -v '^#' sample.gff | wc -l
 ```
 </details>
 
-> Question: How about couting the number of rRNA features in a gff file using grep, awk and wc? Awk is a very powerful utility that can be employed while working with columns in a file. 
+> Question: How about couting the number of rRNA features in a gff file using grep, awk and wc? Note: Awk is a very powerful utility for working with columns in a file. 
 
 <details>
   <summary>Solution</summary>
@@ -216,15 +216,7 @@ cut -f 3 sample.gff | grep 'tRNA' | wc -l
 
 > Question: Try counting the number of features on a "+" and "-" strand.
 
-
-
-## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
-
-
-
-As soon as you receive your sample data from sequencing centre, the first thing you do is check its quality using a quality control tool such as FastQC. But before carrying out extensive QC, you can run a bash "one-liner" to get some basic statistics about the raw reads.These one-liners are great examples for how a set of simple (relatively) Unix commandscan be piped together to do really useful things.
+As soon as you receive your sample data from sequencing centre, the first thing you do is check its quality using a quality control tool such as FastQC. But before carrying out extensive QC, you can run a bash "one-liner" to get some basic statistics about the raw reads. These one-liners are great examples for how a set of simple (relatively) Unix commands can be piped together to do really useful things.
 
 Run the following command to print total number of reads in each file, total number of unique reads, percentage of unique reads, most abundant sequence(useful to find adapter sequences or contamination), its frequency, and frequency of that sequence as a proportion of the total reads.
 
@@ -232,7 +224,12 @@ Run the following command to print total number of reads in each file, total num
 for i in *.gz; do zcat $i | awk '((NR-2)%4==0){read=$1;total++;count[read]++}END{for(read in count){if(!max||count[read]>max) {max=count[read];maxRead=read};if(count[read]==1){unique++}};print total,unique,unique*100/total,maxRead,count[maxRead],count[maxRead]*100/total}'; done
 ```
 
-You can find more of such super useful bash one-liners at Stephen Turner's github [page.](https://github.com/stephenturner/oneliners)
+You can find more of such super useful bash one-liners at Stephen Turner's github [page.](https://github.com/stephenturner/oneliners). You can also use some pre-written unix utilities and tools such as [seqtk](https://github.com/lh3/seqtk), [bioawk](https://github.com/lh3/bioawk) and [fastx](http://hannonlab.cshl.edu/fastx_toolkit/) which comes in handy while extracting complex information from fasta and fastq files and are optimized to be insanely fast.
+
+
+## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
+[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
+[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 Now we will run FastQC on these raw data to assess its quality. FastQC is a quality control tool that reads in sequence data in a variety of formats(fastq, bam, sam) and can either provide an interactive application to review the results or create an HTML based report which can be integrated into any pipeline. It is generally the first step that you take upon receiving the sequence data from sequencing facility to get a quick sense of its quality and whether it exhibits any unusual properties (e.g. contamination or unexpected biological features)
 
