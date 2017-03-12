@@ -248,10 +248,10 @@ fastqc -h
 
 FastQC can be run in two modes: "command line" or as a GUI (graphical user interface). We will be using command line version of it.
 
->iv. Get an interactive cluster node to start running programs
+>iv. Get an interactive cluster node to start running programs. Use the shortcut that we created in .bashrc file for getting into interactive flux session.
 
 ```
-qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w17_fluxod
+iflux
 ```
 
 >v. Run FastQC to generate quality report of sequence reads.
