@@ -324,10 +324,7 @@ From our ACT comparison of our assembly and the reference we can clearly see tha
 
 >i. Run Prokka on assembly
 
-Load modules required for Prokka
-
 ```
-module load med perl-modules prokka 
 prokka –setupdb
 ```
 
