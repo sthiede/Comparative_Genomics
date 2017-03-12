@@ -125,10 +125,9 @@ ls
 > Question: In the homework assignment, you downloaded genome assembly fasta files and ran a shell script to count the contigs. Lets say you want to find out the combined length of genome in each of these files. This can be achieved by running a simple unix command comprised of grep, sed and awk. The key here is knowing the features of fasta file format such as: each sequence is preceded by a fasta header that starts with ">", types of bases that a nucleotide sequence represents (A,T,G,C,N) and each line is seperated by a new line character ("\n"). To achieve this, we will use grep to match only those lines that doesn't start with ">" (remember grep -v option to ignore lines), use sed to remove characters that match "N" or "n" which represents unknown bases and finally use awk to count the remaining characters. We can use unix pipe "|" to pass the output of one command to another for further processing.
 
 <details>
-  <summary>Solution: Click to expand</summary>
+  <summary>Click to expand entries</summary>
   
 ```
-
 grep -v '^>' filename.fasta | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} END {print sum}'
 
 Note:
@@ -136,9 +135,7 @@ Note:
 - The sign "^" inside the grep pattern represents any pattern that starts with "^>" and -v asks grep to ignore those lines.
 - Use "|" to pass these lines to sed. sed stands for stream editor which parses, transforms and replaces text. Here, we are removing the characters "N" or "n" and keeping only "A,T,G,C" bases
 - awk consists of three blocks: The first block (-F '\n') tells awk how each line is seperated from each other using a field seperator, the second block tells awk to keep counting characters in a line (using awk's default option "length") and save the count in a variable "sum" and when it runs through all the lines in a stream, the third block prints the value of sum which represents total bases in a fasta file.
-
 ```
-
 <\details>
 
 
