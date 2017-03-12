@@ -136,27 +136,8 @@ Note:
 - Use "|" to pass these lines to sed. sed stands for stream editor which parses, transforms and replaces text. Here, we are removing the characters "N" or "n" and keeping only "A,T,G,C" bases
 - awk consists of three blocks: The first block (-F '\n') tells awk how each line is seperated from each other using a field seperator, the second block tells awk to keep counting characters in a line (using awk's default option "length") and save the count in a variable "sum" and when it runs through all the lines in a stream, the third block prints the value of sum which represents total bases in a fasta file.
 ```
+
 <\details>
-
-
-<!-- Power of Unix 
-
-playing with fasta file: grep, wc, GC content, awk, sed
-playing with gff file: head, tail, cat, sort, awk, grep, line numbers, grep --color, cut
-history, tab-autocomplete, kill a command, cheatsheet 
-
-
-fastq format
-
-
-Tools for manipulating Fasta/Q:
-
-seqtk: Extract sequences with names in file name.lst, one sequence name per line
-bioawk: seq and their length
-fastx: fastq to fastx
-
-
--->
 
 ## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
