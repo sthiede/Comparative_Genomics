@@ -142,6 +142,79 @@ Note:
 
 </details>
 
+The GFF (General Feature Format) format is a tab-seperated file and consists of one line per feature, each containing 9 columns of data.
+
+column 1: seqname - name of the chromosome or scaffold
+
+column 2: source - name of the program that generated this feature, or the data source (database or project name)
+
+column 3: feature - feature type name, e.g. Gene, CDS, rRNA, tRNA, CRISPR, etc.
+
+column 4: start - Start position of the feature, with sequence numbering starting at 1.
+
+column 5: end - End position of the feature, with sequence numbering starting at 1.
+
+column 6: score - A floating point value.
+
+column 7: strand - defined as + (forward) or - (reverse).
+
+column 8: frame - One of '0', '1' or '2'. '0' indicates that the first base of the feature is the first base of a codon, '1' that the second base is the first base of a codon, and so on..
+
+column 9: attribute - A semicolon-separated list of tag-value pairs, providing additional information about each feature usch gene name, product name etc.
+
+> Use less to explore first few lines of a gff file
+
+```
+
+less sample.gff
+
+```
+
+Note: lines starting with pound sign "#" represents comments and is used to document extra information about the features.
+
+You will notice that the GFF format follows version 3 specifications("##gff-version 3"), followed by genome name("#Genome: 1087440.3|Klebsiella pneumoniae subsp. pneumoniae KPNIH1"), date("#Date:02/09/2017") when it was generated, contig name("##sequence-region") and finally tab-seperated lines describing features.
+
+> Question: Suppose, you want to find out the number of annotated features in a gff file. how will you achieve this using grep and wc?
+
+<details>
+  <summary>Solution</summary>
+```
+grep -v '^#' sample.gff | wc -l
+```
+</details>
+
+> Question: How about couting the number of rRNA features in a gff file using grep, awk and wc? Awk is a very powerful utility that can be employed while working with columns in a file. 
+
+<details>
+  <summary>Solution</summary>
+```
+grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'rRNA' | wc -l
+
+Or number of CDS or tRNA features?
+grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'CDS' | wc -l
+grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'tRNA' | wc -l
+
+Note: In the above command, we are trying to search lines that doesn't starts with "#" and extracting feature information from third column.
+
+</details>
+
+If for some reason you find awk daunting or too long, you can use "cut" command directly to extract specific columns.
+
+<details>
+  <summary>Solution</summary>
+```
+```
+cut -f 3 sample.gff | grep 'rRNA' | wc -l
+
+Or number of CDS or tRNA features?
+cut -f 3 sample.gff | grep 'CDS' | wc -l
+cut -f 3 sample.gff | grep 'tRNA' | wc -l
+
+```
+</details>
+
+> Question: Try counting the number of features on a "+" and "-" strand.
+
 
 
 ## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
