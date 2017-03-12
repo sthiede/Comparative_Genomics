@@ -307,7 +307,7 @@ Now we will run Trimmomatic on these raw data to remove low quality reads as wel
 >i. Get an interactive cluster node to start running programs
 
 ```
-qsub -I -V -l nodes=1:ppn=4,mem=16000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w17_fluxod
+iflux
 ```
 
 Change your directory to day1_morn
