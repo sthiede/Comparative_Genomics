@@ -188,6 +188,7 @@ grep -v '^#' sample.gff | wc -l
 <details>
   <summary>Solution</summary>
 ```
+
 grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'rRNA' | wc -l
 
 Or number of CDS or tRNA features?
@@ -196,13 +197,13 @@ grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'tRNA' | wc -l
 
 Note: In the above command, we are trying to search lines that doesn't starts with "#" and extracting feature information from third column.
 
+```
 </details>
 
 If for some reason you find awk daunting or too long, you can use "cut" command directly to extract specific columns.
 
 <details>
   <summary>Solution</summary>
-```
 ```
 cut -f 3 sample.gff | grep 'rRNA' | wc -l
 
