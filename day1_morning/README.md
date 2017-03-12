@@ -71,6 +71,8 @@ export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/PAGIT/ABACAS/
 export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/blast-2.2.26/bin/
 export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/quast/
 export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/MUMmer3.23/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/fastq_screen_v0.5.2/
+export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/prokka-1.11/bin/
 
 ```
 
@@ -216,7 +218,7 @@ cut -f 3 sample.gff | grep 'tRNA' | wc -l
 
 > Question: Try counting the number of features on a "+" and "-" strand.
 
-As soon as you receive your sample data from sequencing centre, the first thing you do is check its quality using a quality control tool such as FastQC. But before carrying out extensive QC, you can run a bash "one-liner" to get some basic statistics about the raw reads. These one-liners are great examples for how a set of simple (relatively) Unix commands can be piped together to do really useful things.
+As soon as you receive your sample data from sequencing centre, the first thing you do is check its quality using a quality control tool such as FastQC and also check the samples to make sure that it contain sequences from organism that you are working on (Free from any contamination). But before carrying out extensive QC, you can run a bash "one-liner" to get some basic statistics about the raw reads. These one-liners are great examples for how a set of simple (relatively) Unix commands can be piped together to do really useful things.
 
 Run the following command to print total number of reads in each file, total number of unique reads, percentage of unique reads, most abundant sequence(useful to find adapter sequences or contamination), its frequency, and frequency of that sequence as a proportion of the total reads.
 
@@ -225,6 +227,37 @@ for i in *.gz; do zcat $i | awk '((NR-2)%4==0){read=$1;total++;count[read]++}END
 ```
 
 You can find more of such super useful bash one-liners at Stephen Turner's github [page.](https://github.com/stephenturner/oneliners). You can also use some pre-written unix utilities and tools such as [seqtk](https://github.com/lh3/seqtk), [bioawk](https://github.com/lh3/bioawk) and [fastx](http://hannonlab.cshl.edu/fastx_toolkit/) which comes in handy while extracting complex information from fasta and fastq files and are optimized to be insanely fast.
+
+## Contamination Screening
+
+When running a sequencing pipeline, it is very important to make sure that your data matches appropriate quality threshold and are free from any contaminants. This step helps you make correct interpretations in downstream analysis and also lets you know if you are required to redo the experiment/library preparation or resequencing.
+
+For this purpose, we will employ fastq screen to screen one of our sample against a range of reference genome databases. We will screen the sample fastq_screen.fastq.gz in this directory against Human, Mouse and Ecoli genome and try to determine what percentage of reads are contaminant, i.e Human and mouse sequences.
+
+We have already created the human, mouse and ecoli reference databases inside fastq_screen tool directory:
+
+
+```
+
+ls /scratch/micro612w17_fluxod/shared/bin/fastq_screen_v0.5.2/data/
+
+```
+
+Note: You will learn creating reference databases in our afternoon session.
+
+> Lets run fastq_screen command on sample fastq_screen.fastq.gz
+
+```
+
+fastq_screen --subset 1000 --force --outdir ./ --aligner bowtie2 fastq_screen.fastq.gz
+
+Note: We will screen only a subset of fastq reads against reference databases. To screen all the reads in fastq file, change the subset argument to --subset 0 
+
+```
+
+The above run will generate two types of output file: a screen report in text format and a graphical output showing percentage of reads mapped to your choice of reference database.
+
+
 
 
 ## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
