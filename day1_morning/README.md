@@ -236,7 +236,6 @@ For this purpose, we will employ fastq screen to screen one of our sample agains
 
 We have already created the human, mouse and ecoli reference databases inside fastq_screen tool directory:
 
-
 ```
 
 ls /scratch/micro612w17_fluxod/shared/bin/fastq_screen_v0.5.2/data/
@@ -245,7 +244,7 @@ ls /scratch/micro612w17_fluxod/shared/bin/fastq_screen_v0.5.2/data/
 
 Note: You will learn creating reference databases in our afternoon session.
 
-> Lets run fastq_screen command on sample fastq_screen.fastq.gz
+>i. Lets run fastq_screen command on sample fastq_screen.fastq.gz
 
 ```
 
@@ -257,7 +256,19 @@ Note: We will screen only a subset of fastq reads against reference databases. T
 
 The above run will generate two types of output file: a screen report in text format and a graphical output showing percentage of reads mapped to your choice of reference database.
 
+>ii. Download the fastq_screen graphical report to your home computer for inspection
 
+```
+
+sftp username@flux-login.arc-ts.umich.edu
+cd /scratch/micro612w17_fluxod/username/day1_morn/
+get fastq_screen_screen.png
+
+or use scp.
+
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day1_morn/fastq_screen_screen.png /path-to-local-directory/
+
+```
 
 
 ## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
