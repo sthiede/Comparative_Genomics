@@ -254,7 +254,7 @@ Note: We will screen only a subset of fastq reads against reference databases. T
 
 ```
 
-The above run will generate two types of output file: a screen report in text format and a graphical output showing percentage of reads mapped to your choice of reference database.
+The above run will generate two types of output file: a screen report in text format "fastq_screen_screen.txt" and a graphical output "fastq_screen_screen.png" showing percentage of reads mapped to each reference genomes.
 
 >ii. Download the fastq_screen graphical report to your home computer for inspection
 
