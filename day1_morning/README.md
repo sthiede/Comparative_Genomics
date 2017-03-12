@@ -39,6 +39,9 @@ Note: "~/" represents your home directory. On flux, these means /home/username
 ```
 ## Micro612 Workshop ENV
 
+#Aliases
+alias iflux='qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w17_fluxod'
+
 # Flux Modules
 module load python-anaconda2/latest
 module load perl-modules
@@ -73,7 +76,7 @@ export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/MUMmer3.23/
 
 </details>
 
-These entries will point to required libraries and bioinformatics programs that we will run during the workshop.
+The above environment settings will set a shortcut "iflux" for entering interactive flux session, call necessary flux modules and perl libraries required by certain tools and finally sets the path for bioinformatics programs that we will run during the workshop.
 
 >iii. Save the file and Source .bashrc file to make these changes permanent.
 
@@ -91,9 +94,53 @@ echo $PATH
 
 ```
 
-<!-- Check the dependencies -->
 
-<!-- tree file system -->
+<!-- Check the dependencies Pending
+tree file system Pending
+-->
+
+
+**Power of Unix
+
+
+In software carpentry, you learned working with shell and automating simple tasks using basic unix commands. Lets see how some of these commands can be employed in genomics analysis while exploring various file formats that we use in day to day analysis. For these session, we will be try to explore three different type of bioinformatics file formats: 
+
+fasta: used for representing either nucleotide or peptide sequences
+
+gff: used for describing genes and other features of DNA, RNA and protein sequences
+
+fastq: used for storing biological sequence / sequencing reads (usually nucleotide sequence) and its corresponding quality scores
+
+> Execute the following commands to copy files for this morning’s exercises to your home directory: 
+
+```
+
+cd /scratch/micro612w17_fluxod/username
+cp -r /scratch/micro612w17_fluxod/shared/data/day1_morn/ ./
+cd /scratch/micro612w17_fluxod/username/day1_morn/
+ls
+
+```
+
+> Question: In the homework assignment, you downloaded genome assembly fasta files and ran a shell script to count the contigs. Lets say you want to find out the combined length of genome in each of these files. This can be achieved by running a simple unix command comprised of grep, sed and awk. The key here is knowing the features of fasta file format such as: each sequence is preceded by a fasta header that starts with ">", types of bases that a nucleotide sequence represents (A,T,G,C,N) and each line is seperated by a new line character ("\n"). To achieve this, we will use grep to match only those lines that doesn't start with ">" (remember grep -v option to ignore lines), use sed to remove characters that match "N" or "n" which represents unknown bases and finally use awk to count the remaining characters. We can use unix pipe "|" to pass the output of one command to another for further processing.
+
+<details>
+  <summary>Solution: Click to expand</summary>
+  
+```
+
+grep -v '^>' filename.fasta | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} END {print sum}'
+
+Note:
+- The above command will ignore fasta header lines (starts with ">"), replace characters "N" and "n" and uses awk to count the remaining characters. 
+- The sign "^" inside the grep pattern represents any pattern that starts with "^>" and -v asks grep to ignore those lines.
+- Use "|" to pass these lines to sed. sed stands for stream editor which parses, transforms and replaces text. Here, we are removing the characters "N" or "n" and keeping only "A,T,G,C" bases
+- awk consists of three blocks: The first block (-F '\n') tells awk how each line is seperated from each other using a field seperator, the second block tells awk to keep counting characters in a line (using awk's default option "length") and save the count in a variable "sum" and when it runs through all the lines in a stream, the third block prints the value of sum which represents total bases in a fasta file.
+
+```
+
+<\details>
+
 
 <!-- Power of Unix 
 
@@ -118,14 +165,7 @@ fastx: fastq to fastx
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
->i. Execute the following commands to copy files for this morning’s exercises to your home directory: 
 
-```
-cd /scratch/micro612w17_fluxod/username
-cp -r /scratch/micro612w17_fluxod/shared/data/day1_morn/ ./
-cd /scratch/micro612w17_fluxod/username/day1_morn/
-ls
-```
 
 As soon as you receive your sample data from sequencing centre, the first thing you do is check its quality using a quality control tool such as FastQC. But before carrying out extensive QC, you can run a bash "one-liner" to get some basic statistics about the raw reads.These one-liners are great examples for how a set of simple (relatively) Unix commandscan be piped together to do really useful things.
 
