@@ -100,7 +100,7 @@ tree file system Pending
 -->
 
 
-**Power of Unix
+**Power of Unix**
 
 
 In software carpentry, you learned working with shell and automating simple tasks using basic unix commands. Lets see how some of these commands can be employed in genomics analysis while exploring various file formats that we use in day to day analysis. For these session, we will be try to explore three different type of bioinformatics file formats: 
