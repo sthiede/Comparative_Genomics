@@ -183,8 +183,11 @@ scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day
 The report contains Assembly, Fastq Screen and FastQC report for a mixture of 51 organism sequence data. Sample names for Assembly statistics ends with "l500_contigs".
 
 > Question: Play around with General statistics table by sorting different columns. (click on a column header). To view just the assembly statistics, click on N50 column header. Which sample has the worst N50 value? what do you think must be the reason?
+
 > Question? Which two sample's genome length i.e column Length(Mbp) stand out from all the other genome lengths? What is their GC %? What about their FastQ Screen result?
+
 > Question? What about Number of Contigs section? Are you getting reasonable number of contigs or is there any bad assembly?
+
 > Question? Any sample's quality stand from the rest of the bunch?
 
 
