@@ -126,7 +126,7 @@ Check the difference between each assembly statistics. Also check different type
 
 ## Generating multiple sample reports using [multiqc](http://multiqc.info/)
 
-![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/mqc_hcplot_tvjoblimpw(1).jpeg)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/multiqc.jpeg)
 
 Lets imagine a real life scenario where you are working on a project which requires you to analyze and process hundreds of samples. Having a few samples with extremely bad quality is a very commonplace. including these bad samples into your analysis without adjusting their quality threshold can have a profound effect on downstream analysis and interpretations. 
 
