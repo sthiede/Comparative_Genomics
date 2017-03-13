@@ -40,6 +40,10 @@ Create a new directory for the spades output in your day2_morn folder
 ```
 > Note: Make sure you change 'username' in the below command with your 'uniqname'. 
 
+d2m
+
+# or
+
 cd /scratch/micro612w17_fluxod/username/day2_morn
 
 > We will create a new directory in day2_morn to save genome assembly results:
@@ -55,9 +59,8 @@ Now, we will use a genome assembly tool called Spades for assembling the reads.
 To make sure that your paths are set up correctly, try running Spades with the –h (help) flag, which should produce usage instruction.
 
 ```
-> Run the below commands to load a python module and check if spades is working. 
+> check if spades is working. 
 
-module load python
 spades.py -h     
 
 ```
@@ -116,9 +119,14 @@ The command above will generate a report file in /scratch/micro612w17_fluxod/use
 QUAST creates output in different formats such as html, pdf and text. Now lets check the report.txt file residing in quast folder for assembly statistics. Open report.txt using nano.
 
 ```
-nano quast/report.txt
+less quast/report.txt
 ```
-Check the difference between each assembly statistics. Also check different type of report formats it generated.
+
+Check the difference between each assembly statistics. Also check different types of report it generated.
+
+<!--
+multiqc on multiple quast reports
+-->
 
 ## Compare assembly to reference genome and post-assembly genome improvement
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
@@ -135,6 +143,11 @@ Create a BLAST database from your reference genome using the makeblastdb command
 ```
 
 > Make sure you are in /scratch/micro612w17_fluxod/username/day2_morn directory
+
+d2m
+
+# or
+
 cd /scratch/micro612w17_fluxod/username/day2_morn
 
 makeblastdb -in KPNIH1.fasta -dbtype nucl -out KPNIH1.fasta
@@ -206,25 +219,14 @@ To orient our contigs relative to the reference we will use a tool called abacas
 Go back to flux and into the directory where the assembly is located.
 
 ```
+d2m
+
+# or
+
 cd /scratch/micro612w17_fluxod/username/day2_morn/
 ```
 
-Before running Abacas, add the following path to your ~/.bashrc file:
 
-```
-> Open bashrc file using nano
-
-nano ~/.bashrc
-
-> Add this path to the bottom of bashrc file
-
-export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/MUMmer3.23/
-
->  Exit and save this file. Source your bashrc file.
-
-source ~/.bashrc
-
-```
 
 Now, we will run abacas using these input parameters: 
 
@@ -235,6 +237,16 @@ Now, we will run abacas using these input parameters:
 5) use default nucmer parameters (-d), 
 6) append contigs into pseudo-chromosome (-a), 
 7) the prefix for your output files (–o sample_266_contigs_ordered) 
+
+Check if abacas can be properly invoked:
+
+```
+
+abacas.1.3.1.pl -h
+
+```
+
+Run abacas on assembly:
 
 ```
 perl abacas.1.3.1.pl -r KPNIH1.fasta -q sample_266_contigs.fasta -p nucmer -b -d -a -o sample_266_contigs_ordered
