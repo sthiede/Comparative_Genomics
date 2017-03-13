@@ -306,7 +306,7 @@ cd /scratch/micro612w17_fluxod/username/day1_morn/
 
 fastq_screen --subset 1000 --force --outdir ./ --aligner bowtie2 fastq_screen.fastq.gz
 
-Note: We will screen only a subset of fastq reads against reference databases. To screen all the reads, change the subset argument to --subset 0 but takes a long time to finish. (searching sequences against human or mouse genome is a time consuming step) 
+#Note: We will screen only a subset of fastq reads against reference databases. To screen all the reads, change this argument to --subset 0 but will take long time to finish. (searching sequences against human or mouse genome is a time consuming step) 
 
 ```
 
