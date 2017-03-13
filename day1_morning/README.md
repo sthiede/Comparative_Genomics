@@ -251,7 +251,21 @@ ls /scratch/micro612w17_fluxod/shared/bin/fastq_screen_v0.5.2/data/
 
 Note: You will learn creating reference databases in our afternoon session.
 
->i. Lets run fastq_screen on fastq_screen.fastq.gz
+>i. Get an interactive cluster node to start running programs. Use the shortcut that we created in .bashrc file for getting into interactive flux session.
+
+```
+iflux
+```
+
+Whenever you start an interactive job, the path resets to your home directory. So, navigate to day1_morn directory again.
+
+```
+
+cd /scratch/micro612w17_fluxod/username/day1_morn/
+
+```
+
+>ii. Lets run fastq_screen on fastq_screen.fastq.gz
 
 ```
 
@@ -263,7 +277,7 @@ Note: We will screen only a subset of fastq reads against reference databases. T
 
 The above run will generate two types of output file: a screen report in text format "fastq_screen_screen.txt" and a graphical output "fastq_screen_screen.png" showing percentage of reads mapped to each reference genomes.
 
->ii. Download the fastq_screen graphical report to your home computer for inspection
+>iii. Download the fastq_screen graphical report to your home computer for inspection
 
 ```
 
@@ -300,13 +314,7 @@ fastqc -h
 
 FastQC can be run in two modes: "command line" or as a GUI (graphical user interface). We will be using command line version of it.
 
->iv. Get an interactive cluster node to start running programs. Use the shortcut that we created in .bashrc file for getting into interactive flux session.
-
-```
-iflux
-```
-
->v. Run FastQC to generate quality report of sequence reads.
+>iv. Run FastQC to generate quality report of sequence reads.
 
 ```
 fastqc -o Rush_KPC_266_FastQC_results/before_trimmomatic/ Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz --extract
@@ -316,9 +324,9 @@ This will generate two results directory, Rush_KPC_266_1_combine_fastqc and Rush
 The summary.txt file in these directories indicates if the data passed different quality control tests in text format.
 You can visualize and assess the quality of data by opening html report in a local browser.
 
->vi. Exit your cluster node so you don’t waste cluster resources and $$$!
+>v. Exit your cluster node so you don’t waste cluster resources and $$$!
 
->vii. Download the FastQC report to your home computer to examine
+>vi. Download the FastQC report to your home computer to examine
 
 ```
 sftp username@flux-login.arc-ts.umich.edu
