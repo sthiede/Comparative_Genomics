@@ -140,15 +140,19 @@ cd scratch/micro612w17_fluxod/username/day2_after
 
 > Load relevant Modules
 
-module load med 
-module load sph 
-module load lsa 
+<!--
+#changed and no longer needed:
+#module load med 
+#module load sph 
+#module load lsa 
+#module unload python
+#module load python/2.7.3 
+#module load biopython
+#module load ls-bsr 
+
 module load usearch 
-module unload python
-module load python/2.7.3 
-module load biopython 
-module load ls-bsr 
 module load prodigal
+-->
 
 > Run usearch to select representatives from the database and create a non-redundant gene set! 
 
