@@ -292,6 +292,9 @@ iflux
 Whenever you start an interactive job, the path resets to your home directory. So, navigate to day1_morn directory again.
 
 ```
+d1m
+
+#or
 
 cd /scratch/micro612w17_fluxod/username/day1_morn/
 
