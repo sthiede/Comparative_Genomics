@@ -265,7 +265,7 @@ v. Use ACT to view contig alignment to reference genome
 ```
 > Dont forget to change username and /path-to-local-ACT_contig_comparison-directory/ in the below command
 
-scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day2_morn/sample_266_contigs_ordered* /path-to-local-ACT_contig_comparison-directory/
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day2_morn/sample_266_contigs_ordered* /path-to-previously-created-local-ACT_contig_comparison-directory/
 
 ```
 
@@ -297,7 +297,12 @@ First create bwa index of ordered fasta file.
 ```
 > Only proceed further if everything worked uptil now. Make sure you are in day2_morn directory.
 
+d2m
+
+# or
+
 cd /scratch/micro612w17_fluxod/username/day2_morn/
+
 bwa index sample_266_contigs_ordered.fasta
 samtools faidx sample_266_contigs_ordered.fasta
 
@@ -323,7 +328,7 @@ Copy this sorted and indexed BAM files to local ACT_contig_comparison directory.
 ```
 > Dont forget to change username and /path-to-local-ACT_contig_comparison-directory/ in the below command
 
-scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day2_morn/sample_266_contigs_ordered_sort* /path-to-local-ACT_contig_comparison-directory/
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day2_morn/sample_266_contigs_ordered_sort* /path-to-previously-created-local-ACT_contig_comparison-directory/
 
 ```
 
@@ -355,7 +360,12 @@ Execute Prokka on your ordered assembly
 ```
 > Make sure you are in day2_morn directory.
 
+d2m
+
+# or
+
 cd /scratch/micro612w17_fluxod/username/day2_morn/
+
 mkdir sample_266_prokka 
 
 > Dont forget to change username in the below command
