@@ -253,7 +253,7 @@ cut -f 3 sample.gff | grep 'tRNA' | wc -l
 > Question: Try counting the number of features on a "+" or "-" strand.
 
 
-** Unix one-liners**
+**Unix one-liners**
 
 As soon as you receive your sample data from sequencing centre, the first thing you do is check its quality using a quality control tool such as FastQC and make sure that it contain sequences from organism that you are working on (Free from any contamination). But before carrying out extensive QC, you can run a bash "one-liner" to get some basic statistics about the raw reads. These one-liners are great examples for how a set of simple (relatively) Unix commands can be piped together to do really useful things.
 
