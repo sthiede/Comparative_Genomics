@@ -370,7 +370,7 @@ mkdir sample_266_prokka
 
 > Dont forget to change username in the below command
 
-prokka -kingdom Bacteria -outdir /scratch/micro612w17_fluxod/username/day2_morn/sample_266_prokka -force -prefix sample_266 sample_266_contigs_ordered.fasta
+prokka -kingdom Bacteria -outdir sample_266_prokka -force -prefix sample_266 sample_266_contigs_ordered.fasta
 
 > Use scp to get Prokka annotated genome on your laptop. 
 
