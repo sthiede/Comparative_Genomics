@@ -6,7 +6,7 @@
 **Log in to Flux**
 
 ```
-ssh user@flux-login.arc-ts.umich.edu
+ssh username@flux-login.arc-ts.umich.edu
 ```
 
 <!-- **Set up your .bashrc file so your environment is all set for genomic analysis!** -->
@@ -15,7 +15,13 @@ ssh user@flux-login.arc-ts.umich.edu
 
 Environment variables are the variables/values that describe the environment in which programs run in. All the programs and scripts on your unix system use these variables for extracting information such as: What is my current working directory?, Where are temporary files stored?, Where are perl/python libraries?, Where is Blast installed? etc. 
 
-In addition to environment variables that are set up by system administators, each user can set their own environment variables to customize their experience. This may sound like something super advanced that isn't relevent to beginners, but that's not true! Some examples of ways that we will use environment variables in the class are: 1) create shortcuts for directories that you frequently go to, 2) tell unix where frequently used programs live, so you don't have to put the full path name each time you use it and 3) setup a shortcut for getting on a cluster node, so that you don't have to write out the full command each time.
+In addition to environment variables that are set up by system administators, each user can set their own environment variables to customize their experience. This may sound like something super advanced that isn't relevent to beginners, but that's not true! Some examples of ways that we will use environment variables in the class are: 
+
+1) create shortcuts for directories that you frequently go to,
+
+2) tell unix where frequently used programs live, so you don't have to put the full path name each time you use it and 
+
+3) setup a shortcut for getting on a cluster node, so that you don't have to write out the full command each time.
 
 One way to set your environment variables would be to manually set up these variables everytime you log in, but this would be extremely tedious and inefficient. So, Unix has setup a way around this, which is to put your environment variable assignments in special files called .bashrc or .bash_profile. Every user has one or both of these files in thier home directory, and what's special about them is that the commands in them are executed every time you login. So, if you simply set your environmental variable assignments in one of these files, your environment will be setup just the way you want it each time you login!
 
