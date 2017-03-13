@@ -365,16 +365,12 @@ For more information on how Trimmomatic tries to achieve this, Please refer [thi
 
 Now we will run Trimmomatic on these raw data to remove low quality reads as well as adapters. 
 
->i. If the interactive session timed out, Get an interactive cluster node again to start running programs.
+>i. If the interactive session timed out, get an interactive cluster node again to start running programs and navigate to day1_morn directory.
 How to know if you are in interactive session: you should see "username@nyx" in your command prompt
 
 ```
 iflux
-```
 
-Change your directory to day1_morn
-
-```
 cd /scratch/micro612w17_fluxod/username/day1_morn/
 ```
 
