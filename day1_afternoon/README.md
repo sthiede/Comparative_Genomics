@@ -29,18 +29,22 @@ Read Mapping is a time-consuming step that involves searching the reference and 
 
 >i. To create BWA index of Reference, you need to run following command.
 
-Our reference genome is located at: /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta
-Copy it to day1_after folder and create Rush_KPC_266_varcall_result folder for saving this exercise's output.
+
+Navigate to day1_after folder that you recently copied and create a new folder Rush_KPC_266_varcall_result for saving this exercise's output.
 
 ```
+d1a
 
-cp /scratch/micro612w16_fluxod/shared/bin/reference/KPNIH1/KPNIH1.fasta day1_after/
+# or 
+
 cd day1_after/
+
 mkdir Rush_KPC_266_varcall_result
 
 ```
 
 Create bwa index for the reference genome.
+
 ```
 bwa index KPNIH1.fasta
 ```
@@ -88,6 +92,7 @@ samtools view -Sb Rush_KPC_266__aln.sam > Rush_KPC_266__aln.bam
 Now before indexing this BAM file, we will sort the data by positions(default) using samtools. Some expression tools require it to be sorted by read name which is achieved by passing -n flag.
 
 ```
+## correction Pending 
 samtools sort Rush_KPC_266__aln.bam Rush_KPC_266__aln_sort
 ```
 
@@ -123,6 +128,10 @@ Open the markduplicates metrics file and glance through the number and percentag
 
 ```
 nano Rush_KPC_266__markduplicates_metrics
+
+# or 
+
+less Rush_KPC_266__markduplicates_metrics
 ```
 
 >iii. Index these marked bam file again using SAMTOOLS(For input in Artemis later)
@@ -262,8 +271,6 @@ sed -i 's/gi.*|/Chromosome/g' Rush_KPC_266__filter_gatk.vcf
 
 ```
 
-module load lsa java/1.8.0
-
 java -jar /scratch/micro612w17_fluxod/shared/bin/snpEff/snpEff.jar -onlyProtein -no-upstream -no-downstream  -no-intergenic -v GCA_000281535.2.29 Rush_KPC_266__filter_gatk.vcf > Rush_KPC_266__filter_gatk_ann.vcf -csvStats Rush_KPC_266__filter_gatk_stats
 
 ```
@@ -300,12 +307,13 @@ grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | grep 'INDEL'
 ```
 
 
-
-
-
 **4. Generate Statistics report using qualimap**
 
 Often, While analyzing sequencing data, we are required to make sure that our analysis steps are correct. Some statistics about our analysis will help us in making that decision. So Lets try to get some statistics about various outputs that were created using the above steps and check if everything makes sense.
+
+
+<!-- BAM, VCF file format specification and exploration
+-->
 
 
 **Qualimap report of BAM coverage:**
@@ -338,16 +346,16 @@ KPNIH1 reference fasta and genbank file,
 Rush_KPC_266__aln_marked.bam and Rush_KPC_266__aln_marked.bam.bai, 
 Rush_KPC_266__filter_gatk_ann.vcf.gz and Rush_KPC_266__filter_gatk_ann.vcf.gz.tbi
 
-Lets make a seperate folder for the files that we need for visualization and copy it to that folder
+Lets make a seperate folder(make sure you are in Rush_KPC_266_varcall_result folder) for the files that we need for visualization and copy it to that folder
 
 ```
 
 mkdir Artemis_files
-cp /path-to-reference/KPNIH1.fasta ../KPNIH.gb Rush_KPC_266__aln_marked.bam Rush_KPC_266__aln_marked.bam.bai Rush_KPC_266__filter_gatk_ann.vcf Artemis_files/
+cp ../KPNIH1.fasta ../KPNIH.gb Rush_KPC_266__aln_marked.bam Rush_KPC_266__aln_marked.bam.bai Rush_KPC_266__filter_gatk_ann.vcf Artemis_files/
 
 ```
 
-We need to replace the genome name that we changed earlier for snpEff.
+We need to replace the genome name that we changed earlier for snpEff. (Make sure you are in Artemis_files folder)
 
 ```
 cd Artemis_files
@@ -362,9 +370,10 @@ Get these files to your local system and start Artemis.
 
 scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Artemis_files/ /path-to-local-directory/
 
+# You can use ~/Desktop/ as your local directory path
 ```
 
-Set your working directory to Artemis_files and click OK.
+Set your working directory to Artemis_files(The Artemis_files folder that you copied to your local system) and click OK.
 
 Now go to the top left File options and select Open File Manager. You should see the folder Artemis_files. Expand it and select KPNIH.gb file. A new window should open displaying your features stored in a genbank file.
 
