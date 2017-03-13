@@ -140,16 +140,13 @@ less Rush_KPC_266__markduplicates_metrics
 samtools index Rush_KPC_266__aln_marked.bam
 ```
 
-**4. Generate Statistics report using qualimap**
+## Generate Alignment Statistics report using [Qualimap](http://qualimap.bioinfo.cipf.es/)
 
 Often, While analyzing sequencing data, we are required to make sure that our analysis steps are correct. Some statistics about our analysis will help us in making that decision. So Lets try to get some statistics about various outputs that were created using the above steps and check if everything makes sense.
 
 
 <!-- BAM, VCF file format specification and exploration
 -->
-
-
-## Alignment statistics report using [Qualimap](http://qualimap.bioinfo.cipf.es/)
 
 Qualimap outputs a very imformative report about the alignments and coverage across the entire genome. Lets create one for our sample. The below command calls bamqc utility of qualimap and generates a report in pdf format.
 
