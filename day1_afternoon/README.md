@@ -140,6 +140,31 @@ less Rush_KPC_266__markduplicates_metrics
 samtools index Rush_KPC_266__aln_marked.bam
 ```
 
+**4. Generate Statistics report using qualimap**
+
+Often, While analyzing sequencing data, we are required to make sure that our analysis steps are correct. Some statistics about our analysis will help us in making that decision. So Lets try to get some statistics about various outputs that were created using the above steps and check if everything makes sense.
+
+
+<!-- BAM, VCF file format specification and exploration
+-->
+
+
+## Alignment statistics report using [Qualimap](http://qualimap.bioinfo.cipf.es/)
+
+Qualimap outputs a very imformative report about the alignments and coverage across the entire genome. Lets create one for our sample. The below command calls bamqc utility of qualimap and generates a report in pdf format.
+
+``` 
+qualimap bamqc -bam Rush_KPC_266__aln_sort.bam -outdir ./ -outfile Rush_KPC_266__report.pdf -outformat pdf 
+```
+
+Lets get this pdf report onto our local system and check the chromosome stats table, mapping quality and coverage across the entire reference genome.
+
+```
+
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
+
+```
+
 ## Variant Calling and Filteration
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
@@ -303,32 +328,6 @@ grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | grep -v 'IND
 No. of Indels that passed the filter:
 grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | grep 'INDEL' | wc -l
 
-
-```
-
-
-**4. Generate Statistics report using qualimap**
-
-Often, While analyzing sequencing data, we are required to make sure that our analysis steps are correct. Some statistics about our analysis will help us in making that decision. So Lets try to get some statistics about various outputs that were created using the above steps and check if everything makes sense.
-
-
-<!-- BAM, VCF file format specification and exploration
--->
-
-
-**Qualimap report of BAM coverage:**
-
-Qualimap outputs a very imformative report about the alignments and coverage across the entire genome. Lets create one for our sample. The below command calls bamqc utility of qualimap and generates a report in pdf format.
-
-``` 
-qualimap bamqc -bam Rush_KPC_266__aln_sort.bam -outdir ./ -outfile Rush_KPC_266__report.pdf -outformat pdf 
-```
-
-Lets get this pdf report onto our local system and check the chromosome stats table, mapping quality and coverage across the entire reference genome.
-
-```
-
-scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
 
 ```
 
