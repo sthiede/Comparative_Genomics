@@ -248,7 +248,8 @@ vcftools --vcf Rush_KPC_266__filter_gatk.vcf --keep-filtered pass_filter --remov
 ```
 
 Notice the details that were printed out in STDOUT.(How many sites were retained out of total site?)
-
+<!--
+commenting out consensus generation
 >iii. Generate Consensus fasta file from filtered variants using vcftools:
 
 A consensus fasta sequence will contain alleles from reference sequence at positions where no variants were observed and variants that were observed at positions described in vcf file.
@@ -271,6 +272,7 @@ Check the fasta header and change it using sed.
 head -n1 Rush_KPC_266__consensus.fa
 sed -i 's/>.*/>Rush_KPC_266_/g' Rush_KPC_266__consensus.fa 
 ```
+-->
 
 **3. Variant Annotation using snpEff**
 
