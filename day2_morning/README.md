@@ -3,10 +3,14 @@
 
 On day 1 we worked through a pipeline to map short-read data to a pre-existing assembly and identify single-nucleotide variants (SNVs) and small insertions/deletions. However, what this sort of analysis misses is the existence of sequence that is not present in your reference. Today we will tackle this issue by assembling our short reads into larger sequences, which we will then analyze to characterize the functions unique to our sequenced genome.   
 
-Execute the following command to copy files for this morning’s exercises to your scratch directory: 
+Execute the following command to copy files for this morning’s exercises to your workshop home directory: 
 
 ```
 > Note: Make sure you change 'username' in the commands below to your 'uniqname'. 
+
+d2m
+
+# or 
 
 cd /scratch/micro612w17_fluxod/username
 
