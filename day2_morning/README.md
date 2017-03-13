@@ -255,7 +255,7 @@ abacas.1.3.1.pl -h
 Run abacas on assembly:
 
 ```
-perl abacas.1.3.1.pl -r KPNIH1.fasta -q sample_266_contigs.fasta -p nucmer -b -d -a -o sample_266_contigs_ordered
+abacas.1.3.1.pl -r KPNIH1.fasta -q sample_266_contigs.fasta -p nucmer -b -d -a -o sample_266_contigs_ordered
 ```
 
 v. Use ACT to view contig alignment to reference genome
