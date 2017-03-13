@@ -16,7 +16,7 @@ Read Mapping is one of the most common Bioinformatics operations that needs to b
 ```
 wd
 
-cp -r /scratch/micro612w16_fluxod/shared/data/day1_after ./
+cp -r /scratch/micro612w17_fluxod/shared/data/day1_after ./
 ```
 
 We will be using the trimmed clean reads that were obtained after running Trimmomatic on raw reads.
