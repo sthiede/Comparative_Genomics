@@ -44,7 +44,10 @@ On the first morning you ran FastQC to evaluate the quality of a single genome. 
 - The shell script includes a for loop that loops over all of the genomes in the target directory
 - The tricky part of this shell script is that each fastq command contains two files (forward and reverse reads). So, you need to take advantage of the fact that the forward and reverse read files both have the same prefix, and you can loop over these prefixes. 
 - You should be able to get prefixes by piping the following unix commands: ls, cut, sort, uniq
-- when you are testing your shell script, comment out (using #) the lines below echo so you can see that the script is 'echo'-ing the correct commands.
+- The prefix should be a part of both forward and reverse reads. For example, the file_prefix for samples Rush_KPC_264_1_sequence.fastq.gz and Rush_KPC_264_2_sequence.fastq.gz should be Rush_KPC_264
+- when you are testing your shell script, comment out (using #) the lines below echo so you can see that if the script is 'echo'-ing the correct commands.
+- Try running multiqc inside the script by adding the multiqc command with appropriate out directory 
+- Dont run multiqc inside for loop and should be run only after the for loop ends.
 
 The fastq files are located in:
 
