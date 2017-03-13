@@ -379,7 +379,9 @@ Now go to the top left File options and select Open File Manager. You should see
 
 Now open BAM file by selecting File -> Read BAM/VCF file -> Select -> Rush_KPC_266__aln_marked.bam -> OK
 
-Reads aligned to your reference are displayed as stacked at the top panel of Artemis. Now right click on any of the stacked reads and Go to Graph and select Coverage(screenshot below). 
+Reads aligned to your reference are displayed as stacked at the top panel of Artemis. The reads are colour coded so that paired reads are blue and those with an inversion are red. Reads that do not have a mapped mate are black and are optionally shown in the inferred insert size view. In the stack view, duplicated reads that span the same region are collapsed into one green line.
+
+Now right click on any of the stacked reads and Go to Graph and select Coverage(screenshot below). 
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/select_graph.png)
 
