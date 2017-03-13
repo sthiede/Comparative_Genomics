@@ -282,7 +282,8 @@ ls /scratch/micro612w17_fluxod/shared/bin/fastq_screen_v0.5.2/data/
 Note: You will learn creating reference databases in our afternoon session.
 
 >i. Get an interactive cluster node to start running programs. Use the shortcut that we created in .bashrc file for getting into interactive flux session.
-How to know if you are in interactive session: you should see "username@nyx" in your command prompt
+
+How do you know if you are in interactive session?: you should see "username@nyx" in your command prompt
 
 ```
 iflux
