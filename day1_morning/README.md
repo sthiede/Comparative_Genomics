@@ -23,7 +23,7 @@ In addition to environment variables that are set up by system administators, ea
 
 3) setup a shortcut for getting on a cluster node, so that you don't have to write out the full command each time.
 
-One way to set your environment variables would be to manually set up these variables everytime you log in, but this would be extremely tedious and inefficient. So, Unix has setup a way around this, which is to put your environment variable assignments in special files called .bashrc or .bash_profile. Every user has one or both of these files in thier home directory, and what's special about them is that the commands in them are executed every time you login. So, if you simply set your environmental variable assignments in one of these files, your environment will be setup just the way you want it each time you login!
+One way to set your environment variables would be to manually set up these variables everytime you log in, but this would be extremely tedious and inefficient. So, Unix has setup a way around this, which is to put your environment variable assignments in special files called .bashrc or .bash_profile. Every user has one or both of these files in their home directory, and what's special about them is that the commands in them are executed every time you login. So, if you simply set your environmental variable assignments in one of these files, your environment will be setup just the way you want it each time you login!
 
 All the softwares/tools that we need in this workshop are installed in a directory "/scratch/micro612w17_fluxod/shared/bin/" and we want the shell to look for these installed tools in this directory. For this, We will save the full path to these tools in an environment variable PATH.
 
@@ -37,7 +37,9 @@ cp ~/.bashrc ~/bashrc_backup
 
 ```
 	
->ii. Open ~/.bashrc file using any text editor and add the following lines to your .bashrc file.
+>ii. Open ~/.bashrc file using any text editor and add the following lines to your .bashrc file. 
+
+Note: Replace "username" under alias shortcuts to your own username. You can also customize the alias name such as wd, d1m etc. catering to your own need and convenience.
 
 <details>
   <summary>Click to expand entries</summary>
@@ -47,6 +49,14 @@ cp ~/.bashrc ~/bashrc_backup
 
 #Aliases
 alias iflux='qsub -I -V -l nodes=1:ppn=4,pmem=4000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w17_fluxod'
+alias wd='cd /scratch/micro612w17_fluxod/username/'
+alias d1m='cd /scratch/micro612w17_fluxod/username/day1_morn'
+alias d1a='cd /scratch/micro612w17_fluxod/username/day1_after'
+alias d2m='cd /scratch/micro612w17_fluxod/username/day2_morn'
+alias d2a='cd /scratch/micro612w17_fluxod/username/day2_after'
+alias d3m='cd /scratch/micro612w17_fluxod/username/day3_morn'
+alias d3a='cd /scratch/micro612w17_fluxod/username/day3_after'
+
 
 # Flux Modules
 module load python-anaconda2/latest
@@ -85,7 +95,7 @@ export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/bowtie2-2.2.6/
 
 </details>
 
-The above environment settings will set a shortcut "iflux" for entering interactive flux session, call necessary flux modules and perl libraries required by certain tools and finally sets the path for bioinformatics programs that we will run during the workshop.
+The above environment settings will set various shortcuts such as "iflux" for entering interactive flux session, "wd" to navigate to your workshop directory, call necessary flux modules and perl libraries required by certain tools and finally sets the path for bioinformatics programs that we will run during the workshop.
 
 >iii. Save the file and Source .bashrc file to make these changes permanent.
 
@@ -101,6 +111,9 @@ source ~/.bashrc
 
 echo $PATH
 
+wd
+
+d1m
 ```
 
 
@@ -112,7 +125,7 @@ tree file system Pending
 ## Unix is your friend
 
 
-In software carpentry, you learned working with shell and automating simple tasks using basic unix commands. Lets see how some of these commands can be employed in genomics analysis while exploring various file formats that we use in day to day analysis. For these session, we will try to explore three different types of bioinformatics file formats: 
+In software carpentry, you learned working with shell and automating simple tasks using basic unix commands. Lets see how some of these commands can be employed in genomics analysis while exploring various file formats that we use in day to day analysis. For this session, we will try to explore three different types of bioinformatics file formats: 
 
 fasta: used for representing either nucleotide or peptide sequences
 
@@ -125,8 +138,15 @@ fastq: used for storing biological sequence / sequencing reads (usually nucleoti
 ```
 
 cd /scratch/micro612w17_fluxod/username
+
+#or
+
+d1m
+
 cp -r /scratch/micro612w17_fluxod/shared/data/day1_morn/ ./
+
 cd day1_morn/
+
 ls
 
 ```
@@ -222,7 +242,8 @@ If for some reason you find awk daunting or too long, you can use "cut" command 
 ```
 cut -f 3 sample.gff | grep 'rRNA' | wc -l
 
-Or number of CDS or tRNA features?
+# Or number of CDS or tRNA features?
+
 cut -f 3 sample.gff | grep 'CDS' | wc -l
 cut -f 3 sample.gff | grep 'tRNA' | wc -l
 
@@ -230,6 +251,9 @@ cut -f 3 sample.gff | grep 'tRNA' | wc -l
 </details>
 
 > Question: Try counting the number of features on a "+" or "-" strand.
+
+
+** Unix one-liners**
 
 As soon as you receive your sample data from sequencing centre, the first thing you do is check its quality using a quality control tool such as FastQC and make sure that it contain sequences from organism that you are working on (Free from any contamination). But before carrying out extensive QC, you can run a bash "one-liner" to get some basic statistics about the raw reads. These one-liners are great examples for how a set of simple (relatively) Unix commands can be piped together to do really useful things.
 
@@ -239,11 +263,11 @@ Run the following command to print total number of reads in each file, total num
 for i in *.gz; do zcat $i | awk '((NR-2)%4==0){read=$1;total++;count[read]++}END{for(read in count){if(!max||count[read]>max) {max=count[read];maxRead=read};if(count[read]==1){unique++}};print total,unique,unique*100/total,maxRead,count[maxRead],count[maxRead]*100/total}'; done
 ```
 
-You can find more of such super useful bash one-liners at Stephen Turner's github [page.](https://github.com/stephenturner/oneliners). You can also use some pre-written unix utilities and tools such as [seqtk](https://github.com/lh3/seqtk), [bioawk](https://github.com/lh3/bioawk) and [fastx](http://hannonlab.cshl.edu/fastx_toolkit/) which comes in handy while extracting complex information from fasta and fastq files and are optimized to be insanely fast.
+You can find more of such super useful bash one-liners at Stephen Turner's github [page](https://github.com/stephenturner/oneliners). You can also use some pre-written unix utilities and tools such as [seqtk](https://github.com/lh3/seqtk), [bioawk](https://github.com/lh3/bioawk) and [fastx](http://hannonlab.cshl.edu/fastx_toolkit/) which comes in handy while extracting complex information from fasta and fastq files and are optimized to be insanely fast.
 
-## Contamination Screening
+## Contamination Screening using [FastQ Screen](http://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/)
 
-When running a sequencing pipeline, it is very important to make sure that your data matches appropriate quality threshold and are free from any contaminants. This step helps you make correct interpretations in downstream analysis and also lets you know if you are required to redo the experiment/library preparation or resequencing.
+When running a sequencing pipeline, it is very important to make sure that your data matches appropriate quality threshold and are free from any contaminants. This step will help you make correct interpretations in downstream analysis and will also let you know if you are required to redo the experiment/library preparation or resequencing.
 
 For this purpose, we will employ fastq screen to screen one of our sample against a range of reference genome databases. We will screen the sample fastq_screen.fastq.gz in this directory against Human, Mouse and Ecoli genome and try to determine what percentage of reads are contaminant, i.e Human and mouse sequences.
 
