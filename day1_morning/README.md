@@ -406,6 +406,10 @@ How to know if you are in interactive session: you should see "username@nyx" in 
 iflux
 
 cd /scratch/micro612w17_fluxod/username/day1_morn/
+
+# or
+
+d1m
 ```
 
 >ii. Create these output directories in your day1_morn folder to save trimmomatic results
