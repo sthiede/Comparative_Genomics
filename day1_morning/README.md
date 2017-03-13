@@ -252,6 +252,7 @@ ls /scratch/micro612w17_fluxod/shared/bin/fastq_screen_v0.5.2/data/
 Note: You will learn creating reference databases in our afternoon session.
 
 >i. Get an interactive cluster node to start running programs. Use the shortcut that we created in .bashrc file for getting into interactive flux session.
+How to know if you are in interactive session: you should see "username@nyx" in your command prompt
 
 ```
 iflux
@@ -364,7 +365,8 @@ For more information on how Trimmomatic tries to achieve this, Please refer [thi
 
 Now we will run Trimmomatic on these raw data to remove low quality reads as well as adapters. 
 
->i. Get an interactive cluster node to start running programs
+>i. If the interactive session timed out, Get an interactive cluster node again to start running programs.
+How to know if you are in interactive session: you should see "username@nyx" in your command prompt
 
 ```
 iflux
