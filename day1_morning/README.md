@@ -40,7 +40,7 @@ cp ~/.bashrc ~/bashrc_backup
 ## Micro612 Workshop ENV
 
 #Aliases
-alias iflux='qsub -I -V -l nodes=1:ppn=1,mem=4000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w17_fluxod'
+alias iflux='qsub -I -V -l nodes=1:ppn=4,mem=4000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w17_fluxod'
 
 # Flux Modules
 module load python-anaconda2/latest
