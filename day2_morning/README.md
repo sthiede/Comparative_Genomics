@@ -126,17 +126,17 @@ Check the difference between each assembly statistics. Also check different type
 
 ## Generating multiple sample reports using [multiqc](http://multiqc.info/)
 
-Lets imagine a real life scenario where you are working on a project which requires you to analyze and process hundreds of samples. Having a few samples with extremely bad quality is a very commonplace. Including these bad samples without adjusting their quality threshold can have a profound effect on downstream analysis steps. 
+Lets imagine a real life scenario where you are working on a project which requires you to analyze and process hundreds of samples. Having a few samples with extremely bad quality is a very commonplace. including these bad samples into your analysis without adjusting their quality threshold can have a profound effect on downstream analysis and interpretations. 
 
 > Question How will you find those bad apples?  
 
 Yesterday, we learned how to assess and control the quality of samples as well as screen for contaminants. But the problem with such tools or any other tools is, they work on per-sample basis and produce only single report/logs per sample. Therefore, it becomes cumbersome to dig through each sample reports and make appropriate quality control calls.  
 
-Thankfully, there is a tool called multiqc which parses the results directory containing output from various tools, reads the log report created by those tools (ex: FastQC, FastqScreen, Quast), aggregates them and create a single report summarizing all of these results so that you have everything in one place. This helps greatly in identifying the outliers and removing or analysizing it individually.
+Thankfully, there is a tool called multiqc which parses the results directory containing output from various tools, reads the log report created by those tools (ex: FastQC, FastqScreen, Quast), aggregates them and create a single report summarizing all of these results so that you have everything in one place. This helps greatly in identifying the outliers and removing or reanalysizing it individually.
 
 Lets take a look at one such mutiqc report that was generated using FastQC results on C. difficile samples.
 
-Download the html report from your day2_morn folder
+Download the html report Cdiff_multiqc_report.html from your day2_morn folder
 
 ```
 # Note: Make sure you change 'username' in the below command with your 'uniqname'.
@@ -147,7 +147,7 @@ scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day
 
 > Question: Open this report in a browser and try to find the outlier sample/s
 > Question: What is the most important parameter to look for while identifying contamination or bad samples?
-> Question: What is the overall quality of data looks like? 
+> Question: What is the overall quality of data? 
 
 Lets run multiqc on one such directory where we ran and stored FastQC, FastQ Screen and Quast reports.
 
@@ -159,6 +159,8 @@ d2m
 # or
 
 cd /scratch/micro612w17_fluxod/username/day2_morn/
+
+cd multiqc_analysis
 
 # Try invoking multiqc 
 
@@ -172,14 +174,15 @@ multiqc ./ --force --filename workshop_multiqc
 
 ls
 
-# Copy this report to your local system and open it in a browser fro inspection
+# Copy this report to your local system and open it in a browser for visual inspection
 
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day2_morn/workshop_multiqc.html /path-to-local-directory/
+
 ```
 
-The report contains Assembly, Fastq Screen and FastQC report for a mixture of 51 organisms. Sample names for Assembly statistics ends with "l500_contigs".
+The report contains Assembly, Fastq Screen and FastQC report for a mixture of 51 organism sequence data. Sample names for Assembly statistics ends with "l500_contigs".
 
-> Question: Play around with General statistics by sorting different columns. (click on a column header). To view just the assembly statistics, click on Sample Name column header. Which sample has the worst N50 value? what do you think must be the reason?
+> Question: Play around with General statistics table by sorting different columns. (click on a column header). To view just the assembly statistics, click on N50 column header. Which sample has the worst N50 value? what do you think must be the reason?
 > Question? Which two sample's genome length i.e column Length(Mbp) stand out from all the other genome lengths? What is their GC %? What about their FastQ Screen result?
 > Question? What about Number of Contigs section? Are you getting reasonable number of contigs or is there any bad assembly?
 > Question? Any sample's quality stand from the rest of the bunch?
