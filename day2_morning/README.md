@@ -124,6 +124,33 @@ less quast/report.txt
 
 Check the difference between each assembly statistics. Also check different types of report it generated.
 
+## Generating multiple sample reports using [multiqc](http://multiqc.info/)
+
+Lets imagine a real life scenario where you are working on a project which requires analyzing and processing hundreds of samples. Having a few samples with extremely bad quality is a commonplace in such type of projects. 
+
+> Question How will you find those bad apples?  
+
+Yesterday, we learnt how to assess and control the quality of data as well as to screen contaminants. But the problem with such tools or any other tools is, they work on per-sample basis and subsequently produce single report/logs per sample. Therefore, it becomes cumbersome to dig through each sample reports and make appropriate quality control calls.  
+
+Thankfully, there is a tool called multiqc which parses the results directory containing output from various tools, reads the log report created by those tools (ex: FastQC, FastqScreen, Quast), aggregates them and create a single report summarizing all of these results so that you have everything in one place. This helps greatly in identifying the outliers and removing or analysizing it individually
+
+Lets take a look at one such mutiqc report that was generated using FastQC results.
+
+Download the html report from your day2_morn folder
+
+```
+# Note: Make sure you change 'username' in the below command with your 'uniqname'.
+
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/shared/data/day2_morn/Cdiff_multiqc_report.html /path-to-local-directory/
+
+```
+
+> Question: Open this report in a browser and try to find the outlier sample/s
+
+Lets run multiqc on one such directory where we ran and stored FastQC, FastQ screen and Quast reports.
+
+Pending: Navigate to day2_morn...
+
 <!--
 multiqc on multiple quast reports
 -->
