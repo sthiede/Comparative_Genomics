@@ -174,7 +174,7 @@ The input parameters are: a directory with your genomes (-d Abau_genomes) and a 
 
 ```
 
-python /home/software/rhel6/med/python-libs/ls-bsr/1.0/LS-BSR-master/ls_bsr.py -d Abau_genomes/ -g resisGenes_nr.pep
+python ls_bsr.py -d Abau_genomes/ -g resisGenes_nr.pep
 
 ```
 
