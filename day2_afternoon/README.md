@@ -178,7 +178,7 @@ The input parameters are: a directory with your genomes (-d Abau_genomes) and a 
 
 ```
 
-python ls_bsr.py -d Abau_genomes/ -g resisGenes_nr.pep
+python /scratch/micro612w17_fluxod/shared/bin/LS-BSR-master/ls_bsr.py -d Abau_genomes/ -g resisGenes_nr.pep
 
 ```
 
@@ -306,7 +306,7 @@ If you started a new interactive job since you ran LS-BSR, you will need to re-l
 
 cd scratch/micro612w17_fluxod/username/day2_after
 
-python /home/software/rhel6/med/python-libs/ls-bsr/1.0/LS-BSR-master/ls_bsr.py -d Abau_genomes/ -u /home/software/rhel6/sph/usearch/7.0.1001/bin/usearch7.0.1001_i86linux32
+python /scratch/micro612w17_fluxod/shared/bin/LS-BSR-master/ls_bsr.py -d Abau_genomes/ -u /home/software/rhel6/sph/usearch/7.0.1001/bin/usearch7.0.1001_i86linux32
 
 ```
 
