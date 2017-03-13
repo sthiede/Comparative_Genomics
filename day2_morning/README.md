@@ -231,11 +231,17 @@ cd /scratch/micro612w17_fluxod/username/day2_morn/
 Now, we will run abacas using these input parameters: 
 
 1) your reference sequence (-r KPNIH.fasta), 
+
 2) your contig file (-q sample_266_contigs.fasta), 
+
 3) the program to use to align contigs to reference (-p nucmer), 
+
 4) append unmapped contigs to end of file (-b), 
+
 5) use default nucmer parameters (-d), 
+
 6) append contigs into pseudo-chromosome (-a), 
+
 7) the prefix for your output files (–o sample_266_contigs_ordered) 
 
 Check if abacas can be properly invoked:
