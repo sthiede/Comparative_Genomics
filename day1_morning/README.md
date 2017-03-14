@@ -41,7 +41,7 @@ cp ~/.bashrc ~/bashrc_backup
 	
 >ii. Open ~/.bashrc file using any text editor and add the following lines to your .bashrc file. 
 
-Note: Replace "username" under alias shortcuts to your own username. You can also customize the alias name such as wd, d1m etc. catering to your own need and convenience.
+Note: Replace "username" under alias shortcuts with your own umich "uniqname". You can also customize the alias name such as wd, d1m etc. catering to your own need and convenience.
 
 <details>
   <summary>Click to expand entries</summary>
