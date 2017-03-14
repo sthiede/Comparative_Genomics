@@ -1,17 +1,17 @@
 # Day 1 Afternoon
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-Earlier this morning, We performed some quality control steps on our sequencing data to make it clean and usable for various downstream analysis. Now we will perform our first sequence analysis, and map these reads to a reference genome and try to find out the differences between them.
+Earlier this morning, We performed some quality control steps on our sequencing data to make it clean and usable for various downstream analysis. Now we will perform our first sequence analysis, specifically variant calling, and map these reads to a reference genome and try to find out the differences between them.
 
-Read Mapping is one of the most common Bioinformatics operations that needs to be carried out on NGS data. Reads are generally mapped to a reference genome sequence that is sufficiently closely related genome to accurately align reads. There are number of tools that can map reads to a reference genome and they differ from each other in algorithm, speed and accuracy. Most of these tools work by first building an index of reference sequence which works like a dictionary for fast search/lookup and then applying an alignment algorithm that uses these index to align short read sequences against the reference. 
+Read Mapping is one of the most common Bioinformatics operations that needs to be carried out on NGS data. The main goal behind read mapping/aligning is to find the best possible reference genome position to which reads could be aligned. Reads are generally mapped to a reference genome sequence that is sufficiently closely related genome to accurately align reads. There are number of tools that can map reads to a reference genome and they differ from each other in algorithm, speed and accuracy. Most of these tools work by first building an index of reference sequence which works like a dictionary for fast search/lookup and then applying an alignment algorithm that uses these index to align short read sequences against the reference. 
 
 These alignment has a vast number of uses, including: 
 
-1) variant/SNP calling, 
-2) coverage estimation and 
-3) gene expression analysis.
+1) variant/SNP calling: Finding differences between your sequenced organism genome and the reference genome
+2) coverage estimation: If you have sufficient reads to cover each position of reference genome.
+3) gene expression analysis: determining the level of expression of each genes in a genome.
 
-We will be covering the Variant calling and coverage estimation steps in this session.
+In this session, we will be covering the important steps that are part of any Read mapping/Variant calling bioinformatics pipleine.
 
 ## Read Mapping
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
@@ -27,13 +27,22 @@ wd
 cp -r /scratch/micro612w17_fluxod/shared/data/day1_after ./
 ```
 
-We will be using the trimmed clean reads that were obtained after running Trimmomatic on raw reads.
+We will be using trimmed clean reads that were obtained after running Trimmomatic on raw reads.
 
 **2. Map your reads against a finished reference genome using [BWA](http://bio-bwa.sourceforge.net/bwa.shtml "BWA manual")**
 
+Choosing the right read mapper is crucial and should be based on the type of analysis and data you are working with. Each aligners are meant to be better used with specific types of data, for example:
+
+For whole genome or whole exome sequencing data: Use BWA for long reads (> 50/100 bp), use Bowtie2 for short reads (< 50/100bp)
+For transcriptomic data (RNA-Seq): use Splice-aware Mapper such as Tophat. (Not applicable for microbial data)
+
+Here, we will be using BWA aligner to map the reads against a reference genome, KPNIH1.
+
 BWA is one of the several read mappers that are based on Burrows-Wheeler transform algorithm. If you feel like challenging yourselves, you can read BWA paper [here](http://bioinformatics.oxfordjournals.org/content/25/14/1754.short) 
 
-Read Mapping is a time-consuming step that involves searching the reference and finding the optimal location for the aligninent for millions of reads. Creating an index file of reference sequence for quick lookup/search operations significantly decreases the time required for read alignment.
+Read Mapping is a time-consuming step that involves searching the reference and finding the optimal location for the alignment for millions of reads. Creating an index file of a reference sequence for quick lookup/search operations significantly decreases the time required for read alignment. Imagine indexing a genome sequence like the index at the end of a book. If you want to know on which page a word appears or a chapter begins, it is much more efficient to look it up in a pre-built index than going through every page of the book. Similarly, an index of a large DNA sequence allows aligners to rapidly find shorter sequences embedded within it. 
+
+Note: each read mapper has its own unique way of indexing a reference genome and therefore the reference index created by BWA cannot be used for Bowtie. (Most Bioinformatics tools nowadays require some kind of indexing or reference database creation)
 
 >i. To create BWA index of Reference, you need to run following command.
 
@@ -51,13 +60,13 @@ mkdir Rush_KPC_266_varcall_result
 
 ```
 
-Create bwa index for the reference genome.
+Create bwa index for the reference genome. 
 
 ```
 bwa index KPNIH1.fasta
 ```
-
-Also go ahead and create fai index file using samtools required by GATK in downstream steps.
+ 
+Also go ahead and create fai index file using samtools required by GATK in later downstream steps.
 
 ```
 samtools faidx KPNIH1.fasta
@@ -65,8 +74,12 @@ samtools faidx KPNIH1.fasta
 
 >ii. Align reads to reference and redirect the output into SAM file
 
-Now lets align both left and right end reads to our reference using BWA alignment algorithm 'mem' which is one of the three algorithms that is fast and works on mate paired-end reads. 
+Quoting BWA:
+"BWA consists of three algorithms: BWA-backtrack, BWA-SW and BWA-MEM. The first algorithm is designed for Illumina sequence reads up to 100bp, while the rest two for longer sequences ranged from 70bp to 1Mbp. BWA-MEM and BWA-SW share similar features such as long-read support and split alignment, but BWA-MEM, which is the latest, is generally recommended for high-quality queries as it is faster and more accurate. BWA-MEM also has better performance than BWA-backtrack for 70-100bp Illumina reads."
+
 For other algorithms employed by BWA, you can refer to BWA [manual](http://bio-bwa.sourceforge.net/bwa.shtml "BWA manual")
+
+Now lets align both left and right end reads to our reference using BWA alignment algorithm 'mem'. 
 
 ```
 
@@ -74,33 +87,76 @@ bwa mem -M -R "@RG\tID:96\tSM:Rush_KPC_266_1_combine.fastq.gz\tLB:1\tPL:Illumina
 
 ```
 
-Many algorithms need to know that certain reads were sequenced together on a specific lane. This string with -R flag says that all reads belongs to ID 96; with sample name Rush_KPC_266_1_combine.fastq.gz and was sequenced on illumina platform.
+Read group tells aligners/other tools that certain reads were sequenced together on a specific lane. If you have multiplexed samples in a single lane, you will get multiple samples in a single read group. If you sequenced the same sample in several lanes, you will have multiple read groups for the same sample.
+
+This string with -R flag says that all reads belongs to ID:96 and library LB:1; with sample name SM:Rush_KPC_266_1_combine.fastq.gz and was sequenced on illumina platform PL:Illumina.
+
+You can extract this information from fastq read header. (@M02127:96:000000000-AG04W:1:1101:13648:1481 1:N:0:44)
 
 **3. SAM/BAM manipulation and variant calling using [Samtools](http://www.htslib.org/doc/samtools.html "Samtools Manual")**
 
->i. Change directory to results folder:
+>i. Change directory to results folder and look for BWA output:
 
 ```
 cd Rush_KPC_266_varcall_result
+
+ls
 ```
 
->ii. Convert SAM to BAM using SAMTOOLS:
+The output of BWA and most of the short-reads aligners is a SAM file. SAM format is considered as the standard output for most read aligners and stands for Sequence Alignment/Map format. It is a TAB-delimited format that describes how each reads were aligned to the reference sequence. 
 
-SAM stands for sequence alignment/map format and is a TAB-delimited text format that describes how each reads were aligned to the reference sequence. For detailed specifications of SAM format fields, Please  read this [pdf](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwizkvfAk9rLAhXrm4MKHVXxC9kQFggdMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FSAMv1.pdf&usg=AFQjCNHFmjxTXKnxYqN0WpIFjZNylwPm0Q) document.
+Lets explore first few lines of .sam file.
+
+```
+
+head -n4 Rush_KPC_266__aln.sam
+
+```
+
+example:
+
+```
+
+@SQ     SN:gi|661922017|gb|CP008827.1|  LN:5394056        <=== Reference Genome name and its length
+@RG     ID:96   SM:Rush_KPC_266_1_combine.fastq.gz      LB:1    PL:Illumina <=== sample read group info
+@PG     ID:bwa  PN:bwa  VN:0.7.12-r1039 CL:bwa mem -M -R @RG\tID:96\tSM:Rush_KPC_266_1_combine.fastq.gz\tLB:1\tPL:Illumina -t 8 KPNIH1.fasta forward_paired.fq.gz reverse_paired.fq.gz       <== aligner command 
+M02127:96:000000000-AG04W:1:1101:23094:1725     99      gi|661922017|gb|CP008827.1|     4724728 60      250M    =       4724852 295     GCTGCCTGCAGCATCTCAGCGGCTTTATCGGCTCGCAGCAGGTGCGGCTGGTGACCCTCTCCGGCGGCGTCGGCCCGTATATGACCGGTATCGGCCAGCTTGATGCCGCCTGCAGCGTCAGCATTATCCCGGCGCCGCTGCGGGTCTCTTCGGCGGAGGTCTCCGAGATCCTGCGCCGCGAGTCGAGCGTGCGCGACGTGATCCTCGCGGCGACGGCGGCGGACGCGGCGGTAGTCGGCCTTGGCGCCAT      CCCCCGGGGGGGGGGEGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFGGGGG@FGFGFFGGGGGGGGGGGGCFGBEGGGCFGGGFGDE>*CGEFCCFCEECCCCGGGDGE5E>5EEFEEGD=C=EDCE=EEECCC?C9CCECEDC<DGGGGCDGG:CBC)<DB>@EF??>>@)7<6?6354,4      NM:i:2  MD:Z:161G77A10  AS:i:240        XS:i:0  RG:Z:96
+
+```
+
+The lines starting with "@" is a header section and contains information about reference genome, sample read group and the aligner command that was used for aligning the samples. The header section is followed by an alignment section information for each read. It contains 11 columns and an optional TAG option.
+
+Detailed information about these 11 columns can be obtained from this [pdf](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwizkvfAk9rLAhXrm4MKHVXxC9kQFggdMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FSAMv1.pdf&usg=AFQjCNHFmjxTXKnxYqN0WpIFjZNylwPm0Q) document.
+
+The second column consists of coded bitwise flags where each code flag carries important information about the alignment. Open [this](https://broadinstitute.github.io/picard/explain-flags.html) site and enter the flag "99" to find out what it stands for.
+
+The last section "NM:i:2  MD:Z:161G77A10  AS:i:240 XS:i:0  RG:Z:96" is an optional tag section and varies for different aligners(specifications based on aligners). 
+
+Here, 
+
+NM tag tells number of changes necessary to make it equal to the reference(2 changes)
+
+MD tag tells you what positions in the read alignment are different from reference base and is used by variant callers to call SNP's. For example, The tag "MD:Z:161G77A10" implies that position 162 in the read carries a different base whereas the reference genome carries base "G"
+
+AS is an alignment score and XS:i:0 is an suboptimal alignment score.
+
+>ii. Convert SAM to BAM using SAMTOOLS:
 
 BAM is the compressed binary equivalent of SAM but are usually quite smaller in size than SAM format. Since, parsing through a SAM format is slow, Most of the downstream tools require SAM file to be converted to BAM so that it can be easily sorted and indexed.
 
 The below command will ask samtools to convert SAM format(-S) to BAM format(-b)
+
 ```
 samtools view -Sb Rush_KPC_266__aln.sam > Rush_KPC_266__aln.bam
 ```
 
 >iii. Sort BAM file using SAMTOOLS:
 
-Now before indexing this BAM file, we will sort the data by positions(default) using samtools. Some expression tools require it to be sorted by read name which is achieved by passing -n flag.
+Most of the downstream tools such as GATK requires your BAM file to be indexed and sorted by reference genome positions.
+
+Now before indexing this BAM file, we will sort the data by positions(default) using samtools. Some RNA Seq/Gene expression tools require it to be sorted by read name which is achieved by passing -n flag.
 
 ```
-## correction Pending 
 samtools sort Rush_KPC_266__aln.bam Rush_KPC_266__aln_sort
 ```
 
@@ -110,29 +166,40 @@ Illumina sequencing involves PCR amplification of adapter ligated DNA fragments 
 
 For an in-depth explanation about how PCR duplicates arise in sequencing, please refer to this interesting [blog](http://www.cureffi.org/2012/12/11/how-pcr-duplicates-arise-in-next-generation-sequencing/)
 
-Picard identifies duplicates by search for reads that have same start position on reference or in PE reads same start for both ends. It will choose a representative from each group of duplicate reads based on best base quality scores and other criteria and retain it while removing other duplicates. This step plays a significant role in removing false positive variant calls during variant calling that are represented by PCR duplicate reads.
+Picard identifies duplicates by searching reads that have same start position on reference or in PE reads same start for both ends. It will choose a representative from each group of duplicate reads based on best base quality scores and other criteria and retain it while removing other duplicates. This step plays a significant role in removing false positive variant calls(such as sequencing error) during variant calling that are represented by PCR duplicate reads.
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/picard.png)
 
 >i. Create a dictionary for reference fasta file required by PICARD
- 
-```
 
-java -jar /scratch/micro612w17_fluxod/shared/bin/picard-tools-1.130/picard.jar CreateSequenceDictionary REFERENCE=/path-to-reference/KPNIH1.fasta OUTPUT=/path-to-reference/KPNIH1.dict
+Make sure you are in Rush_KPC_266_varcall_result directory and are giving proper reference genome path (day1_after directory).
 
 ```
 
-> Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/ and also keep KPNIH1.dict as output filename in above command. /path-to-reference/ here is your day1_after directory
+java -jar /scratch/micro612w17_fluxod/shared/bin/picard-tools-1.130/picard.jar CreateSequenceDictionary REFERENCE=../KPNIH1.fasta OUTPUT=../KPNIH1.dict
+
+```
 
 >ii. Run PICARD for removing duplicates.
 
 ```
 
-java -jar /scratch/micro612w17_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT= Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
+java -jar /scratch/micro612w17_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT=Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
 
 ```
 
-Open the markduplicates metrics file and glance through the number and percentage of PCR duplicates removed. For more details about each metrics in a metrics file, please refer [this](https://broadinstitute.github.io/picard/picard-metric-definitions.html#DuplicationMetrics)
+The output of Picard remove duplicate step is a new bam file "Rush_KPC_266__aln_marked.bam" without PCR duplicates.
+
+You will need to index this new marked.bam file for further processing.
+
+>iii. Index these marked bam file again using SAMTOOLS(For input in Artemis later)
+
+```
+samtools index Rush_KPC_266__aln_marked.bam
+```
+
+Open the markduplicates metrics file and glance through the number and percentage of PCR duplicates removed. 
+For more details about each metrics in a metrics file, please refer [this](https://broadinstitute.github.io/picard/picard-metric-definitions.html#DuplicationMetrics)
 
 ```
 nano Rush_KPC_266__markduplicates_metrics
@@ -142,24 +209,54 @@ nano Rush_KPC_266__markduplicates_metrics
 less Rush_KPC_266__markduplicates_metrics
 ```
 
->iii. Index these marked bam file again using SAMTOOLS(For input in Artemis later)
+## Generate Alignment Statistics
+
+Often, While analyzing sequencing data, we are required to make sure that our analysis steps are correct. Some statistics about our analysis will help us in making that decision. So Lets try to get some statistics about various outputs that were created using the above steps and check if everything makes sense.
+
+>i. Collect Alignment statistics using Picard
+
+Run the below command on your marked.bam file
 
 ```
-samtools index Rush_KPC_266__aln_marked.bam
+
+java -jar /scratch/micro612w17_fluxod/shared/bin/picard-tools-1.130/picard.jar CollectAlignmentSummaryMetrics R=../KPNIH1.fasta I=Rush_KPC_266__aln_marked.bam O=AlignmentSummaryMetrics.txt
+
+```
+Open the file AlignmentSummaryMetrics.txt and explore various statistics. It will generate various statistics and the definition for each statistic s can be found [here](http://broadinstitute.github.io/picard/picard-metric-definitions.html#AlignmentSummaryMetrics)
+
+> Question: Extract alignment percentage from AlignmentSummaryMetrics file. (% of reads aligned to reference genome)
+
+```
+awk -F'\t' '{print $7}' AlignmentSummaryMetrics.txt
+```
+
+>ii. Estimate read coverage/read depth using Picard
+
+Read coverage/depth describes the average number of reads that align to, or "cover," known reference bases.
+
+```
+java -jar /scratch/micro612w17_fluxod/shared/bin/picard-tools-1.130/picard.jar CollectWgsMetrics R=../KPNIH1.fasta I=Rush_KPC_266__aln_marked.bam O=WgsMetrics.txt
+
+```
+
+Open the file WgsMetrics.txt and explore various statistics. It will generate various statistics and the definition for each statistic s can be found [here](https://broadinstitute.github.io/picard/picard-metric-definitions.html#CollectWgsMetrics.WgsMetrics)
+
+> Question: Extract mean coverage information from WgsMetrics.txt
+
+```
+
+sed -n 7,8p WgsMetrics.txt | awk -F'\t' '{print $2}'
+
 ```
 
 ## Generate Alignment Statistics report using [Qualimap](http://qualimap.bioinfo.cipf.es/)
 
-Often, While analyzing sequencing data, we are required to make sure that our analysis steps are correct. Some statistics about our analysis will help us in making that decision. So Lets try to get some statistics about various outputs that were created using the above steps and check if everything makes sense.
-
-
-<!-- BAM, VCF file format specification and exploration
--->
-
-Qualimap outputs a very imformative report about the alignments and coverage across the entire genome. Lets create one for our sample. The below command calls bamqc utility of qualimap and generates a report in pdf format.
+Qualimap outputs a very informative report about the alignments and coverage across the entire genome. Lets create one for our sample. The below command calls bamqc utility of qualimap and generates a report in pdf format.
 
 ``` 
+
 qualimap bamqc -bam Rush_KPC_266__aln_sort.bam -outdir ./ -outfile Rush_KPC_266__report.pdf -outformat pdf 
+
 ```
 
 Lets get this pdf report onto our local system and check the chromosome stats table, mapping quality and coverage across the entire reference genome.
@@ -186,12 +283,12 @@ Here we will use samtools mpileup to perform this operation on our BAM file and 
 
 ```
 
-samtools mpileup -ug -f /path-to-reference/KPNIH1.fasta Rush_KPC_266__aln_marked.bam | bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
+/scratch/micro612w17_fluxod/shared/bin/samtools-1.2/samtools mpileup -ug -f ../KPNIH1.fasta Rush_KPC_266__aln_marked.bam | /scratch/micro612w17_fluxod/shared/bin/bcftools-1.2/bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
 
 ```
 
-> Note: Dont forget to put the actual path to the reference sequence in place of /path-to-reference/
 
+<!-- Pending -->
 samtools mpileup generates a pileup formatted file from alignments stored in BAM, computes genotype likelihood(-ug flag) and outputs it in bcf format(binary version of vcf). This bcf output is then piped to bcftools, which calls variants and outputs them in vcf format(-c flag for consensus calling and -v for outputting variants positions only)
 
 Lets go through an example vcf file and try to understand a few vcf specifications and criteria that we can use for filtering low confidence snps. 
@@ -210,22 +307,20 @@ VCF format stores a large variety of information and you can find more details a
 
 There are various tools that can you can try for variant filteration such as vcftools, GATK, vcfutils etc. Here we will use GATK VariantFiltration utility to filter out low confidence variants.
 
-The command below will add a 'pass_filter' text in the 7th FILTER column for those variant positions that passed our filtered criteria:
+Run this command on raw vcf file Rush_KPC_266__aln_mpileup_raw.vcf.
+
+```
+
+java -jar /scratch/micro612w17_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAnalysisTK.jar -T VariantFiltration -R ../KPNIH1.fasta -o Rush_KPC_266__filter_gatk.vcf --variant Rush_KPC_266__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
+
+```
+
+This command will add a 'pass_filter' text in the 7th FILTER column for those variant positions that passed our filtered criteria:
 
 1. DP: Depth of reads. More than 15 reads supporting a variant call at these position.
 2. MQ: Root Mean Square Mapping Quality. This provides an estimation of the overall mapping quality of reads supporting a variant call. The root mean square is equivalent to the mean of the mapping qualities plus the standard deviation of the mapping qualities.
 3. QUAL stands for phred-scaled quality score for the assertion made in ALT. High QUAL scores indicate high confidence calls.
 4. FQ stands for consensus quality. A positive value indicates heterozygote and a negative value indicates homozygous. In bacterial analysis, this plays an important role in defining if a gene was duplicated in a particular sample. We will learn more about this later while visualizing our BAM files in Artemis.
-
-Run this command on raw vcf file Rush_KPC_266__aln_mpileup_raw.vcf.
-
-```
-
-java -jar /scratch/micro612w17_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAnalysisTK.jar -T VariantFiltration -R /path-to-reference/KPNIH1.fasta -o Rush_KPC_266__filter_gatk.vcf --variant Rush_KPC_266__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
-
-```
-
-> Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/
 
 Lets look at some of the filtered positions.
 
