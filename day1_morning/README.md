@@ -156,6 +156,7 @@ ls
 
 <details>
   <summary>Solution</summary>
+  
 ```
 
 grep -v '^>' Acinetobacter_baumannii.fna | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} END {print sum}'
@@ -167,8 +168,8 @@ grep -v '^>' Acinetobacter_baumannii.fna | sed 's/[N,n]//g' | awk -F '\n' '{sum 
 #- Use "|" to pass these lines to sed. sed stands for stream editor and can be used to parse, transform and replace text. Here, we are removing the characters "N" or "n" and keeping only "A,T,G,C" bases
 #- awk consists of three blocks: The first block (-F '\n') tells awk how each line is seperated from each other using a field seperator, the second block will keep counting characters in a line (using awk's default option "length") and save it in a variable "sum" and when it runs through all the lines in a stream, the third block will print the value of sum which represents total bases in a fasta file.
 
-```
 
+```
 </details>
 
 Now run the same command on other fasta files in day1_morn directory.
