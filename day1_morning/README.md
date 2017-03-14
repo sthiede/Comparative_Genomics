@@ -15,7 +15,7 @@ ssh username@flux-login.arc-ts.umich.edu
 
 Environment variables are the variables/values that describe the environment in which programs run in. All the programs and scripts on your unix system use these variables for extracting information such as: What is my current working directory?, Where are temporary files stored?, Where are perl/python libraries?, Where is Blast installed? etc. 
 
-In addition to environment variables that are set up by system administators, each user can set their own environment variables to customize their experience. This may sound like something super advanced that isn't relevent to beginners, but that's not true! Some examples of ways that we will use environment variables in the class are: 
+In addition to environment variables that are set up by system administators, each user can set their own environment variables to customize their experience. This may sound like something super advanced that isn't relevant to beginners, but that's not true! Some examples of ways that we will use environment variables in the class are: 
 
 1) create shortcuts for directories that you frequently go to,
 
