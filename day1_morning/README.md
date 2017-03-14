@@ -244,6 +244,7 @@ If for some reason you find awk daunting or too long, you can use "cut" command 
 
 <details>
   <summary>Solution</summary>
+
 ```
 
 cut -f 3 sample.gff | grep 'rRNA' | wc -l
