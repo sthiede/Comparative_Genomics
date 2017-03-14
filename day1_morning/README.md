@@ -176,9 +176,7 @@ grep -v '^>' Acinetobacter_baumannii.fna | sed 's/[N,n]//g' | awk -F '\n' '{sum 
 </details>
 
 
-
 Now run the same command on other fasta files in day1_morn directory. Try using a for loop.
-
 
 
 <details>
@@ -190,7 +188,7 @@ for i in *.fna; do grep -v '^>' $i | sed 's/[N,n]//g' | awk -F '\n' '{sum += len
 
 ```
 </details>
-
+--
 
 > Exploring GFF files
 
