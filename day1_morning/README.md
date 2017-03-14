@@ -287,9 +287,13 @@ You can find more of such super useful bash one-liners at Stephen Turner's githu
 
 ## Contamination Screening using [FastQ Screen](http://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/)
 
-When running a sequencing pipeline, it is very important to make sure that your data matches appropriate quality threshold and are free from any contaminants. This step will help you make correct interpretations in downstream analysis and will also let you know if you are required to redo the experiment/library preparation or resequencing.
+When running a sequencing pipeline, it is very important to make sure that your data matches appropriate quality threshold and are free from any contaminants. This step will help you make correct interpretations in downstream analysis and will also let you know if you are required to redo the experiment/library preparation or resequencing or remove contaminant sequences.
 
-For this purpose, we will employ fastq screen to screen one of our sample against a range of reference genome databases. We will screen the sample fastq_screen.fastq.gz in this directory against Human, Mouse and Ecoli genome and try to determine what percentage of reads are contaminant, i.e Human and mouse sequences.
+For this purpose, we will employ fastq screen to screen one of our sample against a range of reference genome databases.
+
+In the previous section, did you notice the sample fastq_screen.fastq.gz had only 28 % unique reads? What sequences does it contain? 
+
+To answer this, We will screen it against Human, Mouse and Ecoli genome and try to determine what percentage of reads are contaminant such as host DNA, i.e Human and mouse.
 
 We have already created the human, mouse and ecoli reference databases inside fastq_screen tool directory which you can take a look by running:
 
@@ -327,24 +331,27 @@ cd /scratch/micro612w17_fluxod/username/day1_morn/
 fastq_screen --subset 1000 --force --outdir ./ --aligner bowtie2 fastq_screen.fastq.gz
 
 #Note: We will screen only a subset of fastq reads against reference databases. To screen all the reads, change this argument to --subset 0 but will take long time to finish. (searching sequences against human or mouse genome is a time consuming step) 
+# Also Dont worry about "Broken pipe" warning.
 
 ```
 
 The above run will generate two types of output file: a screen report in text format "fastq_screen_screen.txt" and a graphical output "fastq_screen_screen.png" showing percentage of reads mapped to each reference genomes.
 
->iii. Download the fastq_screen graphical report to your home computer for inspection
+>iii. Download the fastq_screen graphical report to your home computer for inspection. Use scp if you find sftp annoying :)
 
 ```
+# Open a new terminal
 
 sftp username@flux-login.arc-ts.umich.edu
 cd /scratch/micro612w17_fluxod/username/day1_morn/
 get fastq_screen_screen.png
 
-# or use scp.
+# or Use scp if you find sftp annoying :)
 
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day1_morn/fastq_screen_screen.png /path-to-local-directory/
 
 # You can use ~/Desktop/ as your local directory path
+
 ```
 
 
