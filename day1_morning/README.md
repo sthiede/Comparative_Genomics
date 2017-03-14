@@ -43,6 +43,7 @@ cp ~/.bashrc ~/bashrc_backup
 
 Note: Replace "username" under alias shortcuts with your own umich "uniqname". You can also customize the alias name such as wd, d1m etc. catering to your own need and convenience.
 
+
 <details>
   <summary>Click to expand entries</summary>
   
@@ -96,6 +97,7 @@ export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/bowtie2-2.2.6/
 
 ```
 </details>
+
 
 The above environment settings will set various shortcuts such as "iflux" for entering interactive flux session, "wd" to navigate to your workshop directory, call necessary flux modules and perl libraries required by certain tools and finally sets the path for bioinformatics programs that we will run during the workshop.
 
