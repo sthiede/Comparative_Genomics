@@ -143,15 +143,13 @@ fastq: used for storing biological sequence / sequencing reads (usually nucleoti
 
 ```
 
-cd /scratch/micro612w17_fluxod/username
-
-#or
-
-d1m
-
 cp -r /scratch/micro612w17_fluxod/shared/data/day1_morn/ ./
 
 cd day1_morn/
+
+# or 
+
+d1m
 
 ls
 
