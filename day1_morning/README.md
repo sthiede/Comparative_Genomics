@@ -91,8 +91,8 @@ export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/fastq_screen_v0.5.2/
 export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/prokka-1.11/bin/
 export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/LS-BSR-master/
 export PATH=$PATH:/scratch/micro612w17_fluxod/shared/bin/bowtie2-2.2.6/
-```
 
+```
 </details>
 
 The above environment settings will set various shortcuts such as "iflux" for entering interactive flux session, "wd" to navigate to your workshop directory, call necessary flux modules and perl libraries required by certain tools and finally sets the path for bioinformatics programs that we will run during the workshop.
@@ -156,6 +156,7 @@ ls
 
 <details>
   <summary>Solution</summary>
+  
 ```
 
 grep -v '^>' Acinetobacter_baumannii.fna | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} END {print sum}'
@@ -168,7 +169,6 @@ grep -v '^>' Acinetobacter_baumannii.fna | sed 's/[N,n]//g' | awk -F '\n' '{sum 
 #- awk consists of three blocks: The first block (-F '\n') tells awk how each line is seperated from each other using a field seperator, the second block will keep counting characters in a line (using awk's default option "length") and save it in a variable "sum" and when it runs through all the lines in a stream, the third block will print the value of sum which represents total bases in a fasta file.
 
 ```
-
 </details>
 
 Now run the same command on other fasta files in day1_morn directory.
@@ -212,6 +212,7 @@ You can press space bar on keyboard to read more lines and "q" key to exit less 
 
 <details>
   <summary>Solution</summary>
+  
 ```
 grep -v '^#' sample.gff | wc -l
 ```
@@ -221,6 +222,7 @@ grep -v '^#' sample.gff | wc -l
 
 <details>
   <summary>Solution</summary>
+  
 ```
 
 grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'rRNA' | wc -l
@@ -239,6 +241,7 @@ If for some reason you find awk daunting or too long, you can use "cut" command 
 
 <details>
   <summary>Solution</summary>
+  
 ```
 cut -f 3 sample.gff | grep 'rRNA' | wc -l
 
