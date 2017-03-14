@@ -175,7 +175,11 @@ grep -v '^>' Acinetobacter_baumannii.fna | sed 's/[N,n]//g' | awk -F '\n' '{sum 
 ```
 </details>
 
+
+
 Now run the same command on other fasta files in day1_morn directory. Try using a for loop.
+
+
 
 <details>
   <summary>Solution</summary>
