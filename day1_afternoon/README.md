@@ -46,6 +46,12 @@ Note: each read mapper has its own unique way of indexing a reference genome and
 
 >i. To create BWA index of Reference, you need to run following command.
 
+Start a flux interactive session
+
+```
+iflux
+```
+
 
 Navigate to day1_after folder that you recently copied and create a new folder Rush_KPC_266_varcall_result for saving this exercise's output.
 
@@ -54,7 +60,7 @@ d1a
 
 # or 
 
-cd day1_after/
+cd /scratch/micro612w17_fluxod/username/day1_after/
 
 mkdir Rush_KPC_266_varcall_result
 
@@ -285,16 +291,16 @@ Here we will use samtools mpileup to perform this operation on our BAM file and 
 
 /scratch/micro612w17_fluxod/shared/bin/samtools-1.2/samtools mpileup -ug -f ../KPNIH1.fasta Rush_KPC_266__aln_marked.bam | /scratch/micro612w17_fluxod/shared/bin/bcftools-1.2/bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
 
+
+# In the above command, we are using samtools mpileup to generate a pileup formatted file from BAM alignments and genotype likelihoods(-g flag) in BCF format(binary version of vcf). This bcf output is then piped to bcftools, which calls variants and outputs them in vcf format(-c flag for using consensus calling algorithm  and -v for outputting variants positions only)
+
+
 ```
 
-
-<!-- Pending -->
-samtools mpileup generates a pileup formatted file from alignments stored in BAM, computes genotype likelihood(-ug flag) and outputs it in bcf format(binary version of vcf). This bcf output is then piped to bcftools, which calls variants and outputs them in vcf format(-c flag for consensus calling and -v for outputting variants positions only)
-
-Lets go through an example vcf file and try to understand a few vcf specifications and criteria that we can use for filtering low confidence snps. 
+Lets go through an the vcf file and try to understand a few important vcf specifications and criteria that we can use for filtering low confidence snps. 
 
 ```
-less example.vcf
+less Rush_KPC_266__aln_mpileup_raw.vcf
 ```
 
 Press 'q' from keyboard to exit.
@@ -327,17 +333,12 @@ Lets look at some of the filtered positions.
 ```
 grep 'pass_filter' Rush_KPC_266__filter_gatk.vcf | head
 ```
+
 caveat: These filter criteria should be applied carefully after giving some thought to the type of library, coverage, average mapping quality, type of analysis and other such requirements.
-
-
-More Info on VCF format and parameter specifications can be found [here](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjzkcSP4MfLAhUDyYMKHU3yDwMQFggjMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=6Xb3XDaZfghadZfcnnPQxw&cad=rja "VCF format Specs.")
 
 >ii. Remove indels and keep only SNPS that passed our filter criteria using [vcftools](http://vcftools.sourceforge.net/man_latest.html vcftools manual):
 
-In most of the phylogenetic analysis, we are trying to find how these samples differ and evolved from the reference/index genome. Many tools that carry out such type of phylogenetic analysis require consensus sequences containing only variant calls(SNPs). Though there are few tools that take into consideration both SNPs and Indels and give a greater resolution.
-Here we will try to construct a consensus sequence using only SNP calls.
-
-vcftools is a program package that is especially written to work with vcf file formats. It thus saves your precious time by making available all the common operations that you would like to perform on vcf file using a single command.
+vcftools is a program package that is especially written to work with vcf file formats. It thus saves your precious time by making available all the common operations that you would like to perform on vcf file using a single command. One such operation is removing INDEL infromation from a vcf file.
 
 Now, Lets remove indels from our final vcf file and keep only variants that passed our filter criteria(positions with pass_filter in their FILTER column).
 
@@ -348,6 +349,7 @@ vcftools --vcf Rush_KPC_266__filter_gatk.vcf --keep-filtered pass_filter --remov
 ```
 
 Notice the details that were printed out in STDOUT.(How many sites were retained out of total site?)
+
 <!--
 commenting out consensus generation
 >iii. Generate Consensus fasta file from filtered variants using vcftools:
