@@ -119,10 +119,9 @@ echo $PATH
 
 wd
 
-d1m
-
 ```
 
+You should be in your workshop working directory that is /scratch/micro612w17_fluxod/username 
 
 <!-- Check the dependencies Pending
 tree file system Pending
