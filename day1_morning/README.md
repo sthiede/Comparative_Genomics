@@ -115,6 +115,7 @@ source ~/.bashrc
 
 echo $PATH
 
+# You will see a long list of paths that has been added to your $PATH variable
 wd
 
 d1m
