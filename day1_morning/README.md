@@ -213,8 +213,11 @@ You can press space bar on keyboard to read more lines and "q" key to exit less 
 
 <details>
   <summary>Solution</summary>
+  
 ```
+
 grep -v '^#' sample.gff | wc -l
+
 ```
 </details>
 
@@ -222,6 +225,7 @@ grep -v '^#' sample.gff | wc -l
 
 <details>
   <summary>Solution</summary>
+  
 ```
 
 grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'rRNA' | wc -l
@@ -241,6 +245,7 @@ If for some reason you find awk daunting or too long, you can use "cut" command 
 <details>
   <summary>Solution</summary>
 ```
+
 cut -f 3 sample.gff | grep 'rRNA' | wc -l
 
 # Or number of CDS or tRNA features?
