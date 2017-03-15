@@ -491,6 +491,8 @@ Reads aligned to your reference are displayed as stacked at the top panel of Art
 
 Now right click on any of the stacked reads and Go to Graph and select Coverage(screenshot below). 
 
+Now right click on any of the stacked reads and Go to Show and select SNP marks to show SNP's in red marks. 
+
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/select_graph.png)
 
 Follow the same procedure and select SNP graph. Adjust the gene features panel height to show all the graph in a window.
