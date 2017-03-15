@@ -272,6 +272,7 @@ cut -f 3 sample.gff | grep 'tRNA' | wc -l
 
 > Question: Try counting the number of features on a "+" or "-" strand.
 
+Some more useful one-line unix commands for GFF files: [here](https://github.com/stephenturner/oneliners#gff3-annotations)
 
 **Unix one-liners**
 
