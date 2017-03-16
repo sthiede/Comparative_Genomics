@@ -8,7 +8,7 @@ Execute the following command to copy files for this morning’s exercises to yo
 ```
 > Note: Make sure you change 'username' in the commands below to your 'uniqname'. 
 
-d2m
+wd
 
 # or 
 
