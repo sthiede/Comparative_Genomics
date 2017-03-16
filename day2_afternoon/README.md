@@ -40,7 +40,7 @@ The script takes as input:
 
 ```
 
-module load BioPerl
+module load bioperl
 cd scratch/micro612w17_fluxod/username/day2_after
 perl filter_fasta_file.pl resisGenes.pfasta fasta_file_keys ardb_beta_lactam_genes.pfasta
 
@@ -88,7 +88,12 @@ blastall -p blastp -i Abau_all.pfasta -d ardb_beta_lactam_genes.pfasta -o bl_bla
 ```
 
 Use less to look at bl_blastp_results.
-Experiment with the –m parameter, which controls different output formats that BLAST can produce. 
+
+```
+less bl_blastp_results
+```
+
+> Question: Experiment with the –m parameter, which controls different output formats that BLAST can produce. 
 
 
 >iv. Repeat steps i-iii for a different resistance gene class
@@ -132,14 +137,6 @@ We are running usearch with the following parameters:
 4) an output fasta file with reperesentatives (centroids) of each sequence cluster (-centroids resisGenes_nr.pep) and 
 5) an output file describing the results of the clustering (-uc resisGenes.uc).
 
-```
-
-> Make sure you are in day2_after directory
-
-cd scratch/micro612w17_fluxod/username/day2_after
-
-> Load relevant Modules
-
 <!--
 #changed and no longer needed:
 #module load med 
@@ -149,10 +146,18 @@ cd scratch/micro612w17_fluxod/username/day2_after
 #module load python/2.7.3 
 #module load biopython
 #module load ls-bsr 
+-->
+
+```
+
+> Make sure you are in day2_after directory
+
+cd scratch/micro612w17_fluxod/username/day2_after
+
+> Load relevant Modules
 
 module load usearch 
 module load prodigal
--->
 
 > Run usearch to select representatives from the database and create a non-redundant gene set! 
 
