@@ -47,7 +47,8 @@ On the first morning you ran FastQC to evaluate the quality of a single genome. 
 - The prefix should be a part of both forward and reverse reads. For example, the file_prefix for samples Rush_KPC_264_1_sequence.fastq.gz and Rush_KPC_264_2_sequence.fastq.gz should be Rush_KPC_264
 - when you are testing your shell script, comment out (using #) the lines below echo so you can see that if the script is 'echo'-ing the correct commands.
 - Try running multiqc inside the script by adding the multiqc command with appropriate out directory 
-- Dont run multiqc inside for loop and should be run only after the for loop ends.
+- Don't run multiqc inside for loop and should be run only after the for loop ends.
+
 
 The fastq files are located in:
 
@@ -58,12 +59,15 @@ The fastq files are located in:
 Rather than copying these to your directory, analyze the files directly in that directory, so everyone doesn’t have to copy 25G to their home directories. 
 
 Copy and paste commands to run fastqc.sh as PBS script, into a PBS script and submit this PBS script as a job to the flux.
-Your PBS script wil contain the commands after the PBS preamble stuff:
+
+Your PBS script wil contain the following command after the PBS preamble stuff(Make sure your $PBS_O_WORKDIR is set inside the pbs script):
 
 ```bash fastqc.sh /scratch/micro612w17_fluxod/shared/data/day3_after_fastq/ ```
 
 
 >ii. Examine output of FastQC to verify that all samples are OK
+
+Check the multiqc report of your fastq files.
 
 ## Examine results of [SPANDx](http://www.ncbi.nlm.nih.gov/pubmed/25201145) pipeline
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md)
@@ -73,7 +77,7 @@ On the afternoon of day 1 we saw how many steps are involved in calling variants
 
 More information on SPANDx pipeline can be obtained from [this](https://sourceforge.net/projects/spandx/files/SPANDx%20Manual_v3.1.pdf/download) manual.
 
-Because it takes a while to run, we have pre-run it for you. Your task will be to sort through the outputs of SPANDx.
+Because it takes a while to run, we have pre-run it for you. Your task will be to sort through the outputs of SPANDx. The detailed information about how to interpret the output is in SPANDx manual(section INTERPRETING THE OUTPUTS). 
 
 >i. Look at overall statistics for variant calling in excel
 
