@@ -55,13 +55,9 @@ http://pad.software-carpentry.org/micro612_bacterial_genomics_workshop
 [Day 3 Afternoon](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#day-3-afternoon)
 ***
 - [Perform QC on fastq files](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#perform-qc-on-fastq-files)
-
 - [Examine results of SPANDx pipeline](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#examine-results-of-spandx-pipeline)
-
 - [Recombination detection and tree generation](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#recombination-detection-and-tree-generation)
-
 - [Phylogenetic tree annotation and visualization](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#phylogenetic-tree-annotation-and-visualization)
-
 - [Assessment of genomic deletions](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#assessment-of-genomic-deletions)
 
 - [Helpful resources for microbial genomics](https://github.com/alipirani88/Comparative_Genomics/blob/master/online_resources/README.md#helpful-resources-for-microbial-genomics)
