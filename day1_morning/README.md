@@ -235,11 +235,11 @@ Note: A time series plot is a graph that you can use to evaluate patterns and 
 
 An example plot.ts plot for Ecoli_coverage_average_bed.csv is shown below for your reference.
 
-[plot_1]()
+[plot_1](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/plot_1.png)
 
 For advance and more beautiful visualization, ggplot2 can be employed to display the same plot. An example ggplot2 plot for Ecoli_coverage_average_bed.csv is shown below for your reference.
 
-[plot_2]()
+[plot_2](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/plot_2.png)
 
 ## End: pre-hw exercise
 
