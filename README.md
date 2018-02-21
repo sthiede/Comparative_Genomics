@@ -12,8 +12,10 @@ http://pad.software-carpentry.org/micro612_bacterial_genomics_workshop
 ***
 #### Prerequisites:
 - Prior participation in a [Software Carpentry Workshop](https://umswc.github.io/2018-02-26-UMich/)
-- [Micro612 pre-course hw](https://github.com/alipirani88/Comparative_Genomics/blob/master/Micro612_pre-course_hw/Micro612_w18_pre-course_hw.pdf): A pre-course homework will help setting up Micro612 flux directories and bash profile.
 
+<!---
+- [Micro612 pre-course hw](https://github.com/alipirani88/Comparative_Genomics/blob/master/Micro612_pre-course_hw/Micro612_w18_pre-course_hw.pdf): A pre-course homework will help setting up Micro612 flux directories and bash profile.
+-->
 ***
 
 #### Workshop:
