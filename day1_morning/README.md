@@ -1,8 +1,6 @@
 # Day 1 Morning
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-## If you were not able to follow the video, here is the [link](https://www.youtube.com/watch?v=womKfikWlxM) to illumina Sequencing
-
 ## Getting your data onto Flux and setting up environment variable
 
 **Log in to Flux**
