@@ -12,15 +12,15 @@ wd
 
 # or 
 
-cd /scratch/micro612w17_fluxod/username
+cd /scratch/micro612w18_fluxod/username
 
-> Note: Check if you are in your home directory(/scratch/micro612w17_fluxod/username) by executing 'pwd' in terminal. 'pwd' stands for present working directory and it will display the directory you are in.
+> Note: Check if you are in your home directory(/scratch/micro612w18_fluxod/username) by executing 'pwd' in terminal. 'pwd' stands for present working directory and it will display the directory you are in.
 
 pwd
 
 > Note: Copy files for this morning's exercise in your home directory.
 
-cp -r /scratch/micro612w17_fluxod/shared/data/day2_morn ./
+cp -r /scratch/micro612w18_fluxod/shared/data/day2_morn ./
 ```
 
 ## Genome Assembly using [Spades](http://bioinf.spbau.ru/spades) Pipeline
@@ -44,7 +44,7 @@ d2m
 
 # or
 
-cd /scratch/micro612w17_fluxod/username/day2_morn
+cd /scratch/micro612w18_fluxod/username/day2_morn
 
 > We will create a new directory in day2_morn to save genome assembly results:
 
@@ -112,7 +112,7 @@ Now to check the example assemblies residing in your day2_morn folder, run the b
 quast.py -o quast sample_264_contigs.fasta sample_266_contigs.fasta
 ```
 
-The command above will generate a report file in /scratch/micro612w17_fluxod/username/day2_morn/quast
+The command above will generate a report file in /scratch/micro612w18_fluxod/username/day2_morn/quast
 
 >ii. Explore quast output
 
@@ -143,7 +143,7 @@ Download the html report Cdiff_multiqc_report.html from your day2_morn folder
 ```
 # Note: Make sure you change 'username' in the below command with your 'uniqname'.
 
-scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day2_morn/Cdiff_multiqc_report.html /path-to-local-directory/
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/Cdiff_multiqc_report.html /path-to-local-directory/
 
 ```
 
@@ -160,7 +160,7 @@ d2m
 
 # or
 
-cd /scratch/micro612w17_fluxod/username/day2_morn/
+cd /scratch/micro612w18_fluxod/username/day2_morn/
 
 cd multiqc_analysis
 
@@ -178,7 +178,7 @@ ls
 
 # Copy this report to your local system and open it in a browser for visual inspection
 
-scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day2_morn/workshop_multiqc.html /path-to-local-directory/
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/workshop_multiqc.html /path-to-local-directory/
 
 ```
 
@@ -207,13 +207,13 @@ Create a BLAST database from your reference genome using the makeblastdb command
 
 ```
 
-> Make sure you are in /scratch/micro612w17_fluxod/username/day2_morn directory
+> Make sure you are in /scratch/micro612w18_fluxod/username/day2_morn directory
 
 d2m
 
 # or
 
-cd /scratch/micro612w17_fluxod/username/day2_morn
+cd /scratch/micro612w18_fluxod/username/day2_morn
 
 makeblastdb -in KPNIH1.fasta -dbtype nucl -out KPNIH1.fasta
 
@@ -255,7 +255,7 @@ Use scp to get sequences and BLAST alignments onto your laptop
 
 > Note: Make sure you change 'username' in the below command with your 'uniqname'.
 
-scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day2_morn/ACT_contig_comparison/ /path-to-local-directory/
+scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/ACT_contig_comparison/ /path-to-local-directory/
 
 ```
 
@@ -288,7 +288,7 @@ d2m
 
 # or
 
-cd /scratch/micro612w17_fluxod/username/day2_morn/
+cd /scratch/micro612w18_fluxod/username/day2_morn/
 ```
 
 
@@ -330,7 +330,7 @@ v. Use ACT to view contig alignment to reference genome
 ```
 > Dont forget to change username and /path-to-local-ACT_contig_comparison-directory/ in the below command
 
-scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day2_morn/sample_266_contigs_ordered* /path-to-previously-created-local-ACT_contig_comparison-directory/
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/sample_266_contigs_ordered* /path-to-previously-created-local-ACT_contig_comparison-directory/
 
 ```
 
@@ -366,7 +366,7 @@ d2m
 
 # or
 
-cd /scratch/micro612w17_fluxod/username/day2_morn/
+cd /scratch/micro612w18_fluxod/username/day2_morn/
 
 bwa index sample_266_contigs_ordered.fasta
 samtools faidx sample_266_contigs_ordered.fasta
@@ -393,7 +393,7 @@ Copy this sorted and indexed BAM files to local ACT_contig_comparison directory.
 ```
 > Dont forget to change username and /path-to-local-ACT_contig_comparison-directory/ in the below command
 
-scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day2_morn/sample_266_contigs_ordered_sort* /path-to-previously-created-local-ACT_contig_comparison-directory/
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/sample_266_contigs_ordered_sort* /path-to-previously-created-local-ACT_contig_comparison-directory/
 
 ```
 
@@ -429,7 +429,7 @@ d2m
 
 # or
 
-cd /scratch/micro612w17_fluxod/username/day2_morn/
+cd /scratch/micro612w18_fluxod/username/day2_morn/
 
 mkdir sample_266_prokka 
 
@@ -439,7 +439,7 @@ prokka -kingdom Bacteria -outdir sample_266_prokka -force -prefix sample_266 sam
 
 > Use scp to get Prokka annotated genome on your laptop. 
 
-scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day2_morn/sample_266_prokka/ /path-to-local-ACT_contig_comparison-directory/
+scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/sample_266_prokka/ /path-to-local-ACT_contig_comparison-directory/
 
 ```
 

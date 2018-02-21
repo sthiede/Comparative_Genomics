@@ -25,9 +25,9 @@ Execute the following command to copy files for this afternoon’s exercises to 
 
 ```
 
-cd /scratch/micro612w17_fluxod/username
+cd /scratch/micro612w18_fluxod/username
 
-cp -r /scratch/micro612w17_fluxod/shared/data/day3_after ./
+cp -r /scratch/micro612w18_fluxod/shared/data/day3_after ./
 
 ```
 
@@ -38,7 +38,7 @@ cp -r /scratch/micro612w17_fluxod/shared/data/day3_after ./
 On the first morning you ran FastQC to evaluate the quality of a single genome. However, a typical project will include many genomes and you will want to check the quality of all of your samples. From the bash workshop, I hope you can appreciate that you do not want to process 100 genomes by typing 100 commands – rather you want to write a short shell script to do the work for you!
 
 
->i. Edit the shell script fastqc.sh located in /scratch/micro612w17_fluxod/your username/day3_after to run FastQC on all fastq files.
+>i. Edit the shell script fastqc.sh located in /scratch/micro612w18_fluxod/your username/day3_after to run FastQC on all fastq files.
 
 **Important info about this shell script** 
 - The shell script includes a for loop that loops over all of the genomes in the target directory
@@ -53,7 +53,7 @@ On the first morning you ran FastQC to evaluate the quality of a single genome. 
 The fastq files are located in:
 
 ```
-/scratch/micro612w17_fluxod/shared/data/day3_after_fastq/
+/scratch/micro612w18_fluxod/shared/data/day3_after_fastq/
 ```
 
 Rather than copying these to your directory, analyze the files directly in that directory, so everyone doesn’t have to copy 25G to their home directories. 
@@ -62,7 +62,7 @@ Copy and paste commands to run fastqc.sh as PBS script, into a PBS script and su
 
 Your PBS script wil contain the following command after the PBS preamble stuff(Make sure your $PBS_O_WORKDIR is set inside the pbs script):
 
-```bash fastqc.sh /scratch/micro612w17_fluxod/shared/data/day3_after_fastq/ ```
+```bash fastqc.sh /scratch/micro612w18_fluxod/shared/data/day3_after_fastq/ ```
 
 
 >ii. Examine output of FastQC to verify that all samples are OK
@@ -101,7 +101,7 @@ The following unix commands can be used to get sorted lists of coverage and numb
 SPANDx also produces a summary file of the variants/indels it identified in the core genome. 
 
 This summary file is: 
-```/scratch/micro612w17_fluxod/username/day3_after/SPANDx_output/Outputs/All_SNPs_annotated.txt ```
+```/scratch/micro612w18_fluxod/username/day3_after/SPANDx_output/Outputs/All_SNPs_annotated.txt ```
 
 Use sftp to download this file and view in excel
 
@@ -133,7 +133,7 @@ The positions of variants are embedded in the first column of Outputs/Comparativ
 
 SPANDx creates a file of core SNPs in a slightly odd format (transposed nexus). 
 This file is called: 
-```/scratch/micro612w17_fluxod/username/day3_after/SPANDx_output/Outputs/Comparative/Ortho_SNP_matrix.nex ```
+```/scratch/micro612w18_fluxod/username/day3_after/SPANDx_output/Outputs/Comparative/Ortho_SNP_matrix.nex ```
 
 For convenience, apply the custom perl script located in the same directory to convert it to fasta format
 

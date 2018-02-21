@@ -24,7 +24,7 @@ In this session, we will be covering the important steps that are part of any Re
 ```
 wd
 
-cp -r /scratch/micro612w17_fluxod/shared/data/day1_after ./
+cp -r /scratch/micro612w18_fluxod/shared/data/day1_after ./
 ```
 
 We will be using trimmed clean reads that were obtained after running Trimmomatic on raw reads.
@@ -60,7 +60,7 @@ d1a
 
 # or 
 
-cd /scratch/micro612w17_fluxod/username/day1_after/
+cd /scratch/micro612w18_fluxod/username/day1_after/
 
 mkdir Rush_KPC_266_varcall_result
 
@@ -182,7 +182,7 @@ Make sure you are in Rush_KPC_266_varcall_result directory and are giving proper
 
 ```
 
-java -jar /scratch/micro612w17_fluxod/shared/bin/picard-tools-1.130/picard.jar CreateSequenceDictionary REFERENCE=../KPNIH1.fasta OUTPUT=../KPNIH1.dict
+java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar CreateSequenceDictionary REFERENCE=../KPNIH1.fasta OUTPUT=../KPNIH1.dict
 
 ```
 
@@ -190,7 +190,7 @@ java -jar /scratch/micro612w17_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 
 ```
 
-java -jar /scratch/micro612w17_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT=Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
+java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar MarkDuplicates REMOVE_DUPLICATES=true INPUT=Rush_KPC_266__aln_sort.bam OUTPUT=Rush_KPC_266__aln_marked.bam METRICS_FILE=Rush_KPC_266__markduplicates_metrics CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT
 
 ```
 
@@ -225,7 +225,7 @@ Run the below command on your marked.bam file
 
 ```
 
-java -jar /scratch/micro612w17_fluxod/shared/bin/picard-tools-1.130/picard.jar CollectAlignmentSummaryMetrics R=../KPNIH1.fasta I=Rush_KPC_266__aln_marked.bam O=AlignmentSummaryMetrics.txt
+java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar CollectAlignmentSummaryMetrics R=../KPNIH1.fasta I=Rush_KPC_266__aln_marked.bam O=AlignmentSummaryMetrics.txt
 
 ```
 Open the file AlignmentSummaryMetrics.txt and explore various statistics. It will generate various statistics and the definition for each statistic s can be found [here](http://broadinstitute.github.io/picard/picard-metric-definitions.html#AlignmentSummaryMetrics)
@@ -241,7 +241,7 @@ awk -F'\t' '{print $7}' AlignmentSummaryMetrics.txt
 Read coverage/depth describes the average number of reads that align to, or "cover," known reference bases.
 
 ```
-java -jar /scratch/micro612w17_fluxod/shared/bin/picard-tools-1.130/picard.jar CollectWgsMetrics R=../KPNIH1.fasta I=Rush_KPC_266__aln_marked.bam O=WgsMetrics.txt
+java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar CollectWgsMetrics R=../KPNIH1.fasta I=Rush_KPC_266__aln_marked.bam O=WgsMetrics.txt
 
 ```
 
@@ -269,7 +269,7 @@ Lets get this pdf report onto our local system and check the chromosome stats ta
 
 ```
 
-scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
 
 ```
 -->
@@ -289,7 +289,7 @@ Here we will use samtools mpileup to perform this operation on our BAM file and 
 
 ```
 
-/scratch/micro612w17_fluxod/shared/bin/samtools-1.2/samtools mpileup -ug -f ../KPNIH1.fasta Rush_KPC_266__aln_marked.bam | /scratch/micro612w17_fluxod/shared/bin/bcftools-1.2/bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
+/scratch/micro612w18_fluxod/shared/bin/samtools-1.2/samtools mpileup -ug -f ../KPNIH1.fasta Rush_KPC_266__aln_marked.bam | /scratch/micro612w18_fluxod/shared/bin/bcftools-1.2/bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
 
 
 # In the above command, we are using samtools mpileup to generate a pileup formatted file from BAM alignments and genotype likelihoods(-g flag) in BCF format(binary version of vcf). This bcf output is then piped to bcftools, which calls variants and outputs them in vcf format(-c flag for using consensus calling algorithm  and -v for outputting variants positions only)
@@ -317,7 +317,7 @@ Run this command on raw vcf file Rush_KPC_266__aln_mpileup_raw.vcf.
 
 ```
 
-java -jar /scratch/micro612w17_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAnalysisTK.jar -T VariantFiltration -R ../KPNIH1.fasta -o Rush_KPC_266__filter_gatk.vcf --variant Rush_KPC_266__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
+java -jar /scratch/micro612w18_fluxod/shared/bin/GenomeAnalysisTK-3.3-0/GenomeAnalysisTK.jar -T VariantFiltration -R ../KPNIH1.fasta -o Rush_KPC_266__filter_gatk.vcf --variant Rush_KPC_266__aln_mpileup_raw.vcf --filterExpression "FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 15" --filterName pass_filter
 
 ```
 
@@ -385,7 +385,7 @@ snpEff contains database of about 20000 reference genome built from trusted and 
 >i. Check snpEff internal database for your reference genome:
 
 ```     
-java -jar /scratch/micro612w17_fluxod/shared/bin/snpEff/snpEff.jar databases | grep 'kpnih1'
+java -jar /scratch/micro612w18_fluxod/shared/bin/snpEff/snpEff.jar databases | grep 'kpnih1'
 ```
 Note down the genome id for your reference genome KPNIH1. In this case: GCA_000281535.2.29
 
@@ -398,7 +398,7 @@ sed -i 's/gi.*|/Chromosome/g' Rush_KPC_266__filter_gatk.vcf
 
 ```
 
-java -jar /scratch/micro612w17_fluxod/shared/bin/snpEff/snpEff.jar -onlyProtein -no-upstream -no-downstream  -no-intergenic -v GCA_000281535.2.29 Rush_KPC_266__filter_gatk.vcf > Rush_KPC_266__filter_gatk_ann.vcf -csvStats Rush_KPC_266__filter_gatk_stats
+java -jar /scratch/micro612w18_fluxod/shared/bin/snpEff/snpEff.jar -onlyProtein -no-upstream -no-downstream  -no-intergenic -v GCA_000281535.2.29 Rush_KPC_266__filter_gatk.vcf > Rush_KPC_266__filter_gatk_ann.vcf -csvStats Rush_KPC_266__filter_gatk_stats
 
 ```
 
@@ -474,7 +474,7 @@ Open a new terminal and run scp/sftp commands to get these files to your local s
 
 ```
 
-scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Artemis_files/ /path-to-local-directory/
+scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Artemis_files/ /path-to-local-directory/
 
 # You can use ~/Desktop/ as your local directory path
 ```
