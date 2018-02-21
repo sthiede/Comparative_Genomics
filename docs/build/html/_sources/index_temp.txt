@@ -1,0 +1,61 @@
+Bacterial Comparative Genomics Workshop
+=======================================
+
+A 3 day microbial bioinformatics workshop conducted by `Dr. Evan Snitkin`_ at `University of Michigan`_. This module covers the basics of microbial genomic analysis using publicly available tools that are commonly referenced in genomics literature. Students will learn the steps and associated tools that are required to process, annotate and compare microbial genomes.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Date: Feb 28 - 2 March 2018
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. raw:: html
+
+   <!---
+   Link to Software Carpentry Etherpad:
+   http://pad.software-carpentry.org/micro612_bacterial_genomics_workshop
+   -->
+
+--------------
+
+Prerequisites:
+^^^^^^^^^^^^^^
+
+-  Prior participation in a `Software Carpentry Workshop`_
+
+.. raw:: html
+
+   <!---
+   - [Micro612 pre-course hw](https://github.com/alipirani88/Comparative_Genomics/blob/master/Micro612_pre-course_hw/Micro612_w18_pre-course_hw.pdf): A pre-course homework will help setting up Micro612 flux directories and bash profile.
+   -->
+
+--------------
+
+Workshop:
+^^^^^^^^^
+
+`Day 1 Morning`_ \**\* - `Getting your data onto Flux and setting up
+Environment variable`_ - `Unix is your friend`_ - `Quality Control using
+FastQC`_ - `Quality Trimming using Trimmomatic`_
+
+`Day 1 Afternoon`_ \**\* - `Read Mapping`_ - `Variant Calling`_ -
+`Visualize BAM/VCF files in Artemis`_
+
+`Day 2 Morning`_ \**\* - `Genome Assembly`_ - `Assembly evaluation`_ -
+`Compare assembly to reference genome and Post-assembly genome
+improvement`_ - [Map reads to th
+
+.. _Dr. Evan Snitkin: http://thesnitkinlab.com/index.php
+.. _University of Michigan: https://www.umich.edu/
+.. _Software Carpentry Workshop: https://umswc.github.io/2018-02-26-UMich/
+.. _Day 1 Morning: https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md
+.. _Getting your data onto Flux and setting up Environment variable: https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#getting-your-data-onto-glux-and-setting-up-environment-variable
+.. _Unix is your friend: https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#unix-is-your-friend
+.. _Quality Control using FastQC: https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#quality-control-using-fastqc
+.. _Quality Trimming using Trimmomatic: https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#quality-trimming-using-trimmomatic
+.. _Day 1 Afternoon: https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#day-1-afternoon
+.. _Read Mapping: https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#read-mapping
+.. _Variant Calling: https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#variant-calling-and-filteration
+.. _Visualize BAM/VCF files in Artemis: https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#visualize-bam-and-vcf-files-in-artemis
+.. _Day 2 Morning: https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#day-2-morning
+.. _Genome Assembly: https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#genome-assembly
+.. _Assembly evaluation: https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#assembly-evaluation-using-quast
+.. _Compare assembly to reference genome and Post-assembly genome improvement: https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#compare-assembly-to-reference-genome-and-post-assembly-genome-improvement
