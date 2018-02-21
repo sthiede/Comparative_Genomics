@@ -133,7 +133,7 @@ tree file system Pending
 
 ## Unix is your friend
 
-## pre-hw exercise
+# pre-hw exercise
 
 Up until now you’ve probably accessed sequence data from NCBI by going to the website, laboriously clicking around and finally finding and downloading the data you want. 
 
@@ -190,7 +190,7 @@ v) These files are genome assemblies in fasta format. Fasta files are a common s
 
 vi) Try this command on other assemblies to see how many contigs they have
 
-## Your first sequence analysis program!!!
+# Your first sequence analysis program!!!
 
 OK, so now that we have a useful command, wouldn’t it be great to turn it into a program that you can easily apply to a large number of genome assemblies? Of course it would! So, now we are going to take out cool contig counting command, and put it in a shell script that applies it to all files in the desired directory.
 
@@ -206,11 +206,9 @@ OK, so now that we have a useful command, wouldn’t it be great to turn it into
 bash fasta_counter.sh ./
 ```
 
-## Plotting genomic coverage in R
+# Plotting genomic coverage in R
 
 Data visualization plays an important role in organizing, analyzing and interpreting large amount of omics data. R is one of the most basic and powerful tool for manipulating and visualizing these types of data. The following task will brush up some basic R plotting commands and help you visualize some complex omics data for interpretation.
-
-Background:
 
 One of the most common types of genomic analysis involves comparing the newly sequenced read data of an organism to your choice of reference organism genome. Mapping millions of reads generated in a sequencing experiment to the reference genome fasta file and interpreting various parameters can achieve this analysis. 
 One such parameter is validating how well your sequencing experiment performed and assessing the “uniformity” of coverage from whole-genome sequencing. Visualizing Sequencing coverage across the reference genome help us answer this question. Sequencing coverage describes the average number of reads that align to, or "cover," known reference bases.
@@ -241,7 +239,7 @@ For advance and more beautiful visualization, ggplot2 can be employed to display
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/plot_2.png)
 
-## End: pre-hw exercise
+# End: pre-hw exercise
 
 In software carpentry, you learned working with shell and automating simple tasks using basic unix commands. Lets see how some of these commands can be employed in genomics analysis while exploring various file formats that we use in day to day analysis. For this session, we will try to explore three different types of bioinformatics file formats: 
 
