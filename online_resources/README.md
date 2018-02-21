@@ -1,4 +1,7 @@
 # Helpful resources for microbial genomics
+
+## If you were not able to follow the video, here is the [link](https://www.youtube.com/watch?v=womKfikWlxM) to illumina Sequencing
+
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 1. General Bioinformatics resources
