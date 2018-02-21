@@ -133,6 +133,115 @@ tree file system Pending
 
 ## Unix is your friend
 
+## pre-hw exercise
+
+Up until now you’ve probably accessed sequence data from NCBI by going to the website, laboriously clicking around and finally finding and downloading the data you want. 
+
+There are a lot of reasons that is not ideal:
+
+- It’s frustrating and slow to deal with the web interface
+- It can be hard to keep track of where the data came from and exactly which version of a sequence you downloaded
+- Its not conducive to downloading lots of sequence data
+
+To download sequence data in Unix you can use a variety of commands (e.g. sftp, wget, curl). Here, we will use the curl command to download some genome assemblies from NCBI ftp location:
+
+> Go to your class home directory (use your micro612 shortcut!)
+
+> Execute the following commands to copy files for this morning’s exercises to your home directory: 
+
+```
+cp -r /scratch/micro612w17_fluxod/shared/data/day1_morn/ ./
+
+cd day1_morn/
+
+# or 
+
+d1m
+
+ls
+
+```
+
+> Now get three genome sequences with the following commands:
+
+```
+curl ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/bacteria/Acinetobacter_baumannii/latest_assembly_versions/GCF_000018445.1_ASM1844v1/GCF_000018445.1_ASM1844v1_genomic.fna.gz > Acinetobacter_baumannii.fna.gz
+
+curl ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/bacteria/Klebsiella_pneumoniae/latest_assembly_versions/GCF_000220485.1_ASM22048v1/GCF_000220485.1_ASM22048v1_genomic.fna.gz > Klen_pneu.fna.gz
+
+curl ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/bacteria/Escherichia_coli/all_assembly_versions/GCF_000194495.1_ASM19449v2/GCF_000194495.1_ASM19449v2_genomic.fna.gz > E_coli.fna.gz
+
+```
+
+> Decompress the compressed fasta file using gzip
+
+```
+gzip -d Acinetobacter_baumannii.fna.gz
+gzip -d Klen_pneu.fna.gz 
+gzip -d E_coli.fna.gz
+```
+
+v) These files are genome assemblies in fasta format. Fasta files are a common sequence data format that is composed of alternating sequence headers (sequence names and comments) and their corresponding sequences. Of great importance, the sequence header lines must start with “>”. These genome assemblies have one header line for each contig in the assembly, and our goal will be to count the number of contigs/sequences. To do this we will string together two Unix commands: “grep” and “wc”. “grep” (stands for global regular expression print), is an extremely powerful pattern matching command, which we will use to identify all the lines that start with a “>”. “wc” (stand for word count) is a command for counting words, characters and lines in a file. To count the number of contigs in one of your fasta files enter:
+
+
+```
+		grep “>”E_coli.fna | wc –l
+```
+
+vi) Try this command on other assemblies to see how many contigs they have
+
+## Your first sequence analysis program!!!
+
+OK, so now that we have a useful command, wouldn’t it be great to turn it into a program that you can easily apply to a large number of genome assemblies? Of course it would! So, now we are going to take out cool contig counting command, and put it in a shell script that applies it to all files in the desired directory.
+
+<!---
+> Copy “/scratch/micro612w18_fluxod/shared/fasta_counter.sh” to your current directory (Hint – use the “cp” command)
+-->
+
+> Open “fasta_counter.sh” in pico or your favourite text editor and follow instructions for making edits so it will do what we want it to do
+
+> Run this script in day1_morn directory and verify that you get the correct results 
+
+```
+bash fasta_counter.sh ./
+```
+
+## Plotting genomic coverage in R
+
+Data visualization plays an important role in organizing, analyzing and interpreting large amount of omics data. R is one of the most basic and powerful tool for manipulating and visualizing these types of data. The following task will brush up some basic R plotting commands and help you visualize some complex omics data for interpretation.
+
+Background:
+
+One of the most common types of genomic analysis involves comparing the newly sequenced read data of an organism to your choice of reference organism genome. Mapping millions of reads generated in a sequencing experiment to the reference genome fasta file and interpreting various parameters can achieve this analysis. 
+One such parameter is validating how well your sequencing experiment performed and assessing the “uniformity” of coverage from whole-genome sequencing. Visualizing Sequencing coverage across the reference genome help us answer this question. Sequencing coverage describes the average number of reads that align to, or "cover," known reference bases.
+
+The input for this task is a comma-separated file, which contains average sequencing coverage information i.e average number of reads mapped to each 1000 base pairs in reference genome. You can find this input file in your day1_morn directory by the name, Ecoli_coverage_average_bed.csv
+
+<!---
+Let’s copy Ecoli_coverage_average_bed.csv file from flux shared directory to your desktop using ‘scp’. ‘scp’ stands for secure copy and is used for securely transferring files between remote host/server(flux) and your local computer system. (Both directions)
+
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w17_fluxod/shared/Ecoli_coverage_average_bed.csv ~/Desktop/
+
+Note: You can use your choice of folder/path to copy the file instead of  “~/Desktop/”
+-->
+
+Now, Fire up R console or studio and import the file (Ecoli_coverage_average_bed.csv) using any type of data import functions in R (read.table, read.csv etc.) 
+
+Hint: The file is comma-separated and contains header line (“bin,Average_coverage”) so use appropriate parameters while importing the file
+
+Once the data in file is imported into R object, you can plot the column Average_coverage as a time series plot to assess the coverage of your mapped reads across genome.
+
+Note: A time series plot is a graph that you can use to evaluate patterns and behavior in data over time. Here, we can employ the same plot to see the pattern i.e read depth/coverage at each 1000 bases (represented by bins columns where each bin represents Average number of reads mapped to each 1000 bases in reference genome) using the simplest R function for time series such as [plot.ts]( http://stat.ethz.ch/R-manual/R-devel/library/stats/html/plot.ts.html )
+
+An example plot.ts plot for Ecoli_coverage_average_bed.csv is shown below for your reference.
+
+[plot_1]()
+
+For advance and more beautiful visualization, ggplot2 can be employed to display the same plot. An example ggplot2 plot for Ecoli_coverage_average_bed.csv is shown below for your reference.
+
+[plot_2]()
+
+## End: pre-hw exercise
 
 In software carpentry, you learned working with shell and automating simple tasks using basic unix commands. Lets see how some of these commands can be employed in genomics analysis while exploring various file formats that we use in day to day analysis. For this session, we will try to explore three different types of bioinformatics file formats: 
 
@@ -142,8 +251,8 @@ gff: used for describing genes and other features of DNA, RNA and protein sequen
 
 fastq: used for storing biological sequence / sequencing reads (usually nucleotide sequence) and its corresponding quality scores
 
-> Execute the following commands to copy files for this morning’s exercises to your home directory: 
 
+<!---
 ```
 
 cp -r /scratch/micro612w17_fluxod/shared/data/day1_morn/ ./
@@ -157,6 +266,7 @@ d1m
 ls
 
 ```
+-->
 
 > Question: In the homework assignment, you downloaded genome assembly fasta files and ran a shell script to count contigs. Now, lets say you want to find out the combined length of genome in each of these files. This can be achieved by running a short unix command piping together three extremely powerful unix programs: grep, sed and awk. The key to crafting the command is understanding the required features of fasta files, including: 1) each sequence is preceded by a fasta header that starts with ">", 2) the types of bases that a nucleotide sequence represents (A,T,G,C,N) and 3) that each line is seperated by a new line character ("\n"). To determine the total length of our genome assemblies, we will use grep to match only those lines that doesn't start with ">" (remember grep -v option to ignore lines), use sed to remove characters that match "N" or "n" which represents unknown bases and finally use awk to count the remaining characters. We can use unix pipe "|" to pass the output of one command to another for further processing. Lets start by counting the number of bases in Acinetobacter_baumannii.fna file
 
