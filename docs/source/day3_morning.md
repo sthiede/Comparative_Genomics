@@ -94,9 +94,12 @@ scp ~/Desktop/Abau_mauve/mauve_ECII_outgroup username@flux-xfer.arc-ts.umich.edu
 Mauve produces alignments in .xmfa format (use less to see what this looks like), which is not compatible with other programs we want to use. We will use a custom script convert_msa_format.pl to change the alignment format to fasta format
 
 <!-- correction pending-->
+
 ```
 Now run these command in day3_morn folder on flux:
+
 module load bioperl
+
 perl convert_msa_format.pl -i mauve_ECII_outgroup -o mauve_ECII_outgroup.fasta -f fasta -c
 ```
 

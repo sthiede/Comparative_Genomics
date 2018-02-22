@@ -185,12 +185,14 @@ scp ~/Desktop/Abau_mauve/mauve_ECII_outgroup username&#64;flux-xfer.arc-ts.umich
 <blockquote>
 <div>ii. Convert alignment to fasta format</div></blockquote>
 <p>Mauve produces alignments in .xmfa format (use less to see what this looks like), which is not compatible with other programs we want to use. We will use a custom script convert_msa_format.pl to change the alignment format to fasta format</p>
-<!-- correction pending-->
-```
+<!-- correction pending--><pre class="literal-block">
 Now run these command in day3_morn folder on flux:
+
 module load bioperl
+
 perl convert_msa_format.pl -i mauve_ECII_outgroup -o mauve_ECII_outgroup.fasta -f fasta -c
-```</div>
+</pre>
+</div>
 <div class="section" id="perform-some-dna-sequence-comparisons-and-phylogenetic-analysis-in-ape-an-r-package">
 <span id="perform-some-dna-sequence-comparisons-and-phylogenetic-analysis-in-ape-an-r-package"></span><h2>Perform some DNA sequence comparisons and phylogenetic analysis in <a class="reference external" href="http://ape-package.ird.fr/">APE</a>, an R package<a class="headerlink" href="#perform-some-dna-sequence-comparisons-and-phylogenetic-analysis-in-ape-an-r-package" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md">[back to top]</a>
