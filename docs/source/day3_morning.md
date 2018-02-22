@@ -49,7 +49,7 @@ mkdir Abau_mauve
 
 cd Abau_mauve 
 
-> Now copy Abau_genomes folder residing in your day3_morn folder using scp or sftp:
+#Now copy Abau_genomes folder residing in your day3_morn folder using scp or sftp:
 
 scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day3_morn/Abau_genomes ./
 
@@ -95,13 +95,9 @@ Mauve produces alignments in .xmfa format (use less to see what this looks like)
 
 <!-- correction pending-->
 ```
-
 Now run these command in day3_morn folder on flux:
-
 module load bioperl
-
 perl convert_msa_format.pl -i mauve_ECII_outgroup -o mauve_ECII_outgroup.fasta -f fasta -c
-
 ```
 
 Perform some DNA sequence comparisons and phylogenetic analysis in [APE](http://ape-package.ird.fr/), an R package
