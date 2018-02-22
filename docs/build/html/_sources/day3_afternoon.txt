@@ -1,7 +1,9 @@
-# Day 3 Afternoon
+Day 3 Afternoon
+===============
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-## Klebsiella pneumoniae comparative genomic analysis 
+**Klebsiella pneumoniae comparative genomic analysis**
+------------------------------------------------------
 
 To finish up the workshop we are going to go through the process of working up a complete dataset, from start to finish.  This set of genomes originated from a regional outbreak of bla-KPC carrying Klebsiella pneumoniae – one of the most concerning healthcare associated pathogens. 
 The goal is to follow up on a previously [published](http://cid.oxfordjournals.org/content/53/6/532.abstract) epidemiologic analysis, and see if genomics supports prior epidemiologic conclusions and can provide additional insights. 
@@ -31,7 +33,8 @@ cp -r /scratch/micro612w18_fluxod/shared/data/day3_after ./
 
 ```
 
-## Perform QC on fastq files
+Perform QC on fastq files
+-------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -69,7 +72,8 @@ Your PBS script wil contain the following command after the PBS preamble stuff(M
 
 Check the multiqc report of your fastq files.
 
-## Examine results of [SPANDx](http://www.ncbi.nlm.nih.gov/pubmed/25201145) pipeline
+Examine results of [SPANDx](http://www.ncbi.nlm.nih.gov/pubmed/25201145) pipeline
+---------------------------------------------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -110,7 +114,8 @@ Use sftp to download this file and view in excel
 - What types of mutations are predicted to have “HIGH” impact?
 - How many genomes do these HIGH impact mutations tend to be present in? How do you interpret this?
 
-## Recombination detection and tree generation
+Recombination detection and tree generation
+-------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -153,7 +158,8 @@ Save tree for later analysis
 
 ```
 
-## Phylogenetic tree annotation and visualization
+Phylogenetic tree annotation and visualization
+----------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -175,7 +181,8 @@ Which patient’s infections might have originated from the blue facility?
 
 ```
 
-## Assessment of genomic deletions
+Assessment of genomic deletions
+-------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 

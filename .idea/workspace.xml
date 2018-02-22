@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cb8308d-7ce8-4120-94ed-2b6a9668ebf1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/source/day2_afternoon.md" afterPath="$PROJECT_DIR$/docs/source/day2_afternoon.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/source/day2_morning.md" afterPath="$PROJECT_DIR$/docs/source/day2_morning.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/source/day3_afternoon.md" afterPath="$PROJECT_DIR$/docs/source/day3_afternoon.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/source/day3_morning.md" afterPath="$PROJECT_DIR$/docs/source/day3_morning.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Comparative_Genomics.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,14 +92,40 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="day2_afternoon.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="day2_afternoon.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/source/day2_afternoon.md">
           <provider editor-type-id="MarkdownPreviewEditor">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9218472" vertical-offset="10151" max-vertical-offset="10802">
+            <state vertical-scroll-proportion="-17.3" vertical-offset="10151" max-vertical-offset="10802">
               <caret line="485" column="0" selection-start-line="485" selection-start-column="0" selection-end-line="485" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="day3_morning.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/day3_morning.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-17.3" vertical-offset="9337" max-vertical-offset="9988">
+              <caret line="448" column="0" selection-start-line="448" selection-start-column="0" selection-end-line="448" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="day3_afternoon.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docs/source/day3_afternoon.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.1953819" vertical-offset="3375" max-vertical-offset="5170">
+              <caret line="184" column="31" selection-start-line="184" selection-start-column="31" selection-end-line="184" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -118,6 +145,8 @@
         <option value="$PROJECT_DIR$/docs/source/day1_afternoon.md" />
         <option value="$PROJECT_DIR$/docs/source/day2_morning.md" />
         <option value="$PROJECT_DIR$/docs/source/day2_afternoon.md" />
+        <option value="$PROJECT_DIR$/docs/source/day3_morning.md" />
+        <option value="$PROJECT_DIR$/docs/source/day3_afternoon.md" />
       </list>
     </option>
   </component>
@@ -450,8 +479,30 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9218472" vertical-offset="10151" max-vertical-offset="10802">
+        <state vertical-scroll-proportion="-17.3" vertical-offset="10151" max-vertical-offset="10802">
           <caret line="485" column="0" selection-start-line="485" selection-start-column="0" selection-end-line="485" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/day3_morning.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.3" vertical-offset="9337" max-vertical-offset="9988">
+          <caret line="448" column="0" selection-start-line="448" selection-start-column="0" selection-end-line="448" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/day3_afternoon.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1953819" vertical-offset="3375" max-vertical-offset="5170">
+          <caret line="184" column="31" selection-start-line="184" selection-start-column="31" selection-end-line="184" selection-end-column="31" />
           <folding />
         </state>
       </provider>

@@ -1,4 +1,5 @@
-# Day 3 Morning
+Day 3 Morning
+=============
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 On day 1, we ran through a pipeline to map reads against a reference genome and call variants, but didn’t do much with the variants we identified. Among the most common analyses to perform on a set of variants is to construct phylogenetic trees. Here we will explore different tools for generating and visualizing phylogenetic trees, and also see how recombination can distort phylogenetic signal.
@@ -20,7 +21,7 @@ Execute the following command to copy files for this afternoon’s exercises to 
 ```
 wd
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username
 
@@ -28,7 +29,8 @@ cp -r /scratch/micro612w18_fluxod/shared/data/day3_morn ./
 
 ```
 
-## Perform whole genome alignment with [Mauve](http://darlinglab.org/mauve/mauve.html) and convert alignment to other useful formats
+Perform whole genome alignment with [Mauve](http://darlinglab.org/mauve/mauve.html) and convert alignment to other useful formats
+-------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -102,7 +104,8 @@ perl convert_msa_format.pl -i mauve_ECII_outgroup -o mauve_ECII_outgroup.fasta -
 
 ```
 
-## Perform some DNA sequence comparisons and phylogenetic analysis in [APE](http://ape-package.ird.fr/), an R package
+Perform some DNA sequence comparisons and phylogenetic analysis in [APE](http://ape-package.ird.fr/), an R package
+------------------------------------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -193,7 +196,8 @@ Finally, plot your tree to see how the genomes group.
 plot(abau_nj_tree)
 ```
 
-## Perform SNP density analysis to discern evidence of recombination
+Perform SNP density analysis to discern evidence of recombination
+-----------------------------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -241,7 +245,8 @@ Finally, create a histogram of SNP density across the genome. Does the density l
 hist(which(abau_no_outgroup_var_pos & abau_no_outgroup_non_gap_pos), 10000)
 ```
 
-## Perform recombination filtering with [Gubbins](https://www.google.com/search?q=gubbins+sanger&ie=utf-8&oe=utf-8)
+Perform recombination filtering with [Gubbins](https://www.google.com/search?q=gubbins+sanger&ie=utf-8&oe=utf-8)
+----------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -268,7 +273,7 @@ Run gubbins on your fasta formatted alignment
 ```
 d3m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day3_morn
 
@@ -339,7 +344,8 @@ How does the structure look different than the unfiltered tree?
 
 > Note that turning back to the backstory of these isolates, Abau_B and Abau_C were both isolated first from the same patient. So this analysis supports that patient having imported both strains, which likely diverged at a prior hospital at which they resided.
 
-## Create annotated publication quality trees with [iTOL](http://itol.embl.de/)
+Create annotated publication quality trees with [iTOL](http://itol.embl.de/)
+------------------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
