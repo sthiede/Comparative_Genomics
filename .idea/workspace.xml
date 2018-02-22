@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2cb8308d-7ce8-4120-94ed-2b6a9668ebf1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/source/day3_afternoon.md" afterPath="$PROJECT_DIR$/docs/source/day3_afternoon.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/source/day3_morning.md" afterPath="$PROJECT_DIR$/docs/source/day3_morning.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="2cb8308d-7ce8-4120-94ed-2b6a9668ebf1" name="Default" comment="" />
     <ignored path="Comparative_Genomics.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,13 +36,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docs/source/index.md">
           <provider editor-type-id="MarkdownPreviewEditor">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="5.894118" vertical-offset="897" max-vertical-offset="2002">
+            <state vertical-scroll-proportion="-1.7353463" vertical-offset="1373" max-vertical-offset="2002">
               <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
               <folding />
             </state>
@@ -118,13 +114,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="day3_afternoon.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="day3_afternoon.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/source/day3_afternoon.md">
           <provider editor-type-id="MarkdownPreviewEditor">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1953819" vertical-offset="3375" max-vertical-offset="5170">
+            <state vertical-scroll-proportion="18.633333" vertical-offset="4607" max-vertical-offset="5170">
               <caret line="184" column="31" selection-start-line="184" selection-start-column="31" selection-end-line="184" selection-end-column="31" />
               <folding />
             </state>
@@ -430,17 +426,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/index.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.894118" vertical-offset="897" max-vertical-offset="2002">
-          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/source/day1_morning.md">
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
@@ -501,8 +486,19 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1953819" vertical-offset="3375" max-vertical-offset="5170">
+        <state vertical-scroll-proportion="18.633333" vertical-offset="4607" max-vertical-offset="5170">
           <caret line="184" column="31" selection-start-line="184" selection-start-column="31" selection-end-line="184" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/index.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.7353463" vertical-offset="1373" max-vertical-offset="2002">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
           <folding />
         </state>
       </provider>
