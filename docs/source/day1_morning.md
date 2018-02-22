@@ -244,16 +244,11 @@ gff: used for describing genes and other features of DNA, RNA and protein sequen
 
 fastq: used for storing biological sequence / sequencing reads (usually nucleotide sequence) and its corresponding quality scores
 
-
 <!---
 cp -r /scratch/micro612w18_fluxod/shared/data/day1_morn/ ./
-
 cd day1_morn/
-
-or 
-
+or
 d1m
-
 ls
 -->
 

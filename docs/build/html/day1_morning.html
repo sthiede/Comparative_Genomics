@@ -305,12 +305,12 @@ One such parameter is validating how well your sequencing experiment performed a
 <p>gff: used for describing genes and other features of DNA, RNA and protein sequences</p>
 <p>fastq: used for storing biological sequence / sequencing reads (usually nucleotide sequence) and its corresponding quality scores</p>
 <!---
-cp -r /scratch/micro612w18_fluxod/shared/data/day1_morn/ ./<p>cd day1_morn/</p>
-<p>or</p>
-<p>d1m</p>
-<p>ls
-&#8211;&gt;</p>
-<blockquote>
+cp -r /scratch/micro612w18_fluxod/shared/data/day1_morn/ ./
+cd day1_morn/
+or
+d1m
+ls
+--><blockquote>
 <div>Question: In the homework assignment, you downloaded genome assembly fasta files and ran a shell script to count contigs. Now, lets say you want to find out the combined length of genome in each of these files. This can be achieved by running a short unix command piping together three extremely powerful unix programs: grep, sed and awk. The key to crafting the command is understanding the required features of fasta files, including: 1) each sequence is preceded by a fasta header that starts with &#8220;&gt;&#8221;, 2) the types of bases that a nucleotide sequence represents (A,T,G,C,N) and 3) that each line is seperated by a new line character (&#8220;\n&#8221;). To determine the total length of our genome assemblies, we will use grep to match only those lines that doesn&#8217;t start with &#8220;&gt;&#8221; (remember grep -v option to ignore lines), use sed to remove characters that match &#8220;N&#8221; or &#8220;n&#8221; which represents unknown bases and finally use awk to count the remaining characters. We can use unix pipe &#8220;|&#8221; to pass the output of one command to another for further processing. Lets start by counting the number of bases in Acinetobacter_baumannii.fna file</div></blockquote>
 <p><details>
 <summary>Solution</summary></p>
