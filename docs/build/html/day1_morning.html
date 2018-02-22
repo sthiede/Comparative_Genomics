@@ -65,22 +65,14 @@
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">Day 1 Morning</a><ul>
 <li><a class="reference internal" href="#getting-your-data-onto-flux-and-setting-up-environment-variable">Getting your data onto Flux and setting up environment variable</a></li>
-<li><a class="reference internal" href="#unix-is-your-friend">Unix is your friend</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#pre-hw-exercise">pre-hw exercise</a></li>
+<li><a class="reference internal" href="#unix-is-your-friend">Unix is your friend</a><ul>
+<li><a class="reference internal" href="#brusing-up-unix-and-r-skills">Brusing up Unix and R skills</a></li>
 <li><a class="reference internal" href="#your-first-sequence-analysis-program">Your first sequence analysis program!!!</a></li>
 <li><a class="reference internal" href="#plotting-genomic-coverage-in-r">Plotting genomic coverage in R</a></li>
-<li><a class="reference internal" href="#end-pre-hw-exercise">End: pre-hw exercise</a></li>
-<li><a class="reference internal" href="#or">or</a></li>
-<li><a class="reference internal" href="#or-number-of-cds-or-trna-features">Or number of CDS or tRNA features?</a></li>
-<li><a class="reference internal" href="#note-in-the-above-command-we-are-trying-to-search-lines-that-doesn-t-starts-with-and-extracting-feature-information-from-third-column">Note: In the above command, we are trying to search lines that doesn&#8217;t starts with &#8220;#&#8221; and extracting feature information from third column.</a></li>
-<li><a class="reference internal" href="#or-number-of-cds-or-trna-features">Or number of CDS or tRNA features?</a></li>
-<li><a class="reference internal" href="#the-above-awk-command-reads-every-fourth-record-and-calculates-some-basic-fastq-statistics">The above awk command reads every fourth record and calculates some basic fastq statistics.</a></li>
-<li><a class="reference internal" href="#also-dont-worry-about-broken-pipe-warning">Also Dont worry about &#8220;Broken pipe&#8221; warning.</a></li>
-<li><a class="reference internal" href="#open-a-new-terminal">Open a new terminal</a></li>
-<li><a class="reference internal" href="#or-use-scp-if-you-find-sftp-annoying">or Use scp if you find sftp annoying :)</a></li>
-<li><a class="reference internal" href="#you-can-use-desktop-as-your-local-directory-path">You can use ~/Desktop/ as your local directory path</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#or">or</a></li>
 </ul>
 </div>
@@ -143,7 +135,7 @@ ssh username&#64;flux-login.arc-ts.umich.edu
 
 cp ~/.bashrc ~/bashrc_backup
 
-#Note: &quot;~/&quot; represents your home directory. On flux, these means /home/username
+***Note: &quot;~/&quot; represents your home directory. On flux, these means /home/username***
 
 </pre>
 <blockquote>
@@ -224,12 +216,11 @@ wd
 <!-- Check the dependencies Pending
 tree file system Pending
 --></div>
+</div>
 <div class="section" id="unix-is-your-friend">
-<span id="unix-is-your-friend"></span><h2>Unix is your friend<a class="headerlink" href="#unix-is-your-friend" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
-<div class="section" id="pre-hw-exercise">
-<span id="pre-hw-exercise"></span><h1>pre-hw exercise<a class="headerlink" href="#pre-hw-exercise" title="Permalink to this headline">¶</a></h1>
+<span id="unix-is-your-friend"></span><h1>Unix is your friend<a class="headerlink" href="#unix-is-your-friend" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="brusing-up-unix-and-r-skills">
+<span id="brusing-up-unix-and-r-skills"></span><h2>Brusing up Unix and R skills<a class="headerlink" href="#brusing-up-unix-and-r-skills" title="Permalink to this headline">¶</a></h2>
 <p>Up until now you’ve probably accessed sequence data from NCBI by going to the website, laboriously clicking around and finally finding and downloading the data you want.</p>
 <p>There are a lot of reasons that is not ideal:</p>
 <ul class="simple">
@@ -278,7 +269,7 @@ gzip -d E_coli.fna.gz
 <p>vi) Try this command on other assemblies to see how many contigs they have</p>
 </div>
 <div class="section" id="your-first-sequence-analysis-program">
-<span id="your-first-sequence-analysis-program"></span><h1>Your first sequence analysis program!!!<a class="headerlink" href="#your-first-sequence-analysis-program" title="Permalink to this headline">¶</a></h1>
+<span id="your-first-sequence-analysis-program"></span><h2>Your first sequence analysis program!!!<a class="headerlink" href="#your-first-sequence-analysis-program" title="Permalink to this headline">¶</a></h2>
 <p>OK, so now that we have a useful command, wouldn’t it be great to turn it into a program that you can easily apply to a large number of genome assemblies? Of course it would! So, now we are going to take out cool contig counting command, and put it in a shell script that applies it to all files in the desired directory.</p>
 <!---
 > Copy “/scratch/micro612w18_fluxod/shared/fasta_counter.sh” to your current directory (Hint – use the “cp” command)
@@ -291,7 +282,7 @@ bash fasta_counter.sh ./
 </pre>
 </div>
 <div class="section" id="plotting-genomic-coverage-in-r">
-<span id="plotting-genomic-coverage-in-r"></span><h1>Plotting genomic coverage in R<a class="headerlink" href="#plotting-genomic-coverage-in-r" title="Permalink to this headline">¶</a></h1>
+<span id="plotting-genomic-coverage-in-r"></span><h2>Plotting genomic coverage in R<a class="headerlink" href="#plotting-genomic-coverage-in-r" title="Permalink to this headline">¶</a></h2>
 <p>Data visualization plays an important role in organizing, analyzing and interpreting large amount of omics data. R is one of the most basic and powerful tool for manipulating and visualizing these types of data. The following task will brush up some basic R plotting commands and help you visualize some complex omics data for interpretation.</p>
 <p>One of the most common types of genomic analysis involves comparing the newly sequenced read data of an organism to your choice of reference organism genome. Mapping millions of reads generated in a sequencing experiment to the reference genome fasta file and interpreting various parameters can achieve this analysis.
 One such parameter is validating how well your sequencing experiment performed and assessing the “uniformity” of coverage from whole-genome sequencing.&nbsp;Visualizing Sequencing coverage across the reference genome help us answer this question. Sequencing coverage describes the average number of reads that align to, or &#8220;cover,&#8221; known reference bases.</p>
@@ -308,9 +299,6 @@ Let’s copy Ecoli_coverage_average_bed.csv file from flux shared directory to y
 <p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/plot_1.png" /></p>
 <p>For advance and more beautiful visualization, ggplot2 can be employed to display the same plot. An example ggplot2 plot for Ecoli_coverage_average_bed.csv is shown below for your reference.</p>
 <p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/plot_2.png" /></p>
-</div>
-<div class="section" id="end-pre-hw-exercise">
-<span id="end-pre-hw-exercise"></span><h1>End: pre-hw exercise<a class="headerlink" href="#end-pre-hw-exercise" title="Permalink to this headline">¶</a></h1>
 <p>In software carpentry, you learned working with shell and automating simple tasks using basic unix commands. Lets see how some of these commands can be employed in genomics analysis while exploring various file formats that we use in day to day analysis. For this session, we will try to explore three different types of bioinformatics file formats:</p>
 <p>fasta: used for representing either nucleotide or peptide sequences</p>
 <p>gff: used for describing genes and other features of DNA, RNA and protein sequences</p>
@@ -318,6 +306,7 @@ Let’s copy Ecoli_coverage_average_bed.csv file from flux shared directory to y
 <!---
 ```<p>cp -r /scratch/micro612w18_fluxod/shared/data/day1_morn/ ./</p>
 <p>cd day1_morn/</p>
+</div>
 </div>
 <div class="section" id="or">
 <span id="or"></span><h1>or<a class="headerlink" href="#or" title="Permalink to this headline">¶</a></h1>
@@ -334,10 +323,10 @@ Let’s copy Ecoli_coverage_average_bed.csv file from flux shared directory to y
   
 </pre>
 <p>grep -v &#8216;^&gt;&#8217; Acinetobacter_baumannii.fna | sed &#8216;s/[N,n]//g&#8217; | awk -F &#8216;\n&#8217; &#8216;{sum += length} END {print sum}&#8217;</p>
-<p>#Note:</p>
-<p>#- The sign &#8220;^&#8221; inside the grep pattern represents any pattern that starts with &#8220;&gt;&#8221; and -v asks grep to ignore those lines.
-#- Use &#8220;|&#8221; to pass these lines to sed. sed stands for stream editor and can be used to parse, transform and replace text. Here, we are removing the characters &#8220;N&#8221; or &#8220;n&#8221; and keeping only &#8220;A,T,G,C&#8221; bases
-#- awk consists of three blocks: The first block (-F &#8216;\n&#8217;) tells awk how each line is seperated from each other using a field seperator, the second block will keep counting characters in a line (using awk&#8217;s default option &#8220;length&#8221;) and save it in a variable &#8220;sum&#8221; and when it runs through all the lines in a stream, the third block will print the value of sum which represents total bases in a fasta file.</p>
+<p><strong><em>Note:</em></strong></p>
+<p><strong><em>- The sign &#8220;^&#8221; inside the grep pattern represents any pattern that starts with &#8220;&gt;&#8221; and -v asks grep to ignore those lines.</em></strong>
+<strong><em>- Use &#8220;|&#8221; to pass these lines to sed. sed stands for stream editor and can be used to parse, transform and replace text. Here, we are removing the characters &#8220;N&#8221; or &#8220;n&#8221; and keeping only &#8220;A,T,G,C&#8221; bases</em></strong>
+<strong><em>- awk consists of three blocks: The first block (-F &#8216;\n&#8217;) tells awk how each line is seperated from each other using a field seperator, the second block will keep counting characters in a line (using awk&#8217;s default option &#8220;length&#8221;) and save it in a variable &#8220;sum&#8221; and when it runs through all the lines in a stream, the third block will print the value of sum which represents total bases in a fasta file.</em></strong></p>
 <pre class="literal-block">
 &lt;/details&gt;
 
@@ -354,7 +343,8 @@ Now run the same command on other fasta files in day1_morn directory. Try using 
 &lt;/details&gt;
 --
 
-&gt; Exploring GFF files
+Exploring GFF files
+-------------------
 
 The GFF (General Feature Format) format is a tab-seperated file and consists of one line per feature, each containing 9 columns of data.
 
@@ -377,6 +367,7 @@ column 8: frame - One of '0', '1' or '2'. '0' indicates that the first base of t
 column 9: attribute - A semicolon-separated list of tag-value pairs, providing additional information about each feature such as gene name, product name etc.
 
 &gt; Use less to explore first few lines of a gff file sample.gff
+
 
 </pre>
 <p>less sample.gff</p>
@@ -404,14 +395,10 @@ You can press space bar on keyboard to read more lines and &quot;q&quot; key to 
   
 </pre>
 <p>grep -v &#8216;^#&#8217; sample.gff | awk -F &#8216;\t&#8217; &#8216;{print $3}&#8217; | grep &#8216;rRNA&#8217; | wc -l</p>
-</div>
-<div class="section" id="or-number-of-cds-or-trna-features">
-<span id="or-number-of-cds-or-trna-features"></span><h1>Or number of CDS or tRNA features?<a class="headerlink" href="#or-number-of-cds-or-trna-features" title="Permalink to this headline">¶</a></h1>
+<p><strong><em>Or number of CDS or tRNA features?</em></strong></p>
 <p>grep -v &#8216;^#&#8217; sample.gff | awk -F &#8216;\t&#8217; &#8216;{print $3}&#8217; | grep &#8216;CDS&#8217; | wc -l
 grep -v &#8216;^#&#8217; sample.gff | awk -F &#8216;\t&#8217; &#8216;{print $3}&#8217; | grep &#8216;tRNA&#8217; | wc -l</p>
-</div>
-<div class="section" id="note-in-the-above-command-we-are-trying-to-search-lines-that-doesn-t-starts-with-and-extracting-feature-information-from-third-column">
-<span id="note-in-the-above-command-we-are-trying-to-search-lines-that-doesn-t-starts-with-and-extracting-feature-information-from-third-column"></span><h1>Note: In the above command, we are trying to search lines that doesn&#8217;t starts with &#8220;#&#8221; and extracting feature information from third column.<a class="headerlink" href="#note-in-the-above-command-we-are-trying-to-search-lines-that-doesn-t-starts-with-and-extracting-feature-information-from-third-column" title="Permalink to this headline">¶</a></h1>
+<p><strong><em>Note: In the above command, we are trying to search lines that doesn&#8217;t starts with &#8220;#&#8221; and extracting feature information from third column.</em></strong></p>
 <pre class="literal-block">
 &lt;/details&gt;
 
@@ -422,9 +409,7 @@ If for some reason you find awk daunting or too long, you can use &quot;cut&quot
   
 </pre>
 <p>cut -f 3 sample.gff | grep &#8216;rRNA&#8217; | wc -l</p>
-</div>
-<div class="section" id="or-number-of-cds-or-trna-features">
-<span id="id1"></span><h1>Or number of CDS or tRNA features?<a class="headerlink" href="#or-number-of-cds-or-trna-features" title="Permalink to this headline">¶</a></h1>
+<p><strong><em>Or number of CDS or tRNA features?</em></strong></p>
 <p>cut -f 3 sample.gff | grep &#8216;CDS&#8217; | wc -l
 cut -f 3 sample.gff | grep &#8216;tRNA&#8217; | wc -l</p>
 <pre class="literal-block">
@@ -434,7 +419,8 @@ cut -f 3 sample.gff | grep &#8216;tRNA&#8217; | wc -l</p>
 
 Some more useful one-line unix commands for GFF files: [here](https://github.com/stephenturner/oneliners#gff3-annotations)
 
-**Unix one-liners**
+Unix one-liners
+---------------
 
 As soon as you receive your sample data from sequencing centre, the first thing you do is check its quality using a quality control tool such as FastQC and make sure that it contain sequences from organism that you are working on (Free from any contamination). But before carrying out extensive QC, you can run a bash &quot;one-liner&quot; to get some basic statistics about the raw reads. These one-liners are great examples for how a set of simple (relatively) Unix commands can be piped together to do really useful things.
 
@@ -442,14 +428,13 @@ Run the following command to print total number of reads in each file, total num
 
 </pre>
 <p>for i in Rush_KPC_266_*.gz; do zcat $i | awk &#8216;BEGIN{OFS=&#8221;\t&#8221;};((NR-2)%4==0){read=$1;total++;count[read]++;len+=length(read)}END{for(read in count){if(!max||count[read]&gt;max) {max=count[read];maxRead=read};if(count[read]==1){unique++}};print total,unique,unique<em>100/total,maxRead,count[maxRead],count[maxRead]</em>100/total,len/total}&#8217;; done</p>
-</div>
-<div class="section" id="the-above-awk-command-reads-every-fourth-record-and-calculates-some-basic-fastq-statistics">
-<span id="the-above-awk-command-reads-every-fourth-record-and-calculates-some-basic-fastq-statistics"></span><h1>The above awk command reads every fourth record and calculates some basic fastq statistics.<a class="headerlink" href="#the-above-awk-command-reads-every-fourth-record-and-calculates-some-basic-fastq-statistics" title="Permalink to this headline">¶</a></h1>
+<p><strong><em>The above awk command reads every fourth record and calculates some basic fastq statistics.</em></strong></p>
 <pre class="literal-block">
 
 You can find more of such super useful bash one-liners at Stephen Turner's github [page](https://github.com/stephenturner/oneliners). You can also use some pre-written unix utilities and tools such as [seqtk](https://github.com/lh3/seqtk), [bioawk](https://github.com/lh3/bioawk) and [fastx](http://hannonlab.cshl.edu/fastx_toolkit/) which comes in handy while extracting complex information from fasta/fastq/sam/bam files and are optimized to be insanely fast.
 
-## Contamination Screening using [FastQ Screen](http://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/)
+Contamination Screening using [FastQ Screen](http://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/)
+-------------------------------------------------------------------------------------------------------------
 
 When running a sequencing pipeline, it is very important to make sure that your data matches appropriate quality threshold and are free from any contaminants. This step will help you make correct interpretations in downstream analysis and will also let you know if you are required to redo the experiment/library preparation or resequencing or remove contaminant sequences.
 
@@ -479,7 +464,6 @@ Whenever you start an interactive job, the path resets to your home directory. S
 
 </pre>
 <p>d1m</p>
-<p>#or</p>
 <p>cd /scratch/micro612w18_fluxod/username/day1_morn/</p>
 <pre class="literal-block">
 
@@ -487,10 +471,7 @@ Whenever you start an interactive job, the path resets to your home directory. S
 
 </pre>
 <p>fastq_screen &#8211;subset 1000 &#8211;force &#8211;outdir ./ &#8211;aligner bowtie2 fastq_screen.fastq.gz</p>
-<p>#Note: We will screen only a subset of fastq reads against reference databases. To screen all the reads, change this argument to &#8211;subset 0 but will take long time to finish. (searching sequences against human or mouse genome is a time consuming step)</p>
-</div>
-<div class="section" id="also-dont-worry-about-broken-pipe-warning">
-<span id="also-dont-worry-about-broken-pipe-warning"></span><h1>Also Dont worry about &#8220;Broken pipe&#8221; warning.<a class="headerlink" href="#also-dont-worry-about-broken-pipe-warning" title="Permalink to this headline">¶</a></h1>
+<p>***Note: We will screen only a subset of fastq reads against reference databases. To screen all the reads, change this argument to &#8211;subset 0 but will take long time to finish. (searching sequences against human or mouse genome is a time consuming step). Also Dont worry about &#8220;Broken pipe&#8221; warning.</p>
 <pre class="literal-block">
 
 The above run will generate two types of output file: a screen report in text format &quot;fastq_screen_screen.txt&quot; and a graphical output &quot;fastq_screen_screen.png&quot; showing percentage of reads mapped to each reference genomes.
@@ -498,37 +479,32 @@ The above run will generate two types of output file: a screen report in text fo
 &gt;iii. Download the fastq_screen graphical report to your home computer for inspection. Use scp if you find sftp annoying :)
 
 </pre>
-</div>
-<div class="section" id="open-a-new-terminal">
-<span id="open-a-new-terminal"></span><h1>Open a new terminal<a class="headerlink" href="#open-a-new-terminal" title="Permalink to this headline">¶</a></h1>
+<p><strong>Open a new terminal</strong></p>
 <p>sftp username&#64;flux-login.arc-ts.umich.edu
 cd /scratch/micro612w18_fluxod/username/day1_morn/
 get fastq_screen_screen.png</p>
-</div>
-<div class="section" id="or-use-scp-if-you-find-sftp-annoying">
-<span id="or-use-scp-if-you-find-sftp-annoying"></span><h1>or Use scp if you find sftp annoying :)<a class="headerlink" href="#or-use-scp-if-you-find-sftp-annoying" title="Permalink to this headline">¶</a></h1>
+<p><strong>or Use scp if you find sftp annoying :)</strong></p>
 <p>scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_morn/fastq_screen_screen.png /path-to-local-directory/</p>
-</div>
-<div class="section" id="you-can-use-desktop-as-your-local-directory-path">
-<span id="you-can-use-desktop-as-your-local-directory-path"></span><h1>You can use ~/Desktop/ as your local directory path<a class="headerlink" href="#you-can-use-desktop-as-your-local-directory-path" title="Permalink to this headline">¶</a></h1>
+<p><strong>You can use ~/Desktop/ as your local directory path</strong></p>
 <pre class="literal-block">
 
 Open fastq_screen_screen.png on your system. You will notice that the sample contain a significant amount of human reads; we should always remove these contaminants from our sample before proceeding to any type of microbial analysis.
 
-## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ &quot;FastQC homepage&quot;)
+Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ &quot;FastQC homepage&quot;)
+-----------------------------------------------------------------------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 Now we will run FastQC on some sample raw data to assess its quality. FastQC is a quality control tool that reads in sequence data in a variety of formats(fastq, bam, sam) and can either provide an interactive application to review the results or create an HTML based report which can be integrated into any pipeline. It is generally the first step that you take upon receiving the sequence data from sequencing facility to get a quick sense of its quality and whether it exhibits any unusual properties (e.g. contamination or unexpected biological features)
 
-&gt;ii. In your day1_morn directory, create a new directory for saving FastQC results.
+&gt;i. In your day1_morn directory, create a new directory for saving FastQC results.
 
 </pre>
 <p>mkdir Rush_KPC_266_FastQC_results
 mkdir Rush_KPC_266_FastQC_results/before_trimmomatic</p>
 <pre class="literal-block">
 
-&gt;iii. Verify that FastQC is in your path by invoking it from command line.
+&gt;ii. Verify that FastQC is in your path by invoking it from command line.
 
 </pre>
 <p>fastqc -h</p>
@@ -536,7 +512,7 @@ mkdir Rush_KPC_266_FastQC_results/before_trimmomatic</p>
 
 FastQC can be run in two modes: &quot;command line&quot; or as a GUI (graphical user interface). We will be using command line version of it.
 
-&gt;iv. Run FastQC to generate quality report of sequence reads.
+&gt;iii. Run FastQC to generate quality report of sequence reads.
 
 </pre>
 <p>fastqc -o Rush_KPC_266_FastQC_results/before_trimmomatic/ Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz &#8211;extract</p>
@@ -548,9 +524,9 @@ The summary.txt file in these directories indicates if the data passed different
 
 You can visualize and assess the quality of data by opening html report in a local browser.
 
-&gt;v. Exit your cluster node so you don’t waste cluster resources and $$$!
+&gt;iv. Exit your cluster node so you don’t waste cluster resources and $$$!
 
-&gt;vi. Download the FastQC report to your home computer to examine
+&gt;v. Download the FastQC report to your home computer to examine
 
 </pre>
 <p>sftp username&#64;flux-login.arc-ts.umich.edu
@@ -575,7 +551,8 @@ Check out [this](https://sequencing.qcfail.com/articles/loss-of-base-call-accura
 
 &gt; [A video FastQC walkthrough created by FastQC developers](https://www.youtube.com/watch?v=bz93ReOv87Y &quot;FastQC video&quot;) 
 
-## Quality Trimming using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic &quot;Trimmomatic Homepage&quot;)
+Quality Trimming using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic &quot;Trimmomatic Homepage&quot;)
+-----------------------------------------------------------------------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -594,9 +571,7 @@ How to know if you are in interactive session: you should see &quot;username&#64
 </pre>
 <p>iflux</p>
 <p>cd /scratch/micro612w18_fluxod/username/day1_morn/</p>
-</div>
-<div class="section" id="or">
-<span id="id2"></span><h1>or<a class="headerlink" href="#or" title="Permalink to this headline">¶</a></h1>
+<p>or</p>
 <p>d1m</p>
 <pre class="literal-block">
 

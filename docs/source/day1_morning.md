@@ -1,7 +1,9 @@
-# Day 1 Morning
+Day 1 Morning
+=============
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-## Getting your data onto Flux and setting up environment variable
+Getting your data onto Flux and setting up environment variable
+---------------------------------------------------------------
 
 **Log in to Flux**
 
@@ -36,7 +38,7 @@ All the softwares/tools that we need in this workshop are installed in a directo
 
 cp ~/.bashrc ~/bashrc_backup
 
-#Note: "~/" represents your home directory. On flux, these means /home/username
+***Note: "~/" represents your home directory. On flux, these means /home/username***
 
 ```
 	
@@ -129,9 +131,11 @@ tree file system Pending
 -->
 
 
-## Unix is your friend
+Unix is your friend
+===================
 
-# pre-hw exercise
+Brusing up Unix and R skills
+----------------------------
 
 Up until now you’ve probably accessed sequence data from NCBI by going to the website, laboriously clicking around and finally finding and downloading the data you want. 
 
@@ -188,7 +192,8 @@ v) These files are genome assemblies in fasta format. Fasta files are a common s
 
 vi) Try this command on other assemblies to see how many contigs they have
 
-# Your first sequence analysis program!!!
+Your first sequence analysis program!!!
+---------------------------------------
 
 OK, so now that we have a useful command, wouldn’t it be great to turn it into a program that you can easily apply to a large number of genome assemblies? Of course it would! So, now we are going to take out cool contig counting command, and put it in a shell script that applies it to all files in the desired directory.
 
@@ -204,7 +209,8 @@ OK, so now that we have a useful command, wouldn’t it be great to turn it into
 bash fasta_counter.sh ./
 ```
 
-# Plotting genomic coverage in R
+Plotting genomic coverage in R
+------------------------------
 
 Data visualization plays an important role in organizing, analyzing and interpreting large amount of omics data. R is one of the most basic and powerful tool for manipulating and visualizing these types of data. The following task will brush up some basic R plotting commands and help you visualize some complex omics data for interpretation.
 
@@ -237,7 +243,6 @@ For advance and more beautiful visualization, ggplot2 can be employed to display
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/plot_2.png)
 
-# End: pre-hw exercise
 
 In software carpentry, you learned working with shell and automating simple tasks using basic unix commands. Lets see how some of these commands can be employed in genomics analysis while exploring various file formats that we use in day to day analysis. For this session, we will try to explore three different types of bioinformatics file formats: 
 
@@ -275,11 +280,11 @@ ls
 grep -v '^>' Acinetobacter_baumannii.fna | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} END {print sum}'
 
 
-#Note:
+***Note:***
 
-#- The sign "^" inside the grep pattern represents any pattern that starts with ">" and -v asks grep to ignore those lines.
-#- Use "|" to pass these lines to sed. sed stands for stream editor and can be used to parse, transform and replace text. Here, we are removing the characters "N" or "n" and keeping only "A,T,G,C" bases
-#- awk consists of three blocks: The first block (-F '\n') tells awk how each line is seperated from each other using a field seperator, the second block will keep counting characters in a line (using awk's default option "length") and save it in a variable "sum" and when it runs through all the lines in a stream, the third block will print the value of sum which represents total bases in a fasta file.
+***- The sign "^" inside the grep pattern represents any pattern that starts with ">" and -v asks grep to ignore those lines.***
+***- Use "|" to pass these lines to sed. sed stands for stream editor and can be used to parse, transform and replace text. Here, we are removing the characters "N" or "n" and keeping only "A,T,G,C" bases***
+***- awk consists of three blocks: The first block (-F '\n') tells awk how each line is seperated from each other using a field seperator, the second block will keep counting characters in a line (using awk's default option "length") and save it in a variable "sum" and when it runs through all the lines in a stream, the third block will print the value of sum which represents total bases in a fasta file.***
 
 ```
 </details>
@@ -299,7 +304,8 @@ for i in *.fna; do grep -v '^>' $i | sed 's/[N,n]//g' | awk -F '\n' '{sum += len
 </details>
 --
 
-> Exploring GFF files
+Exploring GFF files
+-------------------
 
 The GFF (General Feature Format) format is a tab-seperated file and consists of one line per feature, each containing 9 columns of data.
 
@@ -322,6 +328,7 @@ column 8: frame - One of '0', '1' or '2'. '0' indicates that the first base of t
 column 9: attribute - A semicolon-separated list of tag-value pairs, providing additional information about each feature such as gene name, product name etc.
 
 > Use less to explore first few lines of a gff file sample.gff
+
 
 ```
 
@@ -353,12 +360,12 @@ grep -v '^#' sample.gff | wc -l
 
 grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'rRNA' | wc -l
 
-# Or number of CDS or tRNA features?
+***Or number of CDS or tRNA features?***
 
 grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'CDS' | wc -l
 grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'tRNA' | wc -l
 
-# Note: In the above command, we are trying to search lines that doesn't starts with "#" and extracting feature information from third column.
+***Note: In the above command, we are trying to search lines that doesn't starts with "#" and extracting feature information from third column.***
 
 ```
 </details>
@@ -371,7 +378,7 @@ If for some reason you find awk daunting or too long, you can use "cut" command 
 ```
 cut -f 3 sample.gff | grep 'rRNA' | wc -l
 
-# Or number of CDS or tRNA features?
+***Or number of CDS or tRNA features?***
 
 cut -f 3 sample.gff | grep 'CDS' | wc -l
 cut -f 3 sample.gff | grep 'tRNA' | wc -l
@@ -383,7 +390,8 @@ cut -f 3 sample.gff | grep 'tRNA' | wc -l
 
 Some more useful one-line unix commands for GFF files: [here](https://github.com/stephenturner/oneliners#gff3-annotations)
 
-**Unix one-liners**
+Unix one-liners
+---------------
 
 As soon as you receive your sample data from sequencing centre, the first thing you do is check its quality using a quality control tool such as FastQC and make sure that it contain sequences from organism that you are working on (Free from any contamination). But before carrying out extensive QC, you can run a bash "one-liner" to get some basic statistics about the raw reads. These one-liners are great examples for how a set of simple (relatively) Unix commands can be piped together to do really useful things.
 
@@ -392,12 +400,13 @@ Run the following command to print total number of reads in each file, total num
 ```
 for i in Rush_KPC_266_*.gz; do zcat $i | awk 'BEGIN{OFS="\t"};((NR-2)%4==0){read=$1;total++;count[read]++;len+=length(read)}END{for(read in count){if(!max||count[read]>max) {max=count[read];maxRead=read};if(count[read]==1){unique++}};print total,unique,unique*100/total,maxRead,count[maxRead],count[maxRead]*100/total,len/total}'; done
 
-# The above awk command reads every fourth record and calculates some basic fastq statistics.
+***The above awk command reads every fourth record and calculates some basic fastq statistics.***
 ```
 
 You can find more of such super useful bash one-liners at Stephen Turner's github [page](https://github.com/stephenturner/oneliners). You can also use some pre-written unix utilities and tools such as [seqtk](https://github.com/lh3/seqtk), [bioawk](https://github.com/lh3/bioawk) and [fastx](http://hannonlab.cshl.edu/fastx_toolkit/) which comes in handy while extracting complex information from fasta/fastq/sam/bam files and are optimized to be insanely fast.
 
-## Contamination Screening using [FastQ Screen](http://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/)
+Contamination Screening using [FastQ Screen](http://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/)
+-------------------------------------------------------------------------------------------------------------
 
 When running a sequencing pipeline, it is very important to make sure that your data matches appropriate quality threshold and are free from any contaminants. This step will help you make correct interpretations in downstream analysis and will also let you know if you are required to redo the experiment/library preparation or resequencing or remove contaminant sequences.
 
@@ -430,7 +439,7 @@ Whenever you start an interactive job, the path resets to your home directory. S
 ```
 d1m
 
-#or
+
 
 cd /scratch/micro612w18_fluxod/username/day1_morn/
 
@@ -442,8 +451,7 @@ cd /scratch/micro612w18_fluxod/username/day1_morn/
 
 fastq_screen --subset 1000 --force --outdir ./ --aligner bowtie2 fastq_screen.fastq.gz
 
-#Note: We will screen only a subset of fastq reads against reference databases. To screen all the reads, change this argument to --subset 0 but will take long time to finish. (searching sequences against human or mouse genome is a time consuming step) 
-# Also Dont worry about "Broken pipe" warning.
+***Note: We will screen only a subset of fastq reads against reference databases. To screen all the reads, change this argument to --subset 0 but will take long time to finish. (searching sequences against human or mouse genome is a time consuming step). Also Dont worry about "Broken pipe" warning.
 
 ```
 
@@ -452,36 +460,38 @@ The above run will generate two types of output file: a screen report in text fo
 >iii. Download the fastq_screen graphical report to your home computer for inspection. Use scp if you find sftp annoying :)
 
 ```
-# Open a new terminal
+
+**Open a new terminal**
 
 sftp username@flux-login.arc-ts.umich.edu
 cd /scratch/micro612w18_fluxod/username/day1_morn/
 get fastq_screen_screen.png
 
-# or Use scp if you find sftp annoying :)
+**or Use scp if you find sftp annoying :)**
 
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_morn/fastq_screen_screen.png /path-to-local-directory/
 
-# You can use ~/Desktop/ as your local directory path
+**You can use ~/Desktop/ as your local directory path**
 
 ```
 
 Open fastq_screen_screen.png on your system. You will notice that the sample contain a significant amount of human reads; we should always remove these contaminants from our sample before proceeding to any type of microbial analysis.
 
-## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
+Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
+-----------------------------------------------------------------------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 Now we will run FastQC on some sample raw data to assess its quality. FastQC is a quality control tool that reads in sequence data in a variety of formats(fastq, bam, sam) and can either provide an interactive application to review the results or create an HTML based report which can be integrated into any pipeline. It is generally the first step that you take upon receiving the sequence data from sequencing facility to get a quick sense of its quality and whether it exhibits any unusual properties (e.g. contamination or unexpected biological features)
 
->ii. In your day1_morn directory, create a new directory for saving FastQC results.
+>i. In your day1_morn directory, create a new directory for saving FastQC results.
 
 ```
 mkdir Rush_KPC_266_FastQC_results
 mkdir Rush_KPC_266_FastQC_results/before_trimmomatic
 ```
 
->iii. Verify that FastQC is in your path by invoking it from command line.
+>ii. Verify that FastQC is in your path by invoking it from command line.
 
 ```
 fastqc -h
@@ -489,7 +499,7 @@ fastqc -h
 
 FastQC can be run in two modes: "command line" or as a GUI (graphical user interface). We will be using command line version of it.
 
->iv. Run FastQC to generate quality report of sequence reads.
+>iii. Run FastQC to generate quality report of sequence reads.
 
 ```
 fastqc -o Rush_KPC_266_FastQC_results/before_trimmomatic/ Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz --extract
@@ -501,9 +511,9 @@ The summary.txt file in these directories indicates if the data passed different
 
 You can visualize and assess the quality of data by opening html report in a local browser.
 
->v. Exit your cluster node so you don’t waste cluster resources and $$$!
+>iv. Exit your cluster node so you don’t waste cluster resources and $$$!
 
->vi. Download the FastQC report to your home computer to examine
+>v. Download the FastQC report to your home computer to examine
 
 ```
 sftp username@flux-login.arc-ts.umich.edu
@@ -530,7 +540,8 @@ Check out [this](https://sequencing.qcfail.com/articles/loss-of-base-call-accura
 
 > [A video FastQC walkthrough created by FastQC developers](https://www.youtube.com/watch?v=bz93ReOv87Y "FastQC video") 
 
-## Quality Trimming using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic "Trimmomatic Homepage")
+Quality Trimming using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic "Trimmomatic Homepage")
+-----------------------------------------------------------------------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -551,7 +562,7 @@ iflux
 
 cd /scratch/micro612w18_fluxod/username/day1_morn/
 
-# or
+or
 
 d1m
 ```
