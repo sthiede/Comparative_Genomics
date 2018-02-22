@@ -117,7 +117,7 @@
 
 wd
 
-# or 
+#or 
 
 cd /scratch/micro612w18_fluxod/username
 
@@ -144,7 +144,7 @@ cp -r /scratch/micro612w18_fluxod/shared/data/day2_morn ./
 
 d2m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn
 
@@ -222,7 +222,7 @@ less quast/report.txt
 <p>Lets take a look at one such mutiqc report that was generated using FastQC results on C. difficile samples.</p>
 <p>Download the html report Cdiff_multiqc_report.html from your day2_morn folder</p>
 <pre class="literal-block">
-# Note: Make sure you change 'username' in the below command with your 'uniqname'.
+#Note: Make sure you change 'username' in the below command with your 'uniqname'.
 
 scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/Cdiff_multiqc_report.html /path-to-local-directory/
 
@@ -236,25 +236,25 @@ Question: What is the overall quality of data?</div></blockquote>
 <pre class="literal-block">
 d2m 
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn/
 
 cd multiqc_analysis
 
-# Try invoking multiqc 
+#Try invoking multiqc 
 
 multiqc -h
 
-# Run multiqc on sample reports
+#Run multiqc on sample reports
 
 multiqc ./ --force --filename workshop_multiqc
 
-# Check if workshop_multiqc.html report was generated
+#Check if workshop_multiqc.html report was generated
 
 ls
 
-# Copy this report to your local system and open it in a browser for visual inspection
+#Copy this report to your local system and open it in a browser for visual inspection
 
 scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/workshop_multiqc.html /path-to-local-directory/
 
@@ -284,7 +284,7 @@ scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username
 
 d2m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn
 
@@ -348,7 +348,7 @@ Click Apply button
 <pre class="literal-block">
 d2m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn/
 </pre>
@@ -408,7 +408,7 @@ Click Apply button
 
 d2m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn/
 
@@ -460,7 +460,7 @@ prokka –setupdb
 
 d2m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn/
 

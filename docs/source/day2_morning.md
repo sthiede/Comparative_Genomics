@@ -1,4 +1,5 @@
-# Day 2 Morning
+Day 2 Morning
+=============
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 On day 1 we worked through a pipeline to map short-read data to a pre-existing assembly and identify single-nucleotide variants (SNVs) and small insertions/deletions. However, what this sort of analysis misses is the existence of sequence that is not present in your reference. Today we will tackle this issue by assembling our short reads into larger sequences, which we will then analyze to characterize the functions unique to our sequenced genome.   
@@ -10,7 +11,7 @@ Execute the following command to copy files for this morning’s exercises to yo
 
 wd
 
-# or 
+#or 
 
 cd /scratch/micro612w18_fluxod/username
 
@@ -23,7 +24,8 @@ pwd
 cp -r /scratch/micro612w18_fluxod/shared/data/day2_morn ./
 ```
 
-## Genome Assembly using [Spades](http://bioinf.spbau.ru/spades) Pipeline
+Genome Assembly using [Spades](http://bioinf.spbau.ru/spades) Pipeline
+----------------------------------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -42,7 +44,7 @@ Create a new directory for the spades output in your day2_morn folder
 
 d2m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn
 
@@ -96,7 +98,8 @@ qsub -V spades.pbs
 qstat –u username 
 ```
 
-## Assembly evaluation using [QUAST](http://bioinf.spbau.ru/quast)
+Assembly evaluation using [QUAST](http://bioinf.spbau.ru/quast)
+---------------------------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -124,7 +127,8 @@ less quast/report.txt
 
 Check the difference between each assembly statistics. Also check different types of report it generated.
 
-## Generating multiple sample reports using [multiqc](http://multiqc.info/)
+Generating multiple sample reports using [multiqc](http://multiqc.info/)
+--------------------------------------------------
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/multiqc.jpeg)
 
@@ -141,7 +145,7 @@ Lets take a look at one such mutiqc report that was generated using FastQC resul
 Download the html report Cdiff_multiqc_report.html from your day2_morn folder
 
 ```
-# Note: Make sure you change 'username' in the below command with your 'uniqname'.
+#Note: Make sure you change 'username' in the below command with your 'uniqname'.
 
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/Cdiff_multiqc_report.html /path-to-local-directory/
 
@@ -158,25 +162,25 @@ if you are not in day2_morn folder, navigate to it and change directory to multi
 ```
 d2m 
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn/
 
 cd multiqc_analysis
 
-# Try invoking multiqc 
+#Try invoking multiqc 
 
 multiqc -h
 
-# Run multiqc on sample reports
+#Run multiqc on sample reports
 
 multiqc ./ --force --filename workshop_multiqc
 
-# Check if workshop_multiqc.html report was generated
+#Check if workshop_multiqc.html report was generated
 
 ls
 
-# Copy this report to your local system and open it in a browser for visual inspection
+#Copy this report to your local system and open it in a browser for visual inspection
 
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/workshop_multiqc.html /path-to-local-directory/
 
@@ -193,7 +197,8 @@ The report contains Assembly, Fastq Screen and FastQC report for a mixture of 51
 > Question? Any sample's quality stand from the rest of the bunch?
 
 
-## Compare assembly to reference genome and post-assembly genome improvement
+Compare assembly to reference genome and post-assembly genome improvement
+-------------------------------------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -211,7 +216,7 @@ Create a BLAST database from your reference genome using the makeblastdb command
 
 d2m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn
 
@@ -286,7 +291,7 @@ Go back to flux and into the directory where the assembly is located.
 ```
 d2m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn/
 ```
@@ -351,7 +356,8 @@ Click Apply button
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/beautiful.png)
 
-## Map reads to the final ordered assembly
+Map reads to the final ordered assembly
+---------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -364,7 +370,7 @@ First create bwa index of ordered fasta file.
 
 d2m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn/
 
@@ -406,7 +412,8 @@ Select File -> sample_266_contigs_ordered.fasta -> Read BAM/VCF > select sorted 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/aligned_reads_deletion.png)
 
 
-## Genome Annotation
+Genome Annotation
+-----------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -427,7 +434,7 @@ Execute Prokka on your ordered assembly
 
 d2m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn/
 
