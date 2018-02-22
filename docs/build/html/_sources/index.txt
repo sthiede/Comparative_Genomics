@@ -1,6 +1,18 @@
 Micro 612 genomics workshop - Microbial Genomics Workshop 
 =========================================================
 
+.. toctree::
+   :hidden:
+
+   Day 1 Morning
+   Day 1 Afternoon
+   Day 2 Morning
+   Day 2 Afternoon
+   Day 3 Morning
+   Day 3 Afternoon
+   Helpful resources for microbial genomics
+   
+   
 
 ***A 3 day microbial bioinformatics workshop conducted by [Dr. Evan Snitkin](http://thesnitkinlab.com/index.php) at [University of Michigan](https://www.umich.edu/). This module covers the basics of microbial genomic analysis using publicly available tools that are commonly referenced in genomics literature. Students will learn the steps and associated tools that are required to process, annotate and compare microbial genomes.***
 

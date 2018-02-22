@@ -65,11 +65,7 @@
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">Day 1 Morning</a><ul>
 <li><a class="reference internal" href="#getting-your-data-onto-flux-and-setting-up-environment-variable">Getting your data onto Flux and setting up environment variable</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#unix-is-your-friend">Unix is your friend</a><ul>
-<li><a class="reference internal" href="#brusing-up-unix-and-r-skills">Brusing up Unix and R skills</a></li>
-<li><a class="reference internal" href="#your-first-sequence-analysis-program">Your first sequence analysis program!!!</a></li>
+<li><a class="reference internal" href="#unix-is-your-friend">Unix is your friend</a></li>
 <li><a class="reference internal" href="#plotting-genomic-coverage-in-r">Plotting genomic coverage in R</a></li>
 <li><a class="reference internal" href="#details"></details></a></li>
 <li><a class="reference internal" href="#exploring-gff-files">Exploring GFF files</a></li>
@@ -221,11 +217,8 @@ wd
 <!-- Check the dependencies Pending
 tree file system Pending
 --></div>
-</div>
 <div class="section" id="unix-is-your-friend">
-<span id="unix-is-your-friend"></span><h1>Unix is your friend<a class="headerlink" href="#unix-is-your-friend" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="brusing-up-unix-and-r-skills">
-<span id="brusing-up-unix-and-r-skills"></span><h2>Brusing up Unix and R skills<a class="headerlink" href="#brusing-up-unix-and-r-skills" title="Permalink to this headline">¶</a></h2>
+<span id="unix-is-your-friend"></span><h2>Unix is your friend<a class="headerlink" href="#unix-is-your-friend" title="Permalink to this headline">¶</a></h2>
 <p>Up until now you’ve probably accessed sequence data from NCBI by going to the website, laboriously clicking around and finally finding and downloading the data you want.</p>
 <p>There are a lot of reasons that is not ideal:</p>
 <ul class="simple">
@@ -272,9 +265,7 @@ gzip -d E_coli.fna.gz
         grep “&gt;”E_coli.fna | wc –l
 </pre>
 <p>vi) Try this command on other assemblies to see how many contigs they have</p>
-</div>
-<div class="section" id="your-first-sequence-analysis-program">
-<span id="your-first-sequence-analysis-program"></span><h2>Your first sequence analysis program!!!<a class="headerlink" href="#your-first-sequence-analysis-program" title="Permalink to this headline">¶</a></h2>
+<p><strong>Your first sequence analysis program!!!</strong></p>
 <p>OK, so now that we have a useful command, wouldn’t it be great to turn it into a program that you can easily apply to a large number of genome assemblies? Of course it would! So, now we are going to take out cool contig counting command, and put it in a shell script that applies it to all files in the desired directory.</p>
 <!---
 > Copy “/scratch/micro612w18_fluxod/shared/fasta_counter.sh” to your current directory (Hint – use the “cp” command)

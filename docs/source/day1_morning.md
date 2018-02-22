@@ -132,10 +132,8 @@ tree file system Pending
 
 
 Unix is your friend
-===================
+-------------------
 
-Brusing up Unix and R skills
-----------------------------
 
 Up until now you’ve probably accessed sequence data from NCBI by going to the website, laboriously clicking around and finally finding and downloading the data you want. 
 
@@ -192,8 +190,7 @@ v) These files are genome assemblies in fasta format. Fasta files are a common s
 
 vi) Try this command on other assemblies to see how many contigs they have
 
-Your first sequence analysis program!!!
----------------------------------------
+**Your first sequence analysis program!!!**
 
 OK, so now that we have a useful command, wouldn’t it be great to turn it into a program that you can easily apply to a large number of genome assemblies? Of course it would! So, now we are going to take out cool contig counting command, and put it in a shell script that applies it to all files in the desired directory.
 
