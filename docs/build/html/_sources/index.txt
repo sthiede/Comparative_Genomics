@@ -22,7 +22,7 @@ Prerequisites
 
 ***
 Contents
---------
+========
 
 [Day 1 Morning](day1_morning.html)
 ---------------
