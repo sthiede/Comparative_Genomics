@@ -16,7 +16,7 @@ import sys
 import os
 import shlex
 from recommonmark.parser import CommonMarkParser
-from recommonmark.transform import AutoStructify
+#from recommonmark.transform import AutoStructify
 #sys.path.insert(0, os.path.abspath('..'))
 source_parsers = {
     '.md': CommonMarkParser,
@@ -60,7 +60,7 @@ copyright = u'2018, Evan Snitkin, Ali Pirani'
 author = u'Evan Snitkin, Ali Pirani'
 
 
-github_doc_root = 'https://github.com/alipirani88/Comparative_Genomics/docs/'
+#github_doc_root = 'https://github.com/alipirani88/Comparative_Genomics/docs/'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -295,12 +295,12 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
 
-# app setup hook
-def setup(app):
-    app.add_config_value('recommonmark_config', {
-        'url_resolver': lambda url: github_doc_root + url,
-        'auto_toc_tree_section': 'Contents',
-        'enable_eval_rst': True,
-        'enable_auto_doc_ref': True,
-    }, True)
-    app.add_transform(AutoStructify)
+# # app setup hook
+# def setup(app):
+#     app.add_config_value('recommonmark_config', {
+#         'url_resolver': lambda url: github_doc_root + url,
+#         'auto_toc_tree_section': 'Contents',
+#         'enable_eval_rst': True,
+#         'enable_auto_doc_ref': True,
+#     }, True)
+#     app.add_transform(AutoStructify)
