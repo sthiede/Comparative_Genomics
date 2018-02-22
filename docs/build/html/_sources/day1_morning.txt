@@ -219,14 +219,6 @@ One such parameter is validating how well your sequencing experiment performed a
 
 The input for this task is a comma-separated file, which contains average sequencing coverage information i.e average number of reads mapped to each 1000 base pairs in reference genome. You can find this input file in your day1_morn directory by the name, Ecoli_coverage_average_bed.csv
 
-<!---
-Let’s copy Ecoli_coverage_average_bed.csv file from flux shared directory to your desktop using ‘scp’. ‘scp’ stands for secure copy and is used for securely transferring files between remote host/server(flux) and your local computer system. (Both directions)
-
-scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/shared/Ecoli_coverage_average_bed.csv ~/Desktop/
-
-Note: You can use your choice of folder/path to copy the file instead of  “~/Desktop/”
--->
-
 Now, Fire up R console or studio and import the file (Ecoli_coverage_average_bed.csv) using any type of data import functions in R (read.table, read.csv etc.) 
 
 Hint: The file is comma-separated and contains header line (“bin,Average_coverage”) so use appropriate parameters while importing the file

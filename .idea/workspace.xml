@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cb8308d-7ce8-4120-94ed-2b6a9668ebf1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/source/day1_morning.md" afterPath="$PROJECT_DIR$/docs/source/day1_morning.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Comparative_Genomics.iws" />
@@ -58,8 +57,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.0103449" vertical-offset="13580" max-vertical-offset="14740">
-              <caret line="564" column="0" selection-start-line="564" selection-start-column="0" selection-end-line="564" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.29390997" vertical-offset="4485" max-vertical-offset="14564">
+              <caret line="219" column="286" selection-start-line="219" selection-start-column="286" selection-end-line="219" selection-end-column="286" />
               <folding />
             </state>
           </provider>
@@ -253,8 +252,8 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.0103449" vertical-offset="13580" max-vertical-offset="14740">
-          <caret line="564" column="0" selection-start-line="564" selection-start-column="0" selection-end-line="564" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.29390997" vertical-offset="4485" max-vertical-offset="14564">
+          <caret line="219" column="286" selection-start-line="219" selection-start-column="286" selection-end-line="219" selection-end-column="286" />
           <folding />
         </state>
       </provider>

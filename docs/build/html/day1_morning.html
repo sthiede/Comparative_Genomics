@@ -287,10 +287,6 @@ bash fasta_counter.sh ./
 <p>One of the most common types of genomic analysis involves comparing the newly sequenced read data of an organism to your choice of reference organism genome. Mapping millions of reads generated in a sequencing experiment to the reference genome fasta file and interpreting various parameters can achieve this analysis.
 One such parameter is validating how well your sequencing experiment performed and assessing the “uniformity” of coverage from whole-genome sequencing.&nbsp;Visualizing Sequencing coverage across the reference genome help us answer this question. Sequencing coverage describes the average number of reads that align to, or &#8220;cover,&#8221; known reference bases.</p>
 <p>The input for this task is a comma-separated file, which contains average sequencing coverage information i.e average number of reads mapped to each 1000 base pairs in reference genome. You can find this input file in your day1_morn directory by the name, Ecoli_coverage_average_bed.csv</p>
-<!---
-Let’s copy Ecoli_coverage_average_bed.csv file from flux shared directory to your desktop using ‘scp’. ‘scp’ stands for secure copy and is used for securely transferring files between remote host/server(flux) and your local computer system. (Both directions)<p>scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/shared/Ecoli_coverage_average_bed.csv ~/Desktop/</p>
-<p>Note: You can use your choice of folder/path to copy the file instead of  “~/Desktop/”
-&#8211;&gt;</p>
 <p>Now, Fire up R console or studio and import the file (Ecoli_coverage_average_bed.csv) using any type of data import functions in R (read.table, read.csv etc.)</p>
 <p>Hint: The file is comma-separated and contains header line (“bin,Average_coverage”) so use appropriate parameters while importing the file</p>
 <p>Once the data in file is imported into R object, you can plot the column Average_coverage as a time series plot to assess the coverage of your mapped reads across genome.</p>
