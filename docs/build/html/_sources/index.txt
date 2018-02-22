@@ -1,8 +1,10 @@
-# Bacterial Comparative Genomics Workshop
+Micro 612 genomics workshop - Microbial Genomics Workshop 
+=========================================================
 
-#### A 3 day microbial bioinformatics workshop conducted by [Dr. Evan Snitkin](http://thesnitkinlab.com/index.php) at [University of Michigan](https://www.umich.edu/). This module covers the basics of microbial genomic analysis using publicly available tools that are commonly referenced in genomics literature. Students will learn the steps and associated tools that are required to process, annotate and compare microbial genomes.
 
-#### Date: Feb 28 - 2 March 2018
+***A 3 day microbial bioinformatics workshop conducted by [Dr. Evan Snitkin](http://thesnitkinlab.com/index.php) at [University of Michigan](https://www.umich.edu/). This module covers the basics of microbial genomic analysis using publicly available tools that are commonly referenced in genomics literature. Students will learn the steps and associated tools that are required to process, annotate and compare microbial genomes.***
+
+***Date: Feb 28 - 2 March 2018***
 
 <!---
 Link to Software Carpentry Etherpad:
@@ -10,7 +12,9 @@ http://pad.software-carpentry.org/micro612_bacterial_genomics_workshop
 -->
 
 ***
-#### Prerequisites:
+Prerequisites:
+--------------
+
 - Prior participation in a [Software Carpentry Workshop](https://umswc.github.io/2018-02-26-UMich/)
 
 <!---
@@ -18,9 +22,11 @@ http://pad.software-carpentry.org/micro612_bacterial_genomics_workshop
 -->
 ***
 
-#### Workshop:
+Workshop:
+---------
 
-[Day 1 Morning](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
+[Day 1 Morning](day1_morning.md)
+
 ***
 - [Getting your data onto Flux and setting up Environment variable](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#getting-your-data-onto-glux-and-setting-up-environment-variable)
 - [Unix is your friend](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#unix-is-your-friend)
