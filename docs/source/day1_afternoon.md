@@ -257,25 +257,19 @@ Open the file WgsMetrics.txt and explore various statistics. It will generate va
 sed -n 7,8p WgsMetrics.txt | awk -F'\t' '{print $2}'
 
 ```
+
 <!--
 ##Generate Alignment Statistics report using [Qualimap](http://qualimap.bioinfo.cipf.es/)
-
 Qualimap outputs a very informative report about the alignments and coverage across the entire genome. Lets create one for our sample. The below command calls bamqc utility of qualimap and generates a report in pdf format.
-
-``` 
-
-qualimap bamqc -bam Rush_KPC_266__aln_sort.bam -outdir ./ -outfile Rush_KPC_266__report.pdf -outformat pdf 
-
 ```
-
+qualimap bamqc -bam Rush_KPC_266__aln_sort.bam -outdir ./ -outfile Rush_KPC_266__report.pdf -outformat pdf
+```
 Lets get this pdf report onto our local system and check the chromosome stats table, mapping quality and coverage across the entire reference genome.
-
 ```
-
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
-
 ```
 -->
+
 Variant Calling and Filteration
 -------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
