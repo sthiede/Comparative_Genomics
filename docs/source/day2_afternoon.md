@@ -1,7 +1,9 @@
-# Day 2 Afternoon
+Day 2 Afternoon
+===============
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-## High-throughput BLAST and pan-genome analysis
+High-throughput BLAST and pan-genome analysis
+---------------------------------------------
 
 This morning we learned how to perform basic genome annotation and comparison using Prokka and ACT. Now we will up the ante and do some more sophisticated comparative genomics analyses! 
 First, we will create custom BLAST databases to identify specific antibiotic resistance genes of interest in a set of genomes. 
@@ -20,7 +22,8 @@ cp -r /scratch/micro612w18_fluxod/shared/data/day2_after/ ./
 
 ```
 
-## Determine which genomes contain beta-lactamase genes
+Determine which genomes contain beta-lactamase genes
+----------------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -119,7 +122,8 @@ formatdb -i ardb_ROI_genes.pfasta -p T
 blastall -p blastp -i Abau_all.pfasta -d ardb_ROI_genes.pfasta -o bl_blastp_results -m 8 -e 1e-20 -v 1 -b 1
 ```
 
-## Identification of antibiotic resistance genes with [LS-BSR](https://github.com/jasonsahl/LS-BSR) and the [ARDB](http://ardb.cbcb.umd.edu/) database
+Identification of antibiotic resistance genes with [LS-BSR](https://github.com/jasonsahl/LS-BSR) and the [ARDB](http://ardb.cbcb.umd.edu/) database
+-----------------------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -275,7 +279,8 @@ unique_bsr_mat = bsr_mat[rowSums(bsr_mat > .5) == 1,]
 
 Print out to screen and make a heatmap to explore
 
-## Perform pan-genome analysis with LS-BSR
+Perform pan-genome analysis with LS-BSR
+---------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -411,7 +416,8 @@ sum(grepl("hypothetical" , row.names(bsr_mat_PG[rowSums(bsr_mat_PG > 0.4) == 4,]
 
 ```
 
-## Perform genome comparisons with [ACT](http://www.sanger.ac.uk/science/tools/artemis-comparison-tool-act)
+Perform genome comparisons with [ACT](http://www.sanger.ac.uk/science/tools/artemis-comparison-tool-act)
+-------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 

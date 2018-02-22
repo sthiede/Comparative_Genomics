@@ -461,4 +461,4 @@ Comparison file 1  = sample_266_contigs_ordered.crunch
 Sequence file 2  = sample_266_contigs_ordered.gbf
 ```
 
->Play around with ACT to see what types of genes are unique to sample 266!!! 
+**Play around with ACT to see what types of genes are unique to sample 266!!!**
