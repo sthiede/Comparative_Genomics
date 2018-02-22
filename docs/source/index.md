@@ -25,7 +25,7 @@ Prerequisites
 Contents
 --------
 
-[Day 1 Morning](day1_morning.md)
+[Day 1 Morning](day1_morning.html)
 
 ***
 - [Getting your data onto Flux and setting up Environment variable](https://github.com/alipirani88/Comparative_Genomics/docs/build/html/day1_morning.html#getting-your-data-onto-glux-and-setting-up-environment-variable)
