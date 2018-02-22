@@ -1,0 +1,548 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Day 2 Afternoon &mdash; Micro 612 genomics workshop 3.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Micro 612 genomics workshop 3.0 documentation" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="index.html" class="fa fa-home"> Micro 612 genomics workshop</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Day 2 Afternoon</a><ul>
+<li><a class="reference internal" href="#high-throughput-blast-and-pan-genome-analysis">High-throughput BLAST and pan-genome analysis</a></li>
+<li><a class="reference internal" href="#determine-which-genomes-contain-beta-lactamase-genes">Determine which genomes contain beta-lactamase genes</a></li>
+<li><a class="reference internal" href="#identification-of-antibiotic-resistance-genes-with-ls-bsr-and-the-ardb-database">Identification of antibiotic resistance genes with LS-BSR and the ARDB database</a></li>
+<li><a class="reference internal" href="#perform-pan-genome-analysis-with-ls-bsr">Perform pan-genome analysis with LS-BSR</a></li>
+<li><a class="reference internal" href="#perform-genome-comparisons-with-act">Perform genome comparisons with ACT</a></li>
+</ul>
+</li>
+</ul>
+</div>
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Micro 612 genomics workshop</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Day 2 Afternoon</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/day2_afternoon.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="day-2-afternoon">
+<span id="day-2-afternoon"></span><h1>Day 2 Afternoon<a class="headerlink" href="#day-2-afternoon" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<div class="section" id="high-throughput-blast-and-pan-genome-analysis">
+<span id="high-throughput-blast-and-pan-genome-analysis"></span><h2>High-throughput BLAST and pan-genome analysis<a class="headerlink" href="#high-throughput-blast-and-pan-genome-analysis" title="Permalink to this headline">¶</a></h2>
+<p>This morning we learned how to perform basic genome annotation and comparison using Prokka and ACT. Now we will up the ante and do some more sophisticated comparative genomics analyses!
+First, we will create custom BLAST databases to identify specific antibiotic resistance genes of interest in a set of genomes.
+Second, we will use the large-scale BLAST-based tool LS-BSR to identify the complete antibiotic resistome in our genomes.
+Third, we will move beyond antibiotic resistance, and look at the complete set of protein coding genes in our input genomes.
+Finally, we will go back to ACT to understand the sorts of genomic rearrangements underlying observed variation in gene content.</p>
+<p>For these exercises we will be looking at four closely related Acinetobacter baumannii strains. However, despite being closely related, these genomes have major differences in gene content, as A. baumannii has a notoriously flexible genome! In fact, in large part due to its genomic flexibility, A. baumannii has transitioned from a harmless environmental contaminant to a pan-resistant super-bug in a matter of a few decades. If you are interested in learning more, check out this nature <a class="reference external" href="http://www.nature.com/nrmicro/journal/v5/n12/abs/nrmicro1789.html">review</a> or <a class="reference external" href="http://www.pnas.org/content/108/33/13758.abstract">this</a> paper, I published a few years back analyzing the very same genomes you are working with.</p>
+<p>Execute the following command to copy files for this afternoon’s exercises to your scratch directory:</p>
+<div class="highlight-"><div class="highlight"><pre>cd /scratch/micro612w18_fluxod/username
+cp -r /scratch/micro612w18_fluxod/shared/data/day2_after/ ./
+</pre></div>
+</div>
+</div>
+<div class="section" id="determine-which-genomes-contain-beta-lactamase-genes">
+<span id="determine-which-genomes-contain-beta-lactamase-genes"></span><h2>Determine which genomes contain beta-lactamase genes<a class="headerlink" href="#determine-which-genomes-contain-beta-lactamase-genes" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md">[back to top]</a>
+<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p>Before comparing full genomic content, lets start by looking for the presence of particular genes of interest. A. baumannii harbors an arsenal of resistance genes, and it would be interesting to know how particular resistance families vary among our 4 genomes. To accomplish this we will use the antibiotic resistance database (<a class="reference external" href="http://ardb.cbcb.umd.edu/">ARDB</a>). In particular, we are going to extract a set of genes from ARDB that we are interested in probing our genomes for, and create a custom BLAST database to compare against.</p>
+<p><strong>Get beta-lactamase genes from <a class="reference external" href="http://ardb.cbcb.umd.edu/">ARDB</a> database</strong></p>
+<blockquote>
+<div>i. Run the custom perl script filter_fasta_file.pl to extract genes annotated as beta-lactamases from the full ARDB fasta file.</div></blockquote>
+<p>The script takes as input:</p>
+<ol class="simple">
+<li>the ARDB database (resisGenes.pfasta),</li>
+<li>a file containing terms to search the database for (fasta_file_keys) and</li>
+<li>an output file to contain the subset of sequences that match the text your searching for (ardb_beta_lactam_genes.pfasta).</li>
+</ol>
+<pre class="literal-block">
+
+module load bioperl
+cd scratch/micro612w18_fluxod/username/day2_after
+perl filter_fasta_file.pl resisGenes.pfasta fasta_file_keys ardb_beta_lactam_genes.pfasta
+
+</pre>
+<blockquote>
+<div>ii. Build BLAST database from fasta file</div></blockquote>
+<p>Run formatdb on the file of beta-lactamases to create a BLAST database.
+formatdb takes as input:</p>
+<ol class="simple">
+<li>a fasta file of protein or nucleotide sequences (ardb_beta_lactam_genes.pfasta) and</li>
+<li>a flag indicating whether to construct a protein or nucleotide database (in this case protein/ -p T).</li>
+</ol>
+<pre class="literal-block">
+formatdb -i ardb_beta_lactam_genes.pfasta -p T
+</pre>
+<blockquote>
+<div>iii. BLAST A. baumannii proteins against our custom beta-lactamase database</div></blockquote>
+<p>Run BLAST!</p>
+<p>The input parameters are:</p>
+<ol class="simple">
+<li>the type of blast to use (-p blastp),</li>
+<li>query sequences (-i Abau_all.pfasta),</li>
+<li>the database to search against (-d ardb_beta_lactam_genes.pfasta),</li>
+<li>the name of a file to store your results (-o bl_blastp_results),</li>
+<li>output format (-m 8),</li>
+<li>e-value cutoff (-e 1e-20),</li>
+<li>number of database sequences to return (-v 1) and</li>
+<li>number of database sequences to show alignment for (-b 1).</li>
+</ol>
+<pre class="literal-block">
+
+blastall -p blastp -i Abau_all.pfasta -d ardb_beta_lactam_genes.pfasta -o bl_blastp_results -m 8 -e 1e-20 -v 1 -b 1
+
+</pre>
+<p>Use less to look at bl_blastp_results.</p>
+<pre class="literal-block">
+less bl_blastp_results
+</pre>
+<blockquote>
+<div>Question: Experiment with the –m parameter, which controls different output formats that BLAST can produce.</div></blockquote>
+<blockquote>
+<div>iv. Repeat steps i-iii for a different resistance gene class</div></blockquote>
+<p>Use nano to change fasta_file_keys to contain phrase you’d like to search for (e.g. acetyltransferase, carbapenemase)</p>
+<p>Run filter_fasta_file.pl to extract genes annotated with your resistance of interest (ROI) from the full ARDB fasta file</p>
+<pre class="literal-block">
+perl filter_fasta_file.pl resisGenes.pfasta fasta_file_keys ardb_ROI_genes.pfasta
+</pre>
+<p>Create new BLAST database with formatdb</p>
+<pre class="literal-block">
+formatdb -i ardb_ROI_genes.pfasta -p T
+</pre>
+<p><strong>BLAST!</strong></p>
+<pre class="literal-block">
+blastall -p blastp -i Abau_all.pfasta -d ardb_ROI_genes.pfasta -o bl_blastp_results -m 8 -e 1e-20 -v 1 -b 1
+</pre>
+</div>
+<div class="section" id="identification-of-antibiotic-resistance-genes-with-ls-bsr-and-the-ardb-database">
+<span id="identification-of-antibiotic-resistance-genes-with-ls-bsr-and-the-ardb-database"></span><h2>Identification of antibiotic resistance genes with <a class="reference external" href="https://github.com/jasonsahl/LS-BSR">LS-BSR</a> and the <a class="reference external" href="http://ardb.cbcb.umd.edu/">ARDB</a> database<a class="headerlink" href="#identification-of-antibiotic-resistance-genes-with-ls-bsr-and-the-ardb-database" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md">[back to top]</a>
+<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p>Next, instead of looking at resistance classes one at a time, lets look at them all in one shot! To do this we will use <a class="reference external" href="https://peerj.com/articles/332/">LS-BSR</a>, which essentially is just a wrapper for doing the same sort of BLASTing we just did in the previous step. BSR stands for BLAST Score Ratio, which refers to what the output is. In particular, for each query gene LS-BSR returns the ratio between: 1) the BLAST score of best hit in target genome and 2) BLAST score of query gene against itself. So, the output is a query by target genome matrix, where the values are between 0 and 1, and indicate the strength of a given queries BLAST hit in the target genome.</p>
+<blockquote>
+<div>i. Create a non-redundant list of resistance genes</div></blockquote>
+<p>There is a lot of redundancy in the ARDB (e.g. lots of closely related genes), which would make the output difficult to sort through. Here, we use usearch to select representatives from the database and create a non-redundant gene set!</p>
+<p>We are running usearch with the following parameters:</p>
+<ol class="simple">
+<li>the clustering algorithm (-cluster_fast),</li>
+<li>the files of sequences you want to cluster (resisGenes.pep),</li>
+<li>the minimum sequence identity to be included in an existing cluster (-id 0.8),</li>
+<li>an output fasta file with reperesentatives (centroids) of each sequence cluster (-centroids resisGenes_nr.pep) and</li>
+<li>an output file describing the results of the clustering (-uc resisGenes.uc).</li>
+</ol>
+<!--
+#changed and no longer needed:
+#module load med 
+#module load sph 
+#module load lsa 
+#module unload python
+#module load python/2.7.3 
+#module load biopython
+#module load ls-bsr 
+--><pre class="literal-block">
+
+&gt; Make sure you are in day2_after directory
+
+cd scratch/micro612w18_fluxod/username/day2_after
+
+&gt; Load relevant Modules
+
+module load usearch 
+module load prodigal
+
+&gt; Run usearch to select representatives from the database and create a non-redundant gene set! 
+
+usearch -cluster_fast resisGenes.pep -id 0.8 -centroids resisGenes_nr.pep -uc resisGenes.uc
+
+</pre>
+<blockquote>
+<div>ii. Run LS-BSR</div></blockquote>
+<p>Change your directory to day2_after:</p>
+<pre class="literal-block">
+
+&gt; Make sure you are in day2_after directory
+
+cd /scratch/micro612w18_fluxod/username/day2_after/
+
+</pre>
+<p>Run LS-BSR (it will take a few minutes)!</p>
+<p>The input parameters are: a directory with your genomes (-d Abau_genomes) and a fasta file of query genes (-g resisGenes_nr.pep)</p>
+<pre class="literal-block">
+
+python /scratch/micro612w18_fluxod/shared/bin/LS-BSR-master/ls_bsr.py -d Abau_genomes/ -g resisGenes_nr.pep
+
+</pre>
+<blockquote>
+<div>iii. Download LS-BSR output matrix to your own computer for analysis in R</div></blockquote>
+<p>Use scp to get LS-BSR output onto your laptop</p>
+<pre class="literal-block">
+
+&gt; Dont forget to change username in the below command
+
+scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_after/bsr_matrix_values.txt ~/Desktop
+
+</pre>
+<p>Fire up RStudio and read the matrix:</p>
+<pre class="literal-block">
+
+&gt; Make sure you have copied bsr_matrix_values.txt file to your desktop. If not then give the path where bsr_matrix_values.txt is located.
+
+bsr_mat = read.table('~/Desktop/bsr_matrix_values.txt', sep = &quot;\t&quot;, row.names = 1, header = TRUE, quote = &quot;&quot;)
+
+</pre>
+<p>Use head, str, dim, etc. to explore the matrix you read in</p>
+<p>iv. Make a heatmap of all the LS-BSR results</p>
+<p>Install and load the R library &#8220;heatmap3&#8221;</p>
+<p>Make a heatmap of the complete LS-BSR matrix. Check out the help file to see what the input parameters do, and behold the plethora of other options to customize your heatmaps!</p>
+<pre class="literal-block">
+
+heatmap3(bsr_mat, , scale = &quot;none&quot;, distfun = function(x){dist(x, method = &quot;manhattan&quot;)}, margin = c(10,10), cexCol = 0.85, cexRow = 0.5)
+
+</pre>
+<blockquote>
+<div>v. Subset LS-BSR data to only include genes present in at least one genome</div></blockquote>
+<p>From the previous step you should have discerned that full LS-BSR matrix is too large to get a useful visualization, so we need to subset it.
+Lets first subset the matrix to focus only on genes present in at least one of our genomes.
+Values in the LS-BSR matrix are between 0 and 1, and represent the sequence identity to the query gene.
+We will arbitrarily say that if a protein have a BLAST score ratio of less then 0.5, then its absent.</p>
+<pre class="literal-block">
+
+bsr_mat_subset = bsr_mat[rowSums(bsr_mat &gt; 0.5) &gt; 0,]
+
+</pre>
+<p>Make a heatmap of your subset (much better!)</p>
+<pre class="literal-block">
+
+heatmap3(bsr_mat_subset, , scale = &quot;none&quot;, distfun = function(x){dist(x, method = &quot;manhattan&quot;)}, margin = c(10,10), cexCol = 0.85, cexRow = 0.5)
+
+</pre>
+<blockquote>
+<div>vi. Determine the total number of resistance genes present in each genome</div></blockquote>
+<p>We use colSums to count the number of genes with greater than 50% identity to the query</p>
+<pre class="literal-block">
+colSums(bsr_mat &gt; 0.5)
+</pre>
+<p>How does the total number of genes vary by altering the percent identity threshold?</p>
+<blockquote>
+<div>vii. Determine the total number of bla genes in each genome</div></blockquote>
+<p>Next, we will use grepl to pull out genes of interest</p>
+<pre class="literal-block">
+bla_bsr_mat = bsr_mat[grepl('beta-lactamase', row.names(bsr_mat)) ,]
+</pre>
+<p>Print out to screen and make a heatmap to explore</p>
+<blockquote>
+<div>viii. Subset the full matrix to look at genes that are present in only one genome</div></blockquote>
+<p>Get genes present in only one genome</p>
+<pre class="literal-block">
+unique_bsr_mat = bsr_mat[rowSums(bsr_mat &gt; .5) == 1,]
+</pre>
+<p>Print out to screen and make a heatmap to explore</p>
+</div>
+<div class="section" id="perform-pan-genome-analysis-with-ls-bsr">
+<span id="perform-pan-genome-analysis-with-ls-bsr"></span><h2>Perform pan-genome analysis with LS-BSR<a class="headerlink" href="#perform-pan-genome-analysis-with-ls-bsr" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md">[back to top]</a>
+<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p>As a final BLASTing exercise we will use LS-BSR to explore the pan-genome of our A. baumannii. The pan-genome is just a fancy term for the full complement of genes in a set of genomes.
+The way LS-BSR does this is by:</p>
+<ol class="simple">
+<li>applying prodigal to identify protein coding genes in input genomes,</li>
+<li>applying usearch to create non-redundant set of genes and</li>
+<li>BLASTing the set of non-redundant genes against the genomes.</li>
+</ol>
+<blockquote>
+<div>i. Get pan-genome matrix and transfer annotation</div></blockquote>
+<p>Make sure you are on an interactive node, as this will be even more computationally intensive!</p>
+<pre class="literal-block">
+iflux
+</pre>
+<p>Change your directory to day2_after</p>
+<pre class="literal-block">
+
+&gt; Make sure to change username with your uniqname
+
+cd /scratch/micro612w18_fluxod/username/day2_after/
+
+</pre>
+<p>Run LS-BSR! The –u parameter is just a path to where usearch lives on flux.
+If you started a new interactive job since you ran LS-BSR, you will need to re-load the required modules for LS-BSR listed above.</p>
+<pre class="literal-block">
+
+cd scratch/micro612w18_fluxod/username/day2_after
+
+python /scratch/micro612w18_fluxod/shared/bin/LS-BSR-master/ls_bsr.py -d Abau_genomes/ -u /sw/med/centos7/usearch/8.1/usearch
+
+</pre>
+<p>Run the custom perl script transfer_annotations.pl to add annotations to your BSR matrix. The output of this script will be bsr_matrix_values_annot.txt</p>
+<pre class="literal-block">
+perl transfer_annotations.pl Abau_ECII_PC.fasta Abau_ECII_PC.NR.annot bsr_matrix_values.txt consensus.fasta
+</pre>
+<blockquote>
+<div>ii. Read matrix into R and create heatmap</div></blockquote>
+<p>Use scp to get LS-BSR output onto your laptop</p>
+<pre class="literal-block">
+
+&gt; Make sure to change username with your uniqname
+
+scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_after/bsr_matrix_values_annot.txt ~/Desktop
+
+</pre>
+<p>Fire up RStudio and read the matrix in</p>
+<pre class="literal-block">
+
+bsr_mat_PG = read.table('~/Desktop/bsr_matrix_values_annot.txt', sep = &quot;\t&quot;, row.names = 1, header = TRUE, quote = &quot;&quot;)
+
+</pre>
+<p>Use head, str, dim, etc. to explore the matrix you read in
+Make a heatmap for the full matrix</p>
+<pre class="literal-block">
+
+heatmap3(as.matrix(bsr_mat_PG), , scale = &quot;none&quot;, distfun = function(x){dist(x, method = &quot;manhattan&quot;)}, margin = c(10,10), cexCol = 0.85, cexRow = 0.5)
+
+</pre>
+<p>Make a heatmap for variable genes (present in at least one, but not all of the genomes</p>
+<pre class="literal-block">
+
+bsr_mat_PG_subset = bsr_mat_PG[rowSums(bsr_mat_PG &gt; 0.4) &gt; 0 &amp; rowSums(bsr_mat_PG &gt; 0.4) &lt; 4 ,] 
+heatmap3(as.matrix(bsr_mat_PG_subset), , scale = &quot;none&quot;, distfun = function(x){dist(x, method = &quot;manhattan&quot;)}, margin = c(10,10), cexCol = 0.85, cexRow = 0.5)
+
+</pre>
+<blockquote>
+<div>iii. Which genomes are most closely related based upon shared gene content?</div></blockquote>
+<p>We will use the outer function to determine the number of genes shared by each pair of genomes.
+Here we are arbitrarily deciding that a gene is present if the BSR is greater than 0.4.
+Look at the help page for outer to gain additional insight into how this is working.</p>
+<pre class="literal-block">
+outer(1:4,1:4, FUN = Vectorize(function(x,y){sum(bsr_mat_PG_subset[,x] &gt; 0.4 &amp; bsr_mat_PG_subset[,y] &gt; 0.4)}))
+</pre>
+<blockquote>
+<div>iv. What is the size of the core genome?</div></blockquote>
+<p>Lets first get an overview of how many genes are present in different numbers of genomes (0, 1, 2, 3 or 4) by plotting a histogram. Here, we combine hist with rowSums to accomplish this.</p>
+<pre class="literal-block">
+hist(rowSums(bsr_mat_PG &gt; 0.4))
+</pre>
+<p>Next, lets figure out how big the core genome is (e.g. how many genes are common to all of our genomes)?</p>
+<pre class="literal-block">
+sum(rowSums(bsr_mat_PG &gt; 0.4) == 4)
+</pre>
+<blockquote>
+<div>v. What is the size of the accessory genome?</div></blockquote>
+<p>Lets use a similar approach to determine the size of the accessory genome (e.g. those genes present in only a subset of our genomes).</p>
+<pre class="literal-block">
+sum(rowSums(bsr_mat_PG &gt; 0.4) &lt; 4 &amp; rowSums(bsr_mat_PG &gt; 0.4) &gt; 0)
+</pre>
+<blockquote>
+<div>vi. What types of genes are unique to a given genome?</div></blockquote>
+<p>So far we have quantified the core and accessory genome, now lets see if we can get an idea of what types of genes are core vs. accessory. Lets start by looking at those genes present in only a single genome. What do you notice about these genes?</p>
+<pre class="literal-block">
+row.names(bsr_mat_PG[rowSums(bsr_mat_PG &gt; 0.4) == 1,])
+</pre>
+<p>vii. What is the number of hypothetical genes in core vs. accessory genome?</p>
+<p>Looking at unqiue genes we see that many are annotated as “hypothetical”, indicating that the sequence looks like a gene, but has no detectable homology with a functionally characterized gene. Determine the fraction of “hypothetical” genes in unique vs. core. Why does this make sense?</p>
+<pre class="literal-block">
+
+sum(grepl(&quot;hypothetical&quot; , row.names(bsr_mat_PG[rowSums(bsr_mat_PG &gt; 0.4) == 1,]))) / sum(rowSums(bsr_mat_PG &gt; 0.4) == 1)
+
+sum(grepl(&quot;hypothetical&quot; , row.names(bsr_mat_PG[rowSums(bsr_mat_PG &gt; 0.4) == 4,]))) / sum(rowSums(bsr_mat_PG &gt; 0.4) == 4)
+
+</pre>
+</div>
+<div class="section" id="perform-genome-comparisons-with-act">
+<span id="perform-genome-comparisons-with-act"></span><h2>Perform genome comparisons with <a class="reference external" href="http://www.sanger.ac.uk/science/tools/artemis-comparison-tool-act">ACT</a><a class="headerlink" href="#perform-genome-comparisons-with-act" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md">[back to top]</a>
+<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p>In the previous exercises we were focusing on gene content, but losing the context of the structural variation underlying gene content variation (e.g. large insertions and deletions).
+Here we will use ACT to compare two of our genomes (note that you can use ACT to compare more than two genomes if desired).</p>
+<p>i. Create ACT alignment file with BLAST</p>
+<p>As we saw this morning, to compare genomes in ACT we need to use BLAST to create the alignments. We will do this on flux.</p>
+<pre class="literal-block">
+
+cd scratch/micro612w18_fluxod/username/day2_after
+blastall -p blastn -i ./Abau_genomes/AbauA_genome.fasta -d ./Abau_BLAST_DB/ACICU_genome.fasta -m 8 -e 1e-20 -o AbauA_vs_ACICU.blast
+
+</pre>
+<blockquote>
+<div>ii. Read in genomes, alignments and annotation files</div></blockquote>
+<p>Use sftp to get ACT files onto your laptop</p>
+<pre class="literal-block">
+
+cd ~/Desktop (or wherever your desktop is)
+mkdir Abau_ACT 
+cd Abau_ACT 
+sftp username&#64;flux-login.arc-ts.umich.edu 
+cd /scratch/micro612w18_fluxod/username/day2_after 
+get Abau_genomes/AbauA_genome.fasta 
+get Abau_genomes/ACICU_genome.fasta 
+get AbauA_vs_ACICU.blast 
+get Abau_ACT_files/AbauA_genome_gene.gff 
+get Abau_ACT_files/ACICU_genome_gene.gff
+
+</pre>
+<blockquote>
+<div>iii. Explore genome comparison and features of ACT</div></blockquote>
+<p>Read in genomes and alignment into ACT</p>
+<pre class="literal-block">
+
+Go to File -&gt; open 
+Sequence file 1  = ACICU_genome.fasta 
+Comparison file 1  = AbauA_vs_ACICU.blast
+Sequence file 2  = AbauA_genome.fasta
+
+</pre>
+<p>Before we use annotation present in genbank files. Here we will use ACT specific annotation files so we get some prettier display (resistance genes = red, transposable elements = bright green)</p>
+<pre class="literal-block">
+
+Go to File -&gt; ACICU_genome.fasta -&gt; Read an entry file = ACICU_genome_gene.gff
+
+Go to File -&gt; AbauA_genome.fasta -&gt; Read an entry file = AbauA_genome_gene.gff
+
+</pre>
+<p>Play around in ACT to gain some insight into the sorts of genes present in large insertion/deletion regions.
+See if you can find:</p>
+<ol class="simple">
+<li>differences in phage content,</li>
+<li>membrane biosynthetic gene cluster variation and</li>
+<li>antibiotic resistance island variation.</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Evan Snitkin, Ali Pirani.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
