@@ -66,6 +66,7 @@
 <li><a class="reference internal" href="#">Day 1 Afternoon</a><ul>
 <li><a class="reference internal" href="#read-mapping">Read Mapping</a></li>
 <li><a class="reference internal" href="#generate-alignment-statistics">Generate Alignment Statistics</a></li>
+<li><a class="reference internal" href="#variant-calling-and-filteration">Variant Calling and Filteration</a></li>
 <li><a class="reference internal" href="#visualize-bam-and-vcf-files-in-artemis">Visualize BAM and VCF files in Artemis</a></li>
 </ul>
 </li>
@@ -291,19 +292,18 @@ sed -n 7,8p WgsMetrics.txt | awk -F'\t' '{print $2}'
 
 </pre>
 <!--
-##Generate Alignment Statistics report using [Qualimap](http://qualimap.bioinfo.cipf.es/)<p>Qualimap outputs a very informative report about the alignments and coverage across the entire genome. Lets create one for our sample. The below command calls bamqc utility of qualimap and generates a report in pdf format.</p>
-<div class="highlight-"><div class="highlight"><pre>qualimap bamqc -bam Rush_KPC_266__aln_sort.bam -outdir ./ -outfile Rush_KPC_266__report.pdf -outformat pdf 
-</pre></div>
-</div>
-<p>Lets get this pdf report onto our local system and check the chromosome stats table, mapping quality and coverage across the entire reference genome.</p>
-<pre class="literal-block">
-
-scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
-
-</pre>
-<p>&#8211;&gt;
-Variant Calling and Filteration</p>
-<hr class="docutils" />
+##Generate Alignment Statistics report using [Qualimap](http://qualimap.bioinfo.cipf.es/)
+Qualimap outputs a very informative report about the alignments and coverage across the entire genome. Lets create one for our sample. The below command calls bamqc utility of qualimap and generates a report in pdf format.
+```
+qualimap bamqc -bam Rush_KPC_266__aln_sort.bam -outdir ./ -outfile Rush_KPC_266__report.pdf -outformat pdf
+```
+Lets get this pdf report onto our local system and check the chromosome stats table, mapping quality and coverage across the entire reference genome.
+```
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
+```
+--></div>
+<div class="section" id="variant-calling-and-filteration">
+<span id="variant-calling-and-filteration"></span><h2>Variant Calling and Filteration<a class="headerlink" href="#variant-calling-and-filteration" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md">[back to top]</a>
 <a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
 <p>One of the downstream uses of read mapping is finding differences between our sequence data against a reference. This step is achieved by carrying out variants calling using any of the variant callers(samtools, gatk, freebayes etc). Each variant caller uses a different statistical framework to discover SNPs and other types of mutations. For those of you who are interested in finding out more about the statistics involved, please refer to <a class="reference external" href="">this</a> samtools paper, one of most commonly used variant callers.</p>
@@ -359,24 +359,21 @@ vcftools --vcf Rush_KPC_266__filter_gatk.vcf --keep-filtered pass_filter --remov
 </pre>
 <!--
 commenting out consensus generation
->iii. Generate Consensus fasta file from filtered variants using vcftools:<p>A consensus fasta sequence will contain alleles from reference sequence at positions where no variants were observed and variants that were observed at positions described in vcf file.</p>
-<p>Run the commands below to generate a consensus fasta sequence.</p>
-<pre class="literal-block">
-
+>iii. Generate Consensus fasta file from filtered variants using vcftools:
+A consensus fasta sequence will contain alleles from reference sequence at positions where no variants were observed and variants that were observed at positions described in vcf file.
+Run the commands below to generate a consensus fasta sequence.
+```
 bgzip Rush_KPC_266__filter_onlysnp.recode.vcf
 tabix Rush_KPC_266__filter_onlysnp.recode.vcf.gz
-cat /path-to-reference/KPNIH1.fasta | vcf-consensus Rush_KPC_266__filter_onlysnp.recode.vcf.gz &gt; Rush_KPC_266__consensus.fa
-
-</pre>
-<blockquote>
-<div>Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/</div></blockquote>
-<p>Check the fasta header and change it using sed.</p>
-<pre class="literal-block">
+cat /path-to-reference/KPNIH1.fasta | vcf-consensus Rush_KPC_266__filter_onlysnp.recode.vcf.gz > Rush_KPC_266__consensus.fa
+```
+> Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/
+Check the fasta header and change it using sed.
+```
 head -n1 Rush_KPC_266__consensus.fa
-sed -i 's/&gt;.*/&gt;Rush_KPC_266_/g' Rush_KPC_266__consensus.fa 
-</pre>
-<p>&#8211;&gt;</p>
-<p><strong>3. Variant Annotation using snpEff</strong></p>
+sed -i 's/>.*/>Rush_KPC_266_/g' Rush_KPC_266__consensus.fa 
+```
+--><p><strong>3. Variant Annotation using snpEff</strong></p>
 <p>Variant annotation is one of the crucial steps in any variant calling pipeline. Most of the variant annotation tools creates their own database or use an external one to assign function and predict the effect of variants on genes. We will try to touch base on some basic steps of annotating variants in our vcf file using snpEff.</p>
 <p>You can annotate these variants before performing any filtering steps that we did earlier or you can decide to annotate just the final filtered variants.</p>
 <p>snpEff contains database of about 20000 reference genome built from trusted and public sources. Lets check if snpEff contains a database of our reference genome.</p>

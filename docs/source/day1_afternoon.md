@@ -349,23 +349,15 @@ vcftools --vcf Rush_KPC_266__filter_gatk.vcf --keep-filtered pass_filter --remov
 <!--
 commenting out consensus generation
 >iii. Generate Consensus fasta file from filtered variants using vcftools:
-
 A consensus fasta sequence will contain alleles from reference sequence at positions where no variants were observed and variants that were observed at positions described in vcf file.
-
 Run the commands below to generate a consensus fasta sequence.
-
 ```
-
 bgzip Rush_KPC_266__filter_onlysnp.recode.vcf
 tabix Rush_KPC_266__filter_onlysnp.recode.vcf.gz
 cat /path-to-reference/KPNIH1.fasta | vcf-consensus Rush_KPC_266__filter_onlysnp.recode.vcf.gz > Rush_KPC_266__consensus.fa
-
 ```
-
 > Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/
-
 Check the fasta header and change it using sed.
-
 ```
 head -n1 Rush_KPC_266__consensus.fa
 sed -i 's/>.*/>Rush_KPC_266_/g' Rush_KPC_266__consensus.fa 
