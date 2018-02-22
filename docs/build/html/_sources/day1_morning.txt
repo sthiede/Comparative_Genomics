@@ -118,7 +118,7 @@ source ~/.bashrc
 
 echo $PATH
 
-# You will see a long list of paths that has been added to your $PATH variable
+#You will see a long list of paths that has been added to your $PATH variable
 
 wd
 
@@ -156,7 +156,7 @@ cp -r /scratch/micro612w18_fluxod/shared/data/day1_morn/ ./
 
 cd day1_morn/
 
-# or 
+or
 
 d1m
 
@@ -252,7 +252,7 @@ cp -r /scratch/micro612w18_fluxod/shared/data/day1_morn/ ./
 
 cd day1_morn/
 
-# or 
+or 
 
 d1m
 
