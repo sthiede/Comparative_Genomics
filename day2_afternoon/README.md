@@ -405,20 +405,130 @@ sum(grepl("hypothetical" , row.names(bsr_mat_PG[rowSums(bsr_mat_PG > 0.4) == 4,]
 
 -->
 
+## Work in Progress!!! Come back later!
+
+
 ## Determine which genomes contain beta-lactamase genes
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-Before comparing full genomic content, lets start by looking for the presence of particular genes of interest. A. baumannii harbors an arsenal of resistance genes, and it would be interesting to know how particular resistance families vary among our 4 genomes. To accomplish this we will use the antibiotic resistance database ([ARDB](http://ardb.cbcb.umd.edu/)). <!--In particular, we are going to extract a set of genes from ARDB that we are interested in probing our genomes for, and create a custom BLAST database to compare against. 
--->
+Before comparing full genomic content, lets start by looking for the presence of particular genes of interest. A. baumannii harbors an arsenal of resistance genes, and it would be interesting to know how particular resistance families vary among our 4 genomes. To accomplish this we will use the antibiotic resistance database ([ARDB](http://ardb.cbcb.umd.edu/)) and particularly beta-lactamase genes extracted from ARDB. These extracted genes can be found in file ardb_beta_lactam_genes.pfasta, which we will use to generate a Blast database.
 
-Steps here
+>i. Build BLAST database from fasta file
 
-## Identification of antibiotic resistance genes with [LS-BSR](https://github.com/jasonsahl/LS-BSR) and the [ARDB](http://ardb.cbcb.umd.edu/) database
+Run makeblastdb on the file of beta-lactamases to create a BLAST database. 
+
+makeblastdb takes as input: 
+
+1) an input fasta file of protein or nucleotide sequences (ardb_beta_lactam_genes.pfasta) and 
+
+2) a flag indicating whether to construct a protein or nucleotide database (in this case protein/ -dbtype prot).
+
+```
+
+/nfs/esnitkin/bin_group/ncbi-blast-2.7.1+/bin/makeblastdb -in ardb_beta_lactam_genes.pfasta -dbtype prot
+
+```
+
+>iii. BLAST A. baumannii protein sequences against our custom beta-lactamase database. 
+
+Run BLAST! 
+
+The input parameters are: 
+
+1) query sequences (-query Abau_all.pfasta), 
+
+2) the database to search against (-db ardb_beta_lactam_genes.pfasta), 
+
+3) the name of a file to store your results (-out bl_blastp_results), 
+
+4) output format (-outfmt 6), 
+
+5) e-value cutoff (-evalue 1e-20), 
+
+6) number of database sequences to return (-max_target_seqs 1)
+
+
+```
+
+/nfs/esnitkin/bin_group/ncbi-blast-2.7.1+/bin/blastp -query Abau_all.pfasta -db ardb_beta_lactam_genes.pfasta -out bl_blastp_results -outfmt 6 -evalue 1e-20 -max_target_seqs 1
+
+```
+
+Use less to look at bl_blastp_results.
+
+```
+less bl_blastp_results
+```
+
+> Question: Experiment with the –outfmt parameter, which controls different output formats that BLAST can produce. 
+
+## Identification of antibiotic resistance genes with [ARIBA](https://github.com/sanger-pathogens/ariba) directly from paired-end reads.
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-## Perform pan-genome analysis with LS-BSR
+ARIBA, Antimicrobial Resistance Identification By Assembly is a tool that identifies antibiotic resistance genes by running local assemblies. The input is a FASTA file of reference sequences (can be a mix of genes and noncoding sequences) and paired sequencing reads. ARIBA reports which of the reference sequences were found, plus detailed information on the quality of the assemblies and any variants between the sequencing reads and the reference sequences.
+
+ARIBA is compatible with various databases and also contains an utility to download different databases such as: argannot, card, megares, plasmidfinder, resfinder, srst2_argannot, vfdb_core. Today, we will be working with the [card](https://card.mcmaster.ca/) database, which has been downloaded and placed in /scratch/micro612w18_fluxod/shared/out.card.prepareref/ directory.
+
+<!---
+Note: There is an issue with downloading the database. They are in a process to fix the broken CARD database link issue. For now, I am using my own downloaded database.
+
+>i. Run this command to download CARD database
+
+```
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba getref card out.card
+```
+
+>ii. Prepare this downloaded card database for ARIBA
+
+```
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba prepareref -f out.card.fa -m out.card.tsv out.card.prepareref
+```
+-->
+
+Run ARIBA on input paired-end fastq reads for resistance gene identification. The fastq reads are placed in Abau_genomes_fastq directory. Enter interactive flux session, change directory to day2_after workshop directory and run the below four commands to start ARIBA jobs in background.
+
+```
+iflux
+
+cd /scratch/micro612w18_fluxod/username/day2_after
+
+#ARIBA commands
+
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba run /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauA_genome.1.fastq.gz Abau_genomes_fastq/AbauA_genome.2.fastq.gz AbauA_genome &
+
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba run /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauB_genome.1.fastq.gz Abau_genomes_fastq/AbauB_genome.2.fastq.gz AbauB_genome &
+
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba run /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauC_genome.1.fastq.gz Abau_genomes_fastq/AbauC_genome.2.fastq.gz AbauC_genome &
+
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba run /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/ACICU_genome.1.fastq.gz Abau_genomes_fastq/ACICU_genome.2.fastq.gz ACICU_genome &
+
+```
+
+The "&" in the above commands is a little unix trick to run commands in background. You can run multiple commands in background and make full use of parallel processing. You can run this unix jobs by typing:
+
+```
+jobs
+```
+
+ARIBA has a summary function that summarises the results from one or more sample runs of ARIBA and generates an output report with various level of information determined by -preset parameter. The parameter "-preset minimal" will generate a minimal report showing only the presence/absence of resistance genes whereas "-preset all" will output all the extra information related to each database hit such as reads and reference sequence coverage, variants and their associated annotations(if the variant confers resistance to an Antibiotic) etc.
+
+```
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba summary --preset minimal Abau_genomes_ariba_minimal_results *_genome/*.tsv
+
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba summary --preset all Abau_genomes_ariba_all_results *_genome/*.tsv
+
+```
+
+ARIBA summary generates three output:
+
+1. Abau_genomes_ariba*.csv file that can be viewed in your favourite spreadsheet program.
+2. Abau_genomes_ariba*.phandango.{csv,tre} that allow you to view the results in [Phandango](http://jameshadfield.github.io/phandango/#/). They can be drag-and-dropped straight into Phandango.
+
+## Perform pan-genome analysis with [Roary](https://sanger-pathogens.github.io/Roary/)
+
+
 
 ## Perform genome comparisons with [ACT](http://www.sanger.ac.uk/science/tools/artemis-comparison-tool-act)
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md)
