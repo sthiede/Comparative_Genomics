@@ -200,6 +200,7 @@ The report contains Assembly, Fastq Screen and FastQC report for a mixture of 51
 Now that we feel confident in our assembly, lets compare it to our reference to see if we can identify any large insertions/deletions using a graphical user interface called Artemis Comparison Tool (ACT) for visualization. 
 
 <!---
+changed on 23 feb 2018
 To do this we need to first align our genome assembly to our reference. We will accomplish this using command-line BLAST.
 
 >i. Align unordered contigs to reference
@@ -279,7 +280,9 @@ Click Apply button
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/mess.png)
 -->
 
-iv. Run abacas to orient contigs to reference
+In order to simplify the comparison between assembly and reference, we first need to orient the order of the contigs to reference. 
+
+i. Run abacas to orient contigs to reference
 
 To orient our contigs relative to the reference we will use a tool called abacas. [ABACAS](http://www.sanger.ac.uk/science/tools/pagit) aligns contigs to a reference genome and then stitches them together to form a “pseudo-chromosome”. 
 
@@ -325,7 +328,7 @@ Run abacas on assembly:
 abacas.1.3.1.pl -r KPNIH1.fasta -q sample_266_contigs.fasta -p nucmer -b -d -a -o sample_266_contigs_ordered
 ```
 
-v. Use ACT to view contig alignment to reference genome
+ii. Use ACT to view contig alignment to reference genome
 
 > Use scp to get ordered fasta sequence and .cruch file onto your laptop 
 
