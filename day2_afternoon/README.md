@@ -485,7 +485,9 @@ Note: There is an issue with downloading the database. They are in a process to 
 ```
 -->
 
-Run ARIBA on input paired-end fastq reads for resistance gene identification. The fastq reads are placed in Abau_genomes_fastq directory. Enter interactive flux session, change directory to day2_after workshop directory and run the below four commands to start ARIBA jobs in background.
+>i. Run ARIBA on input paired-end fastq reads for resistance gene identification. 
+
+The fastq reads are placed in Abau_genomes_fastq directory. Enter interactive flux session, change directory to day2_after workshop directory and run the below four commands to start ARIBA jobs in background.
 
 ```
 iflux
@@ -510,9 +512,12 @@ The "&" in the above commands is a little unix trick to run commands in backgrou
 jobs
 ```
 
+>ii. Run ARIBA summary function to generate a report summary.
+
 ARIBA has a summary function that summarises the results from one or more sample runs of ARIBA and generates an output report with various level of information determined by -preset parameter. The parameter "-preset minimal" will generate a minimal report showing only the presence/absence of resistance genes whereas "-preset all" will output all the extra information related to each database hit such as reads and reference sequence coverage, variants and their associated annotations(if the variant confers resistance to an Antibiotic) etc.
 
 ```
+
 /nfs/esnitkin/bin_group/anaconda3/bin/ariba summary --preset minimal Abau_genomes_ariba_minimal_results *_genome/*.tsv
 
 /nfs/esnitkin/bin_group/anaconda3/bin/ariba summary --preset all Abau_genomes_ariba_all_results *_genome/*.tsv
