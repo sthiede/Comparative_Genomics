@@ -506,7 +506,7 @@ cd /scratch/micro612w18_fluxod/username/day2_after
 
 ```
 
-The "&" in the above commands is a little unix trick to run commands in background. You can run multiple commands in background and make full use of parallel processing. You can run this unix jobs by typing:
+The "&" in the above commands(at the end) is a little unix trick to run commands in background. You can run multiple commands in background and make full use of parallel processing. You can run this unix jobs by typing:
 
 ```
 jobs
