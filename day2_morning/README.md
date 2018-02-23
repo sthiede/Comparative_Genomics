@@ -199,6 +199,7 @@ The report contains Assembly, Fastq Screen and FastQC report for a mixture of 51
 
 Now that we feel confident in our assembly, lets compare it to our reference to see if we can identify any large insertions/deletions using a graphical user interface called Artemis Comparison Tool (ACT) for visualization. 
 
+<!---
 To do this we need to first align our genome assembly to our reference. We will accomplish this using command-line BLAST.
 
 >i. Align unordered contigs to reference
@@ -276,6 +277,7 @@ Click Apply button
 > Notice that it is a complete mess!!!! The reason is that the contigs are in random order, so it is very difficult to visually compare to the reference. 
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/mess.png)
+-->
 
 iv. Run abacas to orient contigs to reference
 
