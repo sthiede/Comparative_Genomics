@@ -138,17 +138,6 @@ We are running usearch with the following parameters:
 4) an output fasta file with reperesentatives (centroids) of each sequence cluster (-centroids resisGenes_nr.pep) and 
 5) an output file describing the results of the clustering (-uc resisGenes.uc).
 
-<!--
-#changed and no longer needed:
-#module load med 
-#module load sph 
-#module load lsa 
-#module unload python
-#module load python/2.7.3 
-#module load biopython
-#module load ls-bsr 
--->
-
 ```
 
 > Make sure you are in day2_after directory
