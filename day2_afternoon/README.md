@@ -414,9 +414,7 @@ sum(grepl("hypothetical" , row.names(bsr_mat_PG[rowSums(bsr_mat_PG > 0.4) == 4,]
 
 Before comparing full genomic content, lets start by looking for the presence of particular genes of interest. A. baumannii harbors an arsenal of resistance genes, and it would be interesting to know how particular resistance families vary among our 4 genomes. To accomplish this we will use the antibiotic resistance database ([ARDB](http://ardb.cbcb.umd.edu/)) and particularly beta-lactamase genes extracted from ARDB. These extracted genes can be found in file ardb_beta_lactam_genes.pfasta, which we will use to generate a Blast database.
 
->i. Build BLAST database from fasta file
-
-Run makeblastdb on the file of beta-lactamases to create a BLAST database. 
+>i. Run makeblastdb on the file of beta-lactamases to create a BLAST database. 
 
 makeblastdb takes as input: 
 
