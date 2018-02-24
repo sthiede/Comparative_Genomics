@@ -184,7 +184,7 @@ v) These files are genome assemblies in fasta format. Fasta files are a common s
 
 
 ```
-grep ">" E_coli.fna | wc –l
+grep ">" E_coli.fna | wc -l
 ```
 
 vi) Try this command on other assemblies to see how many contigs they have
