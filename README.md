@@ -44,7 +44,7 @@ http://pad.software-carpentry.org/micro612_bacterial_genomics_workshop
 [Day 2 Afternoon](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md#day-2-afternoon)
 ***
 - [Determine which genomes contain beta-lactamase genes](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md#determine-which-genomes-contain-beta-lactamase-genes)
-- [Identification of antibiotic resistance genes with LS-BSR and the ARDB database](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md#identification-of-antibiotic-resistance-genes-with-ls-bsr-and-the-ardb-database)
+- [Identification of antibiotic resistance genes with [ARIBA](https://github.com/sanger-pathogens/ariba) directly from paired-end reads](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md#identification-of-antibiotic-resistance-genes-with-ariba-directly-from-paired-end-reads)
 - [Perform pan-genome analysis with LS-BSR](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md#perform-pan-genome-analysis-with-ls-bsr)
 - [Perform genome comparisons with ACT](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md#perform-genome-comparisons-with-act)
 
