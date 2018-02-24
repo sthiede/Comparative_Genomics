@@ -132,8 +132,6 @@ tree file system Pending
 
 ## Unix is your friend
 
-# pre-hw exercise
-
 Up until now you’ve probably accessed sequence data from NCBI by going to the website, laboriously clicking around and finally finding and downloading the data you want. 
 
 There are a lot of reasons that is not ideal:
@@ -221,6 +219,8 @@ scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/shared/Ecoli
 
 Note: You can use your choice of folder/path to copy the file instead of  “~/Desktop/”
 -->
+
+Pending: Get this Ecoli_coverage_average_bed.csv to your local system using scp or GUI file transfer
 
 Now, Fire up R console or studio and import the file (Ecoli_coverage_average_bed.csv) using any type of data import functions in R (read.table, read.csv etc.) 
 
