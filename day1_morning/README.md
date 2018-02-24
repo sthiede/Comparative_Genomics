@@ -249,6 +249,9 @@ plot.ts(x$Average_coverage, xlab="Genome Position(1000bp bins)", ylab="Average R
 ```
 </details>
 
+
+# Power of Unix commands
+
 In software carpentry, you learned working with shell and automating simple tasks using basic unix commands. Lets see how some of these commands can be employed in genomics analysis while exploring various file formats that we use in day to day analysis. For this session, we will try to explore three different types of bioinformatics file formats: 
 
 fasta: used for representing either nucleotide or peptide sequences
