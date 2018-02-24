@@ -95,6 +95,7 @@ export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/fastq_screen_v0.5.2/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/prokka-1.11/bin/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/LS-BSR-master/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/bowtie2-2.2.6/
+export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/mcl-14-137/src/alien/oxygen/src/
 
 ```
 </details>
