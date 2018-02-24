@@ -531,6 +531,84 @@ ARIBA summary generates three output:
 
 ## Perform pan-genome analysis with [Roary](https://sanger-pathogens.github.io/Roary/)
 
+Roary is a pan genome pipeline, which takes annotated assemblies in GFF3 format and calculates the pan genome. The pan-genome is just a fancy term for the full complement of genes in a set of genomes. 
+
+The way Roary does this is by: 
+1) Roary gets all the coding sequences from GFF files, convert them into protein, and create pre-clusters of all the genes, 
+2) Then, using BLASTP and MCL, Roary will create gene clusters, and check for paralogs. and 
+3) Finally, Roary will take every isolate and order them by presence/absence of genes.
+
+>i. Generate pan-genome matrix using Roary and GFF files
+
+Make sure you are on an interactive node, as this will be even more computationally intensive!
+
+```
+iflux
+```
+
+Change your directory to day2_after
+
+```
+
+> Make sure to change username with your uniqname
+
+cd /scratch/micro612w18_fluxod/username/day2_after/
+
+```
+
+Load all the required dependencies and run roary on GFF files placed in Abau_genomes_gff folder.
+
+```
+module load samtools
+module load bedtools2
+module load cd-hit
+module load ncbi-blast
+module load mcl
+module load parallel
+module load mafft
+module load fasttree
+module load perl-modules
+module load R
+module load roary
+
+#Run roary
+roary -p 4 -f Abau_genomes_roary_output -r -n -v Abau_genomes_gff/*.gff 
+```
+
+The above roary command will run pan-genome pipeline on gff files placed in Abau_genomes_gff(-v) using 4 threads(-p), save the results in an output directory Abau_genomes_roary_output(-f), generate R plots using .Rtab output files and align core genes(-n)
+
+Change directory to Abau_genomes_roary_output to explore the results.
+
+```
+cd Abau_genomes_roary_output
+```
+
+Output files:
+
+1. summary_statistics.txt: This file is an overview of your pan genome analysis showing the number of core genes(present in all isolates) and accessory genes(genes absent from one or more isolates or unique to a given isolate). 
+
+2. gene_presence_absence.csv: This file contain detailed information about each gene including their annotations which can be opened in any spreadsheet software to manually explore the results. It contains plethora of information such as gene name and their functional annotation, whether a gene is present in a genome or not, minimum/maximum/Average sequence length etc.
+
+3. gene_presence_absence.Rtab: This file is similar to the gene_presence_absence.csv file, however it just contains a simple tab delimited binary matrix with the presence and absence of each gene in each sample. It can be easily loaded into R using the read.table function for further analysis and plotting. The first row is the header containing the name of each sample, and the first column contains the gene name. A 1 indicates the gene is present in the sample, a 0 indicates it is absent.
+
+4. core_gene_alignment.aln: a multi-FASTA alignment of all of the core genes that can be used to generate a phylogenetic tree.
+
+<!--
+# Plots are not very useful. Seems like a waste of time.
+>ii. Generate a phylogenetic tree and plot pan-genome matrix.
+
+we will use core_gene_alignment.aln multi-fasta core gene alignment as an input to generate a phylogenetic tree using FastTree tool. 
+
+This tree along with the pan-genome matrix can then be used to plot some nice plots. Roary comes with a python script called roary_plots.py that can be used for visualizing pan-genome analysis results. 
+
+```
+module load fasttree
+FastTree core_gene_alignment.aln > core_gene_alignment.tree
+
+module load python-anaconda3/latest
+python /scratch/micro612w18_fluxod/shared/bin/roary/contrib/roary_plots/roary_plots.py core_gene_alignment.tree gene_presence_absence.csv
+```
+-->
 
 
 ## Perform genome comparisons with [ACT](http://www.sanger.ac.uk/science/tools/artemis-comparison-tool-act)
