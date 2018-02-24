@@ -238,7 +238,11 @@ For advance and more beautiful visualization, ggplot2 can be employed to display
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/plot_2.png)
 
-# End: pre-hw exercise
+<details>
+  <summary>Solution</summary>
+x <- read.table("Ecoli_coverage_average_bed.csv", sep=",", header=TRUE)
+plot.ts(x$Average_coverage, xlab="Genome Position(1000bp bins)", ylab="Average Read Depth", main="Ecoli Bed Coverage", col="blue")	
+</details>
 
 In software carpentry, you learned working with shell and automating simple tasks using basic unix commands. Lets see how some of these commands can be employed in genomics analysis while exploring various file formats that we use in day to day analysis. For this session, we will try to explore three different types of bioinformatics file formats: 
 
