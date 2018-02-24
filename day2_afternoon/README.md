@@ -461,7 +461,7 @@ less bl_blastp_results
 
 > Question: Experiment with the –outfmt parameter, which controls different output formats that BLAST can produce. 
 
-## Identification of antibiotic resistance genes with [ARIBA](https://github.com/sanger-pathogens/ariba) directly from paired-end reads.
+## Identification of antibiotic resistance genes with [ARIBA](https://github.com/sanger-pathogens/ariba) directly from paired end reads
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
