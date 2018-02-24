@@ -581,6 +581,8 @@ Change directory to Abau_genomes_roary_output to explore the results.
 
 ```
 cd Abau_genomes_roary_output
+
+ls
 ```
 
 Output files:
