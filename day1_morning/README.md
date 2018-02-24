@@ -289,11 +289,18 @@ To determine the total length of our genome assemblies, we will use grep to matc
 
 <details>
   <summary>Solution</summary>
-  
-```
+
+
 <!--
 grep -v '^>' Acinetobacter_baumannii.fna | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} END {print sum}'
+for i in *.fna; do grep -v '^>' $i | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} END {print sum}'; done
+grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'rRNA' | wc -l
+grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'CDS' | wc -l
+grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'tRNA' | wc -l
 -->
+
+```
+
 grep -v '^>' Acinetobacter_baumannii.fna | grep -v "N" | grep -v "n" | wc -m
 
 #Note:
@@ -306,6 +313,7 @@ grep -v '^>' Acinetobacter_baumannii.fna | grep -v "N" | grep -v "n" | wc -m
 </details>
 
 
+
 Now run the same command on other fasta files in day1_morn directory. Try using a for loop.
 
 
@@ -314,7 +322,7 @@ Now run the same command on other fasta files in day1_morn directory. Try using 
 
 ```
 
-for i in *.fna; do grep -v '^>' $i | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} END {print sum}'; done
+for i in *.fna; do grep -v '^>' $i | grep -v "N" | grep -v "n" | wc -m; done
 
 ```
 </details>
@@ -365,31 +373,13 @@ grep -v '^#' sample.gff | wc -l
 ```
 </details>
 
-> Question: How about counting the number of rRNA features in a gff file using grep, awk and wc? Note: Awk is a very powerful utility for working with columns in a file. 
+> Question: How about counting the number of rRNA features in a gff file using grep, cut and wc? You can check the usage for cut by typing "cut --help"
 
 <details>
   <summary>Solution</summary>
   
 ```
 
-grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'rRNA' | wc -l
-
-# Or number of CDS or tRNA features?
-
-grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'CDS' | wc -l
-grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'tRNA' | wc -l
-
-# Note: In the above command, we are trying to search lines that doesn't starts with "#" and extracting feature information from third column.
-
-```
-</details>
-
-If for some reason you find awk daunting or too long, you can use "cut" command directly to extract specific columns.
-
-<details>
-  <summary>Solution</summary>
-  
-```
 cut -f 3 sample.gff | grep 'rRNA' | wc -l
 
 # Or number of CDS or tRNA features?
@@ -397,10 +387,12 @@ cut -f 3 sample.gff | grep 'rRNA' | wc -l
 cut -f 3 sample.gff | grep 'CDS' | wc -l
 cut -f 3 sample.gff | grep 'tRNA' | wc -l
 
+# Note: In the above command, we are trying to extract feature information from third column.
+
 ```
 </details>
 
-> Question: Try counting the number of features on a "+" or "-" strand.
+> Question: Try counting the number of features on a "+" or "-" strand (column 7).
 
 Some more useful one-line unix commands for GFF files: [here](https://github.com/stephenturner/oneliners#gff3-annotations)
 
