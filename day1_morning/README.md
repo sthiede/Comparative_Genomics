@@ -240,9 +240,12 @@ For advance and more beautiful visualization, ggplot2 can be employed to display
 
 <details>
   <summary>Solution</summary>
+	
 ```
+
 x <- read.table("Ecoli_coverage_average_bed.csv", sep=",", header=TRUE)
-plot.ts(x$Average_coverage, xlab="Genome Position(1000bp bins)", ylab="Average Read Depth", main="Ecoli Bed Coverage", col="blue")	
+plot.ts(x$Average_coverage, xlab="Genome Position(1000bp bins)", ylab="Average Read Depth", main="Ecoli Bed Coverage", col="blue")
+
 ```
 </details>
 
