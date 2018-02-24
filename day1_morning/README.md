@@ -275,24 +275,32 @@ d1m
 ls
 
 ```
--->
+
 
 > Question: In the homework assignment, you downloaded genome assembly fasta files and ran a shell script to count contigs. Now, lets say you want to find out the combined length of genome in each of these files. This can be achieved by running a short unix command piping together three extremely powerful unix programs: grep, sed and awk. The key to crafting the command is understanding the required features of fasta files, including: 1) each sequence is preceded by a fasta header that starts with ">", 2) the types of bases that a nucleotide sequence represents (A,T,G,C,N) and 3) that each line is seperated by a new line character ("\n"). To determine the total length of our genome assemblies, we will use grep to match only those lines that doesn't start with ">" (remember grep -v option to ignore lines), use sed to remove characters that match "N" or "n" which represents unknown bases and finally use awk to count the remaining characters. We can use unix pipe "|" to pass the output of one command to another for further processing. Lets start by counting the number of bases in Acinetobacter_baumannii.fna file
+-->
 
+> Question: In the homework assignment, you downloaded genome assembly fasta files and ran a shell script to count contigs. Now, lets say you want to find out the combined length of genome in each of these files. This can be achieved by running a short unix command piping together two unix programs: grep and wc. The key to crafting the command is understanding the  features of fasta files, 
+1) each sequence in fasta file is preceded by a fasta header that starts with ">", 
+2) the types of bases that a nucleotide sequence represents (A,T,G,C,N) and 
+3) that each line is seperated by a new line character ("\n"). 
+
+To determine the total length of our genome assemblies, we will use grep to match only those lines that doesn't start with ">" (remember grep -v option is used to ignore lines) and doesn't contain contain character "N". Then use wc command (stands for word count) to count the characters. We can use unix pipe "|" to pass the output of one command to another for further processing. Lets start by counting the number of bases in Acinetobacter_baumannii.fna file
 
 <details>
   <summary>Solution</summary>
   
 ```
-
+<!--
 grep -v '^>' Acinetobacter_baumannii.fna | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} END {print sum}'
-
+-->
+grep -v '^>' Acinetobacter_baumannii.fna | grep -v "N" | grep -v "n" | wc -m
 
 #Note:
 
 #- The sign "^" inside the grep pattern represents any pattern that starts with ">" and -v asks grep to ignore those lines.
-#- Use "|" to pass these lines to sed. sed stands for stream editor and can be used to parse, transform and replace text. Here, we are removing the characters "N" or "n" and keeping only "A,T,G,C" bases
-#- awk consists of three blocks: The first block (-F '\n') tells awk how each line is seperated from each other using a field seperator, the second block will keep counting characters in a line (using awk's default option "length") and save it in a variable "sum" and when it runs through all the lines in a stream, the third block will print the value of sum which represents total bases in a fasta file.
+#- Use "|" to pass the output of one command to another.
+#- -m parameter will show the character counts. Check wc help menu by typing "wc --help" on terminal to explore other parameters
 
 ```
 </details>
