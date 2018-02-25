@@ -16,6 +16,11 @@ Execute the following command to copy files for this afternoon’s exercises to 
 ```  
 
 cd /scratch/micro612w18_fluxod/username
+
+or
+
+d2a
+
 cp -r /scratch/micro612w18_fluxod/shared/data/day2_after/ ./
 
 ```
