@@ -3,12 +3,12 @@
 
 ## Installing and setting up Cyberduck for file transfer
 
-During the workshop, we will transfer different output files from flux to your local system. Cyberduck makes it easier to drag and drop any remote file onto your local system and vice versa. Offcourse, you can use "scp" to transfer files but Cyberduck gives a visual interface to manage file transfer and helps avoid typing long file paths.
+During workshop, we will transfer different output files from flux to your local system. Cyberduck makes it easier to drag and drop any remote file onto your local system and vice versa. Offcourse, you can use "scp" to transfer files but Cyberduck provides a graphical interface to manage file transfer and helps avoid typing long file paths and commands.
 
 >1. Go to [this](https://cyberduck.io/) cyberduck website and download the executable for your respective operating system.
->2. Double-click on the downloaded zip file to unzip it and double click the cyberduck icon.
->3. Type sftp://flux-xfer.arc-ts.umich.edu in the quickconnect bar, press enter and enter your flux username and password.
->4. This will take to your flux home directory /home/username. Select "Go" from the tool bar at the top then seclect "Go to folder" and enter workshop home directory path: /scratch/micro612w18_fluxod/
+>2. Double-click on the downloaded zip file to unzip it and double click cyberduck icon.
+>3. Type sftp://flux-xfer.arc-ts.umich.edu in quickconnect bar, press enter and enter your flux username and password.
+>4. This will take you to your flux home directory /home/username. Select "Go" from tool bar at the top then select "Go to folder" and enter workshop home directory path: /scratch/micro612w18_fluxod/
 
 To transfer or upload a file, you can drag and drop it into the location you want. 
 
