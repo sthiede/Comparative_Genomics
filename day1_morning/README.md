@@ -524,7 +524,7 @@ You can visualize and assess the quality of data by opening html report in a loc
 
 >v. Exit your cluster node so you don’t waste cluster resources and $$$!
 
->vi. Download the FastQC report to your home computer to examine using scp or cyberduck
+>vi. Download the FastQC html report to your home computer to examine using scp or cyberduck
 
 ```
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/before_trimmomatic/*.html /path-to-local-directory/
