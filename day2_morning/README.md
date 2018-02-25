@@ -69,7 +69,7 @@ spades.py -h
 
 Since it takes huge amount of memory and time to assemble genomes using spades, we will run a pbs script on cluster for this step.
 
-Now, Open the spades.pbs file residing in day2_morning folder with nano and add the following spades command to the bottom of the file. 
+Now, Open the spades.pbs file residing in day2_morning folder with nano and add the following spades command to the bottom of the file. Replace the EMAIL_ADDRESS in spades.pbs file with your actual email-address. This will make sure that whenever the job starts, aborts or ends, you will get an email notification.
 
 ```
 > Open spades.pbs file using nano:
