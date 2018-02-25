@@ -22,6 +22,7 @@ http://pad.software-carpentry.org/micro612_bacterial_genomics_workshop
 
 [Day 1 Morning](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 ***
+- [Installing and setting up Cyberduck for file transfer](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#installing-and-setting-up-cyberduck-for-file-transfer)
 - [Getting your data onto Flux and setting up Environment variable](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#getting-your-data-onto-glux-and-setting-up-environment-variable)
 - [Unix is your friend](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#unix-is-your-friend)
 - [Quality Control using FastQC](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#quality-control-using-fastqc)
