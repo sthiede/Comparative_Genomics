@@ -3,7 +3,7 @@
 
 ## Installing and setting up Cyberduck for file transfer
 
-During the workshop, we will transfer different output files from flux to your local system for exploration. Cyberduck makes it easier to drag and drop any remote file onto your local system. Offcourse, you can use "scp" to transfer files but Cyberduck will help us avoid typing long file paths and gives us a visual interface to manage the transfer.
+During the workshop, we will transfer different output files from flux to your local system. Cyberduck makes it easier to drag and drop any remote file onto your local system and vice versa. Offcourse, you can use "scp" to transfer files but Cyberduck gives a visual interface to manage file transfer and helps avoid typing long file paths.
 
 >1. Go to [this](https://cyberduck.io/) cyberduck website and download the executable for your respective operating system.
 >2. Double-click on the downloaded zip file to unzip it and double click the cyberduck icon.
