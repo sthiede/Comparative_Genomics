@@ -75,7 +75,6 @@ alias d3a='cd /scratch/micro612w18_fluxod/username/day3_after'
 
 
 # Flux Modules
-module load python-anaconda2/latest
 module load perl-modules
 
 # Perl Libraries
