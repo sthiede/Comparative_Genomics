@@ -82,6 +82,7 @@ export PERL5LIB=/scratch/micro612w18_fluxod/shared/bin/PAGIT/lib:/scratch/micro6
 export PERL5LIB=/scratch/micro612w18_fluxod/shared/perl_libs:$PERL5LIB
 
 # Bioinformatics Tools
+export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/MultiQC/build/scripts-2.7/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/blast/bin/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/vcftools_0.1.12b/perl/
