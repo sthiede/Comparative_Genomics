@@ -247,7 +247,7 @@ java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 
 ```
 
-Open the file WgsMetrics.txt and explore various statistics. It will generate various statistics and the definition for each statistic s can be found [here](https://broadinstitute.github.io/picard/picard-metric-definitions.html#CollectWgsMetrics.WgsMetrics)
+Open the file WgsMetrics.txt and explore various statistics. It will generate various statistics and the definition for each can be found [here](https://broadinstitute.github.io/picard/picard-metric-definitions.html#CollectWgsMetrics.WgsMetrics)
 
 > Question: Extract mean coverage information from WgsMetrics.txt
 <!---
@@ -291,7 +291,7 @@ Here we will use samtools mpileup to perform this operation on our BAM file and 
 
 ```
 
-/scratch/micro612w18_fluxod/shared/bin/samtools-1.2/samtools mpileup -ug -f ../KPNIH1.fasta Rush_KPC_266__aln_marked.bam | /scratch/micro612w18_fluxod/shared/bin/bcftools-1.2/bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
+samtools mpileup -ug -f ../KPNIH1.fasta Rush_KPC_266__aln_marked.bam | bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
 
 
 # In the above command, we are using samtools mpileup to generate a pileup formatted file from BAM alignments and genotype likelihoods(-g flag) in BCF format(binary version of vcf). This bcf output is then piped to bcftools, which calls variants and outputs them in vcf format(-c flag for using consensus calling algorithm  and -v for outputting variants positions only)
@@ -362,7 +362,7 @@ Run the commands below to generate a consensus fasta sequence.
 
 bgzip Rush_KPC_266__filter_onlysnp.recode.vcf
 tabix Rush_KPC_266__filter_onlysnp.recode.vcf.gz
-cat /path-to-reference/KPNIH1.fasta | vcf-consensus Rush_KPC_266__filter_onlysnp.recode.vcf.gz > Rush_KPC_266__consensus.fa
+cat ../KPNIH1.fasta | vcf-consensus Rush_KPC_266__filter_onlysnp.recode.vcf.gz > Rush_KPC_266__consensus.fa
 
 ```
 
@@ -472,7 +472,7 @@ bgzip Rush_KPC_266__filter_gatk_ann.vcf
 tabix Rush_KPC_266__filter_gatk_ann.vcf.gz
 ```
 
-Open a new terminal and run scp/sftp commands to get these files to your local system.
+Open a new terminal and run scp commands or cyberduck to get these files to your local system.
 
 ```
 
