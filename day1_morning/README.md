@@ -387,7 +387,7 @@ grep -v '^#' sample.gff | wc -l
 ```
 </details>
 
-> Question: How about counting the number of rRNA features in a gff file using grep, cut and wc? You can check the usage for cut by typing "cut --help"
+> Question: How about counting the number of rRNA features in a gff(third column) file using grep, cut and wc? You can check the usage for cut by typing "cut --help"
 
 <details>
   <summary>Solution</summary>
