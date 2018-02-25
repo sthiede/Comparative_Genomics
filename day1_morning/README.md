@@ -232,7 +232,7 @@ scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/shared/Ecoli
 Note: You can use your choice of folder/path to copy the file instead of  “~/Desktop/”
 -->
 
-Pending: Get this Ecoli_coverage_average_bed.csv to your local system using scp or GUI file transfer
+Drag and drop this Ecoli_coverage_average_bed.csv to your local system using cyberduck.
 
 Now, Fire up R console or studio and import the file (Ecoli_coverage_average_bed.csv) using any type of data import functions in R (read.table, read.csv etc.) 
 
