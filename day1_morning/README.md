@@ -478,7 +478,7 @@ fastq_screen --subset 1000 --force --outdir ./ --aligner bowtie2 fastq_screen.fa
 
 The above run will generate two types of output file: a screen report in text format "fastq_screen_screen.txt" and a graphical output "fastq_screen_screen.png" showing percentage of reads mapped to each reference genomes.
 
->iii. Download the fastq_screen graphical report to your home computer for inspection. Use scp command as shown below or use cyberduck.
+>iii. Download the fastq_screen graphical report to your home computer for inspection. Use scp command as shown below or use cyberduck. If you dont the file in cyberduck window, try refreshing it using the refresh button at the top.
 
 ```
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_morn/fastq_screen_screen.png /path-to-local-directory/
