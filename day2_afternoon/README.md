@@ -19,7 +19,7 @@ cd /scratch/micro612w18_fluxod/username
 
 or
 
-d2a
+wd
 
 cp -r /scratch/micro612w18_fluxod/shared/data/day2_after/ ./
 
