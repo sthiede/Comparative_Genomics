@@ -176,7 +176,7 @@ multiqc ./ --force --filename workshop_multiqc
 
 ls
 
-# Copy this report to your local system and open it in a browser for visual inspection
+# transfer this report to your local system and open it in a browser for visual inspection
 
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/workshop_multiqc.html /path-to-local-directory/
 
