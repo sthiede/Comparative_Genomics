@@ -11,8 +11,8 @@ http://pad.software-carpentry.org/micro612_bacterial_genomics_workshop
 -->
 
 ***
-Prerequisites:
---------------
+Prerequisites
+-------------
 
 - Prior participation in a [Software Carpentry Workshop](https://umswc.github.io/2018-02-26-UMich/)
 
@@ -21,16 +21,16 @@ Prerequisites:
 -->
 ***
 
-Workshop:
----------
+Workshop
+--------
 
-[Day 1 Morning](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
+[Day 1 Morning](day1_morning.html)
 ***
-- [Installing and setting up Cyberduck for file transfer](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#installing-and-setting-up-cyberduck-for-file-transfer)
-- [Getting your data onto Flux and setting up Environment variable](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#getting-your-data-onto-glux-and-setting-up-environment-variable)
-- [Unix is your friend](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#unix-is-your-friend)
-- [Quality Control using FastQC](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#quality-control-using-fastqc)
-- [Quality Trimming using Trimmomatic](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md#quality-trimming-using-trimmomatic)
+- [Installing and setting up Cyberduck for file transfer](day1_morning.html#installing-and-setting-up-cyberduck-for-file-transfer)
+- [Getting your data onto Flux and setting up Environment variable](day1_morning.html#getting-your-data-onto-glux-and-setting-up-environment-variable)
+- [Unix is your friend](day1_morning.html#unix-is-your-friend)
+- [Quality Control using FastQC](day1_morning.html#quality-control-using-fastqc)
+- [Quality Trimming using Trimmomatic](day1_morning.html#quality-trimming-using-trimmomatic)
 
 [Day 1 Afternoon](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#day-1-afternoon)
 ***

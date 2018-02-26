@@ -11,8 +11,8 @@ http://pad.software-carpentry.org/micro612_bacterial_genomics_workshop
 -->
 
 ***
-Prerequisites:
---------------
+Prerequisites
+-------------
 
 - Prior participation in a [Software Carpentry Workshop](https://umswc.github.io/2018-02-26-UMich/)
 
@@ -21,8 +21,8 @@ Prerequisites:
 -->
 ***
 
-Workshop:
----------
+Workshop
+--------
 
 [Day 1 Morning](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 ***
