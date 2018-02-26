@@ -19,7 +19,7 @@ Read Mapping
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/1.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/1_1.png)
 
 **1. Navigate to your workshop home directory and copy day1_after directory from shared data directory.**
 
