@@ -47,15 +47,9 @@ mkdir Abau_mauve
 
 cd Abau_mauve 
 
-> Now copy Abau_genomes folder residing in your day3_morn folder using scp or sftp:
+> Now copy Abau_genomes folder residing in your day3_morn folder using scp or cyberduck:
 
 scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day3_morn/Abau_genomes ./
-
-OR
-
-sftp –r username@flux-login.arc-ts.umich.edu 
-cd /scratch/micro612w18_fluxod/username/day3_morn 
-get Abau_genomes
 
 ```
 
@@ -72,16 +66,9 @@ vi. Wait for Mauve to finish and explore the graphical interface
 
 ```
 
-Use sftp or scp to transfer your alignment back to flux for some processing
+Use cyberduck or scp to transfer your alignment back to flux for some processing
 
 ```
-
-cd ~/Desktop/Abau_mauve
-sftp –r username@flux-login.arc-ts.umich.edu 
-cd /scratch/micro612w18_fluxod/username/day3_morn 
-put mauve_ECII_outgroup
-
-OR
 
 scp ~/Desktop/Abau_mauve/mauve_ECII_outgroup username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day3_morn 
 
@@ -110,17 +97,12 @@ There are lots of options for phylogenetic analysis. Here, we will use the ape p
 
 Note that ape has a ton of useful functions for more sophisticated phylogenetic analyses!
 
->i. Get fasta alignment you just converted to your own computer using sftp or scp
+>i. Get fasta alignment you just converted to your own computer using cyberduck or scp
 
 ```
 
 cd ~/Desktop/Abau_mauve
 
-sftp –r username@flux-login.arc-ts.umich.edu 
-cd /scratch/micro612w18_fluxod/username/day3_morn 
-get mauve_ECII_outgroup.fasta
-
-OR
 
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day3_morn/mauve_ECII_outgroup.fasta ./
 
@@ -295,18 +277,11 @@ gubbins_drawer.py -t mauve_ECII_outgroup.final_tree.tre -o mauve_ECII_outgroup.r
 ```
 >iii. Download and view gubbins figure and filtered tree
 
-Use sftp or scp to get gubbins output files into Abau_mauve on your local system
+Use cyberduck or scp to get gubbins output files into Abau_mauve on your local system
 
 ```
 
 cd ~/Desktop/Abau_mauve
-
-sftp –r username@flux-login.arc-ts.umich.edu 
-cd /scratch/micro612w18_fluxod/username/day3_morn 
-get mauve_ECII_outgroup.recombination.pdf 
-get mauve_ECII_outgroup.final_tree.tre
-
-OR
 
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day3_morn/mauve_ECII_outgroup.recombination.pdf  ./
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day3_morn/mauve_ECII_outgroup.final_tree.tre  ./
@@ -347,20 +322,13 @@ For the final exercise we will use a different dataset, composed of USA300 methi
 
 >i. Download MRSA genome alignment from flux
 
-Use sftp or scp to get genomes onto your laptop
+Use cyberduck or scp to get genomes onto your laptop
 
 ```
 
 cd ~/Desktop (or wherever your desktop is) 
 mkdir MRSA_genomes 
 cd MRSA_genomes
-
-sftp –r username@flux-login.arc-ts.umich.edu 
-cd /scratch/micro612w18_fluxod/username/day3_morn 
-get 2016-3-9_KP_BSI_USA300.fa 
-get 2016-3-9_KP_BSI_USA300_iTOL_HA_vs_CA.txt
-
-OR
 
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day3_morn/2016-3-9_KP_BSI_USA300.fa  ./
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day3_morn/2016-3-9_KP_BSI_USA300_iTOL_HA_vs_CA.txt  ./
