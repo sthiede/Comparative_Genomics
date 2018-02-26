@@ -36,7 +36,7 @@ An alternative approach for identification of variants among genomes is to perfo
 
 >i. Perform mauve alignment and transfer xmfa back to flux
 
-Use sftp to get genomes onto your laptop
+Use cyberduck/scp to get genomes onto your laptop
 
 ```
 Run these commands on your local system/terminal:
