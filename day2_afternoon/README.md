@@ -425,8 +425,11 @@ makeblastdb takes as input:
 2) a flag indicating whether to construct a protein or nucleotide database (in this case protein/ -dbtype prot).
 
 ```
+# change directory to day2_after
+d2a
 
-/nfs/esnitkin/bin_group/ncbi-blast-2.7.1+/bin/makeblastdb -in ardb_beta_lactam_genes.pfasta -dbtype prot
+
+makeblastdb -in ardb_beta_lactam_genes.pfasta -dbtype prot
 
 ```
 
@@ -451,7 +454,7 @@ The input parameters are:
 
 ```
 
-/nfs/esnitkin/bin_group/ncbi-blast-2.7.1+/bin/blastp -query Abau_all.pfasta -db ardb_beta_lactam_genes.pfasta -out bl_blastp_results -outfmt 6 -evalue 1e-20 -max_target_seqs 1
+blastp -query Abau_all.pfasta -db ardb_beta_lactam_genes.pfasta -out bl_blastp_results -outfmt 6 -evalue 1e-20 -max_target_seqs 1
 
 ```
 
@@ -496,15 +499,23 @@ iflux
 
 cd /scratch/micro612w18_fluxod/username/day2_after
 
+or 
+
+d2a
+
+# Load dependency
+
+module load cd-hit
+
 #ARIBA commands
 
-/nfs/esnitkin/bin_group/anaconda3/bin/ariba run /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauA_genome.1.fastq.gz Abau_genomes_fastq/AbauA_genome.2.fastq.gz AbauA_genome &
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba run --force /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauA_genome.1.fastq.gz Abau_genomes_fastq/AbauA_genome.2.fastq.gz AbauA_genome &
 
-/nfs/esnitkin/bin_group/anaconda3/bin/ariba run /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauB_genome.1.fastq.gz Abau_genomes_fastq/AbauB_genome.2.fastq.gz AbauB_genome &
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba run --force /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauB_genome.1.fastq.gz Abau_genomes_fastq/AbauB_genome.2.fastq.gz AbauB_genome &
 
-/nfs/esnitkin/bin_group/anaconda3/bin/ariba run /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauC_genome.1.fastq.gz Abau_genomes_fastq/AbauC_genome.2.fastq.gz AbauC_genome &
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba run --force /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauC_genome.1.fastq.gz Abau_genomes_fastq/AbauC_genome.2.fastq.gz AbauC_genome &
 
-/nfs/esnitkin/bin_group/anaconda3/bin/ariba run /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/ACICU_genome.1.fastq.gz Abau_genomes_fastq/ACICU_genome.2.fastq.gz ACICU_genome &
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba run --force /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/ACICU_genome.1.fastq.gz Abau_genomes_fastq/ACICU_genome.2.fastq.gz ACICU_genome &
 
 ```
 
@@ -555,6 +566,10 @@ Change your directory to day2_after
 > Make sure to change username with your uniqname
 
 cd /scratch/micro612w18_fluxod/username/day2_after/
+
+or 
+
+d2a
 
 ```
 
@@ -640,22 +655,15 @@ blastall -p blastn -i ./Abau_genomes/AbauA_genome.fasta -d ./Abau_BLAST_DB/ACICU
 
 >ii. Read in genomes, alignments and annotation files
 
-Use sftp to get ACT files onto your laptop
+Use scp or cyberduck to transfer Abau_ACT_files folder onto your laptop
 
-```
 
-cd ~/Desktop (or wherever your desktop is)
-mkdir Abau_ACT 
-cd Abau_ACT 
-sftp username@flux-login.arc-ts.umich.edu 
-cd /scratch/micro612w18_fluxod/username/day2_after 
-get Abau_genomes/AbauA_genome.fasta 
-get Abau_genomes/ACICU_genome.fasta 
-get AbauA_vs_ACICU.blast 
-get Abau_ACT_files/AbauA_genome_gene.gff 
-get Abau_ACT_files/ACICU_genome_gene.gff
+1. Abau_genomes/AbauA_genome.fasta 
+2. Abau_genomes/ACICU_genome.fasta 
+3. AbauA_vs_ACICU.blast 
+4. Abau_ACT_files/AbauA_genome_gene.gff 
+5. Abau_ACT_files/ACICU_genome_gene.gff
 
-```
 
 >iii. Explore genome comparison and features of ACT
 
