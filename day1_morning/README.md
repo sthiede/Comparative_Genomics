@@ -140,9 +140,7 @@ wd
 
 You should be in your workshop working directory that is /scratch/micro612w18_fluxod/username 
 
-<!-- Check the dependencies Pending
-tree file system Pending
--->
+<!-- Check the dependencies Pending tree file system Pending-->
 
 
 Unix is your friend
@@ -208,9 +206,7 @@ Your first sequence analysis program!!!
 
 OK, so now that we have a useful command, wouldn’t it be great to turn it into a program that you can easily apply to a large number of genome assemblies? Of course it would! So, now we are going to take out cool contig counting command, and put it in a shell script that applies it to all files in the desired directory.
 
-<!---
-> Copy “/scratch/micro612w18_fluxod/shared/fasta_counter.sh” to your current directory (Hint – use the “cp” command)
--->
+<!---> Copy “/scratch/micro612w18_fluxod/shared/fasta_counter.sh” to your current directory (Hint – use the “cp” command)-->
 
 > Open “fasta_counter.sh” in pico or your favourite text editor and follow instructions for making edits so it will do what we want it to do
 
@@ -232,9 +228,7 @@ The input for this task is a comma-separated file, which contains average sequen
 
 <!---
 Let’s copy Ecoli_coverage_average_bed.csv file from flux shared directory to your desktop using ‘scp’. ‘scp’ stands for secure copy and is used for securely transferring files between remote host/server(flux) and your local computer system. (Both directions)
-
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/shared/Ecoli_coverage_average_bed.csv ~/Desktop/
-
 Note: You can use your choice of folder/path to copy the file instead of  “~/Desktop/”
 -->
 
@@ -282,29 +276,19 @@ fastq: used for storing biological sequence / sequencing reads (usually nucleoti
 
 <!---
 ```
-
 cp -r /scratch/micro612w18_fluxod/shared/data/day1_morn/ ./
-
 cd day1_morn/
-
 #or 
-
 d1m
-
 ls
-
 ```
-
-
 > Question: In the homework assignment, you downloaded genome assembly fasta files and ran a shell script to count contigs. Now, lets say you want to find out the combined length of genome in each of these files. This can be achieved by running a short unix command piping together three extremely powerful unix programs: grep, sed and awk. The key to crafting the command is understanding the required features of fasta files, including: 1) each sequence is preceded by a fasta header that starts with ">", 2) the types of bases that a nucleotide sequence represents (A,T,G,C,N) and 3) that each line is seperated by a new line character ("\n"). To determine the total length of our genome assemblies, we will use grep to match only those lines that doesn't start with ">" (remember grep -v option to ignore lines), use sed to remove characters that match "N" or "n" which represents unknown bases and finally use awk to count the remaining characters. We can use unix pipe "|" to pass the output of one command to another for further processing. Lets start by counting the number of bases in Acinetobacter_baumannii.fna file
 -->
 
 > Question: In the homework assignment, you downloaded genome assembly fasta files and ran a shell script to count contigs. Now, lets say you want to find out the combined length of genome in each of these files. This can be achieved by running a short unix command piping together two unix programs: grep and wc. The key to crafting the command is understanding the  features of fasta files, 
 >1) each sequence in fasta file is preceded by a fasta header that starts with ">", 
 >2) the types of bases that a nucleotide sequence represents (A,T,G,C,N) and 
-<!---
->3) that each line is seperated by a new line character ("\n"). 
--->
+<!--->3) that each line is seperated by a new line character ("\n"). -->
 
 To determine the total length of our genome assemblies, we will use grep to match only those lines that doesn't start with ">" (remember grep -v option is used to ignore lines) and doesn't contain contain character "N". Then use wc command (stands for word count) to count the characters. We can use unix pipe "|" to pass the output of one command to another for further processing. Lets start by counting the number of bases in Acinetobacter_baumannii.fna file
 
