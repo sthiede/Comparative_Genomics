@@ -244,9 +244,7 @@ module load python/2.7.3 biopython dendropy reportlab fasttree RAxML fastml/gub 
 -->
 
 ```
-Check if gubbins run after loading newer version flux modules
 
-Newer version:
 module load bioperl python-anaconda2/201607 biopython dendropy reportlab fasttree RAxML fastml/gub gubbins
 
 ```
