@@ -64,7 +64,7 @@
               <!-- Local TOC -->
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">Day 3 Afternoon</a><ul>
-<li><a class="reference internal" href="#klebsiella-pneumoniae-comparative-genomic-analysis"><strong>Klebsiella pneumoniae comparative genomic analysis</strong></a></li>
+<li><a class="reference internal" href="#klebsiella-pneumoniae-comparative-genomic-analysis">Klebsiella pneumoniae comparative genomic analysis</a></li>
 <li><a class="reference internal" href="#perform-qc-on-fastq-files">Perform QC on fastq files</a></li>
 <li><a class="reference internal" href="#examine-results-of-spandx-pipeline">Examine results of SPANDx pipeline</a></li>
 <li><a class="reference internal" href="#recombination-detection-and-tree-generation">Recombination detection and tree generation</a></li>
@@ -111,7 +111,7 @@
 <span id="day-3-afternoon"></span><h1>Day 3 Afternoon<a class="headerlink" href="#day-3-afternoon" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
 <div class="section" id="klebsiella-pneumoniae-comparative-genomic-analysis">
-<span id="klebsiella-pneumoniae-comparative-genomic-analysis"></span><h2><strong>Klebsiella pneumoniae comparative genomic analysis</strong><a class="headerlink" href="#klebsiella-pneumoniae-comparative-genomic-analysis" title="Permalink to this headline">¶</a></h2>
+<span id="klebsiella-pneumoniae-comparative-genomic-analysis"></span><h2>Klebsiella pneumoniae comparative genomic analysis<a class="headerlink" href="#klebsiella-pneumoniae-comparative-genomic-analysis" title="Permalink to this headline">¶</a></h2>
 <p>To finish up the workshop we are going to go through the process of working up a complete dataset, from start to finish.  This set of genomes originated from a regional outbreak of bla-KPC carrying Klebsiella pneumoniae – one of the most concerning healthcare associated pathogens.
 The goal is to follow up on a previously <a class="reference external" href="http://cid.oxfordjournals.org/content/53/6/532.abstract">published</a> epidemiologic analysis, and see if genomics supports prior epidemiologic conclusions and can provide additional insights.
 We have our genomes, and we know in which regional facility each isolate originated.</p>
@@ -128,6 +128,10 @@ We have our genomes, and we know in which regional facility each isolate origina
 <pre class="literal-block">
 
 cd /scratch/micro612w18_fluxod/username
+
+or 
+
+wd
 
 cp -r /scratch/micro612w18_fluxod/shared/data/day3_after ./
 
@@ -186,7 +190,7 @@ The following unix commands can be used to get sorted lists of coverage and numb
 <p>SPANDx also produces a summary file of the variants/indels it identified in the core genome.</p>
 <p>This summary file is:
 <code class="docutils literal"><span class="pre">/scratch/micro612w18_fluxod/username/day3_after/SPANDx_output/Outputs/All_SNPs_annotated.txt</span></code></p>
-<p>Use sftp to download this file and view in excel</p>
+<p>Use cyberduck/scp to download this file and view in excel</p>
 <ul class="simple">
 <li>View SPANDx manual for interpretation of different columns which can be found <a class="reference external" href="https://sourceforge.net/projects/spandx/files/SPANDx%20Manual_v3.1.pdf/download">here</a></li>
 <li>Back on Flux, use grep to pull SNPs that have HIGH impact</li>

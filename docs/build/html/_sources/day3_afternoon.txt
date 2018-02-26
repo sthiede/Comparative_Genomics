@@ -2,8 +2,8 @@ Day 3 Afternoon
 ===============
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-**Klebsiella pneumoniae comparative genomic analysis**
-------------------------------------------------------
+Klebsiella pneumoniae comparative genomic analysis 
+--------------------------------------------------
 
 To finish up the workshop we are going to go through the process of working up a complete dataset, from start to finish.  This set of genomes originated from a regional outbreak of bla-KPC carrying Klebsiella pneumoniae – one of the most concerning healthcare associated pathogens. 
 The goal is to follow up on a previously [published](http://cid.oxfordjournals.org/content/53/6/532.abstract) epidemiologic analysis, and see if genomics supports prior epidemiologic conclusions and can provide additional insights. 
@@ -28,6 +28,10 @@ Execute the following command to copy files for this afternoon’s exercises to 
 ```
 
 cd /scratch/micro612w18_fluxod/username
+
+or 
+
+wd
 
 cp -r /scratch/micro612w18_fluxod/shared/data/day3_after ./
 
@@ -73,7 +77,7 @@ Your PBS script wil contain the following command after the PBS preamble stuff(M
 Check the multiqc report of your fastq files.
 
 Examine results of [SPANDx](http://www.ncbi.nlm.nih.gov/pubmed/25201145) pipeline
----------------------------------------------------------------------------------
+---------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -107,7 +111,7 @@ SPANDx also produces a summary file of the variants/indels it identified in the 
 This summary file is: 
 ```/scratch/micro612w18_fluxod/username/day3_after/SPANDx_output/Outputs/All_SNPs_annotated.txt ```
 
-Use sftp to download this file and view in excel
+Use cyberduck/scp to download this file and view in excel
 
 - View SPANDx manual for interpretation of different columns which can be found [here](https://sourceforge.net/projects/spandx/files/SPANDx%20Manual_v3.1.pdf/download)
 - Back on Flux, use grep to pull SNPs that have HIGH impact

@@ -19,7 +19,7 @@ Read Mapping
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-![alt tag](1.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/1.png)
 
 **1. Navigate to your workshop home directory and copy day1_after directory from shared data directory.**
 
@@ -176,7 +176,7 @@ For an in-depth explanation about how PCR duplicates arise in sequencing, please
 
 Picard identifies duplicates by searching reads that have same start position on reference or in PE reads same start for both ends. It will choose a representative from each group of duplicate reads based on best base quality scores and other criteria and retain it while removing other duplicates. This step plays a significant role in removing false positive variant calls(such as sequencing error) during variant calling that are represented by PCR duplicate reads.
 
-![alt tag](picard.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/picard.png)
 
 >i. Create a dictionary for reference fasta file required by PICARD
 
@@ -234,9 +234,11 @@ java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 Open the file AlignmentSummaryMetrics.txt and explore various statistics. It will generate various statistics and the definition for each statistic s can be found [here](http://broadinstitute.github.io/picard/picard-metric-definitions.html#AlignmentSummaryMetrics)
 
 > Question: Extract alignment percentage from AlignmentSummaryMetrics file. (% of reads aligned to reference genome)
-
-```
+<!---
 awk -F'\t' '{print $7}' AlignmentSummaryMetrics.txt
+-->
+```
+grep -v '#' AlignmentSummaryMetrics.txt | cut -f7
 ```
 
 >ii. Estimate read coverage/read depth using Picard
@@ -248,21 +250,20 @@ java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 
 ```
 
-Open the file WgsMetrics.txt and explore various statistics. It will generate various statistics and the definition for each statistic s can be found [here](https://broadinstitute.github.io/picard/picard-metric-definitions.html#CollectWgsMetrics.WgsMetrics)
+Open the file WgsMetrics.txt and explore various statistics. It will generate various statistics and the definition for each can be found [here](https://broadinstitute.github.io/picard/picard-metric-definitions.html#CollectWgsMetrics.WgsMetrics)
 
 > Question: Extract mean coverage information from WgsMetrics.txt
-
-```
-
+<!---
 sed -n 7,8p WgsMetrics.txt | awk -F'\t' '{print $2}'
-
+-->
 ```
-
+grep -v '#' WgsMetrics.txt | cut -f2 | head -n3
+```
 <!--
-##Generate Alignment Statistics report using [Qualimap](http://qualimap.bioinfo.cipf.es/)
+## Generate Alignment Statistics report using [Qualimap](http://qualimap.bioinfo.cipf.es/)
 Qualimap outputs a very informative report about the alignments and coverage across the entire genome. Lets create one for our sample. The below command calls bamqc utility of qualimap and generates a report in pdf format.
-```
-qualimap bamqc -bam Rush_KPC_266__aln_sort.bam -outdir ./ -outfile Rush_KPC_266__report.pdf -outformat pdf
+``` 
+qualimap bamqc -bam Rush_KPC_266__aln_sort.bam -outdir ./ -outfile Rush_KPC_266__report.pdf -outformat pdf 
 ```
 Lets get this pdf report onto our local system and check the chromosome stats table, mapping quality and coverage across the entire reference genome.
 ```
@@ -287,7 +288,7 @@ Here we will use samtools mpileup to perform this operation on our BAM file and 
 
 ```
 
-/scratch/micro612w18_fluxod/shared/bin/samtools-1.2/samtools mpileup -ug -f ../KPNIH1.fasta Rush_KPC_266__aln_marked.bam | /scratch/micro612w18_fluxod/shared/bin/bcftools-1.2/bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
+samtools mpileup -ug -f ../KPNIH1.fasta Rush_KPC_266__aln_marked.bam | bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
 
 
 #In the above command, we are using samtools mpileup to generate a pileup formatted file from BAM alignments and genotype likelihoods(-g flag) in BCF format(binary version of vcf). This bcf output is then piped to bcftools, which calls variants and outputs them in vcf format(-c flag for using consensus calling algorithm  and -v for outputting variants positions only)
@@ -354,7 +355,7 @@ Run the commands below to generate a consensus fasta sequence.
 ```
 bgzip Rush_KPC_266__filter_onlysnp.recode.vcf
 tabix Rush_KPC_266__filter_onlysnp.recode.vcf.gz
-cat /path-to-reference/KPNIH1.fasta | vcf-consensus Rush_KPC_266__filter_onlysnp.recode.vcf.gz > Rush_KPC_266__consensus.fa
+cat ../KPNIH1.fasta | vcf-consensus Rush_KPC_266__filter_onlysnp.recode.vcf.gz > Rush_KPC_266__consensus.fa
 ```
 > Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/
 Check the fasta header and change it using sed.
@@ -461,7 +462,7 @@ bgzip Rush_KPC_266__filter_gatk_ann.vcf
 tabix Rush_KPC_266__filter_gatk_ann.vcf.gz
 ```
 
-Open a new terminal and run scp/sftp commands to get these files to your local system.
+Open a new terminal and run scp commands or cyberduck to get these files to your local system.
 
 ```
 
@@ -484,24 +485,24 @@ Now right click on any of the stacked reads and Go to Graph and select Coverage(
 
 Now right click on any of the stacked reads and Go to Show and select SNP marks to show SNP's in red marks. 
 
-![alt tag](select_graph.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/select_graph.png)
 
 Follow the same procedure and select SNP graph. Adjust the gene features panel height to show all the graph in a window.
 
-![alt tag](graphs.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/graphs.png)
 
 Play around by moving the genbank panel cursor to look at coverage and SNP density across the genome. This will let you look at any regions where the coverage or SNP density is unusually high or low.
 
 If you click a read, its mate pair will also be selected. If the cursor hovers over a read for long enough details of that read will appear in a small box. For more details of the read, right-click and select 'Show details of: READ NAME' (last option in list) from the
 menu.(screenshot below) This will open up a new window giving you some useful details such as mapping quality, coordinates etc. 
 
-![alt tag](read_details.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/read_details.png)
 
 The snps are denoted by red marks as observed inside the reads. Go to one of the SNPs in VCF file(Position: 50195) by directly navigating to the position. For this, select Goto at the top -> select Navigator -> Type the position in Goto Base box
 
 You will Notice a spike in the middle of the SNP graph window. This is one of the SNPs that passed all our filter criteria. (Screenshot)
 
-![alt tag](spike_true.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/spike_true.png)
 
 Lets try to see an example of HET variant. Variant positions where more than one allele(variants) with suffficiently high read depth are observed are considered as HET type variant. 
 
@@ -509,11 +510,11 @@ For this, click on Goto option at the top and select navigator. Type 321818 in G
 
 You will see a thick spike in the SNP graph as well as thick red vertical line in BAM panel. Also notice the sudden spike in the coverage for this particular region compared to its flanking region(Region before and after a selected region). The coverage here is more than 300 which is unusually high compared to the entire genome coverage. This means that more than one allele with high quality and depth were observed at these positions so we cannot decide which one of these is a true variant. We removed these types of variants during our Variant Filteration step using the criteria FQ. (If the FQ is unusually high, it is suggestive of HET variant and negative FQ value is a suggestive of true variant as observed in the mapped reads) 
 
-![alt tag](HET_variant.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/HET_variant.png)
 
 Now select the gene right below this spiked region. Right click on this gene(KPNIH1_RS01560) and select Zoom to Selection.
 
-![alt tag](HET_variant_gene_selected.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/HET_variant_gene_selected.png)
 
 Check the details about gene by selecting View -> Selected Features
 

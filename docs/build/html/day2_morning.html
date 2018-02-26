@@ -69,6 +69,7 @@
 <li><a class="reference internal" href="#generating-multiple-sample-reports-using-multiqc">Generating multiple sample reports using multiqc</a></li>
 <li><a class="reference internal" href="#compare-assembly-to-reference-genome-and-post-assembly-genome-improvement">Compare assembly to reference genome and post-assembly genome improvement</a></li>
 <li><a class="reference internal" href="#map-reads-to-the-final-ordered-assembly">Map reads to the final ordered assembly</a></li>
+<li><a class="reference internal" href="#using-abacas-and-act-to-compare-vre-vse-genome">Using abacas and ACT to compare VRE/VSE genome</a></li>
 <li><a class="reference internal" href="#genome-annotation">Genome Annotation</a></li>
 </ul>
 </li>
@@ -166,7 +167,7 @@ spades.py -h
 <blockquote>
 <div>iii. Submit a cluster job to assemble</div></blockquote>
 <p>Since it takes huge amount of memory and time to assemble genomes using spades, we will run a pbs script on cluster for this step.</p>
-<p>Now, Open the spades.pbs file residing in day2_morning folder with nano and add the following spades command to the bottom of the file.</p>
+<p>Now, Open the spades.pbs file residing in day2_morning folder with nano and add the following spades command to the bottom of the file. Replace the EMAIL_ADDRESS in spades.pbs file with your actual email-address. This will make sure that whenever the job starts, aborts or ends, you will get an email notification.</p>
 <pre class="literal-block">
 &gt; Open spades.pbs file using nano:
 
@@ -254,7 +255,7 @@ multiqc ./ --force --filename workshop_multiqc
 
 ls
 
-#Copy this report to your local system and open it in a browser for visual inspection
+#transfer this report to your local system and open it in a browser for visual inspection
 
 scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/workshop_multiqc.html /path-to-local-directory/
 
@@ -274,75 +275,57 @@ scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username
 <p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md">[back to top]</a>
 <a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
 <p>Now that we feel confident in our assembly, lets compare it to our reference to see if we can identify any large insertions/deletions using a graphical user interface called Artemis Comparison Tool (ACT) for visualization.</p>
-<p>To do this we need to first align our genome assembly to our reference. We will accomplish this using command-line BLAST.</p>
-<blockquote>
-<div>i. Align unordered contigs to reference</div></blockquote>
-<p>Create a BLAST database from your reference genome using the makeblastdb command.</p>
-<pre class="literal-block">
-
-&gt; Make sure you are in /scratch/micro612w18_fluxod/username/day2_morn directory
-
+<!---
+changed on 23 feb 2018
+To do this we need to first align our genome assembly to our reference. We will accomplish this using command-line BLAST.
+>i. Align unordered contigs to reference
+Create a BLAST database from your reference genome using the makeblastdb command.
+```
+> Make sure you are in /scratch/micro612w18_fluxod/username/day2_morn directory
 d2m
-
 #or
-
 cd /scratch/micro612w18_fluxod/username/day2_morn
-
 makeblastdb -in KPNIH1.fasta -dbtype nucl -out KPNIH1.fasta
-
-</pre>
-<blockquote>
-<div>ii. Stitch together your contigs into a single sequence</div></blockquote>
-<pre class="literal-block">
-echo &quot;&gt;sample_266_contigs_concat&quot; &gt; sample_266_contigs_concat.fasta 
-grep -v &quot;&gt;&quot; sample_266_contigs.fasta &gt;&gt; sample_266_contigs_concat.fasta 
-</pre>
-<p>BLAST your stitched together contigs against your reference.
-The input parameters are:</p>
-<ol class="simple">
-<li>query sequences (-query sample_266_contigs_concat.fasta),</li>
-<li>the database to search against (-db KPNIH1.fasta),</li>
-<li>the name of a file to store your results (-out blastn_results),</li>
-<li>output format (-outfmt 6),</li>
-<li>e-value cutoff (-evalue 1e-20)</li>
-</ol>
-<pre class="literal-block">
+```
+>ii. Stitch together your contigs into a single sequence
+```
+echo ">sample_266_contigs_concat" > sample_266_contigs_concat.fasta 
+grep -v ">" sample_266_contigs.fasta >> sample_266_contigs_concat.fasta 
+```
+BLAST your stitched together contigs against your reference. 
+The input parameters are: 
+1) query sequences (-query sample_266_contigs_concat.fasta), 
+2) the database to search against (-db KPNIH1.fasta), 
+3) the name of a file to store your results (-out blastn_results), 
+4) output format (-outfmt 6), 
+5) e-value cutoff (-evalue 1e-20)
+```
 blastn -outfmt 6 -evalue 1e-20 -db KPNIH1.fasta -query sample_266_contigs_concat.fasta -out concat_comp.blast
-</pre>
-<blockquote>
-<div>ii. Use ACT(Installed in your local system) to compare stitched together contigs to reference.</div></blockquote>
-<p>For these, first we will create a seperate directory called ACT_contig_comparison in day2_morn folder and copy all the necessary ACT input to this directory.</p>
-<pre class="literal-block">
-
+```
+>ii. Use ACT(Installed in your local system) to compare stitched together contigs to reference.
+For these, first we will create a seperate directory called ACT_contig_comparison in day2_morn folder and copy all the necessary ACT input to this directory.
+```
 mkdir ACT_contig_comparison 
 cp KPNIH.gb KPNIH1.fasta concat_comp.blast sample_266_contigs_concat.fasta ACT_contig_comparison/
-
-</pre>
-<p>Use scp to get sequences and BLAST alignments onto your laptop</p>
-<pre class="literal-block">
-
-&gt; Note: Make sure you change 'username' in the below command with your 'uniqname'.
-
-scp -r username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/ACT_contig_comparison/ /path-to-local-directory/
-
-</pre>
-<blockquote>
-<div>iii. Read these Input files in ACT_contig_comparison folder into ACT</div></blockquote>
-<pre class="literal-block">
-
+```
+Use scp to get sequences and BLAST alignments onto your laptop 
+```
+> Note: Make sure you change 'username' in the below command with your 'uniqname'.
+scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/ACT_contig_comparison/ /path-to-local-directory/
+```
+>iii. Read these Input files in ACT_contig_comparison folder into ACT
+```
 Start ACT and set your working directory to ACT_contig_comparison(wherever it is stored on your local system)
-Go to File on top left corner of ACT window -&gt; open 
-
+Go to File on top left corner of ACT window -> open 
 Sequence file 1 = KPNIH.gb
 Comparison file 1  = concat_comp_blast 
 Sequence file 2  = sample_266_contigs_concat.fasta
-
 Click Apply button
-</pre>
-<blockquote>
-<div>Notice that it is a complete mess!!!! The reason is that the contigs are in random order, so it is very difficult to visually compare to the reference.</div></blockquote>
-<p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/mess.png" /></p>
-<p>iv. Run abacas to orient contigs to reference</p>
+```
+> Notice that it is a complete mess!!!! The reason is that the contigs are in random order, so it is very difficult to visually compare to the reference. 
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/mess.png)
+--><p>In order to simplify the comparison between assembly and reference, we first need to orient the order of the contigs to reference.</p>
+<p>i. Run abacas to orient contigs to reference</p>
 <p>To orient our contigs relative to the reference we will use a tool called abacas. <a class="reference external" href="http://www.sanger.ac.uk/science/tools/pagit">ABACAS</a> aligns contigs to a reference genome and then stitches them together to form a “pseudo-chromosome”.</p>
 <p>Go back to flux and into the directory where the assembly is located.</p>
 <pre class="literal-block">
@@ -372,7 +355,7 @@ abacas.1.3.1.pl -h
 <pre class="literal-block">
 abacas.1.3.1.pl -r KPNIH1.fasta -q sample_266_contigs.fasta -p nucmer -b -d -a -o sample_266_contigs_ordered
 </pre>
-<p>v. Use ACT to view contig alignment to reference genome</p>
+<p>ii. Use ACT to view contig alignment to reference genome</p>
 <blockquote>
 <div>Use scp to get ordered fasta sequence and .cruch file onto your laptop</div></blockquote>
 <pre class="literal-block">
@@ -443,6 +426,10 @@ Select File -&gt; sample_266_contigs_ordered.fasta -&gt; Read BAM/VCF &gt; selec
 </pre>
 <p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/aligned_reads_deletion.png" /></p>
 </div>
+<div class="section" id="using-abacas-and-act-to-compare-vre-vse-genome">
+<span id="using-abacas-and-act-to-compare-vre-vse-genome"></span><h2>Using abacas and ACT to compare VRE/VSE genome<a class="headerlink" href="#using-abacas-and-act-to-compare-vre-vse-genome" title="Permalink to this headline">¶</a></h2>
+<p>Now that we learned how ACT can be used to explore and compare genome organization and differences, try comparing VSE_ERR374928_contigs.fasta, a Vancomycin-susceptible Enterococcus against a Vancomycin-resistant Enterococcus reference genome Efaecium_Aus0085.fasta that are placed in VRE_vanB_comparison folder under day2_morn directory. The relevant reference genbank file that can be used in ACT is Efaecium_Aus0085.gbf.</p>
+</div>
 <div class="section" id="genome-annotation">
 <span id="genome-annotation"></span><h2>Genome Annotation<a class="headerlink" href="#genome-annotation" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md">[back to top]</a>
@@ -484,7 +471,8 @@ Sequence file 1  = KPNIH.gb
 Comparison file 1  = sample_266_contigs_ordered.crunch 
 Sequence file 2  = sample_266_contigs_ordered.gbf
 </pre>
-<p><strong>Play around with ACT to see what types of genes are unique to sample 266!!!</strong></p>
+<blockquote>
+<div>Play around with ACT to see what types of genes are unique to sample 266!!!</div></blockquote>
 </div>
 </div>
 
