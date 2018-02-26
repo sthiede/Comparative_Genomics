@@ -1,4 +1,5 @@
-# Day 2 Morning
+Day 2 Morning
+=============
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 On day 1 we worked through a pipeline to map short-read data to a pre-existing assembly and identify single-nucleotide variants (SNVs) and small insertions/deletions. However, what this sort of analysis misses is the existence of sequence that is not present in your reference. Today we will tackle this issue by assembling our short reads into larger sequences, which we will then analyze to characterize the functions unique to our sequenced genome.   
@@ -10,7 +11,7 @@ Execute the following command to copy files for this morning’s exercises to yo
 
 wd
 
-# or 
+#or 
 
 cd /scratch/micro612w18_fluxod/username
 
@@ -23,7 +24,8 @@ pwd
 cp -r /scratch/micro612w18_fluxod/shared/data/day2_morn ./
 ```
 
-## Genome Assembly using [Spades](http://bioinf.spbau.ru/spades) Pipeline
+Genome Assembly using [Spades](http://bioinf.spbau.ru/spades) Pipeline
+------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -42,7 +44,7 @@ Create a new directory for the spades output in your day2_morn folder
 
 d2m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn
 
@@ -96,7 +98,8 @@ qsub -V spades.pbs
 qstat –u username 
 ```
 
-## Assembly evaluation using [QUAST](http://bioinf.spbau.ru/quast)
+Assembly evaluation using [QUAST](http://bioinf.spbau.ru/quast)
+---------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -124,7 +127,8 @@ less quast/report.txt
 
 Check the difference between each assembly statistics. Also check different types of report it generated.
 
-## Generating multiple sample reports using [multiqc](http://multiqc.info/)
+Generating multiple sample reports using [multiqc](http://multiqc.info/)
+--------------------------------------------------
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/multiqc.jpeg)
 
@@ -141,7 +145,7 @@ Lets take a look at one such mutiqc report that was generated using FastQC resul
 Download the html report Cdiff_multiqc_report.html from your day2_morn folder
 
 ```
-# Note: Make sure you change 'username' in the below command with your 'uniqname'.
+#Note: Make sure you change 'username' in the below command with your 'uniqname'.
 
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/Cdiff_multiqc_report.html /path-to-local-directory/
 
@@ -158,25 +162,25 @@ if you are not in day2_morn folder, navigate to it and change directory to multi
 ```
 d2m 
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn/
 
 cd multiqc_analysis
 
-# Try invoking multiqc 
+#Try invoking multiqc 
 
 multiqc -h
 
-# Run multiqc on sample reports
+#Run multiqc on sample reports
 
 multiqc ./ --force --filename workshop_multiqc
 
-# Check if workshop_multiqc.html report was generated
+#Check if workshop_multiqc.html report was generated
 
 ls
 
-# transfer this report to your local system and open it in a browser for visual inspection
+#transfer this report to your local system and open it in a browser for visual inspection
 
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/workshop_multiqc.html /path-to-local-directory/
 
@@ -193,7 +197,8 @@ The report contains Assembly, Fastq Screen and FastQC report for a mixture of 51
 > Question? Any sample's quality stand from the rest of the bunch?
 
 
-## Compare assembly to reference genome and post-assembly genome improvement
+Compare assembly to reference genome and post-assembly genome improvement
+-------------------------------------------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -202,32 +207,20 @@ Now that we feel confident in our assembly, lets compare it to our reference to 
 <!---
 changed on 23 feb 2018
 To do this we need to first align our genome assembly to our reference. We will accomplish this using command-line BLAST.
-
 >i. Align unordered contigs to reference
-
 Create a BLAST database from your reference genome using the makeblastdb command.
-
 ```
-
 > Make sure you are in /scratch/micro612w18_fluxod/username/day2_morn directory
-
 d2m
-
-# or
-
+#or
 cd /scratch/micro612w18_fluxod/username/day2_morn
-
 makeblastdb -in KPNIH1.fasta -dbtype nucl -out KPNIH1.fasta
-
 ```
-
 >ii. Stitch together your contigs into a single sequence
-
 ```
 echo ">sample_266_contigs_concat" > sample_266_contigs_concat.fasta 
 grep -v ">" sample_266_contigs.fasta >> sample_266_contigs_concat.fasta 
 ```
-
 BLAST your stitched together contigs against your reference. 
 The input parameters are: 
 1) query sequences (-query sample_266_contigs_concat.fasta), 
@@ -235,48 +228,30 @@ The input parameters are:
 3) the name of a file to store your results (-out blastn_results), 
 4) output format (-outfmt 6), 
 5) e-value cutoff (-evalue 1e-20)
-
 ```
 blastn -outfmt 6 -evalue 1e-20 -db KPNIH1.fasta -query sample_266_contigs_concat.fasta -out concat_comp.blast
 ```
-
 >ii. Use ACT(Installed in your local system) to compare stitched together contigs to reference.
-
 For these, first we will create a seperate directory called ACT_contig_comparison in day2_morn folder and copy all the necessary ACT input to this directory.
-
 ```
-
 mkdir ACT_contig_comparison 
 cp KPNIH.gb KPNIH1.fasta concat_comp.blast sample_266_contigs_concat.fasta ACT_contig_comparison/
-
 ```
-
 Use scp to get sequences and BLAST alignments onto your laptop 
-
 ```
-
 > Note: Make sure you change 'username' in the below command with your 'uniqname'.
-
 scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/ACT_contig_comparison/ /path-to-local-directory/
-
 ```
-
 >iii. Read these Input files in ACT_contig_comparison folder into ACT
-
 ```
-
 Start ACT and set your working directory to ACT_contig_comparison(wherever it is stored on your local system)
 Go to File on top left corner of ACT window -> open 
-
 Sequence file 1 = KPNIH.gb
 Comparison file 1  = concat_comp_blast 
 Sequence file 2  = sample_266_contigs_concat.fasta
-
 Click Apply button
 ```
-
 > Notice that it is a complete mess!!!! The reason is that the contigs are in random order, so it is very difficult to visually compare to the reference. 
-
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/mess.png)
 -->
 
@@ -291,7 +266,7 @@ Go back to flux and into the directory where the assembly is located.
 ```
 d2m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn/
 ```
@@ -356,7 +331,8 @@ Click Apply button
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/beautiful.png)
 
-## Map reads to the final ordered assembly
+Map reads to the final ordered assembly
+---------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -369,7 +345,7 @@ First create bwa index of ordered fasta file.
 
 d2m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn/
 
@@ -410,11 +386,13 @@ Select File -> sample_266_contigs_ordered.fasta -> Read BAM/VCF > select sorted 
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/aligned_reads_deletion.png)
 
-## Using abacas and ACT to compare VRE/VSE genome 
+Using abacas and ACT to compare VRE/VSE genome 
+----------------------------------------------
 
 Now that we learned how ACT can be used to explore and compare genome organization and differences, try comparing VSE_ERR374928_contigs.fasta, a Vancomycin-susceptible Enterococcus against a Vancomycin-resistant Enterococcus reference genome Efaecium_Aus0085.fasta that are placed in VRE_vanB_comparison folder under day2_morn directory. The relevant reference genbank file that can be used in ACT is Efaecium_Aus0085.gbf.
 
-## Genome Annotation
+Genome Annotation
+-----------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -435,7 +413,7 @@ Execute Prokka on your ordered assembly
 
 d2m
 
-# or
+#or
 
 cd /scratch/micro612w18_fluxod/username/day2_morn/
 

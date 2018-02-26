@@ -1,4 +1,5 @@
-# Day 1 Afternoon
+Day 1 Afternoon
+===============
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 Earlier this morning, We performed some quality control steps on our sequencing data to make it clean and usable for various downstream analysis. Now we will perform our first sequence analysis, specifically variant calling, and map these reads to a reference genome and try to find out the differences between them.
@@ -13,7 +14,8 @@ These alignment has a vast number of uses, including:
 
 In this session, we will be covering the important steps that are part of any Read mapping/Variant calling bioinformatics pipleine.
 
-## Read Mapping
+Read Mapping
+------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -58,7 +60,7 @@ Navigate to day1_after folder that you recently copied and create a new folder R
 ```
 d1a
 
-# or 
+#or 
 
 cd /scratch/micro612w18_fluxod/username/day1_after/
 
@@ -210,12 +212,13 @@ For more details about each metrics in a metrics file, please refer [this](https
 ```
 nano Rush_KPC_266__markduplicates_metrics
 
-# or 
+#or 
 
 less Rush_KPC_266__markduplicates_metrics
 ```
 
-## Generate Alignment Statistics
+Generate Alignment Statistics
+-----------------------------
 
 Often, While analyzing sequencing data, we are required to make sure that our analysis steps are correct. Some statistics about our analysis will help us in making that decision. So Lets try to get some statistics about various outputs that were created using the above steps and check if everything makes sense.
 
@@ -258,24 +261,18 @@ grep -v '#' WgsMetrics.txt | cut -f2 | head -n3
 ```
 <!--
 ## Generate Alignment Statistics report using [Qualimap](http://qualimap.bioinfo.cipf.es/)
-
 Qualimap outputs a very informative report about the alignments and coverage across the entire genome. Lets create one for our sample. The below command calls bamqc utility of qualimap and generates a report in pdf format.
-
 ``` 
-
 qualimap bamqc -bam Rush_KPC_266__aln_sort.bam -outdir ./ -outfile Rush_KPC_266__report.pdf -outformat pdf 
-
 ```
-
 Lets get this pdf report onto our local system and check the chromosome stats table, mapping quality and coverage across the entire reference genome.
-
 ```
-
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Rush_KPC_266__report.pdf /path-to-local-directory/
-
 ```
 -->
-## Variant Calling and Filteration
+
+Variant Calling and Filteration
+-------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -294,7 +291,7 @@ Here we will use samtools mpileup to perform this operation on our BAM file and 
 samtools mpileup -ug -f ../KPNIH1.fasta Rush_KPC_266__aln_marked.bam | bcftools call -O v -v -c -o Rush_KPC_266__aln_mpileup_raw.vcf
 
 
-# In the above command, we are using samtools mpileup to generate a pileup formatted file from BAM alignments and genotype likelihoods(-g flag) in BCF format(binary version of vcf). This bcf output is then piped to bcftools, which calls variants and outputs them in vcf format(-c flag for using consensus calling algorithm  and -v for outputting variants positions only)
+#In the above command, we are using samtools mpileup to generate a pileup formatted file from BAM alignments and genotype likelihoods(-g flag) in BCF format(binary version of vcf). This bcf output is then piped to bcftools, which calls variants and outputs them in vcf format(-c flag for using consensus calling algorithm  and -v for outputting variants positions only)
 
 
 ```
@@ -353,23 +350,15 @@ vcftools --vcf Rush_KPC_266__filter_gatk.vcf --keep-filtered pass_filter --remov
 <!--
 commenting out consensus generation
 >iii. Generate Consensus fasta file from filtered variants using vcftools:
-
 A consensus fasta sequence will contain alleles from reference sequence at positions where no variants were observed and variants that were observed at positions described in vcf file.
-
 Run the commands below to generate a consensus fasta sequence.
-
 ```
-
 bgzip Rush_KPC_266__filter_onlysnp.recode.vcf
 tabix Rush_KPC_266__filter_onlysnp.recode.vcf.gz
 cat ../KPNIH1.fasta | vcf-consensus Rush_KPC_266__filter_onlysnp.recode.vcf.gz > Rush_KPC_266__consensus.fa
-
 ```
-
 > Note: Dont forget to put the actual path to the refeerence sequence in place of /path-to-reference/
-
 Check the fasta header and change it using sed.
-
 ```
 head -n1 Rush_KPC_266__consensus.fa
 sed -i 's/>.*/>Rush_KPC_266_/g' Rush_KPC_266__consensus.fa 
@@ -435,7 +424,8 @@ grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | grep 'INDEL'
 
 ```
 
-## Visualize BAM and VCF files in [Artemis](http://www.sanger.ac.uk/science/tools/artemis)
+Visualize BAM and VCF files in [Artemis](http://www.sanger.ac.uk/science/tools/artemis)
+----------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -478,7 +468,7 @@ Open a new terminal and run scp commands or cyberduck to get these files to your
 
 scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_after/Rush_KPC_266_varcall_result/Artemis_files/ /path-to-local-directory/
 
-# You can use ~/Desktop/ as your local directory path
+#You can use ~/Desktop/ as your local directory path
 ```
 
 start Artemis.
