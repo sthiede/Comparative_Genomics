@@ -213,7 +213,7 @@ OK, so now that we have a useful command, wouldn’t it be great to turn it into
 > Run this script in day1_morn directory and verify that you get the correct results 
 
 ```
-bash fasta_counter.sh ./
+bash fasta_counter.sh .
 ```
 
 Plotting genomic coverage in R
