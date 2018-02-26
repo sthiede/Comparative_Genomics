@@ -231,7 +231,13 @@ Run the below command on your marked.bam file
 java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar CollectAlignmentSummaryMetrics R=../KPNIH1.fasta I=Rush_KPC_266__aln_marked.bam O=AlignmentSummaryMetrics.txt
 
 ```
-Open the file AlignmentSummaryMetrics.txt and explore various statistics. It will generate various statistics and the definition for each statistic s can be found [here](http://broadinstitute.github.io/picard/picard-metric-definitions.html#AlignmentSummaryMetrics)
+Open the file AlignmentSummaryMetrics.txt and explore various statistics. It will generate various statistics and the definition for each can be found [here](http://broadinstitute.github.io/picard/picard-metric-definitions.html#AlignmentSummaryMetrics)
+
+The file AlignmentSummaryMetrics.txt contains many columns and at times it becomes difficult to extract information from a particular column if we dont know the exact column number. Run the below unix gem to print column name with its number.
+
+```
+grep 'CATEGORY' AlignmentSummaryMetrics.txt | tr '\t' '\n' | cat --number
+```
 
 > Question: Extract alignment percentage from AlignmentSummaryMetrics file. (% of reads aligned to reference genome)
 
@@ -243,9 +249,13 @@ awk -F'\t' '{print $7}' AlignmentSummaryMetrics.txt
 grep -v '#' AlignmentSummaryMetrics.txt | cut -f7
 ```
 
+Try to explore other statistics and their definitions from Picard AlignmentSummaryMetrics [link](http://broadinstitute.github.io/picard/picard-metric-definitions.html#AlignmentSummaryMetrics)
+
 >ii. Estimate read coverage/read depth using Picard
 
-Read coverage/depth describes the average number of reads that align to, or "cover," known reference bases.
+Read coverage/depth describes the average number of reads that align to, or "cover," known reference bases. The sequencing depth is one of the most crucial issue in the design of next-generation sequencing experiments. This [paper](https://www.nature.com/articles/nrg3642) review current guidelines and precedents on the issue of coverage, as well as their underlying considerations, for four major study designs, which include de novo genome sequencing, genome resequencing, transcriptome sequencing and genomic location analyses 
+
+After read mapping, it is important to make sure that the reference bases are represented by enough read depth before making any inferences such as variant calling.
 
 ```
 java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar CollectWgsMetrics R=../KPNIH1.fasta I=Rush_KPC_266__aln_marked.bam O=WgsMetrics.txt
@@ -254,6 +264,15 @@ java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 
 Open the file WgsMetrics.txt and explore various statistics. It will generate various statistics and the definition for each can be found [here](https://broadinstitute.github.io/picard/picard-metric-definitions.html#CollectWgsMetrics.WgsMetrics)
 
+Print column names
+
+```
+grep 'GENOME_TERRITORY' WgsMetrics.txt | tr '\t' '\n' | cat --number
+```
+
+Since WgsMetrics.txt also contain histogram information, we will run commands on only first few lines to extract information.
+
+
 > Question: Extract mean coverage information from WgsMetrics.txt
 <!---
 sed -n 7,8p WgsMetrics.txt | awk -F'\t' '{print $2}'
@@ -261,7 +280,21 @@ sed -n 7,8p WgsMetrics.txt | awk -F'\t' '{print $2}'
 
 ```
 grep -v '#' WgsMetrics.txt | cut -f2 | head -n3
+
 ```
+
+> Question: Percentage of bases that attained at least 5X sequence coverage.
+
+```
+grep -v '#' WgsMetrics.txt | cut -f13 | head -n3
+```
+
+> Question: Percentage of bases that had siginificantly high coverage. This regions with unusually high depth sometimes indicate either repetitive region or pcr amplification bias.
+
+```
+grep -v '#' WgsMetrics.txt | cut -f25 | head -n3
+```
+
 <!--
 ## Generate Alignment Statistics report using [Qualimap](http://qualimap.bioinfo.cipf.es/)
 Qualimap outputs a very informative report about the alignments and coverage across the entire genome. Lets create one for our sample. The below command calls bamqc utility of qualimap and generates a report in pdf format.
@@ -305,10 +338,20 @@ Lets go through an the vcf file and try to understand a few important vcf specif
 less Rush_KPC_266__aln_mpileup_raw.vcf
 ```
 
-Press 'q' from keyboard to exit.
+1. CHROM, POS: 1st and 2nd column represents reference genome name and reference base position where a variant was called.
+2. REF, ALT: 4th and 5th columns represents Reference allele at the position and alternate/variant allele called from the reads.
+3. QUAL: Phred-scaled quality score for the assertion made in ALT
+4. INFO: Additional information that provides technical scores and obervations for each variant. Important parameters to look for: Depth(DP), mapping quality(MQ), FQ(consensus score), allele frequency for each ALT allele(AF)
 
 VCF format stores a large variety of information and you can find more details about each nomenclature in this [pdf](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwit35bvktzLAhVHkoMKHe3hAhYQFggdMAA&url=https%3A%2F%2Fsamtools.github.io%2Fhts-specs%2FVCFv4.2.pdf&usg=AFQjCNGFka33WgRmvOfOfp4nSaCzkV95HA&sig2=tPLD6jW5ALombN3ALRiCZg&cad=rja)
 
+Lets count the number of raw unfiltered variants found:
+
+```
+grep -v '#' Rush_KPC_266__aln_mpileup_raw.vcf | wc -l
+
+grep -v '#' Rush_KPC_266__aln_mpileup_raw.vcf | grep 'INDEL' | wc -l
+```
 **2. Variant filtering and processed file generation using GATK and vcftools**
 
 >i. Variant filtering using [GATK](https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_filters_VariantFiltration.php "GATK Variant Filteration"):
@@ -330,10 +373,11 @@ This command will add a 'pass_filter' text in the 7th FILTER column for those va
 3. QUAL stands for phred-scaled quality score for the assertion made in ALT. High QUAL scores indicate high confidence calls.
 4. FQ stands for consensus quality. A positive value indicates heterozygote and a negative value indicates homozygous. In bacterial analysis, this plays an important role in defining if a gene was duplicated in a particular sample. We will learn more about this later while visualizing our BAM files in Artemis.
 
-Check if the pass_filter was added properly.
+Check if the pass_filter was added properly and count the number of variants that passed the filter.
 
 ```
 grep 'pass_filter' Rush_KPC_266__filter_gatk.vcf | head
+
 ```
 
 caveat: These filter criteria should be applied carefully after giving some thought to the type of library, coverage, average mapping quality, type of analysis and other such requirements.
@@ -398,10 +442,14 @@ java -jar /scratch/micro612w18_fluxod/shared/bin/snpEff/snpEff.jar -onlyProtein 
 
 The STDOUT  will print out some useful details such as genome name and version being used, no. of genes, protein-coding genes and transcripts, chromosome and plasmid names etc
 
-Lets go through the ANN field added after annotation step.
+snpEff will add an extra field named 'ANN' at the end of INFO field. Lets go through the ANN field added after annotation step.
 
 ```
 grep 'ANN=' Rush_KPC_266__filter_gatk_ann.vcf | head -n1
+
+or to print on seperate lines
+
+grep -o 'ANN=.*GT:PL' Rush_KPC_266__filter_gatk_ann.vcf | head -n1 | tr '|' '\n' | cat --number
 ```
 
 ANN field will provide information such as the impact of variants (HIGH/LOW/MODERATE/MODIFIER) on genes and transcripts along with other useful annotations.

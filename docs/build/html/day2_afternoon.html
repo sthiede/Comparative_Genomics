@@ -409,7 +409,9 @@ Note: There is an issue with downloading the database. They are in a process to 
 --><blockquote>
 <div>i. Run ARIBA on input paired-end fastq reads for resistance gene identification.</div></blockquote>
 <p>The fastq reads are placed in Abau_genomes_fastq directory. Enter interactive flux session, change directory to day2_after workshop directory and run the below four commands to start ARIBA jobs in background.</p>
-<pre class="literal-block">
+<!---
+module load python-anaconda3/latest
+--><pre class="literal-block">
 iflux
 
 cd /scratch/micro612w18_fluxod/username/day2_after
@@ -452,6 +454,11 @@ jobs
 <li>Abau_genomes_ariba*.csv file that can be viewed in your favourite spreadsheet program.</li>
 <li>Abau_genomes_ariba*.phandango.{csv,tre} that allow you to view the results in <a class="reference external" href="http://jameshadfield.github.io/phandango/#/">Phandango</a>. They can be drag-and-dropped straight into Phandango.</li>
 </ol>
+<p>Lets copy this phandango files Abau_genomes_ariba_minimal_results.phandango.csv and Abau_genomes_ariba_minimal_results.phandango.tre to the local system using cyberduck or scp</p>
+<pre class="literal-block">
+scp username\&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_after/*minimal_results.phandango* ~/Desktop/
+</pre>
+<p>Drag and drop these two files on <a class="reference external" href="http://jameshadfield.github.io/phandango/#/">Phandango</a> website.</p>
 </div>
 <div class="section" id="perform-pan-genome-analysis-with-roary">
 <span id="perform-pan-genome-analysis-with-roary"></span><h2>Perform pan-genome analysis with <a class="reference external" href="https://sanger-pathogens.github.io/Roary/">Roary</a><a class="headerlink" href="#perform-pan-genome-analysis-with-roary" title="Permalink to this headline">¶</a></h2>

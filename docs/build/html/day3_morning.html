@@ -137,7 +137,7 @@ cp -r /scratch/micro612w18_fluxod/shared/data/day3_morn ./
 <p>An alternative approach for identification of variants among genomes is to perform whole genome alignments of assemblies. If the original short read data is unavailable, this might be the only approach available to you. Typically, these programs don’t scale well to large numbers of genomes (e.g. &gt; 100), but they are worth being familiar with. We will use the tool mauve for constructing whole genome alignments of our five A. baumannii genomes.</p>
 <blockquote>
 <div>i. Perform mauve alignment and transfer xmfa back to flux</div></blockquote>
-<p>Use cyberduck/scp to get genomes onto your laptop</p>
+<p>Use cyberduck/scp to get genomes folder Abau_genomes onto your laptop</p>
 <pre class="literal-block">
 Run these commands on your local system/terminal:
 
@@ -198,10 +198,11 @@ scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username
 
 </pre>
 <p>ii. Read alignment into R</p>
-<p>Fire up RStudio and install/load ape</p>
+<p>Fire up RStudio, set your working directory to ~/Desktop/Abau_mauve/ or wherever you have downloaded mauve_ECII_outgroup.fasta file and install/load ape</p>
 <p>Use the read.dna function in ape to read in you multiple alignments.
 Print out the variable to get a summary.</p>
 <pre class="literal-block">
+setwd(&quot;~/Desktop/Abau_mauve/&quot;)
 install.packages(&quot;ape&quot;)
 library(ape)
 abau_msa = read.dna('mauve_ECII_outgroup.fasta', format = &quot;fasta&quot;) 
@@ -295,14 +296,12 @@ hist(which(abau_no_outgroup_var_pos &amp; abau_no_outgroup_non_gap_pos), 10000)
 <blockquote>
 <div>i. Run gubbins on your fasta alignment</div></blockquote>
 <p>Go back on flux and load modules required by gubbins</p>
-<pre class="literal-block">
-Check if gubbins run after loading newer version flux modules
-
+<!---
 Older version:
 module load python/2.7.3 biopython dendropy reportlab fasttree RAxML fastml/gub gubbins
+--><pre class="literal-block">
 
-Newer version:
-module load python-anaconda2/201607 biopython dendropy reportlab fasttree RAxML fastml/gub gubbins
+module load bioperl python-anaconda2/201607 biopython dendropy reportlab fasttree RAxML fastml/gub gubbins
 
 </pre>
 <p>Run gubbins on your fasta formatted alignment</p>

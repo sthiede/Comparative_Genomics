@@ -38,7 +38,7 @@ An alternative approach for identification of variants among genomes is to perfo
 
 >i. Perform mauve alignment and transfer xmfa back to flux
 
-Use cyberduck/scp to get genomes onto your laptop
+Use cyberduck/scp to get genomes folder Abau_genomes onto your laptop
 
 ```
 Run these commands on your local system/terminal:
@@ -112,12 +112,13 @@ scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day
 
 ii. Read alignment into R
 
-Fire up RStudio and install/load ape
+Fire up RStudio, set your working directory to ~/Desktop/Abau_mauve/ or wherever you have downloaded mauve_ECII_outgroup.fasta file and install/load ape
 
 Use the read.dna function in ape to read in you multiple alignments. 
 Print out the variable to get a summary.
 
 ```
+setwd("~/Desktop/Abau_mauve/")
 install.packages("ape")
 library(ape)
 abau_msa = read.dna('mauve_ECII_outgroup.fasta', format = "fasta") 
@@ -237,14 +238,14 @@ Now that we know there is recombination, we know that we need to filter out the 
 
 Go back on flux and load modules required by gubbins
 
-```
-Check if gubbins run after loading newer version flux modules
-
+<!---
 Older version:
 module load python/2.7.3 biopython dendropy reportlab fasttree RAxML fastml/gub gubbins
+-->
 
-Newer version:
-module load python-anaconda2/201607 biopython dendropy reportlab fasttree RAxML fastml/gub gubbins
+```
+
+module load bioperl python-anaconda2/201607 biopython dendropy reportlab fasttree RAxML fastml/gub gubbins
 
 ```
 

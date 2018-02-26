@@ -116,7 +116,7 @@
 <p><a class="reference external" href="index.html">[HOME]</a></p>
 <div class="section" id="installing-and-setting-up-cyberduck-for-file-transfer">
 <span id="installing-and-setting-up-cyberduck-for-file-transfer"></span><h2>Installing and setting up Cyberduck for file transfer<a class="headerlink" href="#installing-and-setting-up-cyberduck-for-file-transfer" title="Permalink to this headline">¶</a></h2>
-<p>During workshop, we will transfer different output files from flux to your local system. Cyberduck makes it easier to drag and drop any remote file onto your local system and vice versa. Offcourse, you can use &#8220;scp&#8221; to transfer files but Cyberduck provides a graphical interface to manage file transfer and helps avoid typing long file paths and commands.</p>
+<p>During workshop, we will transfer different output files from flux to your local system. Cyberduck makes it easier to drag and drop any remote file onto your local system and vice versa. Of course, you can use &#8220;scp&#8221; to transfer files but Cyberduck provides a graphical interface to manage file transfer and helps avoid typing long file paths and commands.</p>
 <blockquote>
 <div><ol class="simple">
 <li>Go to <a class="reference external" href="https://cyberduck.io/">this</a> cyberduck website and download the executable for your respective operating system.</li>
@@ -155,7 +155,8 @@ cp ~/.bashrc ~/bashrc_backup
 </pre>
 <blockquote>
 <div>ii. Open ~/.bashrc file using any text editor and add the following lines to your .bashrc file.</div></blockquote>
-<p>Note: Replace &#8220;username&#8221; under alias shortcuts with your own umich &#8220;uniqname&#8221;. You can also customize the alias name such as wd, d1m etc. catering to your own need and convenience.</p>
+<p>Note: Replace &#8220;username&#8221; under alias shortcuts with your own umich &#8220;uniqname&#8221;. In the text editor, nano, you can do this by typing Ctrl + \ You will then be prompted to type in your search string (here, username). Press return. Then you will be prompted to enter what you want to replace &#8220;username&#8221; with (here, your uniqname). Press return. Then press a to replace all incidences or y to accept each incidence one by one.</p>
+<p>You can also customize the alias name such as wd, d1m etc. catering to your own need and convenience.</p>
 <p><details>
 <summary>Click to expand entries</summary></p>
 <pre class="literal-block">
@@ -287,7 +288,7 @@ grep &quot;&gt;&quot; E_coli.fna | wc -l
 <blockquote>
 <div>Run this script in day1_morn directory and verify that you get the correct results</div></blockquote>
 <pre class="literal-block">
-bash fasta_counter.sh ./
+bash fasta_counter.sh .
 </pre>
 </div>
 <div class="section" id="plotting-genomic-coverage-in-r">

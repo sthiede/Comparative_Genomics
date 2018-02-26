@@ -5,7 +5,7 @@ Day 1 Morning
 Installing and setting up Cyberduck for file transfer
 -----------------------------------------------------
 
-During workshop, we will transfer different output files from flux to your local system. Cyberduck makes it easier to drag and drop any remote file onto your local system and vice versa. Offcourse, you can use "scp" to transfer files but Cyberduck provides a graphical interface to manage file transfer and helps avoid typing long file paths and commands.
+During workshop, we will transfer different output files from flux to your local system. Cyberduck makes it easier to drag and drop any remote file onto your local system and vice versa. Of course, you can use "scp" to transfer files but Cyberduck provides a graphical interface to manage file transfer and helps avoid typing long file paths and commands.
 
 >1. Go to [this](https://cyberduck.io/) cyberduck website and download the executable for your respective operating system.
 >2. Double-click on the downloaded zip file to unzip it and double click cyberduck icon.
@@ -57,7 +57,10 @@ cp ~/.bashrc ~/bashrc_backup
 	
 >ii. Open ~/.bashrc file using any text editor and add the following lines to your .bashrc file. 
 
-Note: Replace "username" under alias shortcuts with your own umich "uniqname". You can also customize the alias name such as wd, d1m etc. catering to your own need and convenience.
+Note: Replace "username" under alias shortcuts with your own umich "uniqname". In the text editor, nano, you can do this by typing Ctrl + \ You will then be prompted to type in your search string (here, username). Press return. Then you will be prompted to enter what you want to replace "username" with (here, your uniqname). Press return. Then press a to replace all incidences or y to accept each incidence one by one. 
+
+You can also customize the alias name such as wd, d1m etc. catering to your own need and convenience.
+
 
 
 <details>
@@ -213,7 +216,7 @@ OK, so now that we have a useful command, wouldn’t it be great to turn it into
 > Run this script in day1_morn directory and verify that you get the correct results 
 
 ```
-bash fasta_counter.sh ./
+bash fasta_counter.sh .
 ```
 
 Plotting genomic coverage in R

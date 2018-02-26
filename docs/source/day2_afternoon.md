@@ -330,6 +330,10 @@ Note: There is an issue with downloading the database. They are in a process to 
 
 The fastq reads are placed in Abau_genomes_fastq directory. Enter interactive flux session, change directory to day2_after workshop directory and run the below four commands to start ARIBA jobs in background.
 
+<!---
+module load python-anaconda3/latest
+-->
+
 ```
 iflux
 
@@ -377,6 +381,14 @@ ARIBA summary generates three output:
 
 1. Abau_genomes_ariba*.csv file that can be viewed in your favourite spreadsheet program.
 2. Abau_genomes_ariba*.phandango.{csv,tre} that allow you to view the results in [Phandango](http://jameshadfield.github.io/phandango/#/). They can be drag-and-dropped straight into Phandango.
+
+Lets copy this phandango files Abau_genomes_ariba_minimal_results.phandango.csv and Abau_genomes_ariba_minimal_results.phandango.tre to the local system using cyberduck or scp
+
+```
+scp username\@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_after/*minimal_results.phandango* ~/Desktop/
+```
+
+Drag and drop these two files on [Phandango](http://jameshadfield.github.io/phandango/#/) website.
 
 Perform pan-genome analysis with [Roary](https://sanger-pathogens.github.io/Roary/)
 ----------------------------------------
