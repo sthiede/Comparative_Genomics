@@ -27,6 +27,10 @@ Execute the following command to copy files for this afternoon’s exercises to 
 
 cd /scratch/micro612w18_fluxod/username
 
+or 
+
+wd
+
 cp -r /scratch/micro612w18_fluxod/shared/data/day3_after ./
 
 ```
@@ -103,7 +107,7 @@ SPANDx also produces a summary file of the variants/indels it identified in the 
 This summary file is: 
 ```/scratch/micro612w18_fluxod/username/day3_after/SPANDx_output/Outputs/All_SNPs_annotated.txt ```
 
-Use sftp to download this file and view in excel
+Use cyberduck/scp to download this file and view in excel
 
 - View SPANDx manual for interpretation of different columns which can be found [here](https://sourceforge.net/projects/spandx/files/SPANDx%20Manual_v3.1.pdf/download)
 - Back on Flux, use grep to pull SNPs that have HIGH impact
