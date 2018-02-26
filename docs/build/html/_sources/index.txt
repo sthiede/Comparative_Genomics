@@ -21,6 +21,12 @@ Prerequisites
 -->
 ***
 
+Link
+----
+
+GOTO: http://comparative-genomics.readthedocs.io/en/latest/index.html#
+
+
 Workshop
 --------
 
