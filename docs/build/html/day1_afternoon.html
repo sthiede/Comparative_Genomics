@@ -275,10 +275,10 @@ java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 <div>Question: Extract alignment percentage from AlignmentSummaryMetrics file. (% of reads aligned to reference genome)</div></blockquote>
 <!---
 awk -F'\t' '{print $7}' AlignmentSummaryMetrics.txt
--->
-```
+--><pre class="literal-block">
 grep -v '#' AlignmentSummaryMetrics.txt | cut -f7
-```<blockquote>
+</pre>
+<blockquote>
 <div>ii. Estimate read coverage/read depth using Picard</div></blockquote>
 <p>Read coverage/depth describes the average number of reads that align to, or &#8220;cover,&#8221; known reference bases.</p>
 <pre class="literal-block">
@@ -290,10 +290,9 @@ java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 <div>Question: Extract mean coverage information from WgsMetrics.txt</div></blockquote>
 <!---
 sed -n 7,8p WgsMetrics.txt | awk -F'\t' '{print $2}'
--->
-```
+--><pre class="literal-block">
 grep -v '#' WgsMetrics.txt | cut -f2 | head -n3
-```
+</pre>
 <!--
 ## Generate Alignment Statistics report using [Qualimap](http://qualimap.bioinfo.cipf.es/)
 Qualimap outputs a very informative report about the alignments and coverage across the entire genome. Lets create one for our sample. The below command calls bamqc utility of qualimap and generates a report in pdf format.

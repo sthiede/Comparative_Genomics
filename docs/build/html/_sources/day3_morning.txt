@@ -80,9 +80,8 @@ scp ~/Desktop/Abau_mauve/mauve_ECII_outgroup username@flux-xfer.arc-ts.umich.edu
 
 Mauve produces alignments in .xmfa format (use less to see what this looks like), which is not compatible with other programs we want to use. We will use a custom script convert_msa_format.pl to change the alignment format to fasta format
 
-<!-- correction pending-->
-```
 
+```
 Now run these command in day3_morn folder on flux:
 
 module load bioperl
@@ -237,7 +236,6 @@ Now that we know there is recombination, we know that we need to filter out the 
 >i. Run gubbins on your fasta alignment
 
 Go back on flux and load modules required by gubbins
-<!-- Correction pending -->
 
 ```
 Check if gubbins run after loading newer version flux modules

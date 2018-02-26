@@ -234,9 +234,11 @@ java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 Open the file AlignmentSummaryMetrics.txt and explore various statistics. It will generate various statistics and the definition for each statistic s can be found [here](http://broadinstitute.github.io/picard/picard-metric-definitions.html#AlignmentSummaryMetrics)
 
 > Question: Extract alignment percentage from AlignmentSummaryMetrics file. (% of reads aligned to reference genome)
+
 <!---
 awk -F'\t' '{print $7}' AlignmentSummaryMetrics.txt
 -->
+
 ```
 grep -v '#' AlignmentSummaryMetrics.txt | cut -f7
 ```
@@ -256,6 +258,7 @@ Open the file WgsMetrics.txt and explore various statistics. It will generate va
 <!---
 sed -n 7,8p WgsMetrics.txt | awk -F'\t' '{print $2}'
 -->
+
 ```
 grep -v '#' WgsMetrics.txt | cut -f2 | head -n3
 ```
