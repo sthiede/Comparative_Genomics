@@ -29,7 +29,7 @@ Genome Assembly using [Spades](http://bioinf.spbau.ru/spades) Pipeline
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/intro.png)
+![alt tag](intro.png)
 
 There are a wide range of tools available for assembly of microbial genomes. These assemblers fall in to two general algorithmic categories, which you can learn more about [here](?). In the end, most assemblers will perform well on microbial genomes, unless there is unusually high GC-content or an over-abundance of repetitive sequences, both of which make accurate assembly difficult. 
 
@@ -130,7 +130,7 @@ Check the difference between each assembly statistics. Also check different type
 Generating multiple sample reports using [multiqc](http://multiqc.info/)
 --------------------------------------------------
 
-![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/multiqc.jpeg)
+![alt tag](multiqc.jpeg)
 
 Lets imagine a real life scenario where you are working on a project which requires you to analyze and process hundreds of samples. Having a few samples with extremely bad quality is a very commonplace. including these bad samples into your analysis without adjusting their quality threshold can have a profound effect on downstream analysis and interpretations. 
 
@@ -252,7 +252,7 @@ Sequence file 2  = sample_266_contigs_concat.fasta
 Click Apply button
 ```
 > Notice that it is a complete mess!!!! The reason is that the contigs are in random order, so it is very difficult to visually compare to the reference. 
-![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/mess.png)
+![alt tag](mess.png)
 -->
 
 In order to simplify the comparison between assembly and reference, we first need to orient the order of the contigs to reference. 
@@ -329,7 +329,7 @@ Click Apply button
 
 > Notice that the alignment is totally beautiful now!!! Scan through the alignment and play with ACT features to look at genes present in reference but not in assembly. Keep the ACT window open for further visualizations.
 
-![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/beautiful.png)
+![alt tag](beautiful.png)
 
 Map reads to the final ordered assembly
 ---------------------------------------
@@ -384,7 +384,7 @@ Go back to ACT where your ordered contigs are still open in the window.
 Select File -> sample_266_contigs_ordered.fasta -> Read BAM/VCF > select sorted bam file(sample_266_contigs_ordered_sort.bam) you just copied from flux.
 ```
 
-![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day2_morning/aligned_reads_deletion.png)
+![alt tag](aligned_reads_deletion.png)
 
 Using abacas and ACT to compare VRE/VSE genome 
 ----------------------------------------------

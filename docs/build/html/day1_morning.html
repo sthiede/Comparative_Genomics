@@ -308,7 +308,7 @@ Note: You can use your choice of folder/path to copy the file instead of  “~/D
 <p>An example plot.ts plot for Ecoli_coverage_average_bed.csv is shown below for your reference.</p>
 <p><img alt="alt tag" src="_images/plot_1.png" /></p>
 <p>For advance and more beautiful visualization, ggplot2 can be employed to display the same plot. An example ggplot2 plot for Ecoli_coverage_average_bed.csv is shown below for your reference.</p>
-<p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/plot_2.png" /></p>
+<p><img alt="alt tag" src="_images/plot_2.png" /></p>
 <p><details>
 <summary>Solution</summary></p>
 <pre class="literal-block">
@@ -516,10 +516,10 @@ fastqc -o Rush_KPC_266_FastQC_results/before_trimmomatic/ Rush_KPC_266_1_combine
 scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/before_trimmomatic/*.html /path-to-local-directory/
 </pre>
 <p>The analysis in FastQC is broken down into a series of analysis modules. The left hand side of the main interactive display or the top of the HTML report show a summary of the modules which were run, and a quick evaluation of whether the results of the module seem entirely normal (green tick), slightly abnormal (orange triangle) or very unusual (red cross).</p>
-<p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/1.png" /></p>
+<p><img alt="alt tag" src="_images/1.png" /></p>
 <p>Lets first look at the quality drop(per base sequence quality graph) at the end of &#8220;Per Base Sequence Quality&#8221; graph. This degredation of quality towards the end of reads is commonly observed in illumina samples. The reason for this drop is that as the number of sequencing cycles performed increases, the average quality of the base calls, as reported by the Phred Scores produced by the sequencer falls.</p>
 <p>Next, lets check the overrepresented sequences graph and the kind of adapters that were used for sequencing these samples (Truseq or Nextera) which comes in handy while indicating the adapter database path during downstream filtering step (Trimmomatic).</p>
-<p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/2.png" /></p>
+<p><img alt="alt tag" src="_images/2.png" /></p>
 <p>Check out <a class="reference external" href="https://sequencing.qcfail.com/articles/loss-of-base-call-accuracy-with-increasing-sequencing-cycles/">this</a> for more detailed explaination as to why quality drops with increasing sequencing cycles.</p>
 <blockquote>
 <div><a class="reference external" href="https://www.youtube.com/watch?v=bz93ReOv87Y">A video FastQC walkthrough created by FastQC developers</a></div></blockquote>
@@ -559,7 +559,7 @@ java -jar /scratch/micro612w18_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.ja
 <pre class="literal-block">
 java -jar /scratch/micro612w18_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.jar PE Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz Rush_KPC_266_trimmomatic_results/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results/forward_unpaired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_paired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_unpaired.fq.gz ILLUMINACLIP:/scratch/micro612w18_fluxod/shared/bin/Trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:true SLIDINGWINDOW:4:15 MINLEN:40 HEADCROP:0
 </pre>
-<p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/trimm_parameters.png" /></p>
+<p><img alt="alt tag" src="_images/trimm_parameters.png" /></p>
 <p>First, Trimmomatic searches for any matches between the reads and adapter sequences. Adapter sequences are stored in this directory of Trimmomatic tool: /scratch/micro612w18_fluxod/shared/bin/Trimmomatic/adapters/. Trimmomatic comes with a list of standard adapter fasta sequences such TruSeq, Nextera etc. You should use appropriate adapter fasta sequence file based on the illumina kit that was used for sequencing. You can get this information from your sequencing centre or can find it in FastQC html report (Section: Overrepresented sequences).</p>
 <p>Short sections (2 bp as determined by seed misMatch parameter) of each adapter sequences (contained in TruSeq3-PE.fa) are tested in each possible position within the reads. If it finds a perfect match, It starts searching the entire adapter sequence and scores the alignment. The advantage here is that the full alignment is calculated only when there is a perfect seed match which results in considerable efficiency gains. So, When it finds a match, it moves forward with full alignment and when the match reaches 10 bp determined by simpleClipThreshold, it finally trims off the adapter from reads.</p>
 <p>Quoting Trimmomatic:</p>
@@ -575,7 +575,7 @@ fastqc -o Rush_KPC_266_FastQC_results/after_trimmomatic/ Rush_KPC_266_trimmomati
 <pre class="literal-block">
 scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic/*.html /path-to-local-directory/
 </pre>
-<p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/3.png" /></p>
+<p><img alt="alt tag" src="_images/3.png" /></p>
 <p>After running Trimmomatic, you should notice that the sequence quality improved (Per base sequence quality) and now it doesn&#8217;t contain any contaminants/adapters (Overrepresented sequences).</p>
 <p>Next, take a look at the per base sequence content graph, and notice that the head bases(~9 bp) are slightly imbalanced. In a perfect scenario, each nucleotide content should run parallel to each other, and should be reflective of the overall A/C/T/G content of your input sequence.</p>
 <p>Quoting FastQC:
