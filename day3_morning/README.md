@@ -112,12 +112,13 @@ scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day
 
 ii. Read alignment into R
 
-Fire up RStudio and install/load ape
+Fire up RStudio, set your working directory to ~/Desktop/Abau_mauve/ or wherever you have downloaded mauve_ECII_outgroup.fasta file and install/load ape
 
 Use the read.dna function in ape to read in you multiple alignments. 
 Print out the variable to get a summary.
 
 ```
+setwd("~/Desktop/Abau_mauve/")
 install.packages("ape")
 library(ape)
 abau_msa = read.dna('mauve_ECII_outgroup.fasta', format = "fasta") 
