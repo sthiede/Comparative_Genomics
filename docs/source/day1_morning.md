@@ -2,6 +2,19 @@ Day 1 Morning
 =============
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
+Installing and setting up Cyberduck for file transfer
+-----------------------------------------------------
+
+During workshop, we will transfer different output files from flux to your local system. Cyberduck makes it easier to drag and drop any remote file onto your local system and vice versa. Offcourse, you can use "scp" to transfer files but Cyberduck provides a graphical interface to manage file transfer and helps avoid typing long file paths and commands.
+
+>1. Go to [this](https://cyberduck.io/) cyberduck website and download the executable for your respective operating system.
+>2. Double-click on the downloaded zip file to unzip it and double click cyberduck icon.
+>3. Type sftp://flux-xfer.arc-ts.umich.edu in quickconnect bar, press enter and enter your flux username and password.
+>4. This will take you to your flux home directory /home/username. Select "Go" from tool bar at the top then select "Go to folder" and enter workshop home directory path: /scratch/micro612w18_fluxod/
+
+To transfer or upload a file, you can drag and drop it into the location you want. 
+
+
 Getting your data onto Flux and setting up environment variable
 ---------------------------------------------------------------
 
@@ -38,7 +51,7 @@ All the softwares/tools that we need in this workshop are installed in a directo
 
 cp ~/.bashrc ~/bashrc_backup
 
-***Note: "~/" represents your home directory. On flux, these means /home/username***
+#Note: "~/" represents your home directory. On flux, these means /home/username
 
 ```
 	
@@ -51,7 +64,7 @@ Note: Replace "username" under alias shortcuts with your own umich "uniqname". Y
   <summary>Click to expand entries</summary>
   
 ```
-## Micro612 Workshop ENV
+##Micro612 Workshop ENV
 
 #Aliases
 alias iflux='qsub -I -V -l nodes=1:ppn=4,pmem=4000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w18_fluxod'
@@ -64,17 +77,17 @@ alias d3m='cd /scratch/micro612w18_fluxod/username/day3_morn'
 alias d3a='cd /scratch/micro612w18_fluxod/username/day3_after'
 
 
-# Flux Modules
-module load python-anaconda2/latest
+#Flux Modules
 module load perl-modules
 
-# Perl Libraries
+#Perl Libraries
 export PERL5LIB=/scratch/micro612w18_fluxod/shared/bin/PAGIT/lib:/scratch/micro612w18_fluxod/shared/bin/vcftools_0.1.12b/perl:$PERL5LIB
 export PERL5LIB=/scratch/micro612w18_fluxod/shared/perl_libs:$PERL5LIB
 
-# Bioinformatics Tools
+#Bioinformatics Tools
+export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/ncbi-blast-2.7.1+/bin/
+export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/MultiQC/build/scripts-2.7/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/
-export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/blast/bin/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/vcftools_0.1.12b/perl/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/tabix-0.2.6/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/bwa-0.7.12/
@@ -97,6 +110,7 @@ export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/fastq_screen_v0.5.2/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/prokka-1.11/bin/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/LS-BSR-master/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/bowtie2-2.2.6/
+export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/mcl-14-137/src/alien/oxygen/src/
 
 ```
 </details>
@@ -134,7 +148,6 @@ tree file system Pending
 Unix is your friend
 -------------------
 
-
 Up until now you’ve probably accessed sequence data from NCBI by going to the website, laboriously clicking around and finally finding and downloading the data you want. 
 
 There are a lot of reasons that is not ideal:
@@ -154,7 +167,7 @@ cp -r /scratch/micro612w18_fluxod/shared/data/day1_morn/ ./
 
 cd day1_morn/
 
-or
+#or 
 
 d1m
 
@@ -185,12 +198,13 @@ v) These files are genome assemblies in fasta format. Fasta files are a common s
 
 
 ```
-		grep “>”E_coli.fna | wc –l
+grep ">" E_coli.fna | wc -l
 ```
 
 vi) Try this command on other assemblies to see how many contigs they have
 
-**Your first sequence analysis program!!!**
+Your first sequence analysis program!!!
+---------------------------------------
 
 OK, so now that we have a useful command, wouldn’t it be great to turn it into a program that you can easily apply to a large number of genome assemblies? Of course it would! So, now we are going to take out cool contig counting command, and put it in a shell script that applies it to all files in the desired directory.
 
@@ -216,6 +230,16 @@ One such parameter is validating how well your sequencing experiment performed a
 
 The input for this task is a comma-separated file, which contains average sequencing coverage information i.e average number of reads mapped to each 1000 base pairs in reference genome. You can find this input file in your day1_morn directory by the name, Ecoli_coverage_average_bed.csv
 
+<!---
+Let’s copy Ecoli_coverage_average_bed.csv file from flux shared directory to your desktop using ‘scp’. ‘scp’ stands for secure copy and is used for securely transferring files between remote host/server(flux) and your local computer system. (Both directions)
+
+scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/shared/Ecoli_coverage_average_bed.csv ~/Desktop/
+
+Note: You can use your choice of folder/path to copy the file instead of  “~/Desktop/”
+-->
+
+Drag and drop this Ecoli_coverage_average_bed.csv to your local system using cyberduck.
+
 Now, Fire up R console or studio and import the file (Ecoli_coverage_average_bed.csv) using any type of data import functions in R (read.table, read.csv etc.) 
 
 Hint: The file is comma-separated and contains header line (“bin,Average_coverage”) so use appropriate parameters while importing the file
@@ -226,12 +250,26 @@ Note: A time series plot is a graph that you can use to evaluate patterns and 
 
 An example plot.ts plot for Ecoli_coverage_average_bed.csv is shown below for your reference.
 
-![alt tag](plot_1.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/plot_1.png)
 
 For advance and more beautiful visualization, ggplot2 can be employed to display the same plot. An example ggplot2 plot for Ecoli_coverage_average_bed.csv is shown below for your reference.
 
-![alt tag](plot_2.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/plot_2.png)
 
+<details>
+  <summary>Solution</summary>
+	
+```
+
+x <- read.table("Ecoli_coverage_average_bed.csv", sep=",", header=TRUE)
+plot.ts(x$Average_coverage, xlab="Genome Position(1000bp bins)", ylab="Average Read Depth", main="Ecoli Bed Coverage", col="blue")
+
+```
+</details>
+
+
+Power of Unix commands
+----------------------
 
 In software carpentry, you learned working with shell and automating simple tasks using basic unix commands. Lets see how some of these commands can be employed in genomics analysis while exploring various file formats that we use in day to day analysis. For this session, we will try to explore three different types of bioinformatics file formats: 
 
@@ -241,33 +279,60 @@ gff: used for describing genes and other features of DNA, RNA and protein sequen
 
 fastq: used for storing biological sequence / sequencing reads (usually nucleotide sequence) and its corresponding quality scores
 
+
 <!---
+```
+
 cp -r /scratch/micro612w18_fluxod/shared/data/day1_morn/ ./
+
 cd day1_morn/
-or
+
+#or 
+
 d1m
+
 ls
--->
+
+```
+
 
 > Question: In the homework assignment, you downloaded genome assembly fasta files and ran a shell script to count contigs. Now, lets say you want to find out the combined length of genome in each of these files. This can be achieved by running a short unix command piping together three extremely powerful unix programs: grep, sed and awk. The key to crafting the command is understanding the required features of fasta files, including: 1) each sequence is preceded by a fasta header that starts with ">", 2) the types of bases that a nucleotide sequence represents (A,T,G,C,N) and 3) that each line is seperated by a new line character ("\n"). To determine the total length of our genome assemblies, we will use grep to match only those lines that doesn't start with ">" (remember grep -v option to ignore lines), use sed to remove characters that match "N" or "n" which represents unknown bases and finally use awk to count the remaining characters. We can use unix pipe "|" to pass the output of one command to another for further processing. Lets start by counting the number of bases in Acinetobacter_baumannii.fna file
+-->
 
+> Question: In the homework assignment, you downloaded genome assembly fasta files and ran a shell script to count contigs. Now, lets say you want to find out the combined length of genome in each of these files. This can be achieved by running a short unix command piping together two unix programs: grep and wc. The key to crafting the command is understanding the  features of fasta files, 
+>1) each sequence in fasta file is preceded by a fasta header that starts with ">", 
+>2) the types of bases that a nucleotide sequence represents (A,T,G,C,N) and 
+<!---
+>3) that each line is seperated by a new line character ("\n"). 
+-->
+
+To determine the total length of our genome assemblies, we will use grep to match only those lines that doesn't start with ">" (remember grep -v option is used to ignore lines) and doesn't contain contain character "N". Then use wc command (stands for word count) to count the characters. We can use unix pipe "|" to pass the output of one command to another for further processing. Lets start by counting the number of bases in Acinetobacter_baumannii.fna file
 
 <details>
   <summary>Solution</summary>
-  
+
+
+<!--
+grep -v '^>' Acinetobacter_baumannii.fna | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} END {print sum}'
+for i in *.fna; do grep -v '^>' $i | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} END {print sum}'; done
+grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'rRNA' | wc -l
+grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'CDS' | wc -l
+grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'tRNA' | wc -l
+-->
+
 ```
 
-grep -v '^>' Acinetobacter_baumannii.fna | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} END {print sum}'
+grep -v '^>' Acinetobacter_baumannii.fna | grep -v "N" | grep -v "n" | wc -m
 
+#Note:
 
-***Note:***
-
-***- The sign "^" inside the grep pattern represents any pattern that starts with ">" and -v asks grep to ignore those lines.***
-***- Use "|" to pass these lines to sed. sed stands for stream editor and can be used to parse, transform and replace text. Here, we are removing the characters "N" or "n" and keeping only "A,T,G,C" bases***
-***- awk consists of three blocks: The first block (-F '\n') tells awk how each line is seperated from each other using a field seperator, the second block will keep counting characters in a line (using awk's default option "length") and save it in a variable "sum" and when it runs through all the lines in a stream, the third block will print the value of sum which represents total bases in a fasta file.***
+#- The sign "^" inside the grep pattern represents any pattern that starts with ">" and -v asks grep to ignore those lines.
+#- Use "|" to pass the output of one command to another.
+#- -m parameter will show the character counts. Check wc help menu by typing "wc --help" on terminal to explore other parameters
 
 ```
 </details>
+
 
 
 Now run the same command on other fasta files in day1_morn directory. Try using a for loop.
@@ -278,14 +343,13 @@ Now run the same command on other fasta files in day1_morn directory. Try using 
 
 ```
 
-for i in *.fna; do grep -v '^>' $i | sed 's/[N,n]//g' | awk -F '\n' '{sum += length} END {print sum}'; done
+for i in *.fna; do grep -v '^>' $i | grep -v "N" | grep -v "n" | wc -m; done
 
 ```
 </details>
 --
 
-Exploring GFF files
--------------------
+> Exploring GFF files
 
 The GFF (General Feature Format) format is a tab-seperated file and consists of one line per feature, each containing 9 columns of data.
 
@@ -309,7 +373,6 @@ column 9: attribute - A semicolon-separated list of tag-value pairs, providing a
 
 > Use less to explore first few lines of a gff file sample.gff
 
-
 ```
 
 less sample.gff
@@ -331,47 +394,30 @@ grep -v '^#' sample.gff | wc -l
 ```
 </details>
 
-> Question: How about counting the number of rRNA features in a gff file using grep, awk and wc? Note: Awk is a very powerful utility for working with columns in a file. 
+> Question: How about counting the number of rRNA features in a gff(third column) file using grep, cut and wc? You can check the usage for cut by typing "cut --help"
 
 <details>
   <summary>Solution</summary>
   
 ```
 
-grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'rRNA' | wc -l
-
-***Or number of CDS or tRNA features?***
-
-grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'CDS' | wc -l
-grep -v '^#' sample.gff | awk -F '\t' '{print $3}' | grep 'tRNA' | wc -l
-
-***Note: In the above command, we are trying to search lines that doesn't starts with "#" and extracting feature information from third column.***
-
-```
-</details>
-
-If for some reason you find awk daunting or too long, you can use "cut" command directly to extract specific columns.
-
-<details>
-  <summary>Solution</summary>
-  
-```
 cut -f 3 sample.gff | grep 'rRNA' | wc -l
 
-***Or number of CDS or tRNA features?***
+#Or number of CDS or tRNA features?
 
 cut -f 3 sample.gff | grep 'CDS' | wc -l
 cut -f 3 sample.gff | grep 'tRNA' | wc -l
 
+#Note: In the above command, we are trying to extract feature information from third column.
+
 ```
 </details>
 
-> Question: Try counting the number of features on a "+" or "-" strand.
+> Question: Try counting the number of features on a "+" or "-" strand (column 7).
 
 Some more useful one-line unix commands for GFF files: [here](https://github.com/stephenturner/oneliners#gff3-annotations)
 
-Unix one-liners
----------------
+**Unix one-liners**
 
 As soon as you receive your sample data from sequencing centre, the first thing you do is check its quality using a quality control tool such as FastQC and make sure that it contain sequences from organism that you are working on (Free from any contamination). But before carrying out extensive QC, you can run a bash "one-liner" to get some basic statistics about the raw reads. These one-liners are great examples for how a set of simple (relatively) Unix commands can be piped together to do really useful things.
 
@@ -380,13 +426,15 @@ Run the following command to print total number of reads in each file, total num
 ```
 for i in Rush_KPC_266_*.gz; do zcat $i | awk 'BEGIN{OFS="\t"};((NR-2)%4==0){read=$1;total++;count[read]++;len+=length(read)}END{for(read in count){if(!max||count[read]>max) {max=count[read];maxRead=read};if(count[read]==1){unique++}};print total,unique,unique*100/total,maxRead,count[maxRead],count[maxRead]*100/total,len/total}'; done
 
-***The above awk command reads every fourth record and calculates some basic fastq statistics.***
+#The above awk command reads every fourth record and calculates some basic fastq statistics.
 ```
+
+Now try running the above command using fastq_screen.fastq.gz as input.
 
 You can find more of such super useful bash one-liners at Stephen Turner's github [page](https://github.com/stephenturner/oneliners). You can also use some pre-written unix utilities and tools such as [seqtk](https://github.com/lh3/seqtk), [bioawk](https://github.com/lh3/bioawk) and [fastx](http://hannonlab.cshl.edu/fastx_toolkit/) which comes in handy while extracting complex information from fasta/fastq/sam/bam files and are optimized to be insanely fast.
 
 Contamination Screening using [FastQ Screen](http://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/)
--------------------------------------------------------------------------------------------------------------
+--------------------------------------------
 
 When running a sequencing pipeline, it is very important to make sure that your data matches appropriate quality threshold and are free from any contaminants. This step will help you make correct interpretations in downstream analysis and will also let you know if you are required to redo the experiment/library preparation or resequencing or remove contaminant sequences.
 
@@ -419,7 +467,7 @@ Whenever you start an interactive job, the path resets to your home directory. S
 ```
 d1m
 
-
+#or
 
 cd /scratch/micro612w18_fluxod/username/day1_morn/
 
@@ -431,47 +479,39 @@ cd /scratch/micro612w18_fluxod/username/day1_morn/
 
 fastq_screen --subset 1000 --force --outdir ./ --aligner bowtie2 fastq_screen.fastq.gz
 
-***Note: We will screen only a subset of fastq reads against reference databases. To screen all the reads, change this argument to --subset 0 but will take long time to finish. (searching sequences against human or mouse genome is a time consuming step). Also Dont worry about "Broken pipe" warning.
+#Note: We will screen only a subset of fastq reads against reference databases. To screen all the reads, change this argument to --subset 0 but will take long time to finish. (searching sequences against human or mouse genome is a time consuming step) 
+#Also Dont worry about "Broken pipe" warning.
 
 ```
 
 The above run will generate two types of output file: a screen report in text format "fastq_screen_screen.txt" and a graphical output "fastq_screen_screen.png" showing percentage of reads mapped to each reference genomes.
 
->iii. Download the fastq_screen graphical report to your home computer for inspection. Use scp if you find sftp annoying :)
+>iii. Download the fastq_screen graphical report to your home computer for inspection. Use scp command as shown below or use cyberduck. If you dont the file in cyberduck window, try refreshing it using the refresh button at the top.
 
 ```
-
-**Open a new terminal**
-
-sftp username@flux-login.arc-ts.umich.edu
-cd /scratch/micro612w18_fluxod/username/day1_morn/
-get fastq_screen_screen.png
-
-**or Use scp if you find sftp annoying :)**
-
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_morn/fastq_screen_screen.png /path-to-local-directory/
 
-**You can use ~/Desktop/ as your local directory path**
+#You can use ~/Desktop/ as your local directory path
 
 ```
 
 Open fastq_screen_screen.png on your system. You will notice that the sample contain a significant amount of human reads; we should always remove these contaminants from our sample before proceeding to any type of microbial analysis.
 
 Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
------------------------------------------------------------------------------------------------------------
+------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
 Now we will run FastQC on some sample raw data to assess its quality. FastQC is a quality control tool that reads in sequence data in a variety of formats(fastq, bam, sam) and can either provide an interactive application to review the results or create an HTML based report which can be integrated into any pipeline. It is generally the first step that you take upon receiving the sequence data from sequencing facility to get a quick sense of its quality and whether it exhibits any unusual properties (e.g. contamination or unexpected biological features)
 
->i. In your day1_morn directory, create a new directory for saving FastQC results.
+>ii. In your day1_morn directory, create a new directory for saving FastQC results.
 
 ```
 mkdir Rush_KPC_266_FastQC_results
 mkdir Rush_KPC_266_FastQC_results/before_trimmomatic
 ```
 
->ii. Verify that FastQC is in your path by invoking it from command line.
+>iii. Verify that FastQC is in your path by invoking it from command line.
 
 ```
 fastqc -h
@@ -479,7 +519,7 @@ fastqc -h
 
 FastQC can be run in two modes: "command line" or as a GUI (graphical user interface). We will be using command line version of it.
 
->iii. Run FastQC to generate quality report of sequence reads.
+>iv. Run FastQC to generate quality report of sequence reads.
 
 ```
 fastqc -o Rush_KPC_266_FastQC_results/before_trimmomatic/ Rush_KPC_266_1_combine.fastq.gz Rush_KPC_266_2_combine.fastq.gz --extract
@@ -491,37 +531,30 @@ The summary.txt file in these directories indicates if the data passed different
 
 You can visualize and assess the quality of data by opening html report in a local browser.
 
->iv. Exit your cluster node so you don’t waste cluster resources and $$$!
+>v. Exit your cluster node so you don’t waste cluster resources and $$$!
 
->v. Download the FastQC report to your home computer to examine
+>vi. Download the FastQC html report to your home computer to examine using scp or cyberduck
 
 ```
-sftp username@flux-login.arc-ts.umich.edu
-cd /scratch/micro612w18_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/before_trimmomatic/
-get Rush_KPC_266_1_combine_fastqc.html
-get Rush_KPC_266_2_combine_fastqc.html
-
-or use scp.
-
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/before_trimmomatic/*.html /path-to-local-directory/
 ```
 
 The analysis in FastQC is broken down into a series of analysis modules. The left hand side of the main interactive display or the top of the HTML report show a summary of the modules which were run, and a quick evaluation of whether the results of the module seem entirely normal (green tick), slightly abnormal (orange triangle) or very unusual (red cross). 
 
-![alt tag](1.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/1.png)
 
 Lets first look at the quality drop(per base sequence quality graph) at the end of "Per Base Sequence Quality" graph. This degredation of quality towards the end of reads is commonly observed in illumina samples. The reason for this drop is that as the number of sequencing cycles performed increases, the average quality of the base calls, as reported by the Phred Scores produced by the sequencer falls. 
 
 Next, lets check the overrepresented sequences graph and the kind of adapters that were used for sequencing these samples (Truseq or Nextera) which comes in handy while indicating the adapter database path during downstream filtering step (Trimmomatic).
 
-![alt tag](2.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/2.png)
 
 Check out [this](https://sequencing.qcfail.com/articles/loss-of-base-call-accuracy-with-increasing-sequencing-cycles/) for more detailed explaination as to why quality drops with increasing sequencing cycles.
 
 > [A video FastQC walkthrough created by FastQC developers](https://www.youtube.com/watch?v=bz93ReOv87Y "FastQC video") 
 
 Quality Trimming using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic "Trimmomatic Homepage")
------------------------------------------------------------------------------------------------------------
+------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -542,7 +575,7 @@ iflux
 
 cd /scratch/micro612w18_fluxod/username/day1_morn/
 
-or
+#or
 
 d1m
 ```
@@ -566,7 +599,7 @@ java -jar /scratch/micro612w18_fluxod/shared/bin/Trimmomatic/trimmomatic-0.33.ja
 ```
 
 
-![alt tag](trimm_parameters.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/trimm_parameters.png)
 
 First, Trimmomatic searches for any matches between the reads and adapter sequences. Adapter sequences are stored in this directory of Trimmomatic tool: /scratch/micro612w18_fluxod/shared/bin/Trimmomatic/adapters/. Trimmomatic comes with a list of standard adapter fasta sequences such TruSeq, Nextera etc. You should use appropriate adapter fasta sequence file based on the illumina kit that was used for sequencing. You can get this information from your sequencing centre or can find it in FastQC html report (Section: Overrepresented sequences).
 
@@ -584,20 +617,13 @@ mkdir Rush_KPC_266_FastQC_results/after_trimmomatic
 fastqc -o Rush_KPC_266_FastQC_results/after_trimmomatic/ Rush_KPC_266_trimmomatic_results/forward_paired.fq.gz Rush_KPC_266_trimmomatic_results/reverse_paired.fq.gz --extract
 ```
 
-Get these html reports to local system.
+Get these html reports to your local system.
 
 ```
-sftp username@flux-login.arc-ts.umich.edu
-cd /scratch/micro612w18_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic/
-get forward_paired.fq_fastqc.html
-get reverse_paired.fq_fastqc.html
-
-or use scp 
-
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic/*.html /path-to-local-directory/
 ```
 
-![alt tag](3.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_morning/3.png)
 
 After running Trimmomatic, you should notice that the sequence quality improved (Per base sequence quality) and now it doesn't contain any contaminants/adapters (Overrepresented sequences).
 
@@ -626,13 +652,6 @@ fastqc -o Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/ --extract -f f
 ```
 Download the reports again and see the difference.
 ```
-sftp username@flux-login.arc-ts.umich.edu
-cd /scratch/micro612w18_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/
-get forward_paired.fq_fastqc.html
-get reverse_paired.fq_fastqc.html
-
-or use scp
-
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_morn/Rush_KPC_266_FastQC_results/after_trimmomatic_headcrop/*.html /path-to-local-directory/
 ```
 
