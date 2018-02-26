@@ -233,6 +233,12 @@ java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 ```
 Open the file AlignmentSummaryMetrics.txt and explore various statistics. It will generate various statistics and the definition for each can be found [here](http://broadinstitute.github.io/picard/picard-metric-definitions.html#AlignmentSummaryMetrics)
 
+The file AlignmentSummaryMetrics.txt contains many columns and at times it becomes difficult to extract information from a particular column if we dont know the exact column number. Run the below unix gem to print column name with its number.
+
+```
+grep 'CATEGORY' AlignmentSummaryMetrics.txt | tr '\t' '\n' | cat --number
+```
+
 > Question: Extract alignment percentage from AlignmentSummaryMetrics file. (% of reads aligned to reference genome)
 
 <!---
@@ -243,9 +249,13 @@ awk -F'\t' '{print $7}' AlignmentSummaryMetrics.txt
 grep -v '#' AlignmentSummaryMetrics.txt | cut -f7
 ```
 
+Try to explore other statistics and their definitions from Picard AlignmentSummaryMetrics [link](http://broadinstitute.github.io/picard/picard-metric-definitions.html#AlignmentSummaryMetrics)
+
 >ii. Estimate read coverage/read depth using Picard
 
-Read coverage/depth describes the average number of reads that align to, or "cover," known reference bases.
+Read coverage/depth describes the average number of reads that align to, or "cover," known reference bases. The sequencing depth is one of the most crucial issue in the design of next-generation sequencing experiments. This [paper](https://www.nature.com/articles/nrg3642) review current guidelines and precedents on the issue of coverage, as well as their underlying considerations, for four major study designs, which include de novo genome sequencing, genome resequencing, transcriptome sequencing and genomic location analyses 
+
+After read mapping, it is important to make sure that the reference bases are represented by enough read depth before making any inferences such as variant calling.
 
 ```
 java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar CollectWgsMetrics R=../KPNIH1.fasta I=Rush_KPC_266__aln_marked.bam O=WgsMetrics.txt
@@ -254,6 +264,15 @@ java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 
 Open the file WgsMetrics.txt and explore various statistics. It will generate various statistics and the definition for each can be found [here](https://broadinstitute.github.io/picard/picard-metric-definitions.html#CollectWgsMetrics.WgsMetrics)
 
+Print column names
+
+```
+grep 'GENOME_TERRITORY' WgsMetrics.txt | tr '\t' '\n' | cat --number
+```
+
+Since WgsMetrics.txt also contain histogram information, we will run commands on only first few lines to extract information.
+
+
 > Question: Extract mean coverage information from WgsMetrics.txt
 <!---
 sed -n 7,8p WgsMetrics.txt | awk -F'\t' '{print $2}'
@@ -261,6 +280,10 @@ sed -n 7,8p WgsMetrics.txt | awk -F'\t' '{print $2}'
 
 ```
 grep -v '#' WgsMetrics.txt | cut -f2 | head -n3
+
+or 
+
+
 ```
 <!--
 ## Generate Alignment Statistics report using [Qualimap](http://qualimap.bioinfo.cipf.es/)
