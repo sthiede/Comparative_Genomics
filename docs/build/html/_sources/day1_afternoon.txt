@@ -1,6 +1,6 @@
 Day 1 Afternoon
 ===============
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[HOME]](index.html)
 
 Earlier this morning, We performed some quality control steps on our sequencing data to make it clean and usable for various downstream analysis. Now we will perform our first sequence analysis, specifically variant calling, and map these reads to a reference genome and try to find out the differences between them.
 
@@ -16,8 +16,8 @@ In this session, we will be covering the important steps that are part of any Re
 
 Read Mapping
 ------------
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[back to top]](day1_afternoon.html)
+[[HOME]](index.html)
 
 ![alt tag](1_1.png)
 
@@ -276,8 +276,8 @@ scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day
 
 Variant Calling and Filteration
 -------------------------------
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[back to top]](day1_afternoon.html)
+[[HOME]](index.html)
 
 One of the downstream uses of read mapping is finding differences between our sequence data against a reference. This step is achieved by carrying out variants calling using any of the variant callers(samtools, gatk, freebayes etc). Each variant caller uses a different statistical framework to discover SNPs and other types of mutations. For those of you who are interested in finding out more about the statistics involved, please refer to [this]() samtools paper, one of most commonly used variant callers.
 
@@ -429,8 +429,8 @@ grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | grep 'INDEL'
 
 Visualize BAM and VCF files in [Artemis](http://www.sanger.ac.uk/science/tools/artemis)
 ----------------------------------------
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[back to top]](day1_afternoon.html)
+[[HOME]](index.html)
 
 While these various statistical/text analyses are helpful, visualization of all of these various output files can help in making some significant decisions and inferences about your entire analysis. There are a wide variety of visualization tools out there that you can choose from for this purpose.
 
@@ -525,5 +525,5 @@ You can inspect these type of HET variants later for any gene duplication or cop
 
 Play around with Artemis to look at what other kind of information you can find from these BAM and vcf files. Also refer to the manual at Artemis [Homepage](http://www.sanger.ac.uk/science/tools/artemis) for full information about its usage. 
 
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[back to top]](day1_afternoon.html)
+[[HOME]](index.html)

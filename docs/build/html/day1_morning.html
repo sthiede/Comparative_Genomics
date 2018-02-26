@@ -113,7 +113,7 @@
             
   <div class="section" id="day-1-morning">
 <span id="day-1-morning"></span><h1>Day 1 Morning<a class="headerlink" href="#day-1-morning" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="index.html">[HOME]</a></p>
 <div class="section" id="installing-and-setting-up-cyberduck-for-file-transfer">
 <span id="installing-and-setting-up-cyberduck-for-file-transfer"></span><h2>Installing and setting up Cyberduck for file transfer<a class="headerlink" href="#installing-and-setting-up-cyberduck-for-file-transfer" title="Permalink to this headline">¶</a></h2>
 <p>During workshop, we will transfer different output files from flux to your local system. Cyberduck makes it easier to drag and drop any remote file onto your local system and vice versa. Offcourse, you can use &#8220;scp&#8221; to transfer files but Cyberduck provides a graphical interface to manage file transfer and helps avoid typing long file paths and commands.</p>
@@ -485,8 +485,8 @@ scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username
 </div>
 <div class="section" id="quality-control-using-fastqc">
 <span id="quality-control-using-fastqc"></span><h2>Quality Control using <a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a><a class="headerlink" href="#quality-control-using-fastqc" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md">[back to top]</a>
-<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="day1_morning.html">[back to top]</a>
+<a class="reference external" href="index.html">[HOME]</a></p>
 <p>Now we will run FastQC on some sample raw data to assess its quality. FastQC is a quality control tool that reads in sequence data in a variety of formats(fastq, bam, sam) and can either provide an interactive application to review the results or create an HTML based report which can be integrated into any pipeline. It is generally the first step that you take upon receiving the sequence data from sequencing facility to get a quick sense of its quality and whether it exhibits any unusual properties (e.g. contamination or unexpected biological features)</p>
 <blockquote>
 <div>ii. In your day1_morn directory, create a new directory for saving FastQC results.</div></blockquote>
@@ -526,8 +526,8 @@ scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username
 </div>
 <div class="section" id="quality-trimming-using-trimmomatic">
 <span id="quality-trimming-using-trimmomatic"></span><h2>Quality Trimming using <a class="reference external" href="http://www.usadellab.org/cms/?page=trimmomatic">Trimmomatic</a><a class="headerlink" href="#quality-trimming-using-trimmomatic" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md">[back to top]</a>
-<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="day1_morning.html">[back to top]</a>
+<a class="reference external" href="index.html">[HOME]</a></p>
 <p>Filtering out problematic sequences within a dataset is inherently a trade off between sensitivity (ensuring all contaminant sequences are removed) and specificity (leaving all non-contaminant sequence data intact). Adapter and other technical contaminants can potentially occur in any location within the reads.(start, end, read-through (between the reads), partial adapter sequences)</p>
 <p>Trimmomatic is a tool that tries to search these potential contaminant/adapter sequence within the read at all the possible locations. It takes advantage of the added evidence available in paired-end dataset. In paired-end data, read-through/adapters can occur on both the forward and reverse reads of a particular fragment in the same position. Since the fragment was entirely sequenced from both ends, the non-adapter portion of the forward and reverse reads will be reverse-complements of each other. This strategy of searching for contaminant in both the reads is called &#8216;palindrome&#8217; mode.</p>
 <p>For more information on how Trimmomatic tries to achieve this, Please refer <a class="reference external" href="http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf">this</a> manual.</p>
@@ -601,8 +601,8 @@ scp username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username
 </pre>
 <p>The red cross sign disappeared!</p>
 <p>Lets have a look at one of the Bad Illumina data example <a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html">here</a></p>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md">[back to top]</a>
-<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="day1_morning.html">[back to top]</a>
+<a class="reference external" href="index.html">[HOME]</a></p>
 </div>
 </div>
 

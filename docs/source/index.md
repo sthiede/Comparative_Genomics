@@ -32,43 +32,43 @@ Workshop
 - [Quality Control using FastQC](day1_morning.html#quality-control-using-fastqc)
 - [Quality Trimming using Trimmomatic](day1_morning.html#quality-trimming-using-trimmomatic)
 
-[Day 1 Afternoon](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#day-1-afternoon)
+[Day 1 Afternoon](day1_afternoon.html#day-1-afternoon)
 ***
-- [Read Mapping](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#read-mapping)
-- [Variant Calling](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#variant-calling-and-filteration)
-- [Visualize BAM/VCF files in Artemis](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md#visualize-bam-and-vcf-files-in-artemis)
+- [Read Mapping](day1_afternoon.html#read-mapping)
+- [Variant Calling](day1_afternoon.html#variant-calling-and-filteration)
+- [Visualize BAM/VCF files in Artemis](day1_afternoon.html#visualize-bam-and-vcf-files-in-artemis)
 
-[Day 2 Morning](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#day-2-morning)
+[Day 2 Morning](day2_morning.html#day-2-morning)
 ***
-- [Genome Assembly](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#genome-assembly)
-- [Assembly evaluation](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#assembly-evaluation-using-quast)
-- [Compare assembly to reference genome and Post-assembly genome improvement](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#compare-assembly-to-reference-genome-and-post-assembly-genome-improvement)
-- [Map reads to the final ordered assembly](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#map-reads-to-the-final-ordered-assembly)
-- [Genome Annotation](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_morning/README.md#genome-annotation)
+- [Genome Assembly](day2_morning.html#genome-assembly)
+- [Assembly evaluation](day2_morning.html#assembly-evaluation-using-quast)
+- [Compare assembly to reference genome and Post-assembly genome improvement](day2_morning.html#compare-assembly-to-reference-genome-and-post-assembly-genome-improvement)
+- [Map reads to the final ordered assembly](day2_morning.html#map-reads-to-the-final-ordered-assembly)
+- [Genome Annotation](day2_morning.html#genome-annotation)
 
-[Day 2 Afternoon](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md#day-2-afternoon)
+[Day 2 Afternoon](day2_afternoon.html#day-2-afternoon)
 ***
-- [Determine which genomes contain beta-lactamase genes](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md#determine-which-genomes-contain-beta-lactamase-genes)
-- [Identification of antibiotic resistance genes with ARIBA directly from paired-end reads](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md#identification-of-antibiotic-resistance-genes-with-ariba-directly-from-paired-end-reads)
-- [Perform pan-genome analysis with Roary](https://github.com/alipirani88/Comparative_Genomics/blob/master/day2_afternoon/README.md#perform-pan-genome-analysis-with-roary)
+- [Determine which genomes contain beta-lactamase genes](day2_afternoon.html#determine-which-genomes-contain-beta-lactamase-genes)
+- [Identification of antibiotic resistance genes with ARIBA directly from paired-end reads](day2_afternoon.html#identification-of-antibiotic-resistance-genes-with-ariba-directly-from-paired-end-reads)
+- [Perform pan-genome analysis with Roary](day2_afternoon.html#perform-pan-genome-analysis-with-roary)
 
-[Day 3 Morning](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#day-3-morning)
+[Day 3 Morning](day3_morning.html#day-3-morning)
 ***
-- [Perform whole genome alignment with Mauve](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#perform-whole-genome-alignment-with-Mauve)
-- [Perform DNA sequence comparisons and phylogenetic analysis in ape](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#perform-some-dna-sequence-comparisons-and-phylogenetic-analysis-in-ape)
-- [Perform SNP density analysis to discern evidence of recombination](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#perform-snp-density-analysis-to-discern-evidence-of-recombination)
-- [Perform recombination filtering with gubbins](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#perform-recombination-filtering-with-gubbins)
-- [Create annotated publication quality trees with iTOL](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md#create-annotated-publication-quality-trees-with-itol)
+- [Perform whole genome alignment with Mauve](day3_morning.html#perform-whole-genome-alignment-with-Mauve)
+- [Perform DNA sequence comparisons and phylogenetic analysis in ape](day3_morning.html#perform-some-dna-sequence-comparisons-and-phylogenetic-analysis-in-ape)
+- [Perform SNP density analysis to discern evidence of recombination](day3_morning.html#perform-snp-density-analysis-to-discern-evidence-of-recombination)
+- [Perform recombination filtering with gubbins](day3_morning.html#perform-recombination-filtering-with-gubbins)
+- [Create annotated publication quality trees with iTOL](day3_morning.html#create-annotated-publication-quality-trees-with-itol)
 
-[Day 3 Afternoon](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#day-3-afternoon)
+[Day 3 Afternoon](day3_afternoon.html#day-3-afternoon)
 ***
-- [Perform QC on fastq files](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#perform-qc-on-fastq-files)
-- [Examine results of SPANDx pipeline](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#examine-results-of-spandx-pipeline)
-- [Recombination detection and tree generation](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#recombination-detection-and-tree-generation)
-- [Phylogenetic tree annotation and visualization](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#phylogenetic-tree-annotation-and-visualization)
-- [Assessment of genomic deletions](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md#assessment-of-genomic-deletions)
+- [Perform QC on fastq files](day3_afternoon.html#perform-qc-on-fastq-files)
+- [Examine results of SPANDx pipeline](day3_afternoon.html#examine-results-of-spandx-pipeline)
+- [Recombination detection and tree generation](day3_afternoon.html#recombination-detection-and-tree-generation)
+- [Phylogenetic tree annotation and visualization](day3_afternoon.html#phylogenetic-tree-annotation-and-visualization)
+- [Assessment of genomic deletions](day3_afternoon.html#assessment-of-genomic-deletions)
 
 
 
-[Helpful resources for microbial genomics](https://github.com/alipirani88/Comparative_Genomics/blob/master/online_resources/README.md#helpful-resources-for-microbial-genomics)
+[Helpful resources for microbial genomics](online_resources.html#helpful-resources-for-microbial-genomics)
 ***

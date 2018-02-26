@@ -107,7 +107,7 @@
             
   <div class="section" id="day-1-afternoon">
 <span id="day-1-afternoon"></span><h1>Day 1 Afternoon<a class="headerlink" href="#day-1-afternoon" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="index.html">[HOME]</a></p>
 <p>Earlier this morning, We performed some quality control steps on our sequencing data to make it clean and usable for various downstream analysis. Now we will perform our first sequence analysis, specifically variant calling, and map these reads to a reference genome and try to find out the differences between them.</p>
 <p>Read Mapping is one of the most common Bioinformatics operations that needs to be carried out on NGS data. The main goal behind read mapping/aligning is to find the best possible reference genome position to which reads could be aligned. Reads are generally mapped to a reference genome sequence that is sufficiently closely related genome to accurately align reads. There are number of tools that can map reads to a reference genome and they differ from each other in algorithm, speed and accuracy. Most of these tools work by first building an index of reference sequence which works like a dictionary for fast search/lookup and then applying an alignment algorithm that uses these index to align short read sequences against the reference.</p>
 <p>These alignment has a vast number of uses, including:</p>
@@ -119,8 +119,8 @@
 <p>In this session, we will be covering the important steps that are part of any Read mapping/Variant calling bioinformatics pipleine.</p>
 <div class="section" id="read-mapping">
 <span id="read-mapping"></span><h2>Read Mapping<a class="headerlink" href="#read-mapping" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md">[back to top]</a>
-<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="day1_afternoon.html">[back to top]</a>
+<a class="reference external" href="index.html">[HOME]</a></p>
 <p><img alt="alt tag" src="_images/1_1.png" /></p>
 <p><strong>1. Navigate to your workshop home directory and copy day1_after directory from shared data directory.</strong></p>
 <pre class="literal-block">
@@ -306,8 +306,8 @@ scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day
 --></div>
 <div class="section" id="variant-calling-and-filteration">
 <span id="variant-calling-and-filteration"></span><h2>Variant Calling and Filteration<a class="headerlink" href="#variant-calling-and-filteration" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md">[back to top]</a>
-<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="day1_afternoon.html">[back to top]</a>
+<a class="reference external" href="index.html">[HOME]</a></p>
 <p>One of the downstream uses of read mapping is finding differences between our sequence data against a reference. This step is achieved by carrying out variants calling using any of the variant callers(samtools, gatk, freebayes etc). Each variant caller uses a different statistical framework to discover SNPs and other types of mutations. For those of you who are interested in finding out more about the statistics involved, please refer to <a class="reference external" href="">this</a> samtools paper, one of most commonly used variant callers.</p>
 <p>This GATK best practices <a class="reference external" href="https://www.broadinstitute.org/gatk/guide/best-practices.php">guide</a> will provide more details about various steps that you can incorporate in your analysis.</p>
 <p>There are many published articles that compares different variant callers but this is a very interesting <a class="reference external" href="https://bcbio.wordpress.com/2013/10/21/updated-comparison-of-variant-detection-methods-ensemble-freebayes-and-minimal-bam-preparation-pipelines/">blog</a> that compares the performance and accuracy of different variant callers.</p>
@@ -424,8 +424,8 @@ grep '^Chromosome.*pass_filter' Rush_KPC_266__filter_gatk_ann.vcf | grep 'INDEL'
 </div>
 <div class="section" id="visualize-bam-and-vcf-files-in-artemis">
 <span id="visualize-bam-and-vcf-files-in-artemis"></span><h2>Visualize BAM and VCF files in <a class="reference external" href="http://www.sanger.ac.uk/science/tools/artemis">Artemis</a><a class="headerlink" href="#visualize-bam-and-vcf-files-in-artemis" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md">[back to top]</a>
-<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="day1_afternoon.html">[back to top]</a>
+<a class="reference external" href="index.html">[HOME]</a></p>
 <p>While these various statistical/text analyses are helpful, visualization of all of these various output files can help in making some significant decisions and inferences about your entire analysis. There are a wide variety of visualization tools out there that you can choose from for this purpose.</p>
 <p>We will be using <a class="reference external" href="http://www.sanger.ac.uk/science/tools/artemis">Artemis</a> here, developed by Sanger Institute for viewing BAM and vcf files for manual inspection of some of the variants.</p>
 <blockquote>
@@ -485,8 +485,8 @@ menu.(screenshot below) This will open up a new window giving you some useful de
 <p>Check the details about gene by selecting View -&gt; Selected Features</p>
 <p>You can inspect these type of HET variants later for any gene duplication or copy number analysis (by extracting variant positions with high FQ values). Addition of these details will give a better resolution while inferring Phylogenetic trees.</p>
 <p>Play around with Artemis to look at what other kind of information you can find from these BAM and vcf files. Also refer to the manual at Artemis <a class="reference external" href="http://www.sanger.ac.uk/science/tools/artemis">Homepage</a> for full information about its usage.</p>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md">[back to top]</a>
-<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="day1_afternoon.html">[back to top]</a>
+<a class="reference external" href="index.html">[HOME]</a></p>
 </div>
 </div>
 

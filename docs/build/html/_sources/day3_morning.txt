@@ -1,6 +1,6 @@
 Day 3 Morning
 =============
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[HOME]](index.html)
 
 On day 1, we ran through a pipeline to map reads against a reference genome and call variants, but didn’t do much with the variants we identified. Among the most common analyses to perform on a set of variants is to construct phylogenetic trees. Here we will explore different tools for generating and visualizing phylogenetic trees, and also see how recombination can distort phylogenetic signal.
 
@@ -31,8 +31,8 @@ cp -r /scratch/micro612w18_fluxod/shared/data/day3_morn ./
 
 Perform whole genome alignment with [Mauve](http://darlinglab.org/mauve/mauve.html) and convert alignment to other useful formats
 -------------------------------------------
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md)
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[back to top]](day3_morning.html)
+[[HOME]](index.html)
 
 An alternative approach for identification of variants among genomes is to perform whole genome alignments of assemblies. If the original short read data is unavailable, this might be the only approach available to you. Typically, these programs don’t scale well to large numbers of genomes (e.g. > 100), but they are worth being familiar with. We will use the tool mauve for constructing whole genome alignments of our five A. baumannii genomes.
 
@@ -92,8 +92,8 @@ perl convert_msa_format.pl -i mauve_ECII_outgroup -o mauve_ECII_outgroup.fasta -
 
 Perform some DNA sequence comparisons and phylogenetic analysis in [APE](http://ape-package.ird.fr/), an R package
 ------------------------------------------------------------------------
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md)
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[back to top]](day3_morning.html)
+[[HOME]](index.html)
 
 There are lots of options for phylogenetic analysis. Here, we will use the ape package in R to look at our multiple alignments and construct a tree using the Neighbor Joining method. 
 
@@ -179,8 +179,8 @@ plot(abau_nj_tree)
 
 Perform SNP density analysis to discern evidence of recombination
 -----------------------------------------------------------------
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md)
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[back to top]](day3_morning.html)
+[[HOME]](index.html)
 
 An often-overlooked aspect of a proper phylogenetic analysis is to exclude recombinant sequences. Homologous recombination in bacterial genomes is a mode of horizontal transfer, wherein genomic DNA is taken up and swapped in for a homologous sequence. The reason it is critical to account for these recombinant regions is that these horizontally acquired sequences do not represent the phylogenetic history of the strain of interest, but rather in contains information regarding the strain in which the sequence was acquired from. One simple approach for detecting the presence of recombination is to look at the density of variants across a genome. The existence of unusually high or low densities of variants is suggestive that these regions of aberrant density were horizontally acquired. Here we will look at our closely related A. baumannii genomes to see if there is evidence of aberrant variant densities.
 
@@ -228,8 +228,8 @@ hist(which(abau_no_outgroup_var_pos & abau_no_outgroup_non_gap_pos), 10000)
 
 Perform recombination filtering with [Gubbins](https://www.google.com/search?q=gubbins+sanger&ie=utf-8&oe=utf-8)
 ----------------------------------------------
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md)
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[back to top]](day3_morning.html)
+[[HOME]](index.html)
 
 Now that we know there is recombination, we know that we need to filter out the recombinant regions to discern the true phylogenetic relationship among our strains. In fact, this is such an extreme case (~99% of variants of recombinant), that we could be totally misled without filtering recombinant regions. To accomplish this we will use the tool gubbins, which essentially relies on elevated regions of variant density to perform recombination filtering.
 
@@ -319,8 +319,8 @@ How does the structure look different than the unfiltered tree?
 
 Create annotated publication quality trees with [iTOL](http://itol.embl.de/)
 ------------------------------------------------------
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_morning/README.md)
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[back to top]](day3_morning.html)
+[[HOME]](index.html)
 
 For the final exercise we will use a different dataset, composed of USA300 methicillin-resistant Staphylococcus aureus genomes. USA300 is a strain of growing concern, as it has been observed to cause infections in both hospitals and in otherwise healthy individuals in the community. An open question is whether there are sub-clades of USA300 in the hospital and the community, or if they are all the same. Here you will create an annotated phylogenetic tree of strains from the community and the hospital, to discern if these form distinct clusters.
 

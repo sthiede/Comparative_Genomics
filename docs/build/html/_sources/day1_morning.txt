@@ -1,6 +1,6 @@
 Day 1 Morning
 =============
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[HOME]](index.html)
 
 Installing and setting up Cyberduck for file transfer
 -----------------------------------------------------
@@ -483,8 +483,8 @@ Open fastq_screen_screen.png on your system. You will notice that the sample con
 
 Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
 ------------------------------
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[back to top]](day1_morning.html)
+[[HOME]](index.html)
 
 Now we will run FastQC on some sample raw data to assess its quality. FastQC is a quality control tool that reads in sequence data in a variety of formats(fastq, bam, sam) and can either provide an interactive application to review the results or create an HTML based report which can be integrated into any pipeline. It is generally the first step that you take upon receiving the sequence data from sequencing facility to get a quick sense of its quality and whether it exhibits any unusual properties (e.g. contamination or unexpected biological features)
 
@@ -539,8 +539,8 @@ Check out [this](https://sequencing.qcfail.com/articles/loss-of-base-call-accura
 
 Quality Trimming using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic "Trimmomatic Homepage")
 ------------------------------------
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[back to top]](day1_morning.html)
+[[HOME]](index.html)
 
 Filtering out problematic sequences within a dataset is inherently a trade off between sensitivity (ensuring all contaminant sequences are removed) and specificity (leaving all non-contaminant sequence data intact). Adapter and other technical contaminants can potentially occur in any location within the reads.(start, end, read-through (between the reads), partial adapter sequences)
 
@@ -643,5 +643,5 @@ The red cross sign disappeared!
 
 Lets have a look at one of the Bad Illumina data example [here](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html)
 
-[[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
-[[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
+[[back to top]](day1_morning.html)
+[[HOME]](index.html)

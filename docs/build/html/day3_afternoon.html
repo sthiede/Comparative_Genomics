@@ -109,7 +109,7 @@
             
   <div class="section" id="day-3-afternoon">
 <span id="day-3-afternoon"></span><h1>Day 3 Afternoon<a class="headerlink" href="#day-3-afternoon" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="index.html">[HOME]</a></p>
 <div class="section" id="klebsiella-pneumoniae-comparative-genomic-analysis">
 <span id="klebsiella-pneumoniae-comparative-genomic-analysis"></span><h2>Klebsiella pneumoniae comparative genomic analysis<a class="headerlink" href="#klebsiella-pneumoniae-comparative-genomic-analysis" title="Permalink to this headline">¶</a></h2>
 <p>To finish up the workshop we are going to go through the process of working up a complete dataset, from start to finish.  This set of genomes originated from a regional outbreak of bla-KPC carrying Klebsiella pneumoniae – one of the most concerning healthcare associated pathogens.
@@ -139,8 +139,8 @@ cp -r /scratch/micro612w18_fluxod/shared/data/day3_after ./
 </div>
 <div class="section" id="perform-qc-on-fastq-files">
 <span id="perform-qc-on-fastq-files"></span><h2>Perform QC on fastq files<a class="headerlink" href="#perform-qc-on-fastq-files" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md">[back to top]</a>
-<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="day3_afternoon.html">[back to top]</a>
+<a class="reference external" href="index.html">[HOME]</a></p>
 <p>On the first morning you ran FastQC to evaluate the quality of a single genome. However, a typical project will include many genomes and you will want to check the quality of all of your samples. From the bash workshop, I hope you can appreciate that you do not want to process 100 genomes by typing 100 commands – rather you want to write a short shell script to do the work for you!</p>
 <blockquote>
 <div>i. Edit the shell script fastqc.sh located in /scratch/micro612w18_fluxod/your username/day3_after to run FastQC on all fastq files.</div></blockquote>
@@ -168,8 +168,8 @@ cp -r /scratch/micro612w18_fluxod/shared/data/day3_after ./
 </div>
 <div class="section" id="examine-results-of-spandx-pipeline">
 <span id="examine-results-of-spandx-pipeline"></span><h2>Examine results of <a class="reference external" href="http://www.ncbi.nlm.nih.gov/pubmed/25201145">SPANDx</a> pipeline<a class="headerlink" href="#examine-results-of-spandx-pipeline" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md">[back to top]</a>
-<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="day3_afternoon.html">[back to top]</a>
+<a class="reference external" href="index.html">[HOME]</a></p>
 <p>On the afternoon of day 1 we saw how many steps are involved in calling variants relative to a reference genome. However, the same steps are applied to every sample, which makes this very pipeline friendly!  So, you could write your own shell script to string together these commands, or take advantage of one of several published pipelines. Here, we will use the output of the SPANDx pipeline, which takes as input a directory of fastq files and produces core variant and indel calls.</p>
 <p>More information on SPANDx pipeline can be obtained from <a class="reference external" href="https://sourceforge.net/projects/spandx/files/SPANDx%20Manual_v3.1.pdf/download">this</a> manual.</p>
 <p>Because it takes a while to run, we have pre-run it for you. Your task will be to sort through the outputs of SPANDx. The detailed information about how to interpret the output is in SPANDx manual(section INTERPRETING THE OUTPUTS).</p>
@@ -200,8 +200,8 @@ The following unix commands can be used to get sorted lists of coverage and numb
 </div>
 <div class="section" id="recombination-detection-and-tree-generation">
 <span id="recombination-detection-and-tree-generation"></span><h2>Recombination detection and tree generation<a class="headerlink" href="#recombination-detection-and-tree-generation" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md">[back to top]</a>
-<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="day3_afternoon.html">[back to top]</a>
+<a class="reference external" href="index.html">[HOME]</a></p>
 <blockquote>
 <div>i. Plot the distribution of variants across the genome in R</div></blockquote>
 <p>The positions of variants are embedded in the first column of Outputs/Comparative/All_SNPs_annotated.txt, but you have to do some work to isolate them!</p>
@@ -240,8 +240,8 @@ Save tree for later analysis
 </div>
 <div class="section" id="phylogenetic-tree-annotation-and-visualization">
 <span id="phylogenetic-tree-annotation-and-visualization"></span><h2>Phylogenetic tree annotation and visualization<a class="headerlink" href="#phylogenetic-tree-annotation-and-visualization" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md">[back to top]</a>
-<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="day3_afternoon.html">[back to top]</a>
+<a class="reference external" href="index.html">[HOME]</a></p>
 <blockquote>
 <div>i. Load the maximum likelihood tree into iTOL</div></blockquote>
 <p>Note that because the out-group is so distantly related it is difficult to make out the structure of the rest of the tree.</p>
@@ -261,8 +261,8 @@ Which patient’s infections might have originated from the blue facility?
 </div>
 <div class="section" id="assessment-of-genomic-deletions">
 <span id="assessment-of-genomic-deletions"></span><h2>Assessment of genomic deletions<a class="headerlink" href="#assessment-of-genomic-deletions" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day3_afternoon/README.md">[back to top]</a>
-<a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
+<p><a class="reference external" href="day3_afternoon.html">[back to top]</a>
+<a class="reference external" href="index.html">[HOME]</a></p>
 <blockquote>
 <div>i. Download genome coverage bed file and load into R</div></blockquote>
 <p>This file is located in: Outputs/Comparative/Bedcov_merge.txt
