@@ -1,7 +1,9 @@
-# Day 1 Morning
+Day 1 Morning
+=============
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-## Installing and setting up Cyberduck for file transfer
+Installing and setting up Cyberduck for file transfer
+-----------------------------------------------------
 
 During workshop, we will transfer different output files from flux to your local system. Cyberduck makes it easier to drag and drop any remote file onto your local system and vice versa. Offcourse, you can use "scp" to transfer files but Cyberduck provides a graphical interface to manage file transfer and helps avoid typing long file paths and commands.
 
@@ -13,7 +15,8 @@ During workshop, we will transfer different output files from flux to your local
 To transfer or upload a file, you can drag and drop it into the location you want. 
 
 
-## Getting your data onto Flux and setting up environment variable
+Getting your data onto Flux and setting up environment variable
+---------------------------------------------------------------
 
 **Log in to Flux**
 
@@ -61,7 +64,7 @@ Note: Replace "username" under alias shortcuts with your own umich "uniqname". Y
   <summary>Click to expand entries</summary>
   
 ```
-## Micro612 Workshop ENV
+##Micro612 Workshop ENV
 
 #Aliases
 alias iflux='qsub -I -V -l nodes=1:ppn=4,pmem=4000mb,walltime=1:00:00:00 -q fluxod -l qos=flux -A micro612w18_fluxod'
@@ -74,14 +77,14 @@ alias d3m='cd /scratch/micro612w18_fluxod/username/day3_morn'
 alias d3a='cd /scratch/micro612w18_fluxod/username/day3_after'
 
 
-# Flux Modules
+#Flux Modules
 module load perl-modules
 
-# Perl Libraries
+#Perl Libraries
 export PERL5LIB=/scratch/micro612w18_fluxod/shared/bin/PAGIT/lib:/scratch/micro612w18_fluxod/shared/bin/vcftools_0.1.12b/perl:$PERL5LIB
 export PERL5LIB=/scratch/micro612w18_fluxod/shared/perl_libs:$PERL5LIB
 
-# Bioinformatics Tools
+#Bioinformatics Tools
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/ncbi-blast-2.7.1+/bin/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/MultiQC/build/scripts-2.7/
 export PATH=$PATH:/scratch/micro612w18_fluxod/shared/bin/mauve_snapshot_2015-02-13/linux-x64/
@@ -129,7 +132,7 @@ source ~/.bashrc
 
 echo $PATH
 
-# You will see a long list of paths that has been added to your $PATH variable
+#You will see a long list of paths that has been added to your $PATH variable
 
 wd
 
@@ -142,7 +145,8 @@ tree file system Pending
 -->
 
 
-## Unix is your friend
+Unix is your friend
+-------------------
 
 Up until now you’ve probably accessed sequence data from NCBI by going to the website, laboriously clicking around and finally finding and downloading the data you want. 
 
@@ -163,7 +167,7 @@ cp -r /scratch/micro612w18_fluxod/shared/data/day1_morn/ ./
 
 cd day1_morn/
 
-# or 
+#or 
 
 d1m
 
@@ -199,7 +203,8 @@ grep ">" E_coli.fna | wc -l
 
 vi) Try this command on other assemblies to see how many contigs they have
 
-# Your first sequence analysis program!!!
+Your first sequence analysis program!!!
+---------------------------------------
 
 OK, so now that we have a useful command, wouldn’t it be great to turn it into a program that you can easily apply to a large number of genome assemblies? Of course it would! So, now we are going to take out cool contig counting command, and put it in a shell script that applies it to all files in the desired directory.
 
@@ -215,7 +220,8 @@ OK, so now that we have a useful command, wouldn’t it be great to turn it into
 bash fasta_counter.sh ./
 ```
 
-# Plotting genomic coverage in R
+Plotting genomic coverage in R
+------------------------------
 
 Data visualization plays an important role in organizing, analyzing and interpreting large amount of omics data. R is one of the most basic and powerful tool for manipulating and visualizing these types of data. The following task will brush up some basic R plotting commands and help you visualize some complex omics data for interpretation.
 
@@ -262,7 +268,8 @@ plot.ts(x$Average_coverage, xlab="Genome Position(1000bp bins)", ylab="Average R
 </details>
 
 
-# Power of Unix commands
+Power of Unix commands
+----------------------
 
 In software carpentry, you learned working with shell and automating simple tasks using basic unix commands. Lets see how some of these commands can be employed in genomics analysis while exploring various file formats that we use in day to day analysis. For this session, we will try to explore three different types of bioinformatics file formats: 
 
@@ -280,7 +287,7 @@ cp -r /scratch/micro612w18_fluxod/shared/data/day1_morn/ ./
 
 cd day1_morn/
 
-# or 
+#or 
 
 d1m
 
@@ -396,12 +403,12 @@ grep -v '^#' sample.gff | wc -l
 
 cut -f 3 sample.gff | grep 'rRNA' | wc -l
 
-# Or number of CDS or tRNA features?
+#Or number of CDS or tRNA features?
 
 cut -f 3 sample.gff | grep 'CDS' | wc -l
 cut -f 3 sample.gff | grep 'tRNA' | wc -l
 
-# Note: In the above command, we are trying to extract feature information from third column.
+#Note: In the above command, we are trying to extract feature information from third column.
 
 ```
 </details>
@@ -419,14 +426,15 @@ Run the following command to print total number of reads in each file, total num
 ```
 for i in Rush_KPC_266_*.gz; do zcat $i | awk 'BEGIN{OFS="\t"};((NR-2)%4==0){read=$1;total++;count[read]++;len+=length(read)}END{for(read in count){if(!max||count[read]>max) {max=count[read];maxRead=read};if(count[read]==1){unique++}};print total,unique,unique*100/total,maxRead,count[maxRead],count[maxRead]*100/total,len/total}'; done
 
-# The above awk command reads every fourth record and calculates some basic fastq statistics.
+#The above awk command reads every fourth record and calculates some basic fastq statistics.
 ```
 
 Now try running the above command using fastq_screen.fastq.gz as input.
 
 You can find more of such super useful bash one-liners at Stephen Turner's github [page](https://github.com/stephenturner/oneliners). You can also use some pre-written unix utilities and tools such as [seqtk](https://github.com/lh3/seqtk), [bioawk](https://github.com/lh3/bioawk) and [fastx](http://hannonlab.cshl.edu/fastx_toolkit/) which comes in handy while extracting complex information from fasta/fastq/sam/bam files and are optimized to be insanely fast.
 
-## Contamination Screening using [FastQ Screen](http://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/)
+Contamination Screening using [FastQ Screen](http://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/)
+--------------------------------------------
 
 When running a sequencing pipeline, it is very important to make sure that your data matches appropriate quality threshold and are free from any contaminants. This step will help you make correct interpretations in downstream analysis and will also let you know if you are required to redo the experiment/library preparation or resequencing or remove contaminant sequences.
 
@@ -472,7 +480,7 @@ cd /scratch/micro612w18_fluxod/username/day1_morn/
 fastq_screen --subset 1000 --force --outdir ./ --aligner bowtie2 fastq_screen.fastq.gz
 
 #Note: We will screen only a subset of fastq reads against reference databases. To screen all the reads, change this argument to --subset 0 but will take long time to finish. (searching sequences against human or mouse genome is a time consuming step) 
-# Also Dont worry about "Broken pipe" warning.
+#Also Dont worry about "Broken pipe" warning.
 
 ```
 
@@ -483,13 +491,14 @@ The above run will generate two types of output file: a screen report in text fo
 ```
 scp username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day1_morn/fastq_screen_screen.png /path-to-local-directory/
 
-# You can use ~/Desktop/ as your local directory path
+#You can use ~/Desktop/ as your local directory path
 
 ```
 
 Open fastq_screen_screen.png on your system. You will notice that the sample contain a significant amount of human reads; we should always remove these contaminants from our sample before proceeding to any type of microbial analysis.
 
-## Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
+Quality Control using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ "FastQC homepage")
+------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -544,7 +553,8 @@ Check out [this](https://sequencing.qcfail.com/articles/loss-of-base-call-accura
 
 > [A video FastQC walkthrough created by FastQC developers](https://www.youtube.com/watch?v=bz93ReOv87Y "FastQC video") 
 
-## Quality Trimming using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic "Trimmomatic Homepage")
+Quality Trimming using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic "Trimmomatic Homepage")
+------------------------------------
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_morning/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
@@ -565,7 +575,7 @@ iflux
 
 cd /scratch/micro612w18_fluxod/username/day1_morn/
 
-# or
+#or
 
 d1m
 ```
