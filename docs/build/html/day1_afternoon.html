@@ -121,7 +121,7 @@
 <span id="read-mapping"></span><h2>Read Mapping<a class="headerlink" href="#read-mapping" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md">[back to top]</a>
 <a class="reference external" href="https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md">[HOME]</a></p>
-<p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/1_1.png" /></p>
+<p><img alt="alt tag" src="_images/1_1.png" /></p>
 <p><strong>1. Navigate to your workshop home directory and copy day1_after directory from shared data directory.</strong></p>
 <pre class="literal-block">
 wd
@@ -226,7 +226,7 @@ samtools sort Rush_KPC_266__aln.bam Rush_KPC_266__aln_sort
 <p>Illumina sequencing involves PCR amplification of adapter ligated DNA fragments so that we have enough starting material for sequencing. Therefore, some amount of duplicates are inevitable. Ideally, you amplify upto ~65 fold(4% reads) but higher rates of PCR duplicates e.g. 30% arise when people have too little starting material such that greater amplification of the library is needed or some smaller fragments which are easier to PCR amplify, end up over-represented.</p>
 <p>For an in-depth explanation about how PCR duplicates arise in sequencing, please refer to this interesting <a class="reference external" href="http://www.cureffi.org/2012/12/11/how-pcr-duplicates-arise-in-next-generation-sequencing/">blog</a></p>
 <p>Picard identifies duplicates by searching reads that have same start position on reference or in PE reads same start for both ends. It will choose a representative from each group of duplicate reads based on best base quality scores and other criteria and retain it while removing other duplicates. This step plays a significant role in removing false positive variant calls(such as sequencing error) during variant calling that are represented by PCR duplicate reads.</p>
-<p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/picard.png" /></p>
+<p><img alt="alt tag" src="_images/picard.png" /></p>
 <blockquote>
 <div>i. Create a dictionary for reference fasta file required by PICARD</div></blockquote>
 <p>Make sure you are in Rush_KPC_266_varcall_result directory and are giving proper reference genome path (day1_after directory).</p>
@@ -466,22 +466,22 @@ scp -r username&#64;flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/usern
 <p>Reads aligned to your reference are displayed as stacked at the top panel of Artemis. The reads are colour coded so that paired reads are blue and those with an inversion are red. Reads that do not have a mapped mate are black and are optionally shown in the inferred insert size view. In the stack view, duplicated reads that span the same region are collapsed into one green line.</p>
 <p>Now right click on any of the stacked reads and Go to Graph and select Coverage(screenshot below).</p>
 <p>Now right click on any of the stacked reads and Go to Show and select SNP marks to show SNP&#8217;s in red marks.</p>
-<p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/select_graph.png" /></p>
+<p><img alt="alt tag" src="_images/select_graph.png" /></p>
 <p>Follow the same procedure and select SNP graph. Adjust the gene features panel height to show all the graph in a window.</p>
-<p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/graphs.png" /></p>
+<p><img alt="alt tag" src="_images/graphs.png" /></p>
 <p>Play around by moving the genbank panel cursor to look at coverage and SNP density across the genome. This will let you look at any regions where the coverage or SNP density is unusually high or low.</p>
 <p>If you click a read, its mate pair will also be selected. If the cursor hovers over a read for long enough details of that read will appear in a small box. For more details of the read, right-click and select &#8216;Show details of: READ NAME&#8217; (last option in list) from the
 menu.(screenshot below) This will open up a new window giving you some useful details such as mapping quality, coordinates etc.</p>
-<p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/read_details.png" /></p>
+<p><img alt="alt tag" src="_images/read_details.png" /></p>
 <p>The snps are denoted by red marks as observed inside the reads. Go to one of the SNPs in VCF file(Position: 50195) by directly navigating to the position. For this, select Goto at the top -&gt; select Navigator -&gt; Type the position in Goto Base box</p>
 <p>You will Notice a spike in the middle of the SNP graph window. This is one of the SNPs that passed all our filter criteria. (Screenshot)</p>
-<p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/spike_true.png" /></p>
+<p><img alt="alt tag" src="_images/spike_true.png" /></p>
 <p>Lets try to see an example of HET variant. Variant positions where more than one allele(variants) with suffficiently high read depth are observed are considered as HET type variant.</p>
 <p>For this, click on Goto option at the top and select navigator. Type 321818 in Goto Base box and click Goto.</p>
 <p>You will see a thick spike in the SNP graph as well as thick red vertical line in BAM panel. Also notice the sudden spike in the coverage for this particular region compared to its flanking region(Region before and after a selected region). The coverage here is more than 300 which is unusually high compared to the entire genome coverage. This means that more than one allele with high quality and depth were observed at these positions so we cannot decide which one of these is a true variant. We removed these types of variants during our Variant Filteration step using the criteria FQ. (If the FQ is unusually high, it is suggestive of HET variant and negative FQ value is a suggestive of true variant as observed in the mapped reads)</p>
-<p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/HET_variant.png" /></p>
+<p><img alt="alt tag" src="_images/HET_variant.png" /></p>
 <p>Now select the gene right below this spiked region. Right click on this gene(KPNIH1_RS01560) and select Zoom to Selection.</p>
-<p><img alt="alt tag" src="https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/HET_variant_gene_selected.png" /></p>
+<p><img alt="alt tag" src="_images/HET_variant_gene_selected.png" /></p>
 <p>Check the details about gene by selecting View -&gt; Selected Features</p>
 <p>You can inspect these type of HET variants later for any gene duplication or copy number analysis (by extracting variant positions with high FQ values). Addition of these details will give a better resolution while inferring Phylogenetic trees.</p>
 <p>Play around with Artemis to look at what other kind of information you can find from these BAM and vcf files. Also refer to the manual at Artemis <a class="reference external" href="http://www.sanger.ac.uk/science/tools/artemis">Homepage</a> for full information about its usage.</p>
