@@ -488,24 +488,24 @@ Now right click on any of the stacked reads and Go to Graph and select Coverage(
 
 Now right click on any of the stacked reads and Go to Show and select SNP marks to show SNP's in red marks. 
 
-![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/select_graph.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/select_graph.png)
 
 Follow the same procedure and select SNP graph. Adjust the gene features panel height to show all the graph in a window.
 
-![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/graphs.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/graphs.png)
 
 Play around by moving the genbank panel cursor to look at coverage and SNP density across the genome. This will let you look at any regions where the coverage or SNP density is unusually high or low.
 
 If you click a read, its mate pair will also be selected. If the cursor hovers over a read for long enough details of that read will appear in a small box. For more details of the read, right-click and select 'Show details of: READ NAME' (last option in list) from the
 menu.(screenshot below) This will open up a new window giving you some useful details such as mapping quality, coordinates etc. 
 
-![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/read_details.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/read_details.png)
 
 The snps are denoted by red marks as observed inside the reads. Go to one of the SNPs in VCF file(Position: 50195) by directly navigating to the position. For this, select Goto at the top -> select Navigator -> Type the position in Goto Base box
 
 You will Notice a spike in the middle of the SNP graph window. This is one of the SNPs that passed all our filter criteria. (Screenshot)
 
-![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/spike_true.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/spike_true.png)
 
 Lets try to see an example of HET variant. Variant positions where more than one allele(variants) with suffficiently high read depth are observed are considered as HET type variant. 
 
@@ -513,11 +513,11 @@ For this, click on Goto option at the top and select navigator. Type 321818 in G
 
 You will see a thick spike in the SNP graph as well as thick red vertical line in BAM panel. Also notice the sudden spike in the coverage for this particular region compared to its flanking region(Region before and after a selected region). The coverage here is more than 300 which is unusually high compared to the entire genome coverage. This means that more than one allele with high quality and depth were observed at these positions so we cannot decide which one of these is a true variant. We removed these types of variants during our Variant Filteration step using the criteria FQ. (If the FQ is unusually high, it is suggestive of HET variant and negative FQ value is a suggestive of true variant as observed in the mapped reads) 
 
-![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/HET_variant.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/HET_variant.png)
 
 Now select the gene right below this spiked region. Right click on this gene(KPNIH1_RS01560) and select Zoom to Selection.
 
-![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/artemis/HET_variant_gene_selected.png)
+![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/HET_variant_gene_selected.png)
 
 Check the details about gene by selecting View -> Selected Features
 
