@@ -330,6 +330,10 @@ Note: There is an issue with downloading the database. They are in a process to 
 
 The fastq reads are placed in Abau_genomes_fastq directory. Enter interactive flux session, change directory to day2_after workshop directory and run the below four commands to start ARIBA jobs in background.
 
+<!---
+module load python-anaconda3/latest
+-->
+
 ```
 iflux
 
@@ -343,17 +347,15 @@ d2a
 
 module load cd-hit
 
-module load python-anaconda3/latest
-
 #ARIBA commands
 
-ariba run --force /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauA_genome.1.fastq.gz Abau_genomes_fastq/AbauA_genome.2.fastq.gz AbauA_genome &
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba run --force /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauA_genome.1.fastq.gz Abau_genomes_fastq/AbauA_genome.2.fastq.gz AbauA_genome &
 
-ariba run --force /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauB_genome.1.fastq.gz Abau_genomes_fastq/AbauB_genome.2.fastq.gz AbauB_genome &
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba run --force /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauB_genome.1.fastq.gz Abau_genomes_fastq/AbauB_genome.2.fastq.gz AbauB_genome &
 
-ariba run --force /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauC_genome.1.fastq.gz Abau_genomes_fastq/AbauC_genome.2.fastq.gz AbauC_genome &
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba run --force /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/AbauC_genome.1.fastq.gz Abau_genomes_fastq/AbauC_genome.2.fastq.gz AbauC_genome &
 
-ariba run --force /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/ACICU_genome.1.fastq.gz Abau_genomes_fastq/ACICU_genome.2.fastq.gz ACICU_genome &
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba run --force /scratch/micro612w18_fluxod/shared/out.card.prepareref/ Abau_genomes_fastq/ACICU_genome.1.fastq.gz Abau_genomes_fastq/ACICU_genome.2.fastq.gz ACICU_genome &
 
 ```
 
@@ -369,9 +371,9 @@ ARIBA has a summary function that summarises the results from one or more sample
 
 ```
 
-ariba summary --preset minimal Abau_genomes_ariba_minimal_results *_genome/*.tsv
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba summary --preset minimal Abau_genomes_ariba_minimal_results *_genome/*.tsv
 
-ariba summary --preset all Abau_genomes_ariba_all_results *_genome/*.tsv
+/nfs/esnitkin/bin_group/anaconda3/bin/ariba summary --preset all Abau_genomes_ariba_all_results *_genome/*.tsv
 
 ```
 
