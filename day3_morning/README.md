@@ -238,14 +238,16 @@ Now that we know there is recombination, we know that we need to filter out the 
 
 Go back on flux and load modules required by gubbins
 
+<!---
+Older version:
+module load python/2.7.3 biopython dendropy reportlab fasttree RAxML fastml/gub gubbins
+-->
+
 ```
 Check if gubbins run after loading newer version flux modules
 
-Older version:
-module load python/2.7.3 biopython dendropy reportlab fasttree RAxML fastml/gub gubbins
-
 Newer version:
-module load python-anaconda2/201607 biopython dendropy reportlab fasttree RAxML fastml/gub gubbins
+module load bioperl python-anaconda2/201607 biopython dendropy reportlab fasttree RAxML fastml/gub gubbins
 
 ```
 
