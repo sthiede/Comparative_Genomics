@@ -340,7 +340,7 @@ Make a heatmap for variable genes (present in at least one, but not all of the g
 
 ```
 
-pg_matrix_subset = pg_matrix[rowSums(pg_matrix > 0.4) > 0 & rowSums(pg_matrix > 0.4) < 4 ,] 
+pg_matrix_subset = pg_matrix[rowSums(pg_matrix > 0) > 0 & rowSums(pg_matrix > 0) < 4 ,] 
 heatmap(as.matrix(pg_matrix_subset), , scale = "none", distfun = function(x){dist(x, method = "manhattan")}, margin = c(10,10), cexCol = 0.85, cexRow = 0.5, col= c('black', 'red'))
 
 ```
