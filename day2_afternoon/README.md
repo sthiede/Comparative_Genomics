@@ -72,8 +72,6 @@ less bl_blastp_results
 ```
 > Question: Experiment with the –m parameter, which controls different output formats that BLAST can produce. 
 
-> Question: Determine which Enterococcus genomes contain vancomycin resistance genes. To do this you will need to: i) create a protein BLAST database for ardb_van.pfasta, ii) concetenate the genomes sequences in the .fasta files and iii) use blastx to BLAST nucleotide genomes against a protein database 
-
 >iv. Repeat steps i-iii for a different resistance gene class
 Use nano to change fasta_file_keys to contain phrase you’d like to search for (e.g. acetyltransferase, carbapenemase)
 Run filter_fasta_file.pl to extract genes annotated with your resistance of interest (ROI) from the full ARDB fasta file
@@ -307,6 +305,8 @@ less bl_blastp_results
 ```
 
 > Question: Experiment with the –outfmt parameter, which controls different output formats that BLAST can produce. 
+
+> Question: Determine which Enterococcus genomes contain vancomycin resistance genes. To do this you will need to: i) create a protein BLAST database for ardb_van.pfasta, ii) concetenate the genomes sequences in the .fasta files and iii) use blastx to BLAST nucleotide genomes against a protein database 
 
 Identification of antibiotic resistance genes with [ARIBA](https://github.com/sanger-pathogens/ariba) directly from paired end reads
 ----------------------------------------------------------
