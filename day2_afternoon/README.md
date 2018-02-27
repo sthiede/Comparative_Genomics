@@ -374,7 +374,7 @@ hist(rowSums(pg_matrix > 0), col="red")
 Next, lets figure out how big the core genome is (e.g. how many genes are common to all of our genomes)?
 
 ```
-sum(rowSums(pg_matrix > 0.4) == 4)
+sum(rowSums(pg_matrix > 0) == 4)
 ```
 
 >v. What is the size of the accessory genome?
@@ -382,7 +382,7 @@ sum(rowSums(pg_matrix > 0.4) == 4)
 Lets use a similar approach to determine the size of the accessory genome (e.g. those genes present in only a subset of our genomes).
 
 ```
-sum(rowSums(pg_matrix > 0.4) < 4 & rowSums(pg_matrix > 0.4) > 0)
+sum(rowSums(pg_matrix > 0) < 4 & rowSums(pg_matrix > 0) > 0)
 ```
 
 >vi. What types of genes are unique to a given genome?
