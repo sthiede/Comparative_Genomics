@@ -168,7 +168,9 @@ cd /scratch/micro612w18_fluxod/username/day2_morn/
 
 cd multiqc_analysis
 
-#Try invoking multiqc 
+#Load python and Try invoking multiqc 
+
+module load python-anaconda2/latest
 
 multiqc -h
 
