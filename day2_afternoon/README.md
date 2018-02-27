@@ -328,7 +328,7 @@ Add column names back
 colnames(pg_matrix) = c('ACICU', 'AbauA', 'AbauB', 'AbauC')
 ```
 
-Use head, str, dim, etc. to explore the matrix you read in
+Use head, str, dim, etc. to explore the matrix.
 
 Make a heatmap for the full matrix
 
