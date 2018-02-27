@@ -356,6 +356,10 @@ Here we are arbitrarily deciding that a gene is present if the BSR is greater th
 Look at the help page for outer to gain additional insight into how this is working.
 
 ```
+help(outer)
+```
+
+```
 outer(1:4,1:4, FUN = Vectorize(function(x,y){sum(pg_matrix_subset[,x] > 0 & pg_matrix_subset[,y] > 0)}))
 ```
 
