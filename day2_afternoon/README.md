@@ -316,7 +316,7 @@ less gene_presence_absence_wannot.Rtab
 
 Use scp or cyberduck to get gene_presence_absence_wannot.Rtab onto your laptop.
 
-i. Preapare and clean data
+i. Prepare and clean data
 
 - Fire up RStudio and read gene_presence_absence_wannot.Rtab into matrix.
 
