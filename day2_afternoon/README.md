@@ -378,6 +378,8 @@ ARIBA summary generates three output:
 1. Abau_genomes_ariba*.csv file that can be viewed in your favourite spreadsheet program.
 2. Abau_genomes_ariba*.phandango.{csv,tre} that allow you to view the results in [Phandango](http://jameshadfield.github.io/phandango/#/). They can be drag-and-dropped straight into Phandango.
 
+Download these files with Cyberduck or the scp command. 
+
 Perform pan-genome analysis with [Roary](https://sanger-pathogens.github.io/Roary/)
 ----------------------------------------
 
