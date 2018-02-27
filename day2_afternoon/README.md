@@ -387,20 +387,25 @@ sum(rowSums(pg_matrix > 0) < 4 & rowSums(pg_matrix > 0) > 0)
 
 >vi. What types of genes are unique to a given genome?
 
-So far we have quantified the core and accessory genome, now lets see if we can get an idea of what types of genes are core vs. accessory. Lets start by looking at those genes present in only a single genome. What do you notice about these genes?
+So far we have quantified the core and accessory genome, now lets see if we can get an idea of what types of genes are core vs. accessory. Lets start by looking at those genes present in only a single genome. 
 
 ```
 row.names(pg_matrix[rowSums(pg_matrix > 0) == 1,])
 ```
 
+What do you notice about these genes?
+
 vii. What is the number of hypothetical genes in core vs. accessory genome?
 
-Looking at unqiue genes we see that many are annotated as “hypothetical”, indicating that the sequence looks like a gene, but has no detectable homology with a functionally characterized gene. Determine the fraction of “hypothetical” genes in unique vs. core. Why does this make sense?
+Looking at unique genes we see that many are annotated as “hypothetical”, indicating that the sequence looks like a gene, but has no detectable homology with a functionally characterized gene. 
+
+Determine the fraction of “hypothetical” genes in unique vs. core. 
 
 ```
 sum(grepl("hypothetical" , row.names(pg_matrix[rowSums(pg_matrix > 0) == 1,]))) / sum(rowSums(pg_matrix > 0) == 1)
 sum(grepl("hypothetical" , row.names(pg_matrix[rowSums(pg_matrix > 0) == 4,]))) / sum(rowSums(pg_matrix > 0) == 4)
 ```
+Why does this make sense?
 
 Perform genome comparisons with [ACT](http://www.sanger.ac.uk/science/tools/artemis-comparison-tool-act)
 -------------------------------------
