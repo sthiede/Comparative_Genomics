@@ -419,11 +419,9 @@ cd /scratch/micro612w18_fluxod/username/day2_morn/
 
 mkdir sample_266_prokka 
 
-> Dont forget to change username in the below command
-
 prokka -kingdom Bacteria -outdir sample_266_prokka -force -prefix sample_266 sample_266_contigs_ordered.fasta
 
-> Use scp to get Prokka annotated genome on your laptop. 
+> Use scp to get Prokka annotated genome on your laptop. Dont forget to change username in the below command
 
 scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_morn/sample_266_prokka/ /path-to-local-ACT_contig_comparison-directory/
 
