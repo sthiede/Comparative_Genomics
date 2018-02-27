@@ -259,7 +259,7 @@ Try to explore other statistics and their definitions from Picard AlignmentSumma
 
 Read coverage/depth describes the average number of reads that align to, or "cover," known reference bases. The sequencing depth is one of the most crucial issue in the design of next-generation sequencing experiments. This [paper](https://www.nature.com/articles/nrg3642) review current guidelines and precedents on the issue of coverage, as well as their underlying considerations, for four major study designs, which include de novo genome sequencing, genome resequencing, transcriptome sequencing and genomic location analyses 
 
-After read mapping, it is important to make sure that the reference bases are represented by enough read depth(atleast 10X) before making any inferences such as variant calling.
+After read mapping, it is important to make sure that the reference bases are represented by enough read depth (at least 10 reads covering each reference base on an average) before making any inferences such as variant calling.
 
 ```
 java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar CollectWgsMetrics R=../KPNIH1.fasta I=Rush_KPC_266__aln_marked.bam O=WgsMetrics.txt
