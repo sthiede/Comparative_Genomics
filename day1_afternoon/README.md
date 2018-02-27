@@ -35,7 +35,11 @@ We will be using trimmed clean reads that were obtained after running Trimmomati
 
 Choosing the right read mapper is crucial and should be based on the type of analysis and data you are working with. Each aligners are meant to be better used with specific types of data, for example:
 
-For whole genome or whole exome sequencing data: Use BWA for long reads (> 50/100 bp), use Bowtie2 for short reads (< 50/100bp)
+For whole genome or whole exome sequencing data: Use BWA for long reads (> 50/100 bp), use Bowtie2 for short reads (< 50/100bp). BWA performs well on single end reads that is > 50 bp or PE reads that is >100bp.
+whereas, if you have single reads <50bp or PE reads <100bp, use bowtie2.
+
+But in practice, both of them yields comparable results and have an improved algorithm now that accommodates different read lengths.
+
 For transcriptomic data (RNA-Seq): use Splice-aware Mapper such as Tophat. (Not applicable for microbial data)
 
 Here, we will be using BWA aligner to map the reads against a reference genome, KPNIH1.
