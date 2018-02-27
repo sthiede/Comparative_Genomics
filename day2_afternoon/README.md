@@ -312,12 +312,91 @@ paste -d "" gene_presence_absence_annot.csv gene_presence_absence.Rtab > gene_pr
 less gene_presence_absence_wannot.Rtab
 ```
 
-**Load the data into R**
+**Read matrix into R and create heatmap**
+
+Use scp or cyberduck to get gene_presence_absence_wannot.Rtab onto your laptop.
+
+Fire up RStudio and read the dat into matrix.
+
+```
+pg_matrix = read.table('gene_presence_absence_wannot.Rtab', sep = "\t", quote = "", row.names = 1, skip = 1)
+```
+
+Add column names back
+
+```
+colnames(pg_matrix) = c('ACICU', 'AbauA', 'AbauB', 'AbauC')
+```
+
+Use head, str, dim, etc. to explore the matrix you read in
+
+Make a heatmap for the full matrix
+
+```
+heatmap(as.matrix(pg_matrix), , scale = "none", distfun = function(x){dist(x, method = "manhattan")}, margin = c(10,10), cexCol = 0.85, cexRow = 0.5, col= c('red', 'black'))
+```
+
+Make a heatmap for variable genes (present in at least one, but not all of the genomes
 
 ```
 
+pg_matrix_subset = pg_matrix[rowSums(pg_matrix > 0.4) > 0 & rowSums(pg_matrix > 0.4) < 4 ,] 
+heatmap(as.matrix(pg_matrix_subset), , scale = "none", distfun = function(x){dist(x, method = "manhattan")}, margin = c(10,10), cexCol = 0.85, cexRow = 0.5, col= c('red', 'black'))
+
 ```
 
+>iii. Which genomes are most closely related based upon shared gene content?
+
+We will use the outer function to determine the number of genes shared by each pair of genomes. 
+
+<!--
+Here we are arbitrarily deciding that a gene is present if the BSR is greater than 0.4. 
+-->
+
+Look at the help page for outer to gain additional insight into how this is working.
+
+```
+outer(1:4,1:4, FUN = Vectorize(function(x,y){sum(pg_matrix_subset[,x] > 0 & pg_matrix_subset[,y] > 0)}))
+```
+
+>iv. What is the size of the core genome?
+
+Lets first get an overview of how many genes are present in different numbers of genomes (0, 1, 2, 3 or 4) by plotting a histogram. Here, we combine hist with rowSums to accomplish this.
+
+```
+hist(rowSums(pg_matrix > 0))
+```
+
+Next, lets figure out how big the core genome is (e.g. how many genes are common to all of our genomes)?
+
+```
+sum(rowSums(pg_matrix > 0.4) == 4)
+```
+
+>v. What is the size of the accessory genome?
+
+Lets use a similar approach to determine the size of the accessory genome (e.g. those genes present in only a subset of our genomes).
+
+```
+sum(rowSums(pg_matrix > 0.4) < 4 & rowSums(pg_matrix > 0.4) > 0)
+```
+
+>vi. What types of genes are unique to a given genome?
+
+So far we have quantified the core and accessory genome, now lets see if we can get an idea of what types of genes are core vs. accessory. Lets start by looking at those genes present in only a single genome. What do you notice about these genes?
+
+```
+row.names(pg_matrix[rowSums(pg_matrix > 0) == 1,])
+```
+
+vii. What is the number of hypothetical genes in core vs. accessory genome?
+
+Looking at unqiue genes we see that many are annotated as “hypothetical”, indicating that the sequence looks like a gene, but has no detectable homology with a functionally characterized gene. Determine the fraction of “hypothetical” genes in unique vs. core. Why does this make sense?
+
+```
+sum(grepl("hypothetical" , row.names(pg_matrix[rowSums(pg_matrix > 0) == 1,]))) / sum(rowSums(pg_matrix > 0) == 1)
+sum(grepl("hypothetical" , row.names(pg_matrix[rowSums(pg_matrix > 0) == 4,]))) / sum(rowSums(pg_matrix > 0) == 4)
+```
 
 Perform genome comparisons with [ACT](http://www.sanger.ac.uk/science/tools/artemis-comparison-tool-act)
 -------------------------------------
