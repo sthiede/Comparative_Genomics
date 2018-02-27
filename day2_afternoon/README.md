@@ -336,7 +336,7 @@ Make a heatmap for the full matrix
 heatmap(as.matrix(pg_matrix), , scale = "none", distfun = function(x){dist(x, method = "manhattan")}, margin = c(10,10), cexCol = 0.85, cexRow = 0.5, col= c('black', 'red'))
 ```
 
-Make a heatmap for variable genes (present in at least one, but not all of the genomes
+Make a heatmap for variable genes (present in at least one, but not all of the genomes)
 
 ```
 
