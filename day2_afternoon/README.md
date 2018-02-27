@@ -188,13 +188,13 @@ ariba_full_asm = ariba_full[, grep('assembled',colnames(ariba_full))]
 - Make binary for plotting purposes
 
 ```
-ariba_full_asm_bin[,] = as.numeric(ariba_full_asm != 'no')
+ariba_full_asm[,] = as.numeric(ariba_full_asm != 'no')
 ```
 
 - Make a heatmap!
 
 ```
-heatmap(as.matrix(ariba_full_asm_bin), scale = "none", col= c('black', 'red'), margins = c(10,5), cexRow = 0.75)
+heatmap(as.matrix(ariba_full_asm), scale = "none", col= c('black', 'red'), margins = c(10,5), cexRow = 0.75)
 ```
 
 
