@@ -527,17 +527,17 @@ scp -r username@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/
 
 Start Artemis.
 
-Set your working directory to Artemis_files (The Artemis_files folder that you copied to your local system) by clicking the browse button  and click OK.
+Set your working directory to Artemis_files (the Artemis_files folder that you copied to your local system) by clicking the browse button  and click OK.
 
 Now go to the top left File options and select Open File Manager. You should see the folder Artemis_files. Expand it and select KPNIH.gb file. A new window should open displaying your features stored in a genbank file.
 
-Now open BAM file by selecting File (Top left corner) -> Read BAM/VCF file -> Select -> Rush_KPC_266__aln_marked.bam -> OK
+Now open the BAM file by selecting File (Top left corner) -> Read BAM/VCF file -> Select -> Rush_KPC_266__aln_marked.bam -> OK
 
-Reads aligned to your reference are displayed as stacked at the top panel of Artemis. The reads are colour coded so that paired reads are blue and those with an inversion are red. Reads that do not have a mapped mate are black and are optionally shown in the inferred insert size view. In the stack view, duplicated reads that span the same region are collapsed into one green line.
+Reads aligned to your reference are displayed as stacked at the top panel of Artemis. The reads are color-coded so that paired reads are blue and those with an inversion are red. Reads that do not have a mapped mate are black and are optionally shown in the inferred insert size view. In the stack view, duplicated reads that span the same region are collapsed into one green line.
 
-Now right click on any of the stacked reads and Go to Graph and select Coverage(screenshot below). 
+Now right click on any of the stacked reads and Go to Graph and select Coverage (screenshot below). 
 
-Now right click on any of the stacked reads and Go to Show and select SNP marks to show SNP's in red marks. 
+Now right click on any of the stacked reads and Go to Show and select SNP marks to show SNPs in red marks. 
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/select_graph.png)
 
@@ -548,33 +548,33 @@ Follow the same procedure and select SNP graph. Adjust the gene features panel h
 Play around by moving the genbank panel cursor to look at coverage and SNP density across the genome. This will let you look at any regions where the coverage or SNP density is unusually high or low.
 
 If you click a read, its mate pair will also be selected. If the cursor hovers over a read for long enough details of that read will appear in a small box. For more details of the read, right-click and select 'Show details of: READ NAME' (last option in list) from the
-menu.(screenshot below) This will open up a new window giving you some useful details such as mapping quality, coordinates etc. 
+menu (screenshot below). This will open up a new window giving you some useful details such as mapping quality, coordinates etc. 
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/read_details.png)
 
-The snps are denoted by red marks as observed inside the reads. Go to one of the SNPs in VCF file(Position: 50195) by directly navigating to the position. For this, select Goto at the top -> select Navigator -> Type the position in Goto Base box
+The snps are denoted by red marks as observed inside the reads. Go to one of the SNPs in the VCF file (Position: 50195) by directly navigating to the position. For this, select Goto at the top -> select Navigator -> Type the position in Goto Base box
 
-You will Notice a spike in the middle of the SNP graph window. This is one of the SNPs that passed all our filter criteria. (Screenshot)
+You will notice a spike in the middle of the SNP graph window. This is one of the SNPs that passed all our filter criteria. (Screenshot)
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/spike_true.png)
 
-Lets try to see an example of HET variant. Variant positions where more than one allele(variants) with suffficiently high read depth are observed are considered as HET type variant. 
+Lets try to see an example of HET variant. Variant positions where more than one allele (variant) with sufficiently high read depth are observed are considered HET type variants. 
 
-For this, click on Goto option at the top and select navigator. Type 321818 in Goto Base box and click Goto.
+For this, click on tje Goto option at the top and select navigator. Type 321818 in Goto Base box and click Goto.
 
-You will see a thick spike in the SNP graph as well as thick red vertical line in BAM panel. Also notice the sudden spike in the coverage for this particular region compared to its flanking region(Region before and after a selected region). The coverage here is more than 300 which is unusually high compared to the entire genome coverage. This means that more than one allele with high quality and depth were observed at these positions so we cannot decide which one of these is a true variant. We removed these types of variants during our Variant Filteration step using the criteria FQ. (If the FQ is unusually high, it is suggestive of HET variant and negative FQ value is a suggestive of true variant as observed in the mapped reads) 
+You will see a thick spike in the SNP graph as well as thick red vertical line in BAM panel. Also notice the sudden spike in the coverage for this particular region compared to its flanking region (the region before and after a selected region). The coverage here is more than 300 which is unusually high compared to the entire genome coverage. This means that more than one allele with high quality and depth were observed at these positions so we cannot decide which one of these is a true variant. We removed these types of variants during our Variant Filteration step using the criteria FQ. (If the FQ is unusually high, it is suggestive of a HET variant and negative FQ value is a suggestive of true variant as observed in the mapped reads) 
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/HET_variant.png)
 
-Now select the gene right below this spiked region. Right click on this gene(KPNIH1_RS01560) and select Zoom to Selection.
+Now select the gene right below this spiked region. Right click on this gene (KPNIH1_RS01560) and select Zoom to Selection.
 
 ![alt tag](https://github.com/alipirani88/Comparative_Genomics/blob/master/_img/day1_after/HET_variant_gene_selected.png)
 
 Check the details about gene by selecting View -> Selected Features
 
-You can inspect these type of HET variants later for any gene duplication or copy number analysis (by extracting variant positions with high FQ values). Addition of these details will give a better resolution while inferring Phylogenetic trees.
+You can inspect these type of HET variants later for any gene duplication or copy number analysis (by extracting variant positions with high FQ values). Addition of these details will give a better resolution while inferring phylogenetic trees.
 
-Play around with Artemis to look at what other kind of information you can find from these BAM and vcf files. Also refer to the manual at Artemis [Homepage](http://www.sanger.ac.uk/science/tools/artemis) for full information about its usage. 
+Play around with Artemis to look at what other kind of information you can find from these BAM and vcf files. Also refer to the manual at the [Artemis Homepage](http://www.sanger.ac.uk/science/tools/artemis) for full information about its usage. 
 
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
