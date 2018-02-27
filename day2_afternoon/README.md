@@ -316,7 +316,7 @@ less gene_presence_absence_wannot.Rtab
 
 Use scp or cyberduck to get gene_presence_absence_wannot.Rtab onto your laptop.
 
-Fire up RStudio and read the dat into matrix.
+Fire up RStudio and read gene_presence_absence_wannot.Rtab into matrix.
 
 ```
 pg_matrix = read.table('gene_presence_absence_wannot.Rtab', sep = "\t", quote = "", row.names = 1, skip = 1)
