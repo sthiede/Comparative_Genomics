@@ -368,7 +368,7 @@ outer(1:4,1:4, FUN = Vectorize(function(x,y){sum(pg_matrix_subset[,x] > 0 & pg_m
 Lets first get an overview of how many genes are present in different numbers of genomes (0, 1, 2, 3 or 4) by plotting a histogram. Here, we combine hist with rowSums to accomplish this.
 
 ```
-hist(rowSums(pg_matrix > 0))
+hist(rowSums(pg_matrix > 0), col="red")
 ```
 
 Next, lets figure out how big the core genome is (e.g. how many genes are common to all of our genomes)?
