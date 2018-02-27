@@ -262,7 +262,7 @@ java -jar /scratch/micro612w18_fluxod/shared/bin/picard-tools-1.130/picard.jar C
 
 ```
 
-Open the file `WgsMetrics.txt` and explore various statistics. It will generate various statistics and the definition for each can be found [here](https://broadinstitute.github.io/picard/picard-metric-definitions.html#CollectWgsMetrics.WgsMetrics).
+Open the file "WgsMetrics.txt" and explore various statistics. It will generate various statistics and the definition for each can be found [here](https://broadinstitute.github.io/picard/picard-metric-definitions.html#CollectWgsMetrics.WgsMetrics).
 
 Print column names
 
@@ -270,10 +270,10 @@ Print column names
 grep 'GENOME_TERRITORY' WgsMetrics.txt | tr '\t' '\n' | cat --number
 ```
 
-Since `WgsMetrics.txt` also contains histogram information, we will run commands on only the first few lines to extract information.
+Since "WgsMetrics.txt" also contains histogram information, we will run commands on only the first few lines to extract information.
 
 
-> Question: Extract mean coverage information from `WgsMetrics.txt`
+> Question: Extract mean coverage information from "WgsMetrics.txt"
 <!---
 sed -n 7,8p WgsMetrics.txt | awk -F'\t' '{print $2}'
 -->
