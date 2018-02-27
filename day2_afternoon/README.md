@@ -146,7 +146,7 @@ The "&" in the above commands(at the end) is a little unix trick to run commands
 jobs
 ```
 
->ii. Run ARIBA summary function to generate a report summary.
+>ii. Run ARIBA summary function to generate a summary report.
 
 ARIBA has a summary function that summarises the results from one or more sample runs of ARIBA and generates an output report with various level of information determined by -preset parameter. The parameter "-preset minimal" will generate a minimal report showing only the presence/absence of resistance genes whereas "-preset all" will output all the extra information related to each database hit such as reads and reference sequence coverage, variants and their associated annotations(if the variant confers resistance to an Antibiotic) etc.
 
@@ -170,6 +170,33 @@ scp username\@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/da
 ```
 
 Drag and drop these two files on [Phandango](http://jameshadfield.github.io/phandango/#/) website. What types of resistance genes do you see in these Acinetobacter genomes? This [review](http://aac.asm.org/content/55/3/947.full) may help interpret.
+
+>iii. Explore full ARIBA matrix in R
+
+- Now, Fire up R console or studio and read ariba full report "Abau_genomes_ariba_all_results.csv"
+
+```
+ariba_full  = read.csv(file = 'Abau_genomes_ariba_all_results.csv', row.names = 1)
+```
+
+- Subset to get description for each gene
+
+```
+ariba_full_asm = ariba_full[, grep('assembled',colnames(ariba_full))]
+```
+
+- Make binary for plotting purposes
+
+```
+ariba_full_asm_bin[,] = as.numeric(ariba_full_asm != 'no')
+```
+
+- Make a heatmap!
+
+```
+heatmap(as.matrix(ariba_full_asm_bin), scale = "none", col= c('black', 'red'), margins = c(10,5), cexRow = 0.75)
+```
+
 
 Perform pan-genome analysis with [Roary](https://sanger-pathogens.github.io/Roary/)
 ----------------------------------------
