@@ -173,6 +173,11 @@ Drag and drop these two files on [Phandango](http://jameshadfield.github.io/phan
 
 >iii. Explore full ARIBA matrix in R
 
+Now, copy Abau_genomes_ariba_all_results.csv to your local system using Cyberduck or this scp command 
+```
+scp username\@flux-xfer.arc-ts.umich.edu:/scratch/micro612w18_fluxod/username/day2_after/Abau_genomes_ariba_all_results.csv ~/Desktop/
+```
+
 - Now, Fire up R console or studio and read ariba full report "Abau_genomes_ariba_all_results.csv"
 
 ```
