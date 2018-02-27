@@ -316,7 +316,7 @@ Variant Calling and Filteration
 [[back to top]](https://github.com/alipirani88/Comparative_Genomics/blob/master/day1_afternoon/README.md)
 [[HOME]](https://github.com/alipirani88/Comparative_Genomics/blob/master/README.md)
 
-One of the downstream uses of read mapping is finding differences between our sequence data against a reference. This step is achieved by carrying out variants calling using any of the variant callers(samtools, gatk, freebayes etc). Each variant caller uses a different statistical framework to discover SNPs and other types of mutations. For those of you who are interested in finding out more about the statistics involved, please refer to [this]() samtools paper, one of most commonly used variant callers.
+One of the downstream uses of read mapping is finding differences between our sequence data against a reference. This step is achieved by carrying out variants calling using any of the variant callers(samtools, gatk, freebayes etc). Each variant caller uses a different statistical framework to discover SNPs and other types of mutations. For those of you who are interested in finding out more about the statistics involved, please refer to [this](https://www.ncbi.nlm.nih.gov/pubmed/21903627) samtools paper, one of most commonly used variant callers.
 
 This GATK best practices [guide](https://www.broadinstitute.org/gatk/guide/best-practices.php) will provide more details about various steps that you can incorporate in your analysis.
 
