@@ -159,7 +159,7 @@ There are a lot of reasons that is not ideal:
 
 To download sequence data in Unix you can use a variety of commands (e.g. sftp, wget, curl). Here, we will use the curl command to download some genome assemblies from NCBI ftp location:
 
-> Go to your class home directory (use your micro612 shortcut!)
+> Go to your class home directory (use your wd shortcut!)
 
 > Execute the following commands to copy files for this morning’s exercises to your home directory: 
 
